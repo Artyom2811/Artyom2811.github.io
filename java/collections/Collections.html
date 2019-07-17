@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Collections</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+<div>
+    <p><a href="../JAVA.html">НАЗАД</a></p>
+    <h1>Содержание</h1>
+    <p>Коллекции- это специальные классы для хранения использования и удачение множества одинаковых объектов.</p>
+    <img src="CollectionsHierarchy.png" width="900" height="600" alt="альтернативный текст">
+        <ul>Вопросы на собеседование:
+            <li>Разница HashSet и LinkedHashSet? - LinkedHashSet хранит записи в порядке добавления, двухсвязный список.</li>
+            <li>Разница HashSet и TreeSet? - TreeSet на основе дерева. При добавлении сортирует. Для добавление необходимо
+            передать Comparator или чтобы его элементы реализовывали Comparable.</li>
+            <li>Как получить значение из Hashset? Вызвать его Iterator или использовать метод toArray()</li>
+            <li>Как храняться эдементы в Hashset? В односвязном списке.</li>
+            <li>Что просходит при получении значение из Hashmap? Мы ищем по ключу баккет а дальше проверяем на equals()
+            элементы пока не найдем.</li>
+            <li>Контракт между equals и hashcode? Если два объекта равны, то они должны иметь один и тот же хэш-код,
+                и если два объекта не равны, то они могут иметь или не иметь один и тот же хэш-код.</li>
+        </ul>
+<a href="https://devcolibri.com/hashmap-%D0%B8-hashset-%D1%87%D1%82%D0%BE-%D1%8D%D1%82%D0%BE-%D0%BD%D0%B0-%D1%81%D0%B0%D0%BC%D0%BE%D0%BC-%D0%B4%D0%B5%D0%BB%D0%B5/"
+   >HashMap</a>
+    <a href="https://javarush.ru/groups/posts/1989-kontraktih-equals-i-hashcode-ili-kak-ono-vsje-tam">EqualsAndHashcode</a>
+</div>
+</body>
+</html>
