@@ -2,5 +2,20 @@ body {
     font-size: 1em;
     margin-left: auto;
     margin-right: auto;
-    width: 70%;
+  width: 70%;
    }
+
+.wikitable {
+    background-color: #eaecf0;
+    border: 1px solid #a2a9b1;
+    border-collapse: collapse;
+}
+
+.wikitable > * > tr > th, .wikitable > * > tr > td{
+    border: 1px solid #a2a9b1;
+    padding: 0.2em 0.4em;
+}
+
+div {
+    margin: 1em 0;
+}
