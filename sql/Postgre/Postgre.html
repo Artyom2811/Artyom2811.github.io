@@ -16,6 +16,13 @@
         UPDATE имя_таблицы<br>
         SET имя_колонки = TRIM(имя_колонки)<br>
     </p>
+    <p>
+        Проверка на дубликаты:<br>
+        SELECT ‘проверяемая колонка’ , COUNT(*)<br>
+        FROM ‘проверяемая таблица’<br>
+        GROUP BY ‘проверяемая колонка’<br>
+        HAVING COUNT(*) > 1<br>
+    </p>
     <p>CAST:<br>
         Date to Text:<br>
         to_char(имя_колонки, 'yyyy-MM-dd')<br>
@@ -24,7 +31,26 @@
         Заменить если null на Значение:<br>
         COALESCE(имя_колонки, 'Нет значения')<br>
     </p>
-
+    <p>
+        СРАВНЕНИЕ ВЫБОРКИ С ИНДЕКСОМ И БЕЗ:<br>
+        вариант с:<br>
+        SELECT * FROM table WHERE ...<br>
+        вариант без:<br>
+        SELECT * FROM table WITH (INDEX(0)) WHERE …<br>
+    </p>
+    <p>
+        Если нужно упорядочить по дате, если дата строкой(Нужно в сортировке перевести в дату):<br>
+        SELECT *<br>
+        FROM table<br>
+        ORDER BY DATE(date_coloumn) DESC<br>
+    </p>
+    <p>
+        Получение grant для на таблицу<br>
+        GRANT SELECT, INSERT, UPDATE, DELETE ON имя_таблицы TO пользователь<br>
+        Пример:<br>
+        grant select, insert, update, delete on table1 to IVAN<br>
+    </p>
 </div>
 </body>
 </html>
+<!--https://www.postgresql.org/docs/9.1/datatype-boolean.html-->
