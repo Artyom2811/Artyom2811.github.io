@@ -1,3 +1,5 @@
+package testJava;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
