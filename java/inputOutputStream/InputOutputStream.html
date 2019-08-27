@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Immutable Class</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+<div>
+    <p><a href="../JAVA.html">НАЗАД</a></p>
+    <h1>InputOutputStream</h1>
+    <p>InputOutputStream - .</p>
+    <h3>ReadFromFile - Запись в файл</h3>
+    <pre>
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+
+public class ReadFromFile {
+    public String read(String path) {
+        StringBuilder sb = new StringBuilder();
+        try (FileReader reader = new FileReader(path)) {
+            char[] buf = new char[4096];
+            int c;
+            while ((c = reader.read(buf)) > 0) {
+
+                if (c < 256) {
+                    buf = Arrays.copyOf(buf, c);
+                }
+                sb.append(buf);
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return sb.toString();
+    }
+}
+    </pre>
+
+    <h3>WriteInFile - Чтение из файла</h3>
+    <pre>
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class WriteInFile {
+    public void write(String path, String text, boolean append) {
+        //Создатся файл в корне проекта
+        try (FileWriter writer = new FileWriter(path, append)) {
+            // запись всей строки
+            writer.write(text);
+            //Если нужно добавить символ
+//            writer.append('\n');
+
+            //Если нужно добавить строку
+//            writer.write("New row");
+            writer.flush();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+}</pre>
+
+    <h3>Пример:</h3>
+    <pre>
+import jxl.read.biff.BiffException;
+import jxl.write.WriteException;
+
+import java.io.IOException;
+
+public class TestClass {
+    public static void main(String[] args) throws IOException, BiffException, WriteException {
+        WriteInFile writeInFile = new WriteInFile();
+        writeInFile.write("test.txt", "ABC", false);
+        ReadFromFile readFromFile = new ReadFromFile();
+        String answer = readFromFile.read("test.txt");
+        System.err.println(answer);
+    </pre>
+
+</div>
+</body>
+</html>

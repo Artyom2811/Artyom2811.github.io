@@ -8,7 +8,7 @@ public class ReadFromFile {
     public String read(String path) {
         StringBuilder sb = new StringBuilder();
         try (FileReader reader = new FileReader(path)) {
-            char[] buf = new char[256];
+            char[] buf = new char[4096];
             int c;
             while ((c = reader.read(buf)) > 0) {
 
