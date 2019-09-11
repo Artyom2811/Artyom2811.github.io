@@ -11,10 +11,15 @@
     <p><a href="../JAVA.html">НАЗАД</a></p>
     <h1>Refactoring</h1>
     <h3>Замер времени:</h3>
-    <p>BigDecimal startTime = new BigDecimal(System.nanoTime());</p>
-    <p>BigDecimal stopTime = new BigDecimal(System.nanoTime());</p>
-    <p>BigDecimal elapsedTime = stopTimeHM.subtract(startTimeHM);</p>
-    <p>System.err.println("Module time:" + elapsedTime);</p>
+    <pre>
+        BigDecimal startTime = new BigDecimal(System.currentTimeMillis());
+
+        //Testing code
+
+        BigDecimal stopTime = new BigDecimal(System.currentTimeMillis());
+        BigDecimal elapsedTime = stopTime.subtract(startTime);
+        System.err.println("Elapsed time:" + elapsedTime);
+    </pre>
 </div>
 </body>
 </html>
