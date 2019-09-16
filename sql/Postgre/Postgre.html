@@ -10,46 +10,57 @@
 <div>
     <p><a href="../SQL.html">НАЗАД</a></p>
     <h1>Postgre</h1>
-    <h3>Шпаргалка:</h3>
-    <p>
-        TRIM всей колонки:<br>
-        UPDATE имя_таблицы<br>
-        SET имя_колонки = TRIM(имя_колонки)<br>
-    </p>
-    <p>
-        Проверка на дубликаты:<br>
-        SELECT ‘проверяемая колонка’ , COUNT(*)<br>
-        FROM ‘проверяемая таблица’<br>
-        GROUP BY ‘проверяемая колонка’<br>
-        HAVING COUNT(*) > 1<br>
-    </p>
-    <p>CAST:<br>
-        Date to Text:<br>
-        to_char(имя_колонки, 'yyyy-MM-dd')<br>
-    </p>
-    <p>
-        Заменить если null на Значение:<br>
-        COALESCE(имя_колонки, 'Нет значения')<br>
-    </p>
-    <p>
-        СРАВНЕНИЕ ВЫБОРКИ С ИНДЕКСОМ И БЕЗ:<br>
-        вариант с:<br>
-        SELECT * FROM table WHERE ...<br>
-        вариант без:<br>
-        SELECT * FROM table WITH (INDEX(0)) WHERE …<br>
-    </p>
-    <p>
-        Если нужно упорядочить по дате, если дата строкой(Нужно в сортировке перевести в дату):<br>
-        SELECT *<br>
-        FROM table<br>
-        ORDER BY DATE(date_coloumn) DESC<br>
-    </p>
-    <p>
-        Получение grant для на таблицу<br>
-        GRANT SELECT, INSERT, UPDATE, DELETE ON имя_таблицы TO пользователь<br>
-        Пример:<br>
-        grant select, insert, update, delete on table1 to IVAN<br>
-    </p>
+    <h2>Шпаргалка:</h2>
+
+    <h4>TRIM всей колонки:</h4>
+    <pre>
+    UPDATE имя_таблицы
+    SET имя_колонки = TRIM(имя_колонки)
+    </pre>
+
+    <h4>Проверка на дубликаты:</h4>
+    <pre>
+    SELECT ‘проверяемая колонка’ , COUNT(*)
+    FROM ‘проверяемая таблица’
+    GROUP BY ‘проверяемая колонка’
+    HAVING COUNT(*) > 1
+    </pre>
+
+    <h4>CAST:</h4>
+    <pre>
+        Date to Text:
+        to_char(имя_колонки, 'yyyy-MM-dd')
+    </pre>
+
+    <h4>Заменить если null на Значение:</h4>
+    <pre>
+        COALESCE(имя_колонки, 'Нет значения')
+    </pre>
+
+    <h4>Если нужно упорядочить по дате, если дата строкой(Нужно в сортировке перевести в дату):</h4>
+    <pre>
+        SELECT *
+        FROM table
+        ORDER BY DATE(date_coloumn) DESC
+    </pre>
+
+    <h4>Статистика запуска скпиптов с индексом и без:</h4>
+    <pre>
+        SELECT
+            relname,
+            seq_scan,
+            idx_scan
+        FROM pg_stat_all_tables
+        WHERE schemaname = 'имя_схемы'
+
+    </pre>
+
+    <h4>Получение grant для на таблицу:</h4>
+    <pre>
+        GRANT SELECT, INSERT, UPDATE, DELETE ON имя_таблицы TO пользователь
+        Пример:
+        grant select, insert, update, delete on table1 to IVAN
+    </pre>
 </div>
 </body>
 </html>
