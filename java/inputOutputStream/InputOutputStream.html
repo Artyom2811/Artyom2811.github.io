@@ -11,7 +11,30 @@
     <p><a href="../JAVA.html">НАЗАД</a></p>
     <h1>InputOutputStream</h1>
     <p>InputOutputStream - .</p>
-    <h3>ReadFromFile - Запись в файл</h3>
+    <h3>WriteInFile - Запись в файл</h3>
+    <pre>
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class WriteInFile {
+    public void write(String path, String text, boolean append) {
+        //Создатся файл в корне проекта
+        try (FileWriter writer = new FileWriter(path, append)) {
+            // запись всей строки
+            writer.write(text);
+            //Если нужно добавить символ
+//            writer.append('\n');
+
+            //Если нужно добавить строку
+//            writer.write("New row");
+            writer.flush();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+}</pre>
+
+    <h3>ReadFromFile - Чтение из файла</h3>
     <pre>
 import java.io.FileReader;
 import java.io.IOException;
@@ -38,28 +61,6 @@ public class ReadFromFile {
 }
     </pre>
 
-    <h3>WriteInFile - Чтение из файла</h3>
-    <pre>
-import java.io.FileWriter;
-import java.io.IOException;
-
-public class WriteInFile {
-    public void write(String path, String text, boolean append) {
-        //Создатся файл в корне проекта
-        try (FileWriter writer = new FileWriter(path, append)) {
-            // запись всей строки
-            writer.write(text);
-            //Если нужно добавить символ
-//            writer.append('\n');
-
-            //Если нужно добавить строку
-//            writer.write("New row");
-            writer.flush();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-}</pre>
 
     <h3>Пример:</h3>
     <pre>
