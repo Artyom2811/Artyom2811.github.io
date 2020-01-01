@@ -1,3 +1,4 @@
+/* Style to default */
 body {
     font-size: 1em;
     margin-left: auto;
@@ -19,3 +20,45 @@ body {
 div {
     margin: 1em 0;
 }
+
+
+/* Style to Breadcrumbs */
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+}
+
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+/* Style to NextButton */
+.nextButton {
+    background-color: #459be6;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    color: black;
+    width: 30%;
+    text-align: center
+}
+
