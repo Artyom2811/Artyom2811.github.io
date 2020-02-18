@@ -5,15 +5,25 @@ import jxl.read.biff.BiffException;
 import jxl.write.WriteException;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 public class TestClass {
+
     public static void main(String[] args) throws IOException, BiffException, WriteException {
-        WriteInFile writeInFile = new WriteInFile();
-        writeInFile.write("test.txt", "ABC", false);
-        ReadFromFile readFromFile = new ReadFromFile();
-        String answer = readFromFile.read("test.txt");
-        System.err.println(answer);
+        System.out.println("Start");
+
+        Map <String, String> books = new HashMap<>();
+        books.put("Война и мир", "Лев Толстой");
+        books.put("Война и мир", "Лев Толстой");
+
+        books.forEach((a,b) -> System.out.println("Название книги: " + a + ". Автор: " + b));
+
+
+//        WriteInFile writeInFile = new WriteInFile();
+//        writeInFile.write("test.txt", "ABC", false);
+//        ReadFromFile readFromFile = new ReadFromFile();
+//        String answer = readFromFile.read("test.txt");
+//        System.err.println(answer);
 
 //        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 //        WritableWorkbook myFirstWbook = Workbook.createWorkbook(outputStream);
