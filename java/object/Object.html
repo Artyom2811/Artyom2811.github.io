@@ -5,10 +5,9 @@
     <title>Object</title>
     <link rel="stylesheet" href="/style.css">
 </head>
-
 <body>
+<div><a href="../JAVA.html" class="backButton"></a></div>
 <div>
-    <p><a href="../JAVA.html">НАЗАД</a></p>
     <h1>Object </h1>
 
     <p>Object - суперкласс для всех классов в JAVA.</p>
@@ -31,7 +30,7 @@
     <ul>
         <li>Рефлексивность - a.equals(a).</li>
         <li>Симетричность - a=b, b=a</li>
-        <li>Транзитивность  - a=b, b=c, a=c.</li>
+        <li>Транзитивность - a=b, b=c, a=c.</li>
         <li>Согласованость - каждый раз одинаковый результат.</li>
         <li>Проверка на NULL - если NULL вернуть false.</li>
     </ul>
@@ -40,10 +39,10 @@
     <div>
         public boolean equals(Object obj) {<br>
         if (obj == this) {<br>
-            return true;<br>
+        return true;<br>
         }<br>
         if (obj == null || obj.getClass() != this.getClass()) {<br>
-            return false;<br>
+        return false;<br>
         }<br>
         <br>
         Person guest = (Person) obj;<br>
@@ -62,7 +61,6 @@
         <li>Если два объекта не равны, то они могут иметь или не иметь один и тот же хэш-код(коллизия).</li>
         <li>В обоих метода использовать одинаковые поля.</li>
     </ul>
-
 </div>
 </body>
 </html>
