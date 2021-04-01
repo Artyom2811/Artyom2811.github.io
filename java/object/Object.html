@@ -4,12 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Object</title>
     <link rel="stylesheet" href="/style.css">
+    <script src="/script.js" defer></script>
 </head>
 <body>
 <div><a href="../JAVA.html" class="backButton"></a></div>
-<div>
-    <h1>Object </h1>
-
+<div class="bodyStyle">
+    <h1>Object</h1>
     <p>Object - суперкласс для всех классов в JAVA.</p>
     <h3>Методы:</h3>
     <ul>
@@ -25,7 +25,6 @@
         <li>Object clone() - создаёт новый объект, не отличающий от клонируемого</li>
         <li>void finalize() - вызывается перед удалением неиспользуемого объекта</li>
     </ul>
-
     <h3>Правила переопределения equals():</h3>
     <ul>
         <li>Рефлексивность - a.equals(a).</li>
@@ -34,7 +33,6 @@
         <li>Согласованость - каждый раз одинаковый результат.</li>
         <li>Проверка на NULL - если NULL вернуть false.</li>
     </ul>
-
     <h3>Пример equals(Object obj):</h3>
     <div>
         public boolean equals(Object obj) {<br>
@@ -49,12 +47,10 @@
         return a == guest.a && b.equals(guest.b) && c.equals(guest.c) //Если ссылочная переменная то equals()<br>
         }<br>
     </div>
-
     <h3>Пример hashcode():</h3>
     public int hashCode() {<br>
     return Objects.hash(a, b, c);<br>
     }
-
     <h3>Договор между equals() и hashcode():</h3>
     <ul>
         <li>Если два объекта равны, то они должны иметь один и тот же хэш-код.</li>

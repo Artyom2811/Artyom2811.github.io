@@ -1,10 +1,16 @@
 /* Style to default */
+/*.mainBlock {
+    max-height: 3000px;
+      position: relative;
+      overflow: hidden;
+}*/
+
 body {
     font-size: 1em;
     margin-left: auto;
     margin-right: auto;
-  width: 80%;
-   }
+    width: 80%;
+}
 
 .backButton {
     float: left;
