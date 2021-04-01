@@ -8,6 +8,8 @@
 </head>
 
 <body>
+<div><a href="../SQL.html" class="backButton"></a></div>
+<div class="bodyStyle">
     <h1>Уровень изолированности транзакций</h1>
 
     <h3>Проблемы параллельного доступа с использованием транзакций:</h3>
@@ -239,14 +241,14 @@
         </li>
     </ol>
 
-<h2>ШПАРГАЛКИ:</h2>
-<h4>СРАВНЕНИЕ ВЫБОРКИ С ИНДЕКСОМ И БЕЗ:</h4>
-<pre>
+    <h2>ШПАРГАЛКИ:</h2>
+    <h4>СРАВНЕНИЕ ВЫБОРКИ С ИНДЕКСОМ И БЕЗ:</h4>
+    <pre>
         вариант с:
         SELECT * FROM table WHERE ...
         вариант без:
         SELECT * FROM table WITH (INDEX(0)) WHERE …
     </pre>
-
+</div>
 </body>
 </html>
