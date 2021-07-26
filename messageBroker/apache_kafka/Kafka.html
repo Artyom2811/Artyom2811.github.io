@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>JAVA</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../MessageBroker.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Kafka</h1>
+    <ul>Параметры настройки
+        <li>log.retention.minutes - время через сколько будут удаленны данные добавленные в kafka</li>
+        <li>offsets.retention.minutes - время через которое kafka забудет какой офсет был считал брокером</li>
+    </ul>
+    <ul>Сущности kafka
+        <li>Kafka cluster - несколько Brokers Kafka под управлением ZooKeeper</li>
+        <li>Broker - одна единица Kafka</li>
+        <li>Producer - продюсер загружающий данные в kafka</li>
+        <li>Consumer - потребитель забирающий данные из kafka </li>
+        <li>Topic - Раздел в Broker</li>
+        <li>Partition - Раздел в Broker</li>
+        <li>Key - Ключ по которому добавляются записи в Partition. Можно использовать его hash для выбора Partition или
+            в случае ошибки по ключу определить в каком offset ошибка</li>
+        <li>Value - значение которое храниться по ключу</li>
+        <li>Consumer group - группы для нескольких консюмеров, которые будут отслеживаться kafka как один консюмер.</li>
+    </ul>
+</div>
+</body>
+</html>
