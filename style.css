@@ -15,7 +15,8 @@ body {
 .backButton {
     float: left;
     width: 10%;
-    height: 100vh;
+    /*height: 100vh; */
+    height: 100%;
     margin-right: 50px;
     text-align:  center;
 
