@@ -137,6 +137,13 @@ val foo = List("r", "r",  "s",  "s",  "x",  "x").toStream.groupBy(i => i).mapVal
     </p>
     <p>Error - не обрабатываемые исключения тк после из возникновений нет гарантий что программа будет выполняться
         корректно.</p>
+    <p>Каррирование(Currying) - частичный вызов функции(частичное применение), для дальнейшего использования.
+    <pre>
+def multiply(m: Int)(n: Int): Int = m * n
+val timesTwo = multiply(2) _
+timesTwo(3)
+    </pre>
+    </p>
 
 </div>
 </body>
