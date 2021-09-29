@@ -19,6 +19,7 @@
     </div>
     <ol>Основные разделы:
         <li><a href="collections/Collections.html">Collections</a></li>
+        <li><a href="for_comprehension/Collections.html">ForComprehension</a></li>
     </ol>
 
     <ol>Основной stack scala:
@@ -128,6 +129,7 @@ println(g(_ + 3, 7))
     <p>Недостатки Immutable - используется много Heap(молодой) памяти, так как часто удаляются уже использованные
         объекты.</p>
     <p>Как посчитать количество одинаковых элементов в List?</p>
+    <p>-> - оператор для создания tuple и Map</p>
     <pre>
 val foo = List("r", "r",  "s",  "s",  "x",  "x").toStream.groupBy(i => i).mapValues(_.size)
     </pre>

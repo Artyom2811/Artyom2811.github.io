@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>For-Comprehension</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Scala.html" class="backButton"></a></div><!--Изменить предыдущую страницу-->
+<div class="bodyStyle">
+    <h1>For-Comprehension</h1>
+    <p>For-Comprehension - запись для выражения последовательных преобразований.</p>
+    <p>Имеет синтаксис - "for (enumerators) yield e". Можно использовать без "yield"</p>
+    <ol>enumerator может быть:
+        <li>Генератор - <-</li>
+        <li>Фильтр - if</li>
+    </ol>
+    <p>Также после первого генератора можно объявлять переменные через "=". Пример: userId: String = createdUser.id
+
+    </p>
+    <p>Первый генератор устанавливает правило для For-Comprehension - если это List, то все остальные генераторы
+        должны быть List и yield обернет ответ в List.
+    </p>
+    <ol>В For-Comprehension можно работать с типами данных которые поддерживающий операции withFilter, map, and flatMap.
+        <li>Option</li>
+        <li>List</li>
+        <li>Future</li>
+        <li>etc</li>
+    </ol>
+    <p>Отличие от конкурентов?</p><!--Изменить -->
+    <!--Пример Основного раздела-->
+    <ul>Основные разделы:
+        <li><a href="architecture/Architecture.html">Ссылки на другие страницы</a></li>
+    </ul>
+</div>
+</body>
+</html>
