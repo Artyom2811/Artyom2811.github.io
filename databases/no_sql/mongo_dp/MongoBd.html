@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>MongoBD</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../NoSql.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>MongoBD</h1>
+    <p>MongoBD - документоориентированная система управления базами данных, не требующая описания схемы таблиц.
+        Использует JSON-подобные документы и схему базы данных.
+    </p>
+    <div>GridFS - внутренняя система хранения файлов более 16 MB.
+        <ol>Использует 2 коллекции для хранения:
+            <li>fs.files - хранение файлов по частям.</li>
+            <li>fs.chunks - хранения метаданных</li>
+        </ol>
+    </div>
+    <ol>Конвенция именования:
+        <li>Database - camelCase, в единственной числе, "db" в конце.</li>
+        <li>Collections - snake_case, множественное число.</li>
+        <li>Variables - camelCase.</li>
+    </ol>
+</div>
+</body>
+</html>
