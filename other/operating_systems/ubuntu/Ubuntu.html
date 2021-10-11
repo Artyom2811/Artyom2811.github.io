@@ -11,12 +11,14 @@
 <div><a href="../OperatingSystems.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>Ubuntu</h1>
-    <ol>Разобрать:
+    <h4>Разобрать:</h4>
+    <ol>
         <li><a href="https://timeweb.com/ru/community/articles/chto-takoe-cron">Cron</a></li>
     </ol>
     <p>Ubuntu - дистрибутив GNU/Linux, основанный на Debian GNU/Linux</p>
     <p>Выбор приложений по умолчанию - Setting -> Details -> Default Applications</p>
-    <ul>Рекомендуемые программы для Ubuntu
+    <h4>Рекомендуемые программы для Ubuntu:</h4>
+    <ul>
         <li>keepassx - программа хранения паролей</li>
         <li>kazam - программа для записи экрана</li>
         <li>pulseaudio и pavucontrol - для настройки звука
@@ -27,8 +29,23 @@
         <li>Pitivi - программа для редактирования видео</li>
         <li>VLC - программа для просмотра видео</li>
     </ul>
-    <ol>Работа с терминалом:
+    <h4>Для включения возможности именование терминальных окон нужно добавить в файл:</h4>
+    <div>
+        <p>sudo nano ~/.bashrc
+        <pre>
+# smena zagolovga vkladki terminala
+set-title(){
+  ORIG=$PS1
+  TITLE="\e]2;$@\a"
+  PS1=${ORIG}${TITLE}
+}
+        </pre>
+        <p>set-title новое имя</p>
+    </div>
+    <h4>Работа с терминалом:</h4>
+    <ol>
         <li>clear - очистить историю терминала.</li>
+        <li>uname -a - получить информацию о системе.</li>
     </ol>
     <ol>Команды навигации в Terminal
         <li>ls -la - отобразить список файлов и папок в текущей директории</li>
@@ -39,9 +56,13 @@
     <ol>Работа с файлами:
         <li>tail -f -n 5 syslog - открыть последние 5 строк файла syslog с дальнейшим отслеживание.</li>
     </ol>
+    <ol>Работа с VIM:
+        <li>:q - выход</li>
+        <li>:E - Explore. Режим навигации.</li>
+    </ol>
     <ol>Работа с сетью:
         <li>ping - пинг по ip. Пример:ping 8.8.8.8</li>
-        <li>telnet - пинг по ip и порту.</li>
+        <li>telnet - пинг по ip и порту. Пример:telnet opennet.ru 80</li>
         <li>netstat -ntlp - команда для отображение занятых портов.</li>
     </ol>
     <p>Для просмотра файла через терминал можно использовать команду "сat". Пример:cat app.log</p>
