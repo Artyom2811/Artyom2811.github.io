@@ -1,4 +1,4 @@
-{
+function setBackButtonHeight() {
 //Задание высоты для BackButton в зависимости от размера контента
 //Получение высоты bodyStyle
 var heightOfBackButton = document.getElementsByClassName("bodyStyle").item(0).offsetHeight
