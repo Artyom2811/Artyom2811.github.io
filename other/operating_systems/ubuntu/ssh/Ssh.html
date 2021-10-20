@@ -8,14 +8,26 @@
 </head>
 
 <body>
-<div><a href="../BasicsSafety.html" class="backButton"></a></div>
+<div><a href="../Ubuntu.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>SSH</h1>
+
+    <h4>Проработать</h4>
+    <ol>
+        <li><a href="https://habr.com/ru/post/331348/">Магия SSH</a></li>
+    </ol>
+
     <p>SSH(Secure Shell) — сетевой протокол прикладного уровня, позволяющий производить удалённое управление операционной
         системой и туннелирование TCP-соединений. Шифрует весь трафик, включая и передаваемые пароли.
         SSH допускает выбор различных алгоритмов шифрования. SSH-клиенты и SSH-серверы доступны для большинства сетевых
         операционных систем.
     </p>
+
+    <h4>Local TCP forwarding</h4>
+    <p>Подключение клиентского приложения на нашем рабочем месте «host1», к приложению на сервере «host2»</p>
+    <p>комманда: </p>
+    <p>пример: ssh -L 9999:localhost:5432 host2</p>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>
