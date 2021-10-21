@@ -1,4 +1,0 @@
-https://habr.com/ru/company/luxoft/blog/157273/
-https://tproger.ru/translations/10-java-multithread-practices/
-https://metanit.com/java/tutorial/8.3.php
-https://javarush.ru/groups/posts/1998-upravlenie-potokami-metodih-volatile-i-yield

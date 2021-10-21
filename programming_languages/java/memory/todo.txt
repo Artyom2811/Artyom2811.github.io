@@ -1,3 +1,0 @@
-https://habr.com/ru/post/133981/
-happens before java - модель памяти
-https://habr.com/ru/post/510454/

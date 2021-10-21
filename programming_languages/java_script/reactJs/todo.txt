@@ -1,2 +1,0 @@
-Введение: знакомство с React
-    https://ru.reactjs.org/tutorial/tutorial.html

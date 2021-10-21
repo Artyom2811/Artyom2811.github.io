@@ -1,5 +1,0 @@
-https://groz.github.io/scala/intro/futures/
-https://docs.scala-lang.org/ru/overviews/collections-2.13/overview.html
-
-pattern matching
-for comprehesion
