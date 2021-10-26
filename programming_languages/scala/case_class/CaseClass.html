@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Case Class</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Scala.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Case Class</h1>
+
+    <p>Case Class(класс образец) - служат для создания неизменяемых объектов, которые используются за POJO.</p>
+
+    <p>Объект создаётся без ключевого слова new, тк по умолчанию имеют объект компаньон с методом apply.</p>
+
+    <p>Пример объявления case class и создания объекта:</p>
+    <pre>
+case class Book(isbn: String)
+val f = Book("1")
+    </pre>
+
+    <p>== - метод сравнения объектов по структуре.</p>
+
+    <p>copy - метод для создания копии объекта. Пример:</p>
+    <pre>
+case class Employee(name: String, office: String, role: String)
+val fred = Employee("Fred", "Anchorage", "Salesman")
+val joe = fred.copy(name="Joe")
+    </pre>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

@@ -11,9 +11,23 @@
 <div><a href="../Scala.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>Collections</h1>
-<p>Разница между Stream и List - Stream это lazy коллекция, каждый элемент вычисляется по мере итерирования по нему</p>
-<p>На замену Stream создали LazyList</p>
-<p>Iterator - имеет head(), tail()</p>
+    <p>Разница между Stream и List - Stream это lazy коллекция, каждый элемент вычисляется по мере итерирования по
+        нему</p>
+    <p>На замену Stream создали LazyList</p>
+    <p>Iterator - имеет head(), tail()</p>
+
+    <p>:: - оператор быстрого создания списков. Пример:</p>
+    <pre>
+val a = 1 :: 2 :: Nil
+    </pre>
+
+
+    <p>::: - оператор быстрого объединения списков. Пример:</p>
+    <pre>
+val a = 1 :: 2 :: Nil
+val b = 3 :: 4 :: Nil
+println("test:" + (a ::: b))
+    </pre>
 
 </div>
 </body>
