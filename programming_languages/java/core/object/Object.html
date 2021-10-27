@@ -19,7 +19,8 @@
     </ol>
 
     <p>Object - суперкласс для всех классов в JAVA.</p>
-    <h3>Методы:</h3>
+
+    <h4>Методы:</h4>
     <ul>
         <li>boolean equals(Object obj) - определяет, равен ли один объект другому</li>
         <li>int hashCode() - возвращает хеш-код, связанный с вызывающим объектом</li>
@@ -33,7 +34,8 @@
         <li>Object clone() - создаёт новый объект, не отличающий от клонируемого</li>
         <li>void finalize() - вызывается перед удалением неиспользуемого объекта</li>
     </ul>
-    <h3>Правила переопределения equals():</h3>
+    <h4>Правила переопределения equals():</h4>
+
     <ul>
         <li>Рефлексивность - a.equals(a).</li>
         <li>Симетричность - a=b, b=a</li>
@@ -41,7 +43,8 @@
         <li>Согласованость - каждый раз одинаковый результат.</li>
         <li>Проверка на NULL - если NULL вернуть false.</li>
     </ul>
-    <h3>Пример equals(Object obj):</h3>
+
+    <h4>Пример equals(Object obj):</h4>
     <div>
         public boolean equals(Object obj) {<br>
         if (obj == this) {<br>
@@ -55,11 +58,13 @@
         return a == guest.a && b.equals(guest.b) && c.equals(guest.c) //Если ссылочная переменная то equals()<br>
         }<br>
     </div>
-    <h3>Пример hashcode():</h3>
+
+    <h4>Пример hashcode():</h4>
     public int hashCode() {<br>
     return Objects.hash(a, b, c);<br>
     }
-    <h3>Договор между equals() и hashcode():</h3>
+
+    <h4>Договор между equals() и hashcode():</h4>
     <ul>
         <li>Если два объекта равны, то они должны иметь один и тот же хэш-код.</li>
         <li>Если два объекта не равны, то они могут иметь или не иметь один и тот же хэш-код(коллизия).</li>

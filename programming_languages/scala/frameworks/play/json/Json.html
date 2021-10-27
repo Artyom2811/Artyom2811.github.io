@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Json</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Frameworks.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Json</h1>
+
+    <h4>Парсинг JSON в объект:</h4>
+    <pre>
+import play.api.libs.json._
+import play.api.libs.functional.syntax._
+
+case class User(id: String,
+                count: Int,
+                is_live: Boolean,
+                doc1: Document,
+                doc2: Document)
+
+object User {
+  implicit val codec = Json.format[User]
+    </pre>
+    <p><b>Вызов парсинга:</b></p>
+    <pre>
+userFromJson: JsResult[User] = Json.fromJson[User](userJson)
+    </pre>
+
+    <h4>Парсинг JSON в объект с описание полей:</h4>
+    <pre>
+import play.api.libs.json._
+import play.api.libs.functional.syntax._
+
+case class User(id: String,
+                count: Int,
+                is_live: Boolean,
+                doc1: Document,
+                doc2: Document)
+
+object User {
+  implicit val reads: Reads[User] = (
+      (JsPath \ "id").read[String] and
+      (JsPath \ "count").read[Int] and
+      (JsPath \ "is_live").read[Boolean] and
+      (JsPath \ "doc_1").read[Document] and //Document model should have own description of Reads
+      (JsPath \ "doc_2").read[Document] //Document model should have own description of Reads
+    )(User.apply _)
+}
+    </pre>
+    <p><b>Вызов парсинга:</b></p>
+    <pre>
+userFromJson: JsResult[User] = Json.fromJson[User](userJson)
+    </pre>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
