@@ -17,12 +17,16 @@
         <li><a href="https://timeweb.com/ru/community/articles/chto-takoe-cron">Cron</a></li>
         <li><a href="https://prostolinux.ru/chto-oznachayut-papki-v-linux/">Чтo oзнaчaют пaпки Linux? Иcтoчник</a></li>
         <li><a href="https://losst.ru/ctruktura-fajlovoj-sistemy-linux">CТРУКТУРА ФАЙЛОВОЙ СИСТЕМЫ LINUX</a></li>
+        <li><a href="https://habr.com/ru/post/305400/">Пособие по Ansible</a></li>
     </ol>
 
     <p>Ubuntu - дистрибутив GNU/Linux, основанный на Debian GNU/Linux</p>
 
+    <h4>Alt + F2 -> R - перезагрузка GNOME. Помогает если что-то с GNOME не так.</h4>
+
     <h4>Основные разделы:</h4>
     <p><a href="ssh/Ssh.html">SSH</a></p>
+    <p><a href="terminal/Terminal.html">terminal</a></p>
 
     <h4>Настройки системы:</h4>
     <p>Выбор приложений по умолчанию - Setting -> Details -> Default Applications</p>
@@ -35,70 +39,25 @@
             (Output Devices -> Line Out -> 70%,
             Input Devices -> Rear Microphone -> 40%)
         </li>
-        <li>pulseaudio - для настройки звука</li>
         <li>Pitivi - программа для редактирования видео</li>
         <li>VLC - программа для просмотра видео</li>
     </ul>
 
-    <h4>Для включения возможности именование терминальных окон нужно добавить в файл:</h4>
-    <div>
-        <p>sudo nano ~/.bashrc
-        <pre>
-# smena zagolovga vkladki terminala
-set-title(){
-  ORIG=$PS1
-  TITLE="\e]2;$@\a"
-  PS1=${ORIG}${TITLE}
-}
-        </pre>
-        <p>set-title новое имя</p>
-    </div>
-
-    <h4>Работа с терминалом:</h4>
+    <h4>Работа с VIM:</h4>
     <ol>
-        <li>clear - очистить историю терминала.</li>
-        <li>uname -a - получить информацию о системе.</li>
-        <li>top - получить информацию процессах.
-            <ul>Горячие клавиши:
-                <li>? - help</li>
-                <li>L - поиск</li>
-                <li>z - разноцветный режим</li>
-                <li>x - подсвечивание столбца с сортировкой</li>
-                <li><, > - выбор поля для сортировки</li>
-                <li>V - режим отображение "дерево"</li>
-                <li>k - kill by PID</li>
-                <li>W - сохранение настроек</li>
-            </ul>
-        </li>
-    </ol>
-    <ol>Команды навигации в Terminal
-        <li>ls -la - отобразить список файлов и папок в текущей директории</li>
-        <li>cd - выполнить переход из текущей директории</li>
-        <li>pwd(print working directory) - вывести текущую директорию.</li>
-    </ol>
-    <ol>Поиск файла или папки:
-        <li>locale - поиск по имени. Но перед поиском необходимо выполнить команду "sudo updatedb" для обновления
-            индексов.
-        </li>
-        <li>find /. -name "abc" -type d - поиск папки abc из корневой директории.</li>
-    </ol>
-    <ol>Работа с файлами:
-        <li>tail -f -n 5 syslog - открыть последние 5 строк файла syslog с дальнейшим отслеживание.</li>
-        <li>cp - копирование файла. Параметры: указать путь файл, указать путь куда копировать</li>
-        <pre>
-cp ./hosts-m3-dev-artyom ./hosts-m3-dev-artyom-backup
-        </pre>
-    </ol>
-    <ol>Работа с VIM:
         <li>:q - выход</li>
         <li>:w - сохранение</li>
         <li>:wq - сохранение и выход</li>
         <li>:E - Explore. Режим навигации.</li>
+        <li>:set number - включить нумерацию строк.</li>
+        <li>:set nonumber - выключить нумерацию строк.</li>
     </ol>
-    <ol>Работа с сетью:
+
+    <h4>Работа с сетью:</h4>
+    <ol>
         <li>ping - пинг по ip. Пример:ping 8.8.8.8</li>
         <li>telnet - пинг по ip и порту. Пример:telnet opennet.ru 80</li>
-        <li>netstat -ntlp - команда для отображение занятых портов.</li>
+        <li>netstat -ntlp - команда для отображения занятых портов.</li>
     </ol>
     <p>Для просмотра файла через терминал можно использовать команду "сat". Пример:cat app.log</p>
 </div>
