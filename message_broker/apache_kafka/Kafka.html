@@ -23,18 +23,25 @@
         <li>Kafka cluster - несколько Brokers Kafka под управлением ZooKeeper</li>
         <li>Broker - одна единица Kafka</li>
         <li>Producer - продюсер загружающий данные в kafka</li>
-        <li>Consumer - потребитель забирающий данные из kafka </li>
+        <li>Consumer - потребитель забирающий данные из kafka.</li>
         <li>Topic - Раздел в Broker</li>
         <li>Partition - Раздел в Broker</li>
         <li>Key - Ключ по которому добавляются записи в Partition. Можно использовать его hash для выбора Partition или
-            в случае ошибки по ключу определить в каком offset ошибка</li>
-        <li>Value - значение которое храниться по ключу</li>
-        <li>Consumer group - группы для нескольких консюмеров, которые будут отслеживаться kafka как один консюмер.</li>
+            в случае ошибки по ключу определить в каком offset ошибка
+        </li>
+        <li>Value - значение, которое храниться по ключу.</li>
+        <li>Consumer group - группы для нескольких consumers, которые будут отслеживаться kafka как один consumer.</li>
     </ul>
 
-    <p>При первом запросе на kafka broker, всегда будет возвращаться список ip и ports всех kafka brokers в Kafka cluster.
-    Со второго вопроса начнется работа обмена данными.
+    <p>При первом запросе на kafka broker, всегда будет возвращаться список ip и ports всех kafka brokers в Kafka
+        cluster. Со второго вопроса начнется работа обмена данными.
     </p>
+
+    <h4>Программы для мониторинга:</h4>
+    <ol>
+        <li>Kafka Tool</li>
+        <li><a href="kafkacat/Kafkacat.html">KafkaCat</a></li>
+    </ol>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

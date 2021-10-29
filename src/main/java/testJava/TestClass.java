@@ -10,13 +10,28 @@ import java.util.*;
 public class TestClass {
 
     public static void main(String[] args) throws IOException, BiffException, WriteException {
+        LinkedHashSet <String> books = new LinkedHashSet<>();
+        books.add(null);
+        books.add("1");
+        books.add("2");
+
+        books.forEach(System.out::print);
+
+
+
+
+
         System.out.println("Start");
 
-        Map <String, String> books = new HashMap<>();
-        books.put("Война и мир", "Лев Толстой");
-        books.put("Война и мир", "Лев Толстой");
+        Map <String, String> books1 = new HashMap<>();
+        books1.put(null, null);
+        books1.put(null, "A");
+        books1.put("Война и мир", "Лев Толстой");
+        books1.put("Война и мир", "Лев Толстой");
 
-        books.forEach((a,b) -> System.out.println("Название книги: " + a + ". Автор: " + b));
+        books1.forEach((a,b) -> System.out.println("Название книги: " + a + ". Автор: " + b));
+
+        System.out.println("End");
 
 
 //        WriteInFile writeInFile = new WriteInFile();
