@@ -10,15 +10,8 @@ import java.util.*;
 public class TestClass {
 
     public static void main(String[] args) throws IOException, BiffException, WriteException {
-        LinkedHashSet <String> books = new LinkedHashSet<>();
-        books.add(null);
-        books.add("1");
-        books.add("2");
-
-        books.forEach(System.out::print);
-
-
-
+        MethodRefer app = new MethodRefer();
+        app.app();
 
 
         System.out.println("Start");

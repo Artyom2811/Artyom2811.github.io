@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>JAVA</title>
+    <title>GIT</title>
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js"></script>
 </head>
@@ -12,23 +12,46 @@
 <div class="bodyStyle">
     <h1>GIT</h1>
 
-    <h4>Проработать</h4>
+    <h4>Проработать:</h4>
     <ol>
         <li><a href="https://habr.com/ru/post/437000/">Как научить людей использовать Git</a></li>
         <li><a href="https://www.atlassian.com/ru/git/tutorials/merging-vs-rebasing">Сравнение слияния и перебазирования</a></li>
         <li><a href="https://habr.com/ru/post/174467/">Ежедневная работа с Git</a></li>
     </ol>
 
+    <h4>Что это:</h4>
     <p>Системы контроля версий - это система, регистрирующая изменения в одном или нескольких файлах с тем, чтобы в
         дальнейшем была возможность вернуться к определённым старым версиям этих файлов.
     </p>
-    <ul>Интерфейсы работы с GIT:
+
+    <h4>Интерфейсы работы с GIT:</h4>
+    <ul>
         <li>Терминал</li>
         <li>Plugin с Idea</li>
     </ul>
-    <p>
-        Комментарий исправление опечаток. - Fixed Typo
+
+    <h4>Команды:</h4>
+    <ol>
+        <li>fetch - забирает изменения из репозитория.</li>
+        <li>merge - слияние одной или нескольких веток в другую.</li>
+        <li>pull - fetch + merge.</li>
+        <li>push - добавление commits в репозиторий.</li>
+    </ol>
+
+    <h4>Squash</h4>
+    <p>Squash - сжатие нескольких commits в один.</p>
+    <p>git rebase -i HEAD~3 - где 3 это количество commits с конца.</p>
+    <p>Далее откроется редактор.</p>
+    <p>Нужно перед каждым commit вверху указать
+    <ol>
+        <li>pick - commit куда вмерджатся другие.</li>
+        <li>s - commits которые будут мерджится.</li>
+    </ol>
     </p>
+    <p>После закрытия файла откроется текстовый редактор в котором мы должно указать общий commit message.</p>
+
+    <h4>Commit message:</h4>
+    <p>Комментарий исправление опечаток - Fixed Typo</p>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

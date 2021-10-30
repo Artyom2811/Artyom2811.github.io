@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Maven</title>
+    <title>Apache Maven</title>
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js"></script>
 </head>
@@ -10,26 +10,49 @@
 <body>
 <div><a href="../ProjectBuilders.html" class="backButton"></a></div>
 <div class="bodyStyle">
-    <h1>Maven</h1>
+    <h1>Apache Maven</h1>
 
     <h4>Проработать</h4>
     <ol>
         <li><a href="http://java-online.ru/maven-plugins.xhtml">Maven плагины для сборки проекта</a></li>
     </ol>
 
-    <p>Apache MAVEN - фреймворк для автоматизации сборки проектов на основе описания их структуры в файлах на языке POM,
-        являющемся подмножеством XML.</p>
+    <h4>Что это:</h4>
+    <p>Apache Maven - фреймворк для автоматизации сборки проектов на основе описания их структуры в файлах pom.xml</p>
     <ul>
-        <li>clean - очищяет все сгенерированые файлы.</li>
+        <li>clean - очищает все сгенерированные файлы.</li>
         <li>validate - проверяет правильность конфигурации.</li>
-        <li>compale - компилирует исходные коды.</li>
+        <li>compile - компилирует исходные коды.</li>
         <li>test - выполняет тесты.</li>
-        <li>package - создает инсталяционные пакеты.</li>
-        <li>verify - проверяет пакеты на целлостность.</li>
+        <li>package - создает инсталляционные пакеты.</li>
+        <li>verify - проверяет пакеты на целостность.</li>
         <li>install - устанавливает пакеты в локальный репозиторий.</li>
         <li>site - генерирует документацию и javadoc.</li>
-        <li>deploy - выкладывает созданые пакеты во внешний репозиторий.</li>
+        <li>deploy - выкладывает созданные пакеты во внешний репозиторий.</li>
     </ul>
+
+    <h4>Структура pom.xml</h4>
+    <ol>
+        <li>dependencies</li>
+        <li>plugins</li>
+        <li>build - секция для настройки сборки проекта.</li>
+        <li>profiles</li>
+        <li>version</li>
+        <li>developers</li>
+        <li>reporting</li>
+    </ol>
+
+    <h4>scope - область видимости:</h4>
+    <ol>
+        <li>compile - сборки, тестирования, зависимые пакеты, конечный пакет(будут доступны и во время исполнения).</li>
+        <li>provided - сборки, тестирования, конечный пакет(будут доступны и во время исполнения).</li>
+        <li>runtime - тестирования, зависимые пакеты, конечный пакет(будут доступны и во время исполнения)</li>
+        <li>test - тестирование.</li>
+        <li>system - область похожа на provided за исключением того, что необходимо определить физическое расположение
+            артефакта на диске. Артефакт с этой областью видимости maven не ищет в репозитории
+        </li>
+        <li>import - эта область используется в зависимости секции &lt;dependencyManagement&gt; при сложных связях.</li>
+    </ol>
 
 </div>
 </body>
