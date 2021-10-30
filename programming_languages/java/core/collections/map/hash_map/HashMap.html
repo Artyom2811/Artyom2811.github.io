@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Hash Map</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Map.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Hash Map</h1>
+
+    <h4>HashMap</h4>
+    <p>Имеет структуру ключ - значение.</p>
+    <p>Ключ действует так же как и в HashSet.</p>
+    <p>Позволяет добавить (null, null), null будет первым ключом в коллекции.</p>
+
+    <h4>Методы:</h4>
+    <ol>
+        <li>put(K, V)</li>
+        <li>get(K)</li>
+        <li>remove(K)</li>
+        <li>keySet(): Set&lt;K&gt;</li>
+        <li>values: Collection&lt;V&gt;</li>
+        <li>entrySet(): Set&lt;Map.Entry&lt;K,V&gt;&gt; </li>
+    </ol>
+
+    <h4>Реализация:</h4>
+    <p>HashMap bucket будет трансформирован из List в Tree при размере > 8. И произойдёт обратное при > 6.</p>
+    <p>default initial capacity = 16</p>
+    <p>load_factor = 0.75 - процент на который должен быть заполнен capacity для умножения capacity на 2.</p>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
