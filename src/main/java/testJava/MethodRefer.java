@@ -9,7 +9,6 @@ public void app() {
     Arrays.stream(arr).forEach(this::print1);
 }
 
-
     public void print(String i) {
         System.out.println(i);
     }

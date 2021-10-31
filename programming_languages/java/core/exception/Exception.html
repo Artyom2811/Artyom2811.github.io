@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Collections</title>
+    <title>Exception</title>
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js" defer></script>
 </head>
@@ -15,15 +15,57 @@
     <ol>
         <li><a href="https://javarush.ru/groups/posts/isklyucheniya-java">Исключения в Java</a></li>
         <li><a href="https://habr.com/ru/company/golovachcourses/blog/223821/">Исключения в Java, Часть I (try-catch-finally)</a></li>
-        <li><a href="https://habr.com/ru/company/golovachcourses/blog/225585/">https://habr.com/ru/company/golovachcourses/blog/225585/#1</a></li>
+        <li><a href="https://habr.com/ru/company/golovachcourses/blog/225585/">https://habr.com/ru/company/golovachcourses/blog/225585/#1</a>
+        </li>
     </ol>
 
-    <p>checked - компилятор их проверяет</p>
-    <p>unchecked - компилятор их не проверяет</p>
+    <h4>Два главных типа:</h4>
+    <ol>
+        <li>checked - компилятор их проверяет.</li>
+        <li>unchecked - компилятор их не проверяет.</li>
+    </ol>
 
-    <p>Exception(Исключение) - это нештатная ситуация, ошибка во время выполнения программы.</p>
-    <p>Error - не обрабатываемые осиключения тк после из возникновений нет гарантий что программа будет выполняться корректно.</p>
+    <h4>Основные определения:</h4>
+    <ol>
+        <li>Exception(Исключение) - это нештатная ситуация, ошибка во время выполнения программы.</li>
+        <li>Error - не обрабатываемые исключения тк после из возникновений нет гарантий что программа будет
+            выполняться корректно.
+        </li>
+    </ol>
+
+    <h4>Иерархия исключений:</h4>
     <img src="ExceptionHierarchy.png" width="1100" height="500" alt="альтернативный текст">
+
+    <h4>Способы обработки исключений</h4>
+    <ol>
+        <li>throws - ключевое слово которое, используется при определении метода. Указывает что метод может выкинуть
+            ошибку.
+        </li>
+        <li>try - catch - finally
+            <pre>
+try(try-with-resources){}
+catch(Exception e) {}
+catch(ClassCastException | ArrayStoreException e1) {}
+finally {}
+            </pre>
+        </li>
+    </ol>
+
+    <h4>Вопросы:</h4>
+    <ol>
+        <li>Если наследовать класс в throws. Наследник должен иметь throws не выше по иерархии чем у родителя.</li>
+        <li>Если используются несколько catch нужно писать их отлавливаемые исключения в порядке возвышения по иерархии.</li>
+        <li>Можно написать try - finally без блока catch.</li>
+        <li>try-with-resources - объект должен реализовывать Interface Closeable..</li>
+        <li>Условия не выполнения finally:
+            <ol>
+                <li>System.exit(int)</li>
+                <li>Сбой в JVM</li>
+                <li>Exception в finally</li>
+                <li>Death of Daemon thread</li>
+            </ol>
+        </li>
+    </ol>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

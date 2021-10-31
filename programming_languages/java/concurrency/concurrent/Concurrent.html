@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Concurrent</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Concurrency.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Concurrent</h1>
+
+    <h4>Проработать:</h4>
+    <ol>
+        <li><a href="https://habr.com/ru/company/luxoft/blog/157273/">Обзор java.util.concurrent.*</a></li>
+    </ol>
+
+    <h4>Что это:</h4>
+    <p>Это пакет в java.util предназначенный для работы с многопоточность.</p>
+
+    <h4>Основные разделы:</h4>
+    <ul>
+        <li>Concurrent Collections - набор коллекций, более эффективно работающие в многопоточной среде нежели
+            стандартные универсальные коллекции.
+        </li>
+        <li>Queues - неблокирующие и блокирующие очереди с поддержкой многопоточности. Неблокирующие очереди заточены
+            на скорость и работу без блокирования потоков. Блокирующие очереди используются, когда нужно «притормозить»
+            потоки «Producer» или «Consumer», если не выполнены какие-либо условия, например, очередь пуста или
+            перепонена, или же нет свободного «Consumer»'a.
+        </li>
+        <li>Synchronizers - вспомогательные утилиты для синхронизации потоков.</li>
+        <li>Executors - содержит в себе отличные фрейморки для создания пулов потоков, планирования работы асинхронных
+            задач с получением результатов.
+        </li>
+        <li>Locks - представляет собой альтернативные и более гибкие механизмы синхронизации потоков по сравнению с
+            базовыми synchronized, wait, notify, notifyAll.
+        </li>
+        <li>Atomics - классы с поддержкой атомарных операций над примитивами и ссылками.</li>
+    </ul>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

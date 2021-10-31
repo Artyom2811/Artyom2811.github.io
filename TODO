@@ -16,3 +16,26 @@ Spring Boot
 Concurrency
 Cloud Technology
 Akka
+
+Swagger для документации.
+    Mandatory
+
+    hibernate
+        casscad-type в аннотациях связей
+        flash
+        entity-manager
+
+   Spring
+        scope
+            default
+        Прототайп создаётся по вызову
+            Singltone жизненый цикл
+            Prototine жизненый цикл
+                Singltone - создаётся пристарте приложения и удаляется в конце
+                Prototine - создаётся при вызове и удаляется GC
+            Как засунуть prototype в singletone - аннотация @lookup
+        @controllerAdviced
+        Deadlock
+
+
+    Сколько не проходят?

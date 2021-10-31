@@ -36,9 +36,10 @@
 
     <h4>Вопросы на собеседование:</h4>
     <ul>
+        <h4>Iterator </h4>
+        <li>Методы Iterator - E next(); boolean hasNext(); void remove();</li>
         <h4>List</h4>
-        <li>Разница HashSet и LinkedHashSet? - LinkedHashSet хранит записи в порядке добавления, двухсвязный список.
-        </li>
+        <li>Разница HashSet и LinkedHashSet? - LinkedHashSet хранит записи в порядке добавления, двухсвязный список.</li>
         <li>Разница HashSet и TreeSet? - TreeSet на основе дерева. При добавлении сортирует. Для добавления необходимо
             передать Comparator или чтобы его элементы реализовывали Comparable.
         </li>
@@ -46,12 +47,13 @@
         <h4>Set</h4>
         <li>Как получить значение из Hashset? Вызвать его Iterator или использовать метод toArray()</li>
         <li>Как хранятся элементы в Hashset? В односвязном списке.</li>
+        <li>Внутри HashSet лежит HashMap с Values Object для заглушки.</li>
+        <li>HashSet - Метод Add() возвращает true - был ли заменён объект.</li>
 
         <h4>Map</h4>
         <li>Что происходит при получении значение из Hashmap? Мы ищем по ключу баккет а дальше проверяем на equals()
             элементы пока не найдем.
         </li>
-        <li>Требование к ключу Map - Должен быть Immutable и переопределить equals(Object ob) и hashcode().</li>
     </ul>
 </div>
 </body>

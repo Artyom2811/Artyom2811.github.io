@@ -52,8 +52,8 @@
 
     <h4>JPA имеет 2 типа загрузки(FetchType):</h4>
     <ol>
+        <li>LAZY(by default) - ORM загрузит сущность или коллекцию отложено, при первом обращении к ней из кода.</li>
         <li>EAGER - заставляет ORM загружать связанные сущности и коллекции сразу, вместе с корневой сущностью.</li>
-        <li>LAZY - ORM загрузит сущность или коллекцию отложено, при первом обращении к ней из кода.</li>
     </ol>
 
     <h4>Аннотации для управления:</h4>
@@ -61,8 +61,24 @@
         <li>@Entity(name = "")</li>
         <li>@Table(name = "")</li>
         <li>@Id</li>
-        <li>@OneToOne</li>
+        <li>@GeneratedValue - Эта аннотация используется вместе с аннотацией @Id и определяет такие паметры, как
+            strategy и generator.
+        </li>
+        <li>@Column - определяет к какому столбцу в таблице БД относится конкретное поле класса.
+            Аттрибуты: name, unique, nullable, length.
+        </li>
+        <li>@OneToOne - передаётся CascadeType, FetchType и др.</li>
         <li>@ManyToOne</li>
+    </ol>
+
+    <h4>CascadeType:</h4>
+    <ol>
+        <li>CascadeType.ALL</li>
+        <li>CascadeType.PERSIST</li>
+        <li>CascadeType.MERGE</li>
+        <li>CascadeType.REMOVE</li>
+        <li>CascadeType.REFRESH</li>
+        <li>CascadeType.DETACH</li>
     </ol>
 </div>
 </body>
