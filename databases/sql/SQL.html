@@ -42,6 +42,14 @@
             <li>CROSS(декартова произведения) - не общее</li>
         </ol>
     </ol>
+
+    <h4>СРАВНЕНИЕ ВЫБОРКИ С ИНДЕКСОМ И БЕЗ:</h4>
+    <pre>
+        вариант с:
+        SELECT * FROM table WHERE ...
+        вариант без:
+        SELECT * FROM table WITH (INDEX(0)) WHERE …
+    </pre>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

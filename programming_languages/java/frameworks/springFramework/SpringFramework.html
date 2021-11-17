@@ -48,6 +48,7 @@
         <li><a href="https://habr.com/ru/post/427187/">Кеширование данных — Java Spring</a></li>
         <li><a href="https://habr.com/ru/post/424819/">Проверка данных — Java & Spring Validation</a></li>
         <li><a href="https://habr.com/ru/post/428548/">Аспектно-ориентированное программирование, Spring AOP</a></li>
+        <li><a href="https://sysout.ru/kak-ispolzovat-annotatsiyu-lookup/">Как использовать аннотацию @Lookup</a></li>
         <li>Spring vs Spring Boot - разница</li>
     </ol>
 
@@ -96,6 +97,7 @@
             Можно указывать конкретный HTTP-метод, который будет обрабатываться (GET/POST), передавать
             параметры запроса.
         </li>
+        <li>@Lookup - помечается метод, который будет возвращать разные объекты при каждом вызове метода.</li>
         <li>@Scope - для установки области жизни бина.</li>
         <li>@PathVariable - показывает, что параметр метода должен быть связан с переменной из урл-адреса.</li>
         <li>@PostConstruct - аннотация для метода, который будет вызван после вызова конструктора бина.</li>
@@ -115,8 +117,14 @@
 
     <h4>Виды Конфигурации beans:</h4>
     <ol>
-        <li>Аннотации</li>
-        <li>XML</li>
+        <li>Конфигурация через аннотации с указанием пакета для сканирования —
+            AnnotationConfigApplicationContext(“package.name”)
+        </li>
+        <li>Xml конфигурация — ClassPathXmlApplicationContext(“context.xml”)</li>
+        <li>JavaConfig — Конфигурация через аннотации с указанием класса (или массива классов) помеченного аннотацией
+            @Configuration -AnnotationConfigApplicationContext(JavaConfig.class).
+        </li>
+        <li>Groovy конфигурация — GenericGroovyApplicationContext(“context.groovy”)</li>
     </ol>
 
     <h4>Виды DI:</h4>
@@ -133,6 +141,49 @@
         <li>Выполнение работы</li>
         <li>Уничтожение</li>
     </ol>
+    <ol>
+        <li>Singltone - создаётся пристарте приложения и удаляется в конце.</li>
+        <li>Prototine - создаётся при вызове и удаляется GC.</li>
+    </ol>
+
+    <h4>Для управления созданием и уничтожением бина у нас есть методы:</h4>
+    <ol>
+        <li>init-method</li>
+        <li>destroy-method</li>
+    </ol>
+
+    <h4>Вопросы:</h4>
+    <p>Создание prototype в singleton:</p>
+    <p>Создадим класс singleton Car:</p>
+    <pre>
+@Component
+public class Car {
+    @Lookup
+    public Passenger createPassenger() {
+        return null;
+    };
+    public String drive(String name) {
+        Passenger passenger = createPassenger();
+        passenger.setName(name);
+        return "car with " + passenger.getName();
+    }
+}
+    </pre>
+    <p>Создадим класс prototype Passenger:</p>
+    <pre>
+@Component
+@Scope("prototype")
+public class Passenger {
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+    </pre>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>
