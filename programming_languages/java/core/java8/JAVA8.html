@@ -22,6 +22,7 @@
         <li><a href="https://habr.com/ru/post/256057/">Java 8: Овладейте новым уровнем абстракции</a></li>
         <li><a href="https://vertex-academy.com/tutorials/ru/java-8-stream-flatmap/">Java 8 Stream flatMap()</a></li>
         <li><a href="https://vertex-academy.com/tutorials/ru/java-8-completablefuture/">CompletableFuture</a></li>
+        <li><a href="https://javarush.ru/groups/posts/524-khvatit-pisatjh-ciklih-top-10-luchshikh-metodov-dlja-rabotih-s-kollekcijami-iz-java8">Хватит писать циклы! Топ-10 лучших методов для работы с коллекциями из Java 8</a></li>
         <li>Какая будет ошибка если вызвать Stream дважды?</li>
         <li>Как вызвать stream несколько раз?</li>
     </ol>
@@ -36,6 +37,43 @@
         <li><a href="option/Option.html">Optional</a></li>
         <li><a href="method_references/MethodReferences.html">:: - ссылка на метод.</a></li>
         <li><a href="https://vertex-academy.com/tutorials/ru/java-8-ssylki-na-metody/">Java 8 Ссылки на методы</a></li>
+    </ol>
+
+    <h4>Новые методы в коллекциях:</h4>
+    <ol>
+        <li>Iterable.forEach(Consumer<? super T> action)</li>
+        <li>Map.forEach(BiConsumer<? super K, ? super V> action)</li>
+        <li>Collection.removeIf(Predicate<? super E> filter)</li>
+        <li>Map.compute(K key,BiFunction<? super K, ? super V, ? extends V> remappingFunction) - если по ключу есть/нет
+            элемент, заменить/добавить значение на результат переданой функции.
+        </li>
+        <li>Map.computeIfPresent(K key, BiFunction<? super K, ? super V, ? extends V> remappingFunction) - ТОЛЬКО если
+            по ключу есть элемент, заменить значение на результат переданой функции.
+        </li>
+        <li>Map.computeIfAbsent(K key, Function<? super K, ? extends V> mappingFunction) - если отсутствует по ключу,
+            добавить переданый ключ, а значение на результат переданой функции.
+        </li>
+        <li>Map.getOrDefault(Object key, V defaultValue) - возвращает значение, соответствующее ключу key. Если такой
+            ключ не существует — возвращает значение по умолчанию.
+        </li>
+        <li>Map.merge(K key, V value, BiFunction<? super V, ? super V, ? extends V> remappingFunction)<br>
+            Если в вашей Map ключ key не существует, или value для этого ключа равно null — метод добавляет в Map
+            переданную пару key-value.<br>
+            Если ключ Key существует и его value != null — метод меняет его value на результат выполнения переданной
+            функции remappingFunction.<br>
+            Если remappingFunction возвращает null - key удаляется из коллекции.
+        </li>
+        <li>Map.putIfAbsent(K key, V value) - если нужно положить в Map и не заменять значение, если элемент по
+            ключу уже лежит.
+        </li>
+        <li>Map.replace и Map.replaceAll()<br>
+            Map.replace(K key, V newValue — заменяет значение ключа key на newValue, если такой ключ существует.
+            Если нет — ничего не происходит.<br>
+            Map.replace(K key, V oldValue, V newValue) — делает то же самое, но только если текущее значение key
+            равно oldValue.<br>
+            Map.replaceAll(BiFunction<? super K, ? super V, ? extends V> function) — заменяет все значения value на
+            результат выполнения функции function.
+        </li>
     </ol>
 </div>
 </body>
