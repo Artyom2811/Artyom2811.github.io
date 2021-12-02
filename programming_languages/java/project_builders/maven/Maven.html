@@ -15,6 +15,7 @@
     <h4>Проработать</h4>
     <ol>
         <li><a href="http://java-online.ru/maven-plugins.xhtml">Maven плагины для сборки проекта</a></li>
+        <li><a href="https://maven.apache.org/pom.html#Properties">POM Reference</a></li>
         <li>Разница между Goals и Phases</li>
     </ol>
 
@@ -36,6 +37,19 @@
 
     <h4>Структура pom.xml</h4>
     <ol>
+        <li>properties - раздел где можно указывать переменные которые можно использовать в дальнейшем через ${x} -
+            где x это property. Пример:
+            <pre>
+<b>Создание:</b>
+&lt;properties&gt;
+    &lt;jxl.version&gt;2.6.12&lt;/jxl.version&gt;
+&lt;/properties&gt;
+
+<b>Использование:</b>
+&lt;version&gt;${jxl.version}&lt;/version&gt;
+            </pre>
+
+        </li>
         <li>dependencies</li>
         <li>plugins</li>
         <li>build - секция для настройки сборки проекта.</li>
