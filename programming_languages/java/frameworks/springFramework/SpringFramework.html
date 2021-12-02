@@ -84,12 +84,12 @@
         <li>@Repository - подтип класса @Component для DAO слоя. Перехватывает исключения из базы и меняет их под
             стандарты Spring.
         </li>
-        <li>@Controller - подтип класса @Component для контроллеров.Похож на обычный сервлет (HttpServlet)
-            (работающий с объектами HttpServletRequest и HttpServletResponse). Просматривает классы, аннотированные
-            @Controller и обнаруживает в них аннотации @RequestMapping.
-        </li>
         <li>@ResponseBody - показывает что данный метод может возвращать кастомный объект в виде xml, json...</li>
-        <li>@RestController - аккумулирует поведение двух аннотаций @Controller и @ResponseBody</li>
+        <li>@Controller - подтип класса @Component для контроллеров. Похож на обычный сервлет (HttpServlet)
+            (работающий с объектами HttpServletRequest и HttpServletResponse). Просматривает классы, аннотированные
+            @Controller и обнаруживает в них аннотации @RequestMapping. Нужен для ответа веб страницей.
+        </li>
+        <li>@RestController - содержит две аннотаций @Controller и @ResponseBody. Нужен для ответа телом(JSON, XML и тд.).</li>
         <li>@Transactional - Перед исполнением метода помеченного данной аннотацией начинается транзакция,
             после выполнения метода транзакция коммитится, при выбрасывании RuntimeException откатывается.
         </li>
