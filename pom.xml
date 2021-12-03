@@ -10,7 +10,11 @@
 
     <properties>
         <jxl.version>2.6.12</jxl.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
+
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
@@ -26,7 +30,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>RELEASE</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

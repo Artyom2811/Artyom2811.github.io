@@ -15,22 +15,34 @@
         в частности Java, JavaScript, Python, разработанная компанией JetBrains.
     </p>
 
-    <h4>Настройки:</h4>
+    <h2>Настройки:</h2>
     <ol>
         <li>Добавление русской орфографии - <br>
-            Добавить язык в Settings/Preferences | Editor | Natural Languages | Languages<br>
+            Добавить язык в Settings | Editor | Natural Languages | Languages<br>
             Скачать словарь с сайта - winedt.org/dict.html и добавить словари в<br>
             Settings/Preferences | Editor | Natural Languages | Spelling | Custom dictionaries
         </li>
-        <li>Добавить хоткей для добавление javadoc для класса/метода - "Fix doc comment" - alt + H</li>
+        <li>Добавить hotkey для добавление javadoc для класса/метода:<br>
+            Settings | Keymap | Other | Fix doc comment - Alt+H
+        </li>
+
+        <li>Добавить hotkey для движения по коду(назад и вперед): <br>
+            Settings | Keymap | Main Menu | Navigate | Back - Ctrl+Alt+Left<br>
+            Settings | Keymap | Main Menu | Navigate | Forward - Ctrl+Alt+Right<br>
+            Для Ubuntu нужно отменить Hotkeys для GNOME которые блокируют добавление.<br>
+            gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"<br>
+            gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"<br>
+            Для отмены удаления GNOME hotkeys необходимо выполнить команды:<br>
+            gsettings reset org.gnome.desktop.wm.keybindings switch-to-workspace-left<br>
+            gsettings reset org.gnome.desktop.wm.keybindings switch-to-workspace-right
+        </li>
     </ol>
 
-    <h4>Полезные плагины:</h4>
+    <h2>Полезные плагины:</h2>
     <ul>
         <li>Lombok - это плагин компилятора, который добавляет в Java новые «ключевые слова» и превращает
             аннотации в Java-код, уменьшая усилия на разработку и обеспечивая некоторую дополнительную функциональность.
         </li>
-<!--        <li>Grazie - плагин грамматическая проверка языков. Включая русский.</li>-->
     </ul>
 </div>
 </body>

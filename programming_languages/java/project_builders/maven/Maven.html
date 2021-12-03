@@ -12,17 +12,17 @@
 <div class="bodyStyle">
     <h1>Apache Maven</h1>
 
-    <h4>Проработать</h4>
+    <h2>Проработать</h2>
     <ol>
         <li><a href="http://java-online.ru/maven-plugins.xhtml">Maven плагины для сборки проекта</a></li>
         <li><a href="https://maven.apache.org/pom.html#Properties">POM Reference</a></li>
         <li>Разница между Goals и Phases</li>
     </ol>
 
-    <h4>Что это:</h4>
+    <h2>Что это:</h2>
     <p>Apache Maven - фреймворк для автоматизации сборки проектов на основе описания их структуры в файлах pom.xml</p>
 
-    <h4>Maven Lifecycle:</h4>
+    <h2>Maven Lifecycle:</h2>
     <ul>
         <li>clean - очищает все сгенерированные файлы.</li>
         <li>validate - проверяет правильность конфигурации.</li>
@@ -35,8 +35,17 @@
         <li>deploy - выкладывает созданные пакеты во внешний репозиторий.</li>
     </ul>
 
-    <h4>Структура pom.xml</h4>
-    <ol>
+    <h2>Структура pom.xml</h2>
+    <ul>
+        <h3><b>The Basics</b></h3>
+        <li>groupId</li>
+        <li>artifactId</li>
+        <li>version</li>
+        <li>packaging</li>
+        <li>dependencies</li>
+        <li>parent</li>
+        <li>dependencyManagement</li>
+        <li>modules</li>
         <li>properties - раздел где можно указывать переменные которые можно использовать в дальнейшем через ${x} -
             где x это property. Пример:
             <pre>
@@ -48,18 +57,35 @@
 <b>Использование:</b>
 &lt;version&gt;${jxl.version}&lt;/version&gt;
             </pre>
-
         </li>
-        <li>dependencies</li>
-        <li>plugins</li>
-        <li>build - секция для настройки сборки проекта.</li>
-        <li>profiles</li>
-        <li>version</li>
-        <li>developers</li>
-        <li>reporting</li>
-    </ol>
 
-    <h4>scope - область видимости:</h4>
+        <h3><b>Build Settings</b></h3>
+        <li>build - секция для настройки сборки проекта.</li>
+        <li>reporting</li>
+
+        <h3><b>More Project Information</b></h3>
+        <li>name</li>
+        <li>description</li>
+        <li>url</li>
+        <li>inceptionYear</li>
+        <li>licenses</li>
+        <li>organization</li>
+        <li>developers</li>
+        <li>contributors</li>
+
+        <h3><b>Environment Settings</b></h3>
+        <li>issueManagement</li>
+        <li>ciManagement</li>
+        <li>mailingLists</li>
+        <li>scm</li>
+        <li>prerequisites</li>
+        <li>repositories</li>
+        <li>pluginRepositories</li>
+        <li>distributionManagement</li>
+        <li>profiles</li>
+    </ul>
+
+    <h2>scope - область видимости:</h2>
     <ol>
         <li>compile - сборки, тестирования, зависимые пакеты, конечный пакет(будут доступны и во время исполнения).</li>
         <li>provided - сборки, тестирования, конечный пакет(будут доступны и во время исполнения).</li>
@@ -71,13 +97,18 @@
         <li>import - эта область используется в зависимости секции &lt;dependencyManagement&gt; при сложных связях.</li>
     </ol>
 
-    <h4>Добавление Maven в проект через Intellij Idea:</h4>
+    <h2>Добавление Maven в проект через Intellij Idea:</h2>
     <ol>
         <li>Нажать на папку с проектом правой кнопкой мыши.</li>
         <li>Выбрать "Add Framework Support"</li>
         <img src="add_mv_in_project.png" width="453" height="116" alt="альтернативный текст">
         <li>Выбрать из списка Maven.</li>
     </ol>
+
+    <h2>RELEASE and LATEST</h2>
+    <p>Использование RELEASE или LATEST в указании версий, не рекомендуется. Так plugin который отвечает за это
+        не всегда работает исправно. Необходимо указывать конкретную версию.
+    </p>
 
 </div>
 </body>

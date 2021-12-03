@@ -12,12 +12,12 @@
 <div class="bodyStyle">
     <h1>Hash Map</h1>
 
-    <h4>HashMap</h4>
+    <h2>HashMap</h2>
     <p>Имеет структуру ключ - значение.</p>
     <p>Ключ действует так же как и в HashSet.</p>
     <p>Позволяет добавить (null, null), null будет первым ключом в коллекции.</p>
 
-    <h4>Методы:</h4>
+    <h2>Методы:</h2>
     <ol>
         <li>put(K, V)</li>
         <li>get(K)</li>
@@ -27,13 +27,13 @@
         <li>entrySet(): Set&lt;Map.Entry&lt;K,V&gt;&gt; </li>
     </ol>
 
-    <h4>Реализация:</h4>
+    <h2>Реализация:</h2>
     <p>HashMap bucket будет трансформирован из List в Tree при размере > 8. И произойдёт обратное при > 6.</p>
     <p>default initial capacity = 16</p>
     <p>load_factor = 0.75 - процент на который должен быть заполнен capacity для умножения capacity на 2.</p>
     <p>Node содержит: hashCode, key, value, next.</p>
 
-    <h4>Вопросы:</h4>
+    <h2>Вопросы:</h2>
     <p>Требование к ключу Map - Должен быть Immutable и переопределить equals(Object ob) и hashcode().</p>
 </div>
 </body>

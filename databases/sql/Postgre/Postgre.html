@@ -12,21 +12,21 @@
 <div class="bodyStyle">
     <h1>Postgre</h1>
 
-    <h4>Проработать</h4>
+    <h2>Проработать</h2>
     <ol>
         <li><a href="https://edu.postgrespro.ru/introbook_v4.pdf">tutorial-book</a></li>
         <li><a href="https://andreyex.ru/bazy-dannyx/uchebnoe-posobie-po-sql/14-naibolee-chasto-ispolzuemyx-zaprosov-sql-vopros-otvet/">14 наиболее часто используемых запросов SQL на собеседовании (вопрос/ответ)</a></li>
     </ol>
 
-    <h4>Шпаргалка:</h4>
+    <h2>Шпаргалка:</h2>
 
-    <h4>TRIM всей колонки:</h4>
+    <h2>TRIM всей колонки:</h2>
     <pre>
     UPDATE имя_таблицы
     SET имя_колонки = TRIM(имя_колонки)
     </pre>
 
-    <h4>Проверка на дубликаты:</h4>
+    <h2>Проверка на дубликаты:</h2>
     <pre>
     SELECT ‘проверяемая колонка’ , COUNT(*)
     FROM ‘проверяемая таблица’
@@ -34,25 +34,25 @@
     HAVING COUNT(*) > 1
     </pre>
 
-    <h4>CAST:</h4>
+    <h2>CAST:</h2>
     <pre>
         Date to Text:
         to_char(имя_колонки, 'yyyy-MM-dd')
     </pre>
 
-    <h4>Заменить если null на Значение:</h4>
+    <h2>Заменить если null на Значение:</h2>
     <pre>
         COALESCE(имя_колонки, 'Нет значения')
     </pre>
 
-    <h4>Если нужно упорядочить по дате, если дата строкой(Нужно в сортировке перевести в дату):</h4>
+    <h2>Если нужно упорядочить по дате, если дата строкой(Нужно в сортировке перевести в дату):</h2>
     <pre>
         SELECT *
         FROM table
         ORDER BY DATE(date_coloumn) DESC
     </pre>
 
-    <h4>Статистика запуска скпиптов с индексом и без:</h4>
+    <h2>Статистика запуска скпиптов с индексом и без:</h2>
     <pre>
         SELECT
             relname,
@@ -63,7 +63,7 @@
 
     </pre>
 
-    <h4>Получение grant для на таблицу:</h4>
+    <h2>Получение grant для на таблицу:</h2>
     <pre>
         GRANT SELECT, INSERT, UPDATE, DELETE ON имя_таблицы TO пользователь
         Пример:

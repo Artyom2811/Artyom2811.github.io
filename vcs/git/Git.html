@@ -12,7 +12,7 @@
 <div class="bodyStyle">
     <h1>GIT</h1>
 
-    <h4>Проработать:</h4>
+    <h2>Проработать:</h2>
     <ol>
         <li><a href="https://habr.com/ru/post/437000/">Как научить людей использовать Git</a></li>
         <li><a href="https://www.atlassian.com/ru/git/tutorials/merging-vs-rebasing">Сравнение слияния и перебазирования</a></li>
@@ -21,13 +21,13 @@
         <li>rebase vs merge vs cherry-pick</li>
     </ol>
 
-    <h4>Интерфейсы работы с GIT:</h4>
+    <h2>Интерфейсы работы с GIT:</h2>
     <ul>
         <li>Через терминал</li>
         <li>Plugin с Idea</li>
     </ul>
 
-    <h4>Терминальные команды для настройки credentials:</h4>
+    <h2>Терминальные команды для настройки credentials:</h2>
     <ol>
         <li>git config --local --list - получить локальный настройки пользователя.</li>
         <li>git config --local user.name имя - установить локальный name. Пример: git config --local user.name myName</li>
@@ -41,7 +41,7 @@
         <li></li>
     </ol>
 
-    <h4>Команды:</h4>
+    <h2>Команды:</h2>
     <ol>
         <li>fetch - забирает изменения из репозитория.</li>
         <li>merge - слияние одной или нескольких веток в другую.</li>
@@ -49,7 +49,7 @@
         <li>push - добавление commits в репозиторий.</li>
     </ol>
 
-    <h4>Squash - сжатие нескольких commits в один.</h4>
+    <h2>Squash - сжатие нескольких commits в один.</h2>
     <p>Squash for local commits:</p>
     <p>git rebase -i HEAD~3 - где 3 это количество commits с конца.</p>
     <p>Далее откроется редактор. Нужно перед каждым commit вверху выбрать и указать:</p>
@@ -60,13 +60,13 @@
     </p>
     <p>После закрытия файла откроется текстовый редактор в котором мы должны указать общий commit message.</p>
 
-    <h4>.git - директория хранит:</h4>
+    <h2>.git - директория хранит:</h2>
     <ol>
         <li>hash всех commits.</li>
         <li>hooks - настройки действий во время git операций. Проверки, логирование, информирование и тд.</li>
     </ol>
 
-    <h4>Commit message:</h4>
+    <h2>Commit message:</h2>
     <p>Комментарий исправление опечаток - Fixed Typo</p>
 </div>
 </body>

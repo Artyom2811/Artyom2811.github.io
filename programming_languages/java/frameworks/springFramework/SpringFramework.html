@@ -12,7 +12,7 @@
 <div class="bodyStyle">
     <h1>Содержание</h1>
 
-    <h4>Проработать:</h4>
+    <h2>Проработать:</h2>
     <ol>
         <li><a href="https://habr.com/ru/post/455794/">Введение в Spring, или что делать, если по всему проекту @Autowired и @Component, а вы не понимаете, что это</a></li>
         <li><a href="https://ru.wikibooks.org/wiki/Spring_Framework_Guide">Spring Framework Guide</a></li>
@@ -41,7 +41,7 @@
         <li><a href="https://www.baeldung.com/spring-inject-prototype-bean-into-singleton">Injecting Prototype Beans into a Singleton Instance in Spring</a></li>
         <li><a href="https://habr.com/ru/post/334636/">Внедрение зависимостей через поля — плохая практика</a></li>
         <li><a href="https://habr.com/ru/post/350682/">Spring: вопросы к собеседованию</a></li>
-        <li><a href="https://www.youtube.com/watch?v=M4w6b2pENWU&list=PLwwk4BHih4fho6gmaAwdHYZ6QQq0aE7Zi">01 - Spring. Введение</a></li>
+        <li><a href="https://www.youtube.com/watch?v=M4w6b2pENWU&list=PLwwk4BHih2fho6gmaAwdHYZ6QQq0aE7Zi">01 - Spring. Введение</a></li>
         <li><a href="https://javarush.ru/groups/posts/spring-framework-java-1">Spring для ленивых. Основы, базовые концепции и примеры с кодом. Часть 1</a></li>
         <li><a href="https://proselyte.net/tutorials/spring-tutorial-full-version/bean-lifecycle/">Руководство по Spring. Жизненный цикл бинов.</a></li>
         <li><a href="https://habr.com/ru/post/70168/">Тестирование Spring приложений. Транзакции в тестировании</a></li>
@@ -52,10 +52,10 @@
         <li>Spring vs Spring Boot - разница</li>
     </ol>
 
-    <h4>Что это:</h4>
+    <h2>Что это:</h2>
     <p><b>Spring Framework</b> — один из самых популярных наборов фреймворков для создания веб-приложений на Java.</p>
 
-    <h4>Spring projects:</h4>
+    <h2>Spring projects:</h2>
     <ul>
         <li>Spring Framework(core)</li>
         <li>Spring Boot</li>
@@ -65,7 +65,7 @@
         <li>Spring Session</li>
     </ul>
 
-    <h4>Bean scope:</h4>
+    <h2>Bean scope:</h2>
     <ol>
         <li>singleton(by default) - определяет один единственный бин для каждого контейнера Spring IoC.</li>
         <li>prototype - любое количество экземпляров бина.</li>
@@ -76,7 +76,7 @@
         </li>
     </ol>
 
-    <h4>Spring аннотации:</h4>
+    <h2>Spring аннотации:</h2>
     <ul>
         <li>@Autowired - автоматически установить значение поля.</li>
         <li>@Component - общий компонент фреймворка.</li>
@@ -110,12 +110,12 @@
         </li>
     </ul>
 
-    <h4>АОП(AOP)</h4>
+    <h2>АОП(AOP)</h2>
     <p>АОП(AOP) - Аспектно-ориентированное программирование. Идея АОП заключается в выделении так называемой сквозной
         функциональности. Помогает разделить бизнес логику и логгирование к примеру.
     </p>
 
-    <h4>Виды Конфигурации beans:</h4>
+    <h2>Виды Конфигурации beans:</h2>
     <ol>
         <li>Конфигурация через аннотации с указанием пакета для сканирования —
             AnnotationConfigApplicationContext(“package.name”)
@@ -127,14 +127,14 @@
         <li>Groovy конфигурация — GenericGroovyApplicationContext(“context.groovy”)</li>
     </ol>
 
-    <h4>Виды DI:</h4>
+    <h2>Виды DI:</h2>
     <ol>
         <li>Через сэттеры</li>
         <li>Через конструкторы</li>
         <li>Через поля - плохая практика.</li>
     </ol>
 
-    <h4>Жизненный цикл Bean:</h4>
+    <h2>Жизненный цикл Bean:</h2>
     <ol>
         <li>Инициализация</li>
         <li>Внедрение зависимостей</li>
@@ -146,13 +146,13 @@
         <li>Prototine - создаётся при вызове и удаляется GC.</li>
     </ol>
 
-    <h4>Для управления созданием и уничтожением бина у нас есть методы:</h4>
+    <h2>Для управления созданием и уничтожением бина у нас есть методы:</h2>
     <ol>
         <li>init-method</li>
         <li>destroy-method</li>
     </ol>
 
-    <h4>Вопросы:</h4>
+    <h2>Вопросы:</h2>
     <p>Создание prototype в singleton:</p>
     <p>Создадим класс singleton Car:</p>
     <pre>
