@@ -2,22 +2,27 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Log4j</title>
+    <title>SLF4J + Log4J</title>
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js"></script>
 </head>
 
 <body>
-<div><a href="../Logs.html" class="backButton"></a></div>
+<div><a href="../Slf4j.html" class="backButton"></a></div>
 <div class="bodyStyle">
-    <h1>Log4j</h1>
+    <h1>SLF4J + Log4J</h1>
 
-    <h2>Быстрый старт:</h2>
+    <h2>Быстрый старт с Log4J:</h2>
     <p>Добавить зависимость:</p>
     <pre>
 &lt;dependency&gt;
     &lt;groupId&gt;log4j&lt;/groupId&gt;
     &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+    &lt;version&gt;set_last_version&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+&lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+    &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
     &lt;version&gt;set_last_version&lt;/version&gt;
 &lt;/dependency&gt;
     </pre>
@@ -44,14 +49,14 @@ log4j.appender.stdout.layout.ConversionPattern=[%-5p] %d (%c) - %m%n
 
     <p>Добавить в логируемый класс объект для логирования.</p>
     <pre>
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 public class App {
-    private static final Logger logger = Logger.getLogger(App.class);
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
 }
     </pre>
     <p>Можно использовать:</p>
     <p>logger.debug("Logger added");</p>
-
 </div>
 </body>
 <script>setBackButtonHeight();</script>

@@ -34,48 +34,20 @@
         </li>
     </ol>
 
-    <h2>Быстрый старт с Log4J:</h2>
-    <p>Добавить зависимость:</p>
+    <h2>Подключение:</h2>
+    <ol>
+        <li><a href="log4j/Slf4jLog4j.html">Log4j</a></li>
+        <li><a href="log4j/Slf4jLog4j2.html">Log4j2</a></li>
+    </ol>
+
+    <h2>Для подключение Logback добавляем зависимость:</h2>
     <pre>
 &lt;dependency&gt;
-    &lt;groupId&gt;log4j&lt;/groupId&gt;
-    &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+    &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+    &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
     &lt;version&gt;set_last_version&lt;/version&gt;
 &lt;/dependency&gt;
     </pre>
-    <p>Добавить файл конфигурации /src/main/resources/log4j.properties</p>
-    <p>Задать начальные конфигурации.</p>
-    <pre>
-log4j.rootLogger=DEBUG, file, stdout
-
-# Direct log messages to a log file
-log4j.appender.file=org.apache.log4j.RollingFileAppender
-log4j.appender.file.File=log/loging.log
-log4j.appender.file.MaxFileSize=5MB
-log4j.appender.file.MaxBackupIndex=1
-log4j.appender.file.layout=org.apache.log4j.PatternLayout
-log4j.appender.file.layout.ConversionPattern=[%-5p] %d (%c) - %m%n
-
-# Direct log messages to stdout(console)
-log4j.appender.stdout=org.apache.log4j.ConsoleAppender
-log4j.appender.stdout.encoding=UTF-8
-log4j.appender.stdout.Target=System.out
-log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
-log4j.appender.stdout.layout.ConversionPattern=[%-5p] %d (%c) - %m%n
-    </pre>
-
-    <p>Добавить в логируемый класс объект для логирования.</p>
-    <pre>
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-public class App {
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
-}
-    </pre>
-    <p>Можно использовать:</p>
-    <p>logger.debug("Logger added");</p>
-
-    <h2></h2>
 </div>
 </body>
 <script>setBackButtonHeight();</script>
