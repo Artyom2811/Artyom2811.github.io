@@ -24,14 +24,31 @@
     &lt;artifactId&gt;log4j&lt;/artifactId&gt;
     &lt;version&gt;set_last_version&lt;/version&gt;
 &lt;/dependency&gt;
+&lt;dependency>
+&lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+    &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
+    &lt;version&gt;set_last_version&lt;/version&gt;
+&lt;/dependency&gt;
     </pre>
     <p>Добавить файл конфигурации /src/main/resources/log4j.properties</p>
     <p>Задать начальные конфигурации.</p>
     <pre>
-log4j.rootLogger=DEBUG, stdout
+log4j.rootLogger=DEBUG, file, stdout
+
+# Direct log messages to a log file
+log4j.appender.file=org.apache.log4j.RollingFileAppender
+log4j.appender.file.File=log/loging.log
+log4j.appender.file.MaxFileSize=5MB
+log4j.appender.file.MaxBackupIndex=1
+log4j.appender.file.layout=org.apache.log4j.PatternLayout
+log4j.appender.file.layout.ConversionPattern=[%-5p] %d (%c) - %m%n
+
+# Direct log messages to stdout(console)
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
-log4j.appender.stdout.layout=org.apache.log4j.SimpleLayout
-log4j.logger.com.me.proj2=INFO
+log4j.appender.stdout.encoding=UTF-8
+log4j.appender.stdout.Target=System.out
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=[%-5p] %d (%c) - %m%n
     </pre>
 
     <p>Добавить в логируемый класс объект для логирования.</p>

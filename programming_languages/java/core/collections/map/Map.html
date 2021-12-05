@@ -18,7 +18,35 @@
         <li><a href="tree_map/TreeMap.html">TreeMap</a></li>
         <li>LinkedHashMap - Используется если важен порядок добавления.</li>
         <li>HashTable - HashMap с синхронизацией.</li>
+        <li>ConcurrentHashMap - потокобезопасный HashMap. С эффективной блокировкой.</li>
+        <li>ConcurrentSkipListMap - потокобезопасная версия TreeMap.</li>
     </ul>
+
+    <р2>Ключ должен:</р2>
+    <ol>
+        <li>Быть immutable</li>
+        <li>Переопределить equals и hashcode</li>
+    </ol>
+
+    <р2>Вопросы на собеседование:</р2>
+    <ol>
+        <li>Различия между HashMap и ConcurrentHashMap: - ConcurrentHashMap имеет locks каждого для bucket. При
+            блокировке одного bucket, остальное не блокируются.
+        <ol>
+            <li>имеет схожий интерфейс взаимодействия.</li>
+            <li>в ConcurrentHashMap операции чтения не требуют блокировок и выполняются параллельно.</li>
+            <li>в ConcurrentHashMap операции записи зачастую также могут выполняться параллельно без блокировок.</li>
+            <li>в ConcurrentHashMap при создании указывается требуемый concurrencyLevel, определяемый по статистике
+                чтения и записи.
+            </li>
+            <li>в ConcurrentHashMap value, объявленное как volatile.</li>
+        </ol>
+        </li>
+        <li>Hashtable и ConcurrentHashMap - Hashtable при обращении блокировалась полностью.</li>
+        <li>HashTable и Collection.synchronized(HashMap) - Очень похожи. Но HashTable имеет функционал
+            Enumerators(счетчики).
+        </li>
+    </ol>
 
 </div>
 </body>

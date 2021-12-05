@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>List</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Collections.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>List</h1>
+
+    <h2>Проработать:</h2>
+    <ol>
+        <li><a href="https://vertex-academy.com/tutorials/ru/list-java-primer/">List в Java</a></li>
+    </ol>
+
+    <h2>Что это:</h2>
+    <p>List(список) - коллекция в которой элементы хранится по индексам.</p>
+
+    <h2>Особенности:</h2>
+    <ol>
+        <li>Использует индексацию.</li>
+        <li>Возможны дубликаты.</li>
+    </ol>
+
+    <h2>Основные реализации:</h2>
+    <ol>
+        <li>ArrayList</li>
+        <li>LinkedList</li>
+        <li>Vector</li>
+        <li>CopyOnWriteArrayList - это потокобезопасный вариант of ArrayList. Разница в том, что все мутативные
+            операции, такие как add, set, remove, clear,... создают новую копию массива.
+        </li>
+    </ol>
+
+    <h2>ArrayList</h2>
+    <p>При добавлении в середину списка создаётся новый массив в него помещается:<br>
+        первая часть -> новый элемент -> вторая часть
+    </p>
+
+    <h2>LinkedList</h2>
+    <p>Элементы хранятся в объекте Node. Которые имеют ссылки на предыдущий и следующий элементы.</p>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

@@ -48,10 +48,19 @@ catch(Exception e) {}
 catch(ClassCastException | ArrayStoreException e1) {}
 finally {}
             </pre>
+            <p>try-with-resources - дает возможность объявлять один или несколько ресурсов в блоке try, которые
+                будут закрыты автоматически без использования finally блока. Проверяет наличие интерфейса AutoCloseable
+                или Closeable. И выполняет метод close.
+                <pre>
+try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+    return br.readLine();
+}
+            </pre>
+            </p>
         </li>
     </ol>
 
-    <h2>Вопросы:</h2>
+    <h2>Вопросы на собеседование:</h2>
     <ol>
         <li>Если наследовать класс в throws. Наследник должен иметь throws не выше по иерархии чем у родителя.</li>
         <li>Если используются несколько catch нужно писать их отлавливаемые исключения в порядке возвышения по иерархии.</li>

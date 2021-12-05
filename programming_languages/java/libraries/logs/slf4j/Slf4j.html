@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SLF4J</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Logs.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>SLF4J</h1>
+
+    <h2>Что это:</h2>
+    <p>SLF4J(simple logging facade for java) - библиотека для протоколирования, ставящая своей целью предоставить
+        простой, но при этом мощный фасад для различных систем протоколирования на Java.
+    </p>
+
+    <h2>Как она работает:</h2>
+    <p>SLF4J предоставляет простой обобщённый интерфейс для систем протоколирования, не зависящий от конкретной
+        реализации. Но она не заменит настройку реализаций. И настраивать реализацию логов нужно по правилам реализации.
+    </p>
+
+    <h2>Работает с реализациями:</h2>
+    <ol>
+        <li>NOP - реализация, не выполняющая никаких действий.</li>
+        <li>Simple - использование стандартного вывода для логов.</li>
+        <li>Java Logging API — система протоколирования, включенная в JDK.</li>
+        <li>Log4J — одна из наиболее известных систем протоколирования для java.</li>
+        <li>JCL — фреймворк, также предоставляющий адаптер для протоколирования.</li>
+        <li>LogBack — система протоколирования, представляющая собой развитие log4j и специально разработанная для
+            использования совместно с slf4j.
+        </li>
+    </ol>
+
+    <h2>Быстрый старт с Log4J:</h2>
+    <p>Добавить зависимость:</p>
+    <pre>
+&lt;dependency&gt;
+    &lt;groupId&gt;log4j&lt;/groupId&gt;
+    &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+    &lt;version&gt;set_last_version&lt;/version&gt;
+&lt;/dependency&gt;
+    </pre>
+    <p>Добавить файл конфигурации /src/main/resources/log4j.properties</p>
+    <p>Задать начальные конфигурации.</p>
+    <pre>
+log4j.rootLogger=DEBUG, file, stdout
+
+# Direct log messages to a log file
+log4j.appender.file=org.apache.log4j.RollingFileAppender
+log4j.appender.file.File=log/loging.log
+log4j.appender.file.MaxFileSize=5MB
+log4j.appender.file.MaxBackupIndex=1
+log4j.appender.file.layout=org.apache.log4j.PatternLayout
+log4j.appender.file.layout.ConversionPattern=[%-5p] %d (%c) - %m%n
+
+# Direct log messages to stdout(console)
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.encoding=UTF-8
+log4j.appender.stdout.Target=System.out
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=[%-5p] %d (%c) - %m%n
+    </pre>
+
+    <p>Добавить в логируемый класс объект для логирования.</p>
+    <pre>
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+public class App {
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
+}
+    </pre>
+    <p>Можно использовать:</p>
+    <p>logger.debug("Logger added");</p>
+
+    <h2></h2>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
