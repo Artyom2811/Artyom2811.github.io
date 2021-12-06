@@ -23,17 +23,20 @@
     <p>Apache Maven - фреймворк для автоматизации сборки проектов на основе описания их структуры в файлах pom.xml</p>
 
     <h2>Maven Lifecycle:</h2>
-    <ul>
-        <li>clean - очищает все сгенерированные файлы.</li>
-        <li>validate - проверяет правильность конфигурации.</li>
-        <li>compile - компилирует исходные коды.</li>
-        <li>test - выполняет тесты.</li>
-        <li>package - создает инсталляционные пакеты.</li>
-        <li>verify - проверяет пакеты на целостность.</li>
-        <li>install - устанавливает пакеты в локальный репозиторий.</li>
-        <li>site - генерирует документацию и javadoc.</li>
-        <li>deploy - выкладывает созданные пакеты во внешний репозиторий.</li>
-    </ul>
+    <details>
+        <summary></summary>
+        <ul>
+            <li>clean - очищает все сгенерированные файлы.</li>
+            <li>validate - проверяет правильность конфигурации.</li>
+            <li>compile - компилирует исходные коды.</li>
+            <li>test - выполняет тесты.</li>
+            <li>package - создает инсталляционные пакеты.</li>
+            <li>verify - проверяет пакеты на целостность.</li>
+            <li>install - устанавливает пакеты в локальный репозиторий.</li>
+            <li>site - генерирует документацию и javadoc.</li>
+            <li>deploy - выкладывает созданные пакеты во внешний репозиторий.</li>
+        </ul>
+    </details>
 
     <h2>Структура pom.xml</h2>
     <ul>
@@ -109,6 +112,24 @@
     <p>Использование RELEASE или LATEST в указании версий, не рекомендуется. Так plugin который отвечает за это
         не всегда работает исправно. Необходимо указывать конкретную версию.
     </p>
+
+    <h2>Maven plugin:</h2>
+    <p>Maven использует JAVA 5. Для plugin можно указать версию в настройках.</p>
+    <pre>
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.6.1</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+    </pre>
 
 </div>
 </body>
