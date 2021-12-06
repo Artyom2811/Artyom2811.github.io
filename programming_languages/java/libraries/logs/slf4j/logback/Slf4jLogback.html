@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Slf4jLogback</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Slf4j.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Slf4jLogback</h1>
+
+    <h2>Проработать:</h2>
+    <ol>
+        <li>Написать полезные файлы конфигурации с комментариями. Для всех реализаций.</li>
+    </ol>
+
+    <h2>Быстрый старт с Logback:</h2>
+    <p>Добавить зависимость:</p>
+    <pre>
+&lt;dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;
+    &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;
+    &lt;version&gt;set_last_version&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId>org.slf4j&lt;/groupId&gt;
+    &lt;artifactId>slf4j-api&lt;/artifactId&gt;
+    &lt;version>set_last_version&lt;/version&gt;
+&lt;/dependency&gt;
+
+    </pre>
+    <p>Добавить файл конфигурации /src/main/resources/logback.xml</p>
+    <p>Задать начальные конфигурации через properties.</p>
+    <pre>
+
+&lt;configuration&gt;
+  &lt;appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"&gt;
+    &lt;!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default --&gt;
+    &lt;encoder&gt;
+      &lt;pattern&gt;%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n&lt;/pattern&gt;
+    &lt;/encoder&gt;
+  &lt;/appender&gt;
+
+  &lt;root level="debug"&gt;
+    &lt;appender-ref ref="STDOUT" /&gt;
+  &lt;/root&gt;
+&lt;/configuration&gt;
+    </pre>
+
+    <p>Добавить в логируемый класс объект для логирования.</p>
+    <pre>
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+public class App {
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
+}
+    </pre>
+    <p>Можно использовать:</p>
+    <p>logger.debug("Logger added");</p>
+</div>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
