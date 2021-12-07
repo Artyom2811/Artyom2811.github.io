@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Gradle</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../ProjectBuilders.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Gradle</h1>
+
+    <h2>Проработать:</h2>
+    <ol>
+        <li><a href="https://www.youtube.com/watch?v=NZJTYPLb0iE">Евгений Борисов — Power of Gradle</a></li>
+        <li><a href="https://habr.com/ru/company/redmadrobot/blog/275515/">Gradle: управляя зависимостями</a></li>
+    </ol>
+
+
+    <h2>Что это:</h2>
+
+    <h2>Как она работает:</h2>
+    <p>Gradle основан на графе задач (task), которые могут зависеть друг от друга.</p>
+
+    <h2>Настройка Gradle:</h2>
+    <p>build.gradle - файл настройки Gradle.</p>
+    <p>Пример настроек:</p>
+    <pre>
+plugins {
+    id 'java'
+    // For task "run"
+    id 'application'
+}
+
+// For set direction of Main Class
+application {
+    mainClass = 'Main'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:26.0-jre'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+    </pre>
+
+    <h2>Dependency configurations:</h2>
+    <ul>
+        <li>api(compile)- не ограничивает использование зависимости. Пример:<br>
+            проект_А подключил наш_проект, который подключил библиотека_B<br>
+            проект_А может использовать классы библиотека_B.
+        </li>
+        <li>implementation - ограничивает использование зависимости. Пример:<br>
+            проект_А подключил наш_проект, который подключил библиотека_B<br>
+            проект_А не может использовать классы библиотека_B.
+        </li>
+        <li>testImplementation(testCompile)</li>
+        <li>debugImplementation(debugCompile)</li>
+        <li>androidTestImplementation(androidTestCompile)</li>
+        <li></li>
+    </ul>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
