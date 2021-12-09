@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>H2</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SQL.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>H2</h1>
+
+<h2>Что это:</h2>
+    <p>Имеет свой личный веб интерфейс. Порт по умолчанию 81(localhost:81).</p>
+
+    <h2>Установка через докер:</h2>
+    <p>Получаем образ их репозитория:</p>
+    <pre>docker pull oscarfonts/h2</pre>
+    <p>Запускаем с портами(1521 для соединения, 81 дял веб интерфейса):</p>
+    <pre>docker run -d -p 1521:1521 -p 81:81 -v /path/to/local/data_dir:/opt/h2-data --name=MyH2Instance oscarfonts/h2</pre>
+    <p>Теперь можно настраивать через "localhost:81"</p>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

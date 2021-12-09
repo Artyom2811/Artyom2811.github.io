@@ -5,10 +5,7 @@
 Замерить время за сколько я прочитаю весь материал.
 
 Приоритет технологий:
-Docker
 Kafka
-Spark
-Tomcat
 Spring
 Spring Boot
 Concurrency

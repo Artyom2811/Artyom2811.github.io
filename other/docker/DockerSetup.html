@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Docker Setup</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="Docker.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Docker Setup</h1>
+
+    <h2>Установка Windows 10:</h2>
+    <p>Если во время запуска будет ошибка "WSL 2 installation is incomplete")" - нужно в настройках Docker снять
+        чекбокс с "Use the WSL 2 based engine".
+    </p>
+    <p>Для добавления образа в docker - необходимо в "https://hub.docker.com/" найти необходимый образ и выполнить
+        команду через командную строку.
+    </p>
+
+    <h2>Установка Ubuntu:</h2>
+    <p>Установить руководствуясь официальной документацией.</p>
+    <p>Выполнить для запуска docker daemon(службу) при старте системы:</p>
+    <pre>
+sudo systemctl start docker
+    </pre>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
