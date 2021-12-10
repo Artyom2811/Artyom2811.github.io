@@ -17,10 +17,24 @@
         <li><a href="https://metanit.com/java/tutorial/6.1.php">Потоки ввода-вывода. Работа с файлами</a></li>
         <li><a href="http://java-online.ru/java-outputstream.xhtml">Потоки вывода, OutputStream</a></li>
         <li><a href="http://developer.alexanderklimov.ru/android/java/file.php">Класс File</a></li>
+        <li>InputStream</li>
+        <li>OutputStream</li>
     </ol>
 
+    <h2>Scanner</h2>
+    <p>Пример:</p>
+    <pre>
+import java.util.Scanner;
 
-    <p>InputOutputStream - .</p>
+Scanner sc = new Scanner(System.in); //создание объекта сканер
+//создаем переменную необходимого типа
+int i;
+i = sc.nextInt(); // если нужно целое число
+i = sc.nextLine(); //если строка
+i = sc.nextDouble(); //если дробное
+</pre>
+
+    <p> - .</p>
 
     <h2>WriteInFile - Запись в файл</h2>
     <pre>
