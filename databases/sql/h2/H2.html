@@ -18,8 +18,11 @@
     <h2>Установка через докер:</h2>
     <p>Получаем образ их репозитория:</p>
     <pre>docker pull oscarfonts/h2</pre>
+    <p>Есть два способа запуска:</p>
     <p>Запускаем с портами(1521 для соединения, 81 дял веб интерфейса):</p>
     <pre>docker run -d -p 1521:1521 -p 81:81 -v /path/to/local/data_dir:/opt/h2-data --name=MyH2Instance oscarfonts/h2</pre>
+    <p>Запуск с параметром "ifNotExists" который создает базу при обращении:</p>
+    <pre>docker run -d -p 1521:1521 -p 81:81 -v /path/to/local/data_dir:/opt/h2-data -e H2_OPTIONS='-ifNotExists' --name=MyH2Instance oscarfonts/h2</pre>
     <p>Теперь можно настраивать через "localhost:81"</p>
 </div>
 </body>

@@ -11,8 +11,242 @@
 <div><a href="SpringMvc.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>Spring MVC Quick Start</h1>
-    <p></p>
 
+    <h2>Ожидаемая структура пакетов:</h2>
+    <img src="package_structure.png" width="333" height="529" alt="альтернативный текст">
+
+    <h2>Создаем pom.xml</h2>
+    <pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+        &lt;project xmlns="http://maven.apache.org/POM/4.0.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+    &lt;groupId&gt;org.example&lt;/groupId&gt;
+    &lt;artifactId&gt;testSpringMvc&lt;/artifactId&gt;
+    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+            &lt;!--Need for set format of ending packaging--&gt;
+    &lt;packaging&gt;war&lt;/packaging&gt;
+
+    &lt;properties&gt;
+        &lt;springframework.version&gt;5.1.1.RELEASE&lt;/springframework.version&gt;
+    &lt;/properties&gt;
+
+    &lt;!--Add all springMvc dependencies--&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;
+            &lt;version&gt;${springframework.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-aop&lt;/artifactId&gt;
+            &lt;version&gt;${springframework.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-beans&lt;/artifactId&gt;
+            &lt;version&gt;${springframework.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+            &lt;version&gt;${springframework.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
+            &lt;version&gt;${springframework.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-expression&lt;/artifactId&gt;
+            &lt;version&gt;${springframework.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-jcl&lt;/artifactId&gt;
+            &lt;version&gt;${springframework.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-web&lt;/artifactId&gt;
+            &lt;version&gt;${springframework.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;
+            &lt;version&gt;${springframework.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+
+        &lt;!--Add servlet dependency--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+            &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+            &lt;version&gt;4.0.1&lt;/version&gt;
+            &lt;scope&gt;provided&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.8.0&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;source&gt;1.8&lt;/source&gt;
+                    &lt;target&gt;1.8&lt;/target&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-war-plugin&lt;/artifactId&gt;
+                &lt;version&gt;3.3.2&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;!--Need for set path to of ending packaging--&gt;
+                &lt;outputDirectory&gt;/home/user/softs/apache-tomcat-8.5.73/webapps&lt;/outputDirectory&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+        &lt;!--Need for set name of ending packaging--&gt;
+        &lt;finalName&gt;SpringMvcExample&lt;/finalName&gt;
+    &lt;/build&gt;
+&lt;/project&gt;
+    </pre>
+    <p>javax.servlet-api - нужен для взаимодействие запрос-ответ.</p>
+    <p>Указываем provided - тк Tomcat, содержит эти библиотеки, они будут лишние в архиве.</p>
+
+    <h2>Создаем AppInitializer</h2>
+    <pre>
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
+
+public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    @Override
+    protected Class&lt;?&gt;[] getRootConfigClasses() {
+        return new Class[0];
+    }
+
+    @Override
+    protected Class&lt;?&gt;[] getServletConfigClasses() {
+        return new Class[]{WebConfig.class};
+    }
+
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/"};
+    }
+
+    @Override
+    // TODO: 06.12.2021 указать import
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+        return new Filter[]{characterEncodingFilter};
+    }
+}
+    </pre>
+    <p>Чтобы зарегистрировать эту конфигурацию в контексте Spring. Нужен класс
+        AbstractAnnotationConfigDispatcherServletInitializer. В пакете config создаем его наследника, допустим
+        AppInitializer, и реализуем его методы.</p>
+    <p>getRootConfigClasses() - узнать для чего используется.</p>
+    <p>getServletConfigClasses() - веб-конфигурации, где определяются ViewResolver'ы и тому подобное.</p>
+    <p>getServletMappings() - регистрируюет адреса.</p>
+    <p>getServletFilters() - указываем кодировку, для корректного отображения всех символов.</p>
+
+    <h2>Создаем WebConfig</h2>
+    <pre>
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+@Configuration
+@EnableWebMvc
+@ComponentScan(basePackages = "com.test")
+public class WebConfig {
+
+    @Bean
+    ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setPrefix("/WEB-INF/pages/");
+        viewResolver.setSuffix(".jsp");
+        return viewResolver;
+    }
+}
+    </pre>
+    <p>ViewResolver - интерфейс, необходимый для нахождения представления по имени.</p>
+    <p>@EnableWebMvc - позволяет импортировать конфигурацию Spring MVC из класса WebMvcConfigurationSupport.</p>
+    <p>Можно также реализовать, например, интерфейс WebMvcConfigurer, у которого есть целая куча методов, и настроить
+        все по своему вкусу, но нам незачем пока в это углубляться, хватит и стандартных настроек.
+    </p>
+    <p>@ComponentScan сообщает Spring где искать компоненты, которыми он должен управлять, т.е. классы, помеченные
+        аннотацией @Component или ее производными, такими как @Controller, @Repository, @Service. Эти аннотации
+        автоматически определяют бин класса.
+    </p>
+    <p>В методе viewResolver() мы создаем его реализацию и определяем где именно искать представления в webapp.
+        Поэтому когда в методе контроллера мы устанавливали имя "films" представление найдется как "/pages/films.jsp".
+    </p>
+
+    <h2>Создаем TestController</h2>
+    <pre>
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class TestController {
+
+    @GetMapping("/")
+    public ModelAndView allFilms() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("films");
+        return modelAndView;
+    }
+
+    @GetMapping("/edit")
+    public ModelAndView editPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("editPage");
+        return modelAndView;
+    }
+}
+    </pre>
+
+    <h2>Создаем editPage.jsp</h2>
+    <pre>
+&lt;%@ page contentType="text/html;charset=UTF-8" language="java" %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    Edit page
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+
+    <h2>Создаем films.jsp</h2>
+    <pre>
+&lt;%@ page contentType="text/html;charset=UTF-8" language="java" %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    Hello World
+    &lt;h2&gt;&lt;a href="edit"&gt;edit page&lt;/a&gt;&lt;/h2&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
 
 </div>
 </body>
