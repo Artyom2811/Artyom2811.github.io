@@ -60,6 +60,25 @@ try (BufferedReader br = new BufferedReader(new FileReader(path))) {
         </li>
     </ol>
 
+    <h2>Иерархия исключений:</h2>
+    <ul>
+        <li>ArithmeticException - арифметическая ошибка: деление на ноль и тд.</li>
+        <li>ArrayIndexOutOfBoundsException - индекс массива находится вне границ.</li>
+        <li>ArrayStoreException - назначение элементу массива несовместимого типа.</li>
+        <li>ClassCastException - недопустимое приведение типов.</li>
+        <li>ConcurrentModificationException - некорректная модификация коллекции.</li>
+        <li>IllegalArgumentException - при вызове метода использован незаконный аргумент.</li>
+        <li>IllegalMonitorStateException - незаконная операция монитора на разблокированном экземпляре.</li>
+        <li>IllegalStateException - среда или приложение находятся в некорректном состоянии.</li>
+        <li>IllegalThreadStateException - требуемая операция не совместима с текущим состоянием потока.</li>
+        <li>IndexOutOfBoundsException - некоторый тип индекса находится вне границ.</li>
+        <li>NegativeArraySizeException - массив создавался с отрицательным размером.</li>
+        <li>NullPointerException - недопустимое использование нулевой ссылки.</li>
+        <li>NumberFormatException - недопустимое преобразование строки в числовой формат.</li>
+        <li>StringIndexOutOfBoundsException - попытка индексации вне границ строки.</li>
+        <li>UnsupportedOperationException - встретилась неподдерживаемая операция.</li>
+    </ul>
+
     <h2>Вопросы на собеседование:</h2>
     <ol>
         <li>Если наследовать класс в throws. Наследник должен иметь throws не выше по иерархии чем у родителя.</li>
