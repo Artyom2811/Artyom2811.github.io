@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Lombok</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Libraries.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Lombok</h1>
+
+    <h2>Проработать:</h2>
+    <ol>
+        <li>Lombok - (Как отключить выборку для Equals(@Include, @Exclude(на переменную)))</li>
+    </ol>
+
+    <h2>Что это:</h2>
+    <p>Lombok — проект по добавлению дополнительной функциональности в Java c помощью изменения исходного кода перед
+        Java компиляцией. При помощи аннотаций можно не писать часть кода.
+    </p>
+
+    <h2>Основные аннотации:</h2>
+    <ul>
+        <li>@NonNull - проверка переменных на отсутствие null.</li>
+        <li>@Getter/@Setter - создание getters и setters.</li>
+        <li>@ToString - создание toString().</li>
+        <li>@EqualsAndHashCode - создает equals() и hashCode().</li>
+        <li>@NoArgsConstructor - создание пустого конструктора.</li>
+        <li>@RequiredArgsConstructor - создание конструктора только с final полями.</li>
+        <li>@AllArgsConstructor - создание конструктора со всеми полями.</li>
+        <li>@Data - содержит: @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor.</li>
+        <li>@Value - аналог @Data, но для неизменяемых классов.</li>
+        <li>@Builder - реализация паттерна Builder. Также можно указывать на переменные с коллекциями аннотацию
+            @Singular. Которая поможет по отдельности добавлять в коллекции.<br>
+            <pre>
+<b>Без @Singular</b>
+
+Person person = Person.builder()
+  .givenName("Aaron")
+  .additionalName("A")
+  .familyName("Aardvark")
+  .tags(Arrays.asList("fictional","incidental"))
+  .build();
+            </pre>
+            <pre>
+<b> @Singular</b>
+
+Person person = Person.builder()
+  .givenName("Aaron")
+  .additionalName("A")
+  .familyName("Aardvark")
+  .interest("history")
+  .interest("sport")
+  .build();
+            </pre>
+        </li>
+        <li>@SneakyThrows - заменяет ключевое слово throws. Указываться над методами</li>
+        <li>@Synchronized - замена слова synchronized.</li>
+        <li>@Log - добавление инициализации логирования, так же позволяет выбрать вид логгера: @CommonsLog, @JBossLog,
+            @Log, @Log4j, @Log4j2, @Slf4j, @XSlf4j.
+        </li>
+        <li>@Cleanup - замена try with resources.</li>
+    </ul>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

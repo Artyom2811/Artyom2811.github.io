@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Grasp</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../ProgrammingRules.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Grasp</h1>
+
+    <h2>Что это:</h2>
+    <p>Grasp(general responsibility assignment software patterns) - шаблоны ООП для решения общих задач по назначению
+        ответственностей классам и объектам.
+    </p>
+
+    <h2>Описание:</h2>
+    <ol>
+        <li>Information Expert - ответственность должна быть назначена тому, кто владеет максимумом необходимой
+            информации для исполнения. Информация должна обрабатываться там, где она содержится.<br>
+            Если POJO класс имеет все необходимые данные для задачи, он сам должен ее выполнять. Класс Order - getSum().
+        </li>
+        <li>Creator - создавать экземпляры класса должен класс, которому они нужны. Не класс клиент.</li>
+        <li>Controller - класс отвечающий на запросы от пользователя. Может иметь: логирование, аутентификацию,
+            авторизацию, кеширование. Контроллер - объект который превращает многопоточный код в однопоточный.
+        </li>
+        <li>Low Coupling - количество зависимостей, должно быть минимальным.</li>
+        <li>High Cohesion - классы должны содержать связанную бизнес — логику. Если возвести Low Coupling в абсолют,
+            то достаточно быстро можно прийти к тому, чтобы разместить всю функциональность в одном единственном классе.
+            Solid - Single responsibility.
+        </li>
+        <li>Polymorphism - один интерфейс - много реализаций.</li>
+        <li>Pure Fabrication - Facade of GoF.</li>
+        <li>Indirection - слабое зацепление между элементами системы, обеспечивается назначением промежуточного
+            объекта их посредником. Mediator of GoF.
+        </li>
+        <li>Protected Variations - изменение одних элементов системы не должно влиять на другие. Dependency inversion
+            of Solid.
+        </li>
+    </ol>
+
+    <p>High Cohesion (single responsibility) - характеризует целостность, «плотность» модуля, т.е. насколько модуль
+        является простым с точки зрения его использования. В идеале модуль должен выполнять одну единственную функцию
+        и иметь минимальное число «ручек управления»</p>
+    <p>Low Coupling (Dependency inversion) - количество зависимостей.</p>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
