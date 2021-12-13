@@ -90,6 +90,15 @@
         вариант без:
         SELECT * FROM table WITH (INDEX(0)) WHERE …
     </pre>
+
+    <h2>Вопросы на собеседование:</h2>
+    <p>DELETE vs TRUNCATE:</p>
+    <ul>
+        <li>TRUNCATE не может использовать WHERE.</li>
+        <li>TRUNCATE быстрее и использует меньше системных ресурсов и практически не пишет лог транзакции.</li>
+        <li>TRUNCATE - после использования, откат (rollback) невозможен.</li>
+        <li>TRUNCATE обнуляет счетчик, уникальности новых записей.</li>
+    </ul>
 </div>
 </body>
 <script>setBackButtonHeight();</script>
