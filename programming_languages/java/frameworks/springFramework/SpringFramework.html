@@ -64,7 +64,7 @@
     <ul>
         <li>Spring Framework(core)</li>
         <li><a href="spring_boot/SpringBoot.html">Spring Boot</a></li>
-        <li>Spring MVC</li>
+        <li><a href="spring_mvc/SpringMvc.html">Spring MVC</a></li>
         <li>Spring Data</li>
         <li>Spring Cloud</li>
         <li>Spring Security</li>
@@ -80,8 +80,8 @@
         <li>prototype - любое количество экземпляров бина.</li>
         <li>request - один экземпляр бина на каждый HTTP запрос. Касается исключительно ApplicationContext.</li>
         <li>session - один экземпляр бина на каждую HTTP сессию. Касается исключительно ApplicationContext.</li>
-        <li>global session - один экземпляр бина на каждую глобальную HTTP сессию. Касается исключительно
-            ApplicationContext.
+        <li>global session - аналогичен session - он используется в портлетных веб приложениях. Когда вы используете
+            globalSession в "стандартном" сервлетном приложении эти бины имеют scope session.
         </li>
     </ol>
 
