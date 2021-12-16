@@ -16,6 +16,10 @@ pre {
     background-color: Silver
 }
 
+.todo {
+    background-color: BurlyWood
+}
+
 .backButton {
     float: left;
     width: 10%;
