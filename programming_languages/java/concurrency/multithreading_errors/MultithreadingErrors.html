@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Multithreading Errors</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Concurrency.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Multithreading Errors</h1>
+
+    <h2>Race condition(состояние гонки)</h2>
+    <p>Race condition - ошибка проектирования многопоточной системы или приложения, при которой работа системы или
+        приложения зависит от того, в каком порядке выполняются части кода. Гонки между потоками.
+    </p>
+
+    <h2>Deadlock(взаимная блокировка)</h2>
+    <p>Deadlock(взаимная блокировка) - ошибка, которая происходит когда нити имеют циклическую зависимость от
+        пары синхронизированных объектов. Представьте, что одна нить входит в монитор объекта A, а другая —
+        объекта B. Если нить в объекте A пытается вызвать любой синхронизированный метод объекта B, а объект A в
+        то же самое время пытается вызвать любой синхронизированный метод объекта A, то нити застрянут в процессе
+        ожидания.
+    </p>
+    <p><b>Типы Deadlock:</b></p>
+    <h3>Взаимная блокировка порядка синхронизации</h3>
+    <pre>
+public void transferMoney(Account fromAccount, Account toAccount, Amount amount) throws InsufficientFundsException {
+	synchronized (fromAccount) {
+		synchronized (toAccount) {
+			if (fromAccount.getBalance().compareTo(amount) < 0)
+				throw new InsufficientFundsException();
+			else {
+				fromAccount.debit(amount);
+				toAccount.credit(amount);
+			}
+		}
+	}
+}
+    </pre>
+
+    <p>Способ решения - можно всегда делать блокировку в порядке Id объектов. И тогда всегда будет сначала
+        блокироваться первый объект. И если он уже занят, будет ожидания его освобождения.</p>
+    <pre>
+private void doTransfer(final Account fromAcct, final Account toAcct, final DollarAmount amount) throws InsufficientFundsException {
+	if (fromAcct.getBalance().compareTo(amount) < 0)
+		throw new InsufficientFundsException();
+	else {
+		fromAcct.debit(amount);
+		toAcct.credit(amount);
+	}
+}
+public void transferMoney(final Account fromAcct, final Account toAcct, final DollarAmount amount) throws InsufficientFundsException {
+	int fromId= fromAcct.getId();
+	int toId = fromAcct.getId();
+	if (fromId < toId) {
+		synchronized (fromAcct) {
+			synchronized (toAcct) {
+				doTransfer(fromAcct, toAcct, amount)}
+			}
+		}
+	} else  {
+		synchronized (toAcct) {
+			synchronized (fromAcct) {
+				doTransfer(fromAcct, toAcct, amount)}
+			}
+		}
+	}
+}
+    </pre>
+
+    <h3>Взаимная блокировка между объектами</h3>
+    <pre>
+class Plane {
+	private Point location, destination;
+	private final Dispatcher dispatcher;
+
+	public Plane(Dispatcher dispatcher) {
+		this.dispatcher = dispatcher;
+	}
+	public synchronized Point getLocation() {
+		return location;
+	}
+	public synchronized void setLocation(Point location) {
+		this.location = location;
+		if (location.equals(destination))
+		dispatcher.requestLanding(this);
+	}
+}
+
+class Dispatcher {
+	private final Set&lt;Plane&gt; planes;
+	private final Set&lt;Plane&gt; planesPendingLanding;
+
+	public Dispatcher() {
+		planes = new HashSet&lt;Plane>();
+		planesPendingLanding = new HashSet&lt;Plane&gt;();
+	}
+	public synchronized void requestLanding(Plane plane) {
+		planesPendingLanding.add(plane);
+	}
+	public synchronized Image getMap() {
+		Image image = new Image();
+		for (Plane plane : planes)
+			image.drawMarker(plane.getLocation());
+		return image;
+	}
+}
+    </pre>
+    <p>В результате, если самолет прибывает на место, в тот же момент, как кто-то решает получить карту может
+        возникнуть взаимная блокировка. То есть, будут вызваны методы, getMap и setLocation, которые займут мониторы
+        экземпляров Dispatcher и Plane соответственно. Затем метод getMap вызовет plane.getLocation (в частности для
+        экземпляра Plane, который в данный момент занят), который будет ждать освобождения монитора для каждого из
+        экземпляров Plane. В то же время в методе setLocation будет вызван dispatcher.requestLanding, при этом монитор
+        экземпляра Dispatcher остается занят рисованием карты. Результат – взаимная блокировка.
+    </p>
+    <p>Можно исправить изменив методы:</p>
+    <pre>
+public void setLocation(Point location) {
+	boolean reachedDestination;
+	synchronized(this){
+		this.location = location;
+		reachedDestination = location.equals(destination);
+	}
+	if (reachedDestination)
+		dispatcher.requestLanding(this);
+}
+………………………………………………………………………………
+public Image getMap() {
+	Set&lt;Plane&gt; copy;
+	synchronized(this){
+		copy = new HashSet&lt;Plane&gt;( planes);
+	}
+	Image image = new Image();
+	for (Plane plane : copy)
+		image.drawMarker(plane.getLocation());
+	return image;
+}
+    </pre>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

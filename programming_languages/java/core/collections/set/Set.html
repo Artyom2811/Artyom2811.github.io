@@ -22,6 +22,13 @@
         используют разный порядок хранения элементов.
     </p>
 
+    <h2>Сложность алгоритмов TreeSet:</h2>
+    <ol>
+        <li>Получение - если первый элемент - O(1), если не первый O(log(n)).</li>
+        <li>Вставить - O(log(n)).</li>
+        <li>Удаление - O(log(n)).</li>
+    </ol>
+
     <h2>Особенности:</h2>
     <ol>
         <li>Не возможны дубликаты.</li>
@@ -30,15 +37,13 @@
 
     <h2>Основные реализации:</h2>
     <ol>
-        <li>HashSet</li>
+        <li><a href="hash_set/HashSet.html">HashSet</a></li>
         <li>TreeSet</li>
-        <li>LinkedHashSet</li>
+        <li>LinkedHashSet - отличается от HashSet только тем, что в основе лежит LinkedHashMap вместо HashMap.</li>
         <li>CopyOnWriteArraySet - это потокобезопасный вариант of ArrayList, но буз дубликатов. Разница в том,
-            что все мутативные операции, такие как add, set, remove, clear,... создают новую копию массива.</li>
+            что все мутативные операции, такие как add, set, remove, clear... создают новую копию массива.</li>
     </ol>
 
-    <h2>HashSet</h2>
-    <p>Позволяет добавить (null).</p>
 
     <h2>TreeSet</h2>
 

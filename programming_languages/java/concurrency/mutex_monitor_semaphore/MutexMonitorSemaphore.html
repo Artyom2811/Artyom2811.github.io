@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Mutex Monitor Semaphore</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Concurrency.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Mutex, Monitor, Semaphore</h1>
+
+    <h2>Мьютекс(mutex)</h2>
+    <p>Мьютекс(mutex, MUTual EXclusion) - это специальный объект для синхронизации потоков. Он «прикреплен» к каждому
+        Object в Java. Его задача обеспечить такой механизм, чтобы доступ к объекту в определенное время был только у
+        одного потока. Есть только 2 состояния(свободно, занято). Нельзя управлять через код, доступ есть только у
+        JVM.
+    </p>
+
+    <h2>Monitor</h2>
+    <p>Монитор — это дополнительная «надстройка» над mutex. Это «невидимый» для программиста кусок кода. Задействуется
+        при использовании synchronized обеспечения доступа к mutex обеспечивает монитор. Монитор усыпляет все потоки
+        которые не имеют доступ к ресурсу.
+    </p>
+
+    <h2>Semaphore</h2>
+    <p>Семафор(Semaphore) - это средство для синхронизации доступа к какому-то ресурсу. Его особенность заключается в том, что
+        при создании механизма синхронизации он использует счетчик, указывает сколько потоков одновременно могут
+        получать доступ к общему ресурсу.
+    </p>
+    <p>Семафоры в Java представлены классом Semaphore.</p>
+    <p>Пример использования, задача по очереди покормить 5 человек, но есть только 2 места.</p>
+    <pre>
+class Philosopher extends Thread {
+
+   private Semaphore sem;
+
+   // поел ли философ
+   private boolean full = false;
+
+   private String name;
+
+   Philosopher(Semaphore sem, String name) {
+       this.sem=sem;
+       this.name=name;
+   }
+
+   public void run()
+   {
+       try
+       {
+           // если философ еще не ел
+           if (!full) {
+               //Запрашиваем у семафора разрешение на выполнение
+               sem.acquire();
+               System.out.println (name + " садится за стол");
+
+               // философ ест
+               sleep(300);
+               full = true;
+
+               System.out.println (name + " поел! Он выходит из-за стола");
+               sem.release();
+
+               // философ ушел, освободив место другим
+               sleep(300);
+           }
+       }
+       catch(InterruptedException e) {
+           System.out.println ("Что-то пошло не так!");
+       }
+   }
+}</pre>
+    <p>Класс для запуска программы:</p>
+    <pre>
+public class Main {
+
+   public static void main(String[] args) {
+
+       Semaphore sem = new Semaphore(2);
+       new Philosopher(sem,"Сократ").start();
+       new Philosopher(sem,"Платон").start();
+       new Philosopher(sem,"Аристотель").start();
+       new Philosopher(sem,"Фалес").start();
+       new Philosopher(sem,"Пифагор").start();
+   }
+}
+    </pre>
+
+    <p>Разница между mutex и semaphore - mutex это одноместный semaphore</p>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

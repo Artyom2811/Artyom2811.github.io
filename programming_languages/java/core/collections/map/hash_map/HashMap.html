@@ -21,6 +21,17 @@
     <p>Имеет структуру ключ - значение.</p>
     <p>Ключ действует так же как и в HashSet.</p>
     <p>Позволяет добавить (null, null), null будет первым ключом в коллекции.</p>
+    <p>HashMap bucket будет трансформирован из List в Tree при размере > 8. И произойдёт обратное при > 6.</p>
+    <p>default initial capacity = 16</p>
+    <p>load_factor = 0.75 - процент на который должен быть заполнен capacity для умножения capacity на 2.</p>
+    <p>Node содержит: hashCode, key, value, next.</p>
+
+    <h2>Сложность алгоритмов:</h2>
+    <ol>
+        <li>Получение - от O(1)(при отсутствии коллизий) до O(n)</li>
+        <li>Вставить - O(1)</li>
+        <li>Удаление - от O(1)(при отсутствии коллизий) до O(n)</li>
+    </ol>
 
     <h2>Методы:</h2>
     <ol>
@@ -31,12 +42,6 @@
         <li>values: Collection&lt;V&gt;</li>
         <li>entrySet(): Set&lt;Map.Entry&lt;K,V&gt;&gt; </li>
     </ol>
-
-    <h2>Реализация:</h2>
-    <p>HashMap bucket будет трансформирован из List в Tree при размере > 8. И произойдёт обратное при > 6.</p>
-    <p>default initial capacity = 16</p>
-    <p>load_factor = 0.75 - процент на который должен быть заполнен capacity для умножения capacity на 2.</p>
-    <p>Node содержит: hashCode, key, value, next.</p>
 
     <h2>Вопросы:</h2>
     <p>Требование к ключу Map - Должен быть Immutable и переопределить equals(Object ob) и hashcode().</p>

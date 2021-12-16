@@ -12,6 +12,10 @@ body {
     width: 80%;
 }
 
+pre {
+    background-color: Silver
+}
+
 .backButton {
     float: left;
     width: 10%;
