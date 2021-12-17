@@ -27,9 +27,54 @@
         <li>Factory Method(Фабричный метод) - определяет общий интерфейс для создания объектов в суперклассе,
             позволяя подклассам изменять тип создаваемых объектов.
         </li>
+        <pre>
+class A {
+    public void doSomething() {
+        Foo f = makeFoo();
+        f.whatever();
+    }
+
+    protected Foo makeFoo() {
+        return new RegularFoo();
+    }
+}
+
+class B extends A {
+    protected Foo makeFoo() {
+        //subclass is overriding the factory method
+        //to return something different
+        return new SpecialFoo();
+    }
+}
+        </pre>
         <li>Abstract Factory(Абстрактная фабрика) - позволяет создавать семейства связанных объектов, не привязываясь
             к конкретным классам создаваемых объектов.
         </li>
+        <pre>
+class A {
+    private Factory factory;
+
+    public A(Factory factory) {
+        this.factory = factory;
+    }
+
+    public void doSomething() {
+        //The concrete class of "f" depends on the concrete class
+        //of the factory passed into the constructor. If you provide a
+        //different factory, you get a different Foo object.
+        Foo f = factory.makeFoo();
+        f.whatever();
+    }
+}
+
+interface Factory {
+    Foo makeFoo();
+    Bar makeBar();
+    Aycufcn makeAmbiguousYetCommonlyUsedFakeClassName();
+}
+
+//need to make concrete factories that implement the "Factory" interface here
+        </pre>
         <li>Builder(Строитель) - позволяет создавать сложные объекты пошагово.</li>
         <li>Prototype(Прототип) - позволяет копировать объекты, не вдаваясь в подробности их реализации.</li>
         <li>Singleton(Одиночка) - гарантирует, что у класса есть только один экземпляр, и предоставляет к нему
@@ -46,13 +91,13 @@
         <li>Composite(Компоновщик) - позволяет сгруппировать множество объектов в древовидную структуру,
             а затем работать с ней так, как будто это единичный объект.
         </li>
-        <li>Decorator(Декоратор) - позволяет динамически добавлять объектам новую функциональность,
-            оборачивая их в полезные «обёртки».
-        </li>
-        <li>Facade(Фасад) - предоставляет простой интерфейс к сложной системе классов, библиотеке или фреймворку.</li>
-        <li>Flyweight(Легковес) - позволяет вместить бóльшее количество объектов в отведённую оперативную память.
+        <li>Flyweight(Легковес) - позволяет вместить большее количество объектов в отведённую оперативную память.
             Легковес экономит память, разделяя общее состояние объектов между собой, вместо хранения одинаковых данных
             в каждом объекте.
+        </li>
+        <li>Facade(Фасад) - предоставляет простой интерфейс к сложной системе классов, библиотеке или фреймворку.</li>
+        <li>Decorator(Декоратор) - позволяет динамически добавлять объектам новую функциональность,
+            оборачивая их в полезные «обёртки».
         </li>
         <li>Proxy(Заместитель) - позволяет подставлять вместо реальных объектов специальные объекты-заменители.
             Эти объекты перехватывают вызовы к оригинальному объекту, позволяя сделать что-то до или после передачи
