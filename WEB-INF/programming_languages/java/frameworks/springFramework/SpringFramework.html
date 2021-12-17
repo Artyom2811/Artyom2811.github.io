@@ -139,8 +139,9 @@
             AnnotationConfigApplicationContext(“package.name”)
         </li>
         <li>Xml конфигурация — ClassPathXmlApplicationContext(“context.xml”)</li>
-        <li>JavaConfig — Конфигурация через аннотации с указанием класса (или массива классов) помеченного аннотацией
-            @Configuration -AnnotationConfigApplicationContext(JavaConfig.class).
+        <li>JavaConfig — конфигурация через аннотации с указанием класса (или массива классов) помеченного аннотацией
+            @Configuration -AnnotationConfigApplicationContext(JavaConfig.class). Это как XML только в JAVA, без
+            @Service  и @Inject и тд. только @Bean.
         </li>
         <li>Groovy конфигурация — GenericGroovyApplicationContext(“context.groovy”)</li>
     </ol>
