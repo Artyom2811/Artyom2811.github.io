@@ -12,7 +12,7 @@
     <h1>LambdaFunction</h1>
 
     <div class="todo">
-        <h2>Проработать:</h2>
+        <h2>Проработать</h2>
         <ol>
             <li><a href="https://metanit.com/java/tutorial/9.3.php">Встроенные функциональные интерфейсы</a></li>
             <li><a href="https://metanit.com/java/tutorial/9.1.php">Введение в лямбда-выражения</a></li>
@@ -26,7 +26,7 @@
         </ol>
     </div>
 
-    <h2>Что это:</h2>
+    <h2>Что это</h2>
     <p>Лямбда выражения пришли в JAVA из функционального программирования. С их помощью мы можем быстро без помощи
         Анонимных классов реализовать интерфейс. По реализации это интерфейс с одним Абстрактным методом, но также
         может содержать default и static методы. Можно использовать @FunctionalInterface который будет следить при
@@ -34,12 +34,12 @@
         многоядерных процессоров путем параллельной обработки коллекций.
     </p>
 
-    <h2>Формат:</h2>
+    <h2>Формат</h2>
     <p>parameter -> {expression}</p>
     <p>или</p>
     <p>(parameter1, parameter2) -> {expression}</p>
 
-    <h2>Пример реализации Runnable:</h2>
+    <h2>Пример реализации Runnable</h2>
     <pre>
 Runnable task = () -> {
     String threadName = Thread.currentThread().getName();
@@ -50,7 +50,7 @@ Thread thread = new Thread(task);
 thread.start();
     </pre>
 
-    <h2>Важные @FunctionalInterface в Java:</h2>
+    <h2>Важные @FunctionalInterface в Java</h2>
     <ol>
         <li>Predicate&lt;T&gt; - "boolean test(T t)" - фильтрация.</li>
         <li>Consumer&lt;T&gt; - "void accept(T t);" - выполняет некоторое действие над объектом типа T, при этом ничего

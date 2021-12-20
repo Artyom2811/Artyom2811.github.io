@@ -12,15 +12,35 @@
 <div class="bodyStyle">
     <h1>Convention</h1>
     <p>Конвенция - соглашение между програмистами, для общей выгоды.</p>
-    <ol>Именнование:
-        <li>Пакеты - lowercase. Компании используют свое инвертированное имя Интернет-домена, чтобы начать их имена
-            пакета — например, com.example.mypackage
+
+    <h2>Наименование</h2>
+    <ol>
+        <li>Пакеты - "lowercase" или "lower.case". Компании используют свое инвертированное имя Интернет-домена, чтобы
+            начать их имена пакета — пример: "com.example.mypackage".
         </li>
         <li>Классы и интерфейсы - существительное PascalCase.</li>
         <li>Методы - глагол camelCase</li>
         <li>Переменные - camelCase. Не начинаться с "_" или "$"</li>
         <li>Константы - SCREAMING_SNAKE_CASE</li>
     </ol>
+
+    <h2>Абсолютный и относительный пути</h2>
+    <h3>Разделители</h3>
+    <p>Linux - /</p>
+    <p>Windows - \\</p>
+
+    <h3>Абсолютный</h3>
+    <p>Linux - "/home/user/Download/src/main/java/testJava/Main.java"</p>
+    <p>Windows - "C:\\trash\\blah\\blah"</p>
+
+    <h3>Относительный(поиск от корневой директории проекта)</h3>
+    <p>Linux - "./src/main/resources/application.properties"</p>
+    <p>Windows - ""</p>
+
+    <h3>Относительный(поиск от директории файла который исполняется)</h3>
+    <p>Linux - "/resources/application.properties"</p>
+    <p>Windows - ""</p>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>

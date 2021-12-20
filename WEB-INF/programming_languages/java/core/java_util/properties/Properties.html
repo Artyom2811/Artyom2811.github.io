@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Properties</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../JavaUtil.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Properties</h1>
+
+    <h2>Что это:</h2>
+    <p>Properties - стандартный класс для использования property в приложение.</p>
+
+    <h2>Быстрый старт:</h2>
+    <p>Необходимо создать файл с конфигурацией пример названия(application.properties), пример файла:</p>
+    <pre>
+email=test@gmail.com
+    </pre>
+
+    <p>Пример указания property файла:</p>
+    <pre>
+Properties prop = new Properties();
+try {
+    prop.load(new FileReader("./src/main/resources/application.properties"));
+} catch (IOException e) {
+    e.printStackTrace();
+}
+    </pre>
+
+    <p>Пример использования property:</p>
+    <pre>
+//если точно указывать параметр, если не найдёт вернется null
+prop.getProperty("email");
+
+//указываем значение, которое будет использовано, если не будет найдено в файле настроек
+prop.getProperty("email1", "didn't find");
+    </pre>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
