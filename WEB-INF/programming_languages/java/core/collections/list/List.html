@@ -60,6 +60,15 @@
 
     <h2>LinkedList</h2>
     <p>Элементы хранятся в объекте Node. Которые имеют ссылки на предыдущий и следующий элементы.</p>
+
+    <h2>Быстрый способ создания immutable collections.</h2>
+    <p>После создания никак нельзя изменить(add, remove, put). Но элементы в коллекции могут быть изменены.
+    Нельзя добавлять null(NullPointerException).</p>
+    <ol>
+        <li>List.of("Luke", "Eva", "John");</li>
+        <li>Map.of("name", "Luke", "age", "23", "city", "New York");</li>
+        <li>Set.of("Luke", "Eva", "John");</li>
+    </ol>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

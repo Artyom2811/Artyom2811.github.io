@@ -22,6 +22,20 @@
         </ol>
     </div>
 
+    <h2>Основные разделы</h2>
+    <ul>
+        <li><a href="h2/H2.html">H2</a></li>
+    </ul>
+
+    <h2>Основные сущности</h2>
+    <ol>
+        <li>Connection</li>
+        <li>Statement</li>
+        <li>PreparedStatement</li>
+        <li>CallableStatement</li>
+        <li>ResulSet</li>
+    </ol>
+
     <h2>Место JDBC в программе</h2>
     <ol>
         <li>Application Code</li>
@@ -62,10 +76,35 @@
     </ol>
     <p>Вывод: Statement для DDL. PreparedStatement для DML.</p>
 
-    <h2>Основные разделы</h2>
-    <ul>
-        <li><a href="architecture/Architecture.html">Ссылки на другие страницы</a></li>
-    </ul>
+    <h2>Виды executors</h2>
+    <ol>
+        <li>ExecuteQuery - должен использоваться тогда, когда возможно возвращение нескольких объектов ResultSet.</li>
+        <li>ExecuteUpdate используется для выполнения операторов INSERT, UPDATE или DELETE,
+            а также для операторов DDL (Data Definition Language - язык определения данных), например, CREATE TABLE и
+            DROP TABLE. Результатом оператора INSERT, UPDATE, или DELETE является модификация одной или
+            более колонок в нуле или более строках таблицы. Метод executeUpdate возвращает целое число,
+            показывающее, сколько строк было модифицировано. Для выражений типа CREATE TABLE и DROP TABLE,
+            которые не оперируют над строками, возвращаемое методом executeUpdate значение всегда равно нулю.
+        </li>
+    </ol>
+
+    <h2>Действия с данными в связанной таблице при удалении</h2>
+    <ol>
+        <li>CASCADE</li>
+        <li>SET NULL</li>
+        <li>SET DEFAULT</li>
+        <li>NO ACTION</li>
+    </ol>
+
+    <h2>Типы ограничений целостности данных</h2>
+    <ol>
+        <li>Внешний ключ</li>
+        <li>Первичный ключ</li>
+        <li>Проверка</li>
+        <li>Уникальность</li>
+        <li>По умолчанию</li>
+    </ol>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>

@@ -26,9 +26,10 @@
     <ul>
         <li><a href="link_types/LinkTypes.html">Link Types</a></li>
         <li><a href="my_sql/MySql.html">MySql</a></li>
-        <li><a href="Postgre/Postgre.html">Postgre</a></li>
+        <li><a href="postgreSql/Postgre.html">Postgre</a></li>
         <li><a href="transactionLevels/TransactionLevels.html">TransactionLevels</a></li>
         <li><a href="h2/H2.html">H2</a></li>
+        <li><a href="normalization/Normalization.html">Нормализация</a></li>
     </ul>
 
     <h2>Виды запросов</h2>
@@ -44,11 +45,18 @@
     <h3>DQL(Data Query Language) - </h3>
     <ul>
         <li>SELECT</li>
+        <pre>SELECT * FROM table1;</pre>
     </ul>
     <h3>DML(Data Manipulation Language) - </h3>
     <ul>
         <li>INSERT</li>
+        <pre>
+INSERT INTO table2 (user_id, phone_number) VALUE ('2','200');
+        </pre>
         <li>UPDATE</li>
+        <pre>
+UPDATE table2 SET user_id='2', phone_number='200' WHERE phone_id='1';
+        </pre>
         <li>DELETE</li>
         <li>LOCK</li>
         <li>CALL</li>
@@ -70,9 +78,9 @@
     <h2>Команды</h2>
     <ol>
         <li>WHERE - ограничивающее команда для SELECT, UPDATE, DELETE. Оно выполняется до того, как будет получен
-            результат операции .
+            результат операции.
         </li>
-        <li>HAVING - фильтрующее выражение. Работает в коммандой GROUP BY.</li>
+        <li>HAVING - фильтрующее выражение. Работает в командой GROUP BY.</li>
         <li>Виды Joins:
             <ul>
                 <li>INNER JOIN - общее</li>
@@ -92,6 +100,13 @@
         вариант без:
         SELECT * FROM table WITH (INDEX(0)) WHERE …
     </pre>
+
+    <h2>SQL-инъекции</h2>
+    <p>SQL-инъекция — это попытка изменить запрос к базе данных. Ввести ее можно через форму или ссылку, которая
+        передает параметры методом GET.
+    </p>
+    <h3>Как защититься</h3>
+    <p>В JAVA нужно использовать "PreparedStatement" </p>
 
     <h2>Вопросы на собеседование</h2>
     <p>DELETE vs TRUNCATE:</p>

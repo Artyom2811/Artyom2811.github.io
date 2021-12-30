@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SOAP</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Other.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>SOAP</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://habr.com/ru/post/483204/">Различия REST и SOAP</a></li>
+        </ol>
+    </div>
+
+    <h2>Что это</h2>
+    <p>SOAP — это формат протокола, основанный на XML.</p>
+
+    <h2>SOAP XML включает в себя</h2>
+    <ol>
+        <li>Envelope (конверт) – корневой элемент, который определяет сообщение и пространство имен, использованное
+            в документе.
+        </li>
+        <li>Header (заголовок) – содержит атрибуты сообщения, например: информация о безопасности или о сетевой
+            маршрутизации.
+        </li>
+        <li>Body (тело) – содержит сообщение, которым обмениваются приложения.</li>
+        <li>Fault – необязательный элемент, который предоставляет информацию об ошибках, которые произошли при
+            обработке сообщений. И запрос, и ответ должны соответствовать структуре SOAP.
+        </li>
+    </ol>
+
+
+    <h2>Сравнение REST и SOAP</h2>
+    <ol>
+        <li>Пример реализации RESTful: JSON через HTTP</li>
+        <li>Пример реализации SOAP: XML поверх SOAP через HTTP</li>
+    </ol>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

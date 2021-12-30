@@ -17,7 +17,6 @@
         <ol>
             <li><a href="https://habrahabr.ru/post/50147/">Типы HTTP-запросов и философия REST</a></li>
             <li><a href="https://hackernoon.com/restful-api-design-step-by-step-guide-2f2c9f9fcdbf">RESTful API Design</a></li>
-            <li><a href="https://habr.com/ru/post/483204/">Различия REST и SOAP</a></li>
             <li><a href="https://www.youtube.com/watch?v=SMy4CaxizbA">gRPC-- Альтернатива REST от google</a></li>
             <li><a href="https://dou.ua/lenta/articles/rest-conception/">Синхронизируем понимание REST</a></li>
             <li><a href="https://habr.com/ru/post/351890/">REST API Best Practices</a></li>
@@ -43,9 +42,16 @@
         <li>Код по требованию(необязательный) - исполнение кода на стороне клиента.</li>
     </ol>
 
+    <h2>HTTP структура</h2>
+    <ol>
+        <li>Стартовая строка</li>
+        <li>Заголовок</li>
+        <li>Тело Сообщения</li>
+    </ol>
+
     <h2>HTTP методы</h2>
     <ol>
-        <li>GET — получение ресурса.</li>
+        <li>GET — получение ресурса. Передает данные серверу используя URL(1024 символами).</li>
         <li>POST — создание ресурса.</li>
         <li>PUT — обновление ресурса.</li>
         <li>PATCH — обновляет часть ресурса.</li>

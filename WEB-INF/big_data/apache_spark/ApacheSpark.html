@@ -20,10 +20,65 @@
             <li><a href="https://www.youtube.com/watch?v=JaWiugUMD6M">Какие задачи решает big data</a></li>
             <li><a href="https://habr.com/ru/company/otus/blog/575740/">Функции высшего порядка в Spark 3.1</a></li>
             <li><a href="https://habr.com/ru/company/piter/blog/417123/">Интеграция Spark Streaming и Kafka</a></li>
+            <li><a href="https://habr.com/ru/post/251507/">Apache Spark: что там под капотом?</a></li>
         </ol>
     </div>
 
-    <p>Описание</p>
+    <h2>Что это</h2>
+    <p>Apache Spark — фреймворк с открытым исходным кодом для реализации распределённой обработки неструктурированных
+        и слабоструктурированных данных, входящий в экосистему проектов Hadoop.
+    </p>
+
+    <h2>Spark состоит</h2>
+    <ol>
+        <li>SQL</li>
+        <li>STREAMING DATA</li>
+        <li>MACHINE LEARNING</li>
+        <li>GRAPH ANALYTICS</li>
+    </ol>
+
+    <h3>RDD</h3>
+    <p>RDD - основной компонент для Spark.</p>
+    <p>Его можно получить из</p>
+    <ol>
+        <li>Файла</li>
+        <li>Памяти</li>
+        <li>Другого RDD</li>
+    </ol>
+    <p>SparkContext или JavaSparkContext(для JAVA) - место откуда мы получает RDD.</p>
+    <p>Пример конфигурации JavaSparkContext</p>
+    <pre>
+SparkConf conf = new SparkConf();
+conf.setAppName("my spark application");
+conf.setAppName("local[*]");
+JavaSparkContext sc = new JavaSparkContext(conf);
+    </pre>
+
+    <h4>Методы</h4>
+    <p>Transformations</p>
+    <ol>
+        <li>map</li>
+        <li>flatMap</li>
+        <li>filter</li>
+        <li>mapPartitions, mapPartitionsWithIndex</li>
+        <li>sample</li>
+        <li>union, intersection, join, cogroup, cartesian</li>
+        <li>distinct</li>
+        <li>reduceByKey, aggregateByKey, sortByKey</li>
+        <li>pipe</li>
+        <li>coalesce, repartition, repartitionAndSortWithinPartitions</li>
+    </ol>
+
+    <p>Actions</p>
+    <ol>
+        <li>reduce</li>
+        <li>collect</li>
+        <li>count, countByKey, countByValue</li>
+        <li>first</li>
+        <li>take, takeSample, takeOrdered</li>
+        <li>saveAsTextFile, saveAsSequenceFile, saveAsObjectFile</li>
+        <li>foreach</li>
+    </ol>
 
     <p>Spark shuffle - это операция перемешивания(перераспределения ) данных между Экзекютерами.
         Побочный эффект таких аналитических преобразований, как join(), groupBy(), orderBy(),
@@ -34,6 +89,12 @@
         <li>Сократить число Экзекюторов(меньше обмена между машинами)</li>
         <li>Уменьших объем данных(сбрасывания лишних столбцов, фильтрация)</li>
     </ol>
+
+    <h2>Примеры кода</h2>
+    <p>Проверка колонки на максимальное значение(Date или Numeric)</p>
+    <pre>
+.groupBy(col(AF.OfficeId)).agg(min(AF.Date))
+    </pre>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

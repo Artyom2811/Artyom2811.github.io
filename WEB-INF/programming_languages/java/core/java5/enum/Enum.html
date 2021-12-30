@@ -12,7 +12,7 @@
 <div class="bodyStyle">
     <h1>Enum</h1>
 
-    <h2>Enum(перечисление) - это список именованных констант</h2>
+    <h2>Enum(перечисление) - это список именованных констант. Все константы пишутся большими буквами</h2>
     <ol>Особенности:
         <li>Может иметь конструктор(только private), методы, в том числе скрытые и абстрактные.</li>
         <li>Может переопределять общий метод описанный в Enum в отдельных константах.</li>
@@ -30,26 +30,26 @@
     <h2>Пример создания простого Enum</h2>
     <pre>
 enum Cat {
-    Leopard, Puma, Lion, Tiger, Manul
+    LEOPARD, PUMA, LION, TIGER, MANUL
 }
     </pre>
 
     <h2>Пример использования</h2>
     <pre>
-Cat a = Cat.Puma;
+Cat a = Cat.PUMA;
     </pre>
 
     <h2>Пример создания Enum c полем и переопределенным методом в отдельной константе</h2>
     <pre>
 enum SideOfWorld {
-    North("up") {
+    NORTH("up") {
         void findTheBoss() {
             System.out.println("Santa is here!");
         }
     },
-    South("down"),
-    East("left"),
-    West("right");
+    SOUTH("down"),
+    EAST("left"),
+    WEST("right");
 
     private String direction;
 
@@ -68,8 +68,8 @@ enum SideOfWorld {
 
     <h2>Пример использования</h2>
     <pre>
-SideOfWorld sow = SideOfWorld.North;
-SideOfWorld sow1 = SideOfWorld.South;
+SideOfWorld sow = SideOfWorld.NORTH;
+SideOfWorld sow1 = SideOfWorld.SOUTH;
 sow.findTheBoss();
 sow1.findTheBoss();
     </pre>

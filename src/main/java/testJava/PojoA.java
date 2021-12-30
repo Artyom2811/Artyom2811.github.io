@@ -8,4 +8,6 @@ public class PojoA {
         this.firtName = firtName;
         this.lastName = lastName;
     }
+
+    void doSmth() {}
 }

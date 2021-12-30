@@ -15,25 +15,21 @@
     <div class="todo">
         <h2>Проработать</h2>
         <ol>
-            <li><a href="https://www.youtube.com/playlist?list=PL6jg6AGdCNaXYzZwvvZ-3NRTr63XeYazS">Advanced Java -
-                Serialization</a>
-            </li>
+            <li><a href="https://javarush.ru/groups/posts/2023-znakomstvo-s-interfeysom-externalizable">Знакомство с интерфейсом Externalizable</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PL6jg6AGdCNaXYzZwvvZ-3NRTr63XeYazS">Advanced Java - Serialization</a></li>
             <li><a href="https://www.baeldung.com/java-serialization">Introduction to Java Serialization</a></li>
             <li><a href="https://metanit.com/java/tutorial/6.10.php">Сериализация</a></li>
-            <li><a href="https://javarush.ru/groups/posts/1406-serializacija-kak-ona-estjh-chastjh-1">Сериализация как она
-                есть. Часть 1</a></li>
-            <li><a href="https://javarush.ru/groups/posts/2022-serializacija-i-deserializacija-v-java">Сериализация и
-                десериализация в Java</a></li>
+            <li><a href="https://javarush.ru/groups/posts/1406-serializacija-kak-ona-estjh-chastjh-1">Сериализация как она есть. Часть 1</a></li>
+            <li><a href="https://javarush.ru/groups/posts/2022-serializacija-i-deserializacija-v-java">Сериализация и десериализация в Java</a></li>
             <li><a href="http://www.skipy.ru/technics/serialization.html">Сериализация как она есть</a></li>
-            <li><a href="https://mkyong.com/java/how-do-convert-byte-array-to-string-in-java/">How to convert byte[] array
-                to String in Java</a></li>
+            <li><a href="https://mkyong.com/java/how-do-convert-byte-array-to-string-in-java/">How to convert byte[] array to String in Java</a></li>
             <li><a href="https://habr.com/ru/post/60317/">Сериализация в Java</a></li>
         </ol>
     </div>
 
     <h2>Что это</h2>
     <p>Сериализация — это процесс сохранения состояния объекта в последовательность байт. Десериализация — это процесс
-        восстановления объекта из этих байт.
+        восстановления объекта из этих байт. JSON и XML - самые популярные текстовые форматы для сериализации.
     </p>
 
     <p>Serializable - интерфейс-маркер который мы должны имплементировать для сериализации объекта.</p>
@@ -49,6 +45,12 @@
         <li>Сериализуемыми тк. они тоже сериализуются</li>
         <li>Помечены как transient</li>
     </ol>
+
+    <h2>Externalizable - наследуется из Serializable и означает ручную настройку сериализация с копированием transient
+        и статических объектов и при правильной настройке оптимизирует сериализацию.
+    </h2>
+
+
 
 </div>
 </body>
