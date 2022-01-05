@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Spring Context Configuration</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringCore.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Spring Context Configuration</h1>
+
+    <h2>Основные разделы</h2>
+    <ul>
+        <li><a href="#annotation">Аннотации</a></li>
+    </ul>
+
+    <h2 id="annotation">Аннотации</h2>
+
+    <p>Структура пакетов</p>
+    <img src="annotation_structure.png" width="357" height="221">
+
+    <p>User</p>
+    <pre>
+package test_spring_annotation;
+
+import org.springframework.stereotype.Component;
+
+@Component
+class User {
+    Integer id = 1;
+    String firtName = "A";
+    String lastName = "B";
+
+    public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "PojoA{" +
+                "id=" + id +
+                ", firtName='" + firtName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
+}
+    </pre>
+
+    <p>Company</p>
+    <pre>
+package test_spring_annotation;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Company {
+
+    User user;
+
+    @Autowired
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    void printUser() {
+        System.out.println(user);
+    }
+
+}
+    </pre>
+
+    <p>Main</p>
+    <pre>
+package test_spring_annotation;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Configuration;
+
+import java.io.IOException;
+
+@Configuration
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        ApplicationContext context = new AnnotationConfigApplicationContext("test_spring_annotation");
+
+        Company company = context.getBean(Company.class);
+        //или по имени bean но с явным указание класса
+//        Company company = (Company)context.getBean("company");
+        company.printUser();
+    }
+}
+    </pre>
+
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

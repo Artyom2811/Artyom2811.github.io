@@ -1,6 +1,6 @@
 package testJava;
 
-public class PojoB extends PojoA {
+public class PojoB extends User {
 
     public PojoB(String firtName, String lastName) {
         super(firtName, lastName);

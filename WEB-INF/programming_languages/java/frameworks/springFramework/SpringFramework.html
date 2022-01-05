@@ -64,7 +64,7 @@
 
     <h2>Spring projects:</h2>
     <ul>
-        <li>Spring Framework(core)</li>
+        <li><a href="spring_core/SpringCore.html">Spring Framework(core)</a></li>
         <li><a href="spring_boot/SpringBoot.html">Spring Boot</a></li>
         <li><a href="spring_mvc/SpringMvc.html">Spring MVC</a></li>
         <li>Spring Data</li>
@@ -132,26 +132,6 @@
     <p>АОП(AOP) - Аспектно-ориентированное программирование. Идея АОП заключается в выделении так называемой сквозной
         функциональности. Помогает разделить бизнес логику и логгирование к примеру.
     </p>
-
-    <h2>Виды Конфигурации beans:</h2>
-    <ol>
-        <li>Конфигурация через аннотации с указанием пакета для сканирования —
-            AnnotationConfigApplicationContext(“package.name”)
-        </li>
-        <li>Xml конфигурация — ClassPathXmlApplicationContext(“context.xml”)</li>
-        <li>JavaConfig — конфигурация через аннотации с указанием класса (или массива классов) помеченного аннотацией
-            @Configuration -AnnotationConfigApplicationContext(JavaConfig.class). Это как XML только в JAVA, без
-            @Service  и @Inject и тд. только @Bean.
-        </li>
-        <li>Groovy конфигурация — GenericGroovyApplicationContext(“context.groovy”)</li>
-    </ol>
-
-    <h2>Виды DI:</h2>
-    <ol>
-        <li>Через сэттеры</li>
-        <li>Через конструкторы</li>
-        <li>Через поля - плохая практика.</li>
-    </ol>
 
     <h2>Жизненный цикл Bean:</h2>
     <ol>
