@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Jackson</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Libraries.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Jackson</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://nsergey.com/jackson/">Jackson примеры</a></li>
+        </ol>
+    </div>
+
+    <h2>Что это</h2>
+    <p>Библиотека для работы с JSON</p>
+
+    <h2>Основные разделы</h2>
+    <ul>
+        <li><a href="#quickStart">Быстрый старт</a></li>
+    </ul>
+
+    <h2 id="quickStart">Быстрый старт:</h2>
+    <p>pom.xml</p>
+    
+    <pre>
+    &lt;properties&gt;
+        &lt;jackson.version&gt;2.13.1&lt;/jackson.version&gt;
+    &lt;/properties&gt;
+        
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+            &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+            &lt;version&gt;${jackson.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+            &lt;artifactId&gt;jackson-core&lt;/artifactId&gt;
+            &lt;version&gt;${jackson.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+            &lt;artifactId&gt;jackson-annotations&lt;/artifactId&gt;
+            &lt;version&gt;${jackson.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+    </pre>
+
+    <p>User.java</p>
+    <pre>
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
+
+public class User {
+
+    @JsonProperty("id_number")
+    private long id;
+
+    @JsonProperty("first_name")
+    private String name;
+
+    @JsonProperty("phone_numbers")
+    private List&lt;String&gt; phones;
+
+    @JsonIgnore
+    private String level;
+
+    public User() {
+    }
+
+    public User(long id, String name, List&lt;String&gt; phones, String level) {
+        this.id = id;
+        this.name = name;
+        this.phones = phones;
+        this.level = level;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List&lt;String&gt; getPhones() {
+        return phones;
+    }
+
+    public void setPhone(List&lt;String&gt; phones) {
+        this.phones = phones;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    @Override
+    public String toString() {
+        return "User[ID:" + id + ", Name: " + name + ", Phone: " + phones + "]";
+    }
+}
+    </pre>
+
+    <p>Main.java</p>
+    <pre>
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) throws JsonProcessingException {
+        List&lt;String&gt; listOfNumbers = new ArrayList&lt;&gt;();
+        listOfNumbers.add("123");
+        listOfNumbers.add("234");
+        User userForSerialization = new User(1, "a", listOfNumbers, "c");
+
+        //serialization
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonOfObject = mapper.writeValueAsString(userForSerialization);
+
+        //deserialization
+        User userGotFromDeserialization = mapper.readValue(jsonOfObject, User.class);
+    }
+}
+    </pre>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

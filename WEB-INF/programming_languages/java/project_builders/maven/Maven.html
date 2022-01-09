@@ -34,14 +34,24 @@
     </ul>
     </p>
 
-    <h2>Как работает</h2>
-    <p>Maven использует модель определённых фаз (phase), к которым присоединяются определённые "цели" (goals).</p>
-
     <h2><a href="https://repo.maven.apache.org/maven2/">Каталог репозитория</a></h2>
 
-    <h2>Maven Lifecycle</h2>
-    <details>
-        <summary></summary>
+    <h2>Основные разделы</h2>
+    <ul>
+        <li><a href="#howWork">Как работает</a></li>
+        <li><a href="#mavenLifecycle">Maven Lifecycle</a></li>
+        <li><a href="#structureOfPom">Структура pom.xml</a></li>
+        <li><a href="#defaultProperties">Default properties</a></li>
+        <li><a href="#mavenScope">Maven scope(область видимости)</a></li>
+        <li><a href="#addToProject">Добавление Maven в проект через Intellij Idea</a></li>
+        <li><a href="#releaseAndLatest">RELEASE and LATEST</a></li>
+        <li><a href="#mavenPlugin">Maven plugin</a></li>
+    </ul>
+
+    <h2 id="howWork">Как работает</h2>
+    <p>Maven использует модель определённых фаз (phase), к которым присоединяются определённые "цели" (goals).</p>
+
+    <h2 id="mavenLifecycle">Maven Lifecycle</h2>
         <ul>
             <li>clean - очищает все сгенерированные файлы.</li>
             <li>validate - проверяет правильность конфигурации.</li>
@@ -53,9 +63,8 @@
             <li>site - генерирует документацию и javadoc.</li>
             <li>deploy(развертывания) - выкладывает созданные пакеты во внешний репозиторий.</li>
         </ul>
-    </details>
 
-    <h2>Структура pom.xml</h2>
+    <h2 id="structureOfPom">Структура pom.xml</h2>
     <ul>
         <h3><b>The Basics</b></h3>
         <li>groupId</li>
@@ -105,7 +114,13 @@
         <li>profiles</li>
     </ul>
 
-    <h2>scope - область видимости</h2>
+    <h2 id="defaultProperties">Default properties</h2>
+    <ol>
+        <li>maven.compiler.source - 5</li>
+        <li>maven.compiler.target - 5</li>
+    </ol>
+
+    <h2 id="mavenScope">Maven scope(область видимости)</h2>
     <ol>
         <li>compile - сборки, тестирования, зависимые пакеты, конечный пакет(будут доступны и во время исполнения).</li>
         <li>provided - сборки, тестирования, конечный пакет(будут доступны и во время исполнения).</li>
@@ -117,7 +132,7 @@
         <li>import - эта область используется в зависимости секции &lt;dependencyManagement&gt; при сложных связях.</li>
     </ol>
 
-    <h2>Добавление Maven в проект через Intellij Idea</h2>
+    <h2 id="addToProject">Добавление Maven в проект через Intellij Idea</h2>
     <ol>
         <li>Нажать на папку с проектом правой кнопкой мыши.</li>
         <li>Выбрать "Add Framework Support"</li>
@@ -125,12 +140,12 @@
         <li>Выбрать из списка Maven.</li>
     </ol>
 
-    <h2>RELEASE and LATEST</h2>
+    <h2 id="releaseAndLatest">RELEASE and LATEST</h2>
     <p>Использование RELEASE или LATEST в указании версий, не рекомендуется. Так plugin который отвечает за это
         не всегда работает исправно. Необходимо указывать конкретную версию.
     </p>
 
-    <h2>Maven plugin</h2>
+    <h2 id="mavenPlugin">Maven plugin</h2>
     <p>Если говорить в целом, то Maven – это фреймворк, который выполняет плагины. В этом фреймворке каждая задача,
         по сути своей, выполняется с помощью плагинов.
     </p>

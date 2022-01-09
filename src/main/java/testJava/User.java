@@ -1,8 +1,5 @@
 package testJava;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class User {
     Integer id = 1;
     String firtName;
