@@ -25,36 +25,55 @@
     </p>
 
     <h2>Основные разделы</h2>
-    <h3>Самые популярные сервисы</h3>
+    <h2>Основные разделы</h2>
+    <ul>
+        <li><a href="#mostPopular">Самые популярные сервисы Amazon</a></li>
+        <li><a href="#basicEntities">Основные сущности</a></li>
+        <li><a href="#serverLocations">Расположение серверов</a></li>
+    </ul>
+
+    <h2 id="mostPopular">Самые популярные сервисы Amazon</h2>
     <ul>
         <li>EC2(Elastic Compute Cloud) - Virtual Servers</li>
         <li>Elastic Load Balancing - для распределения нагрузки между сервисами.</li>
-        <li>Elastic Beanstalk - для автоматизации деплоя. DevOps Automation</li>
+        <li>Elastic Beanstalk - для автоматизации deploy. DevOps Automation</li>
         <li>CloudFront - отдельные от основных(Availability Zone) сервера, необходимые для кеширования, которое
              ускоряет получения информации.</li>
         <li>CloudWatch - для мониторинга серверов.</li>
-        <li>VPC - Virtual Network</li>
+        <li>VPC(Virtual Private Cloud) - Virtual Network</li>
+        <li>Amazon S3 - simple storage service. Для обмена информацией. Share service. Можно превратить в статический
+            сайт.
+        </li>
+        <li>Glacier - архивирование данных. Очень дешевый, но не быстрый.</li>
+        <li>EFS(elastic file system) - объединения нескольких серверов к одному жесткому диску.</li>
         <li>S3 Bucket - Unlimited Web Space</li>
         <li>S3 Web Hosting - Web Sites Hosting</li>
-        <li>Route53 - Domain Registration, DNS</li>
-        <li>RDS, DynamoDB - SQL and NoSQL Databases</li>
-        <li>CloudFormation - Infrastructure as Code</li>
-
-        <li>DevOps</li>
+        <li>CloudFormation - Infrastructure as Code. Используется для описания инструкций работы всех облачных
+            сервисов.
+        </li>
+        <li>OpsWorks - для автоматизации инфраструктуры. Загружает recipes для Chef(система управления
+            конфигурациями).
+        </li>
+        <li>RDS(Relational Database Service) - база данных SQL.</li>
+        <li>DynamoDB - база данных NoSQL.</li>
+        <li>Redshift - анализ больших данных.</li>
+        <li>EMR(Elastic MapReduce) - bigdata.</li>
+        <li>IAM(Identity and Access Management) - пользователи и доступы</li>
+        <li>Route 53 - Domain Registration, DNS. Отдельные сервера. Работает через порт 53.</li>
+        <li>SES(Simple Email Service) - сервер email.</li>
+        <li>SNS(Simple Notification Service) - посылаем email, sms и тд.</li>
+        <li>SQS(Simple Queue Service).</li>
     </ul>
 
-    <h2>Как она работает</h2>
-    <h3>Основные сущности</h3>
+    <h2 id="basicEntities">Основные сущности</h2>
     <ol>
         <li>Instance - сервер Amazon</li>
     </ol>
 
-    <h3>Расположение серверов</h3>
+    <h2 id="serverLocations">Расположение серверов</h2>
     <p>Region - географическое место расположение.</p>
     <p>Availability Zone - изолированный дата центр.</p>
     <p>Пример: region(us-west-1), availability zone(us-west-1a, us-west-1b, us-west-2c)</p>
-
-
 
 </div>
 </body>
