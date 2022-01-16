@@ -25,17 +25,14 @@
     <h2>Основные разделы:</h2>
     <ul>
         <li><a href="class/Class.html">Class</a></li>
-        <li><a href="collections/Collections.html">Collections</a></li>
-        <li><a href="concurrency/Concurrency.html">Многопоточность</a></li>
         <li><a href="exception/Exception.html">Exception</a></li>
-        <li><a href="input_output/InputOutput.html">Input/Output</a></li>
-        <li><a href="jdbc/JDBC.html">JDBC</a></li>
         <li><a href="key_words/KeyWords.html">Key Words</a></li>
         <li><a href="object/Object.html">Object</a></li>
         <li><a href="reflection_api/ReflectionApi.html">Reflection Api</a></li>
         <li><a href="serialization/Serialization.html">Сериализация(serialization)</a></li>
         <li><a href="java_util/JavaUtil.html">java.util</a></li>
         <li><a href="java_lang/JavaLang.html">java.lang</a></li>
+        <li><a href="java_sql/JavaSql.html">java.sql</a></li>
     </ul>
 
     <h2>Версии:</h2>
@@ -59,6 +56,46 @@ byte y = (byte) x;
     <p>или</p>
     <pre>Animal dog = new Dog(); //восходящее преобразование. Будет потерян доступ ко всем методам, которые есть
         только у класса Dog.
+    </pre>
+
+    <h2>if</h2>
+    <pre>
+if(условие) {
+    тело(блок)
+} else if  (условие) {
+    тело(блок)
+} else if (условие) {
+    тело(блок)
+} else {
+    тело(блок)
+}
+    </pre>
+
+    <h2>Циклы(loops)</h2>
+    <h3>while</h3>
+    <pre>
+while(условие) {
+    тело(блок)
+}
+    </pre>
+
+    <h3>do while</h3>
+    <pre>
+do {
+    тело(блок)
+} while (условие)
+    </pre>
+
+    <h3>for</h3>
+    <pre>
+for (инициализация; условие; инкремент/декремент) {
+    System.out.println(i);
+}
+    </pre>
+    <pre>
+for (int i = 0, j = 0; i < 10; i++) {
+    System.out.println(i);
+}
     </pre>
 
     <h2>Вопросы:</h2>
