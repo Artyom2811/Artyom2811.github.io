@@ -42,9 +42,8 @@
 
     <h2>Среды выполнения скриптов:</h2>
     <ol>
-        <li>Shell</li>
-        <li></li>
-        <li></li>
+        <li>sh(Shell)</li>
+        <li>Bash</li>
     </ol>
 
     <h2>Поиск файла или папки:</h2>
@@ -57,15 +56,24 @@
 
     <h2>Работа с файлами:</h2>
     <ol>
+        <li>touch - создание файла</li>
+
+        <li>mkdir - создание папки</li>
+        <pre>
+mkdir /home/joe/Desktop/new_folder
+        </pre>
+
         <li>tail -f -n 5 syslog - открыть последние 5 строк файла syslog с дальнейшим отслеживание.</li>
         <li>cp - копирование файла. Параметры: указать путь файл, указать путь куда копировать</li>
         <pre>
 cp ./hosts-m3-dev-artyom ./hosts-m3-dev-artyom-backup
         </pre>
+
         <li>mv - перемещение/переименование</li>
         <pre>
 mv /home/user/my_static /home/user/static
         </pre>
+
         <li>rm - удаление</li>
         <pre>
 rm /tmp/readme.txt
