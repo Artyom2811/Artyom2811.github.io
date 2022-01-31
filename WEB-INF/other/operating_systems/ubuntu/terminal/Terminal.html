@@ -93,6 +93,19 @@ set-title(){
         <p>Пример команды: set-title новое_имя</p>
     </div>
 
+    <h2>Для быстрого отображения погоды в терминале</h2>
+    <pre>
+we() # Weather report, no parameter defaults to braila
+{
+    printf '\033[8;40;130t';
+    if [[ $# -eq 0 ]]; then
+        curl wttr.in/dnepr
+    else
+        curl wttr.in/$1
+    fi
+}
+    </pre>
+
     <h2>Для смены пароля шифрования диска:</h2>
     <p>Выполняем команду -> blkid</p>
     <p>Находим строку с TYPE="crypto_LUKS" и берем из нее первую часть - Пример:/dev/nvme0n1p3</p>
