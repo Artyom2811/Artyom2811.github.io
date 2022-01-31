@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Standard Tools</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Core.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Standard Tools</h1>
+
+    <h2>Основные разделы</h2>
+    <ul>
+        <li><a href="#converting">Преобразования</a></li>
+        <li><a href="#if">if</a></li>
+        <li><a href="#loops">Циклы(loops)</a></li>
+        <li><a href="#textBlocks">Text Blocks</a></li>
+    </ul>
+
+    <h2 id="converting">Преобразования</h2>
+    <h3>Восходящее</h3>
+    <p>Восходящее - преобразование от потомка к предку.</p>
+
+    <h3>Нисходящее</h3>
+    <p>Нисходящее - преобразование от предка к потомку. Должно указываться явно с помощью указания нового типа
+        в скобках.
+    </p>
+    <pre>
+int x = 100;
+byte y = (byte) x;
+    </pre>
+    <p>или</p>
+    <pre>Animal dog = new Dog(); //восходящее преобразование. Будет потерян доступ ко всем методам, которые есть
+        только у класса Dog.
+    </pre>
+
+    <h2 id="if">if</h2>
+    <pre>
+if(условие) {
+    тело(блок)
+} else if  (условие) {
+    тело(блок)
+} else if (условие) {
+    тело(блок)
+} else {
+    тело(блок)
+}
+    </pre>
+
+    <h2 id="loops">Циклы(loops)</h2>
+    <h3>while</h3>
+    <pre>
+while(условие) {
+    тело(блок)
+}
+    </pre>
+
+    <h3>do while</h3>
+    <pre>
+do {
+    тело(блок)
+} while (условие)
+    </pre>
+
+    <h3>for</h3>
+    <pre>
+for (инициализация; условие; инкремент/декремент) {
+    System.out.println(i);
+}
+    </pre>
+    <pre>
+for (int i = 0, j = 0; i < 10; i++) {
+    System.out.println(i);
+}
+    </pre>
+
+    <h2 id="textBlocks">Text Blocks(since v.15)</h2>
+    <p>Указание текста в том виде в котором он должен храниться(с переносами строки).</p>
+    <h3>Синтаксис</h3>
+    <pre>
+
+String b ="""
+1
+2
+3
+""";
+    </pre>
+    <p>Вставка значений с строку</p>
+    <pre>
+String a = "1";
+
+"""
+    Some parameter: %s
+""".formatted(a);
+    </pre>
+    <h3>Экранирование</h3>
+    <h4>Отмена новой строки(\)</h4>
+    <pre>
+"""1 \
+   2
+""";
+    </pre>
+
+    <h4>Отмена новой строки(\s)</h4>
+    <p>По умолчанию идет обрезка пробелов в каждой строке.</p>
+    <pre>
+"""1      \s
+   2
+""";
+    </pre>
+
+
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
