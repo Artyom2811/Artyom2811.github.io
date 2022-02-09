@@ -34,7 +34,7 @@
         <li>@RequiredArgsConstructor - создание конструктора только с final полями.</li>
         <li>@AllArgsConstructor - создание конструктора со всеми полями.</li>
         <li>@Data - содержит: @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor.</li>
-        <li>@Value - аналог @Data, но для неизменяемых классов.</li>
+        <li>@Value - аналог @Data, но для immutable классов. Не содержит @Setter.</li>
         <li>@Builder - реализация паттерна Builder. Также можно указывать на переменные с коллекциями аннотацию
             @Singular. Которая поможет по отдельности добавлять в коллекции.<br>
             <pre>
