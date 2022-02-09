@@ -25,6 +25,7 @@
         <li><a href="design_patterns/DesignPatterns.html">Design Patterns</a></li>
         <li><a href="grasp/Grasp.html">Grasp</a></li>
         <li><a href="solid/Solid.html">Solid</a></li>
+        <li><a href="#otherPattern">Другие паттерны</a></li>
     </ul>
 
     <h2>Отношения между классами/объектами:</h2>
@@ -56,6 +57,36 @@
         <li>Экономиться размер и перформанс.</li>
         <li>Клиент знает точный функционал.</li>
     </ul>
+
+    <h2 id="otherPattern">Другие паттерны</h2>
+    <h3>Guard Clauses</h3>
+    <p>Замена if - else if - else структуры на if, для удобства чтения.</p>
+    <pre>
+function getPayAmount() {
+  let result;
+  if (isDead)
+    result = deadAmount();
+  else {
+    if (isSeparated)
+      result = separatedAmount();
+    else {
+      if (isRetired)
+        result = retiredAmount();
+      else
+        result = normalPayAmount();
+    }
+  }
+  return result;
+}
+    </pre>
+    <pre>
+function getPayAmount() {
+  if (isDead) return deadAmount();
+  if (isSeparated) return separatedAmount();
+  if (isRetired) return retiredAmount();
+  return normalPayAmount();
+}
+    </pre>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

@@ -16,6 +16,7 @@
         <h2>Проработать</h2>
         <ol>
             <li><a href="https://www.youtube.com/watch?v=RPuFz93Gvpk">Замыкания в JavaScript</a></li>
+            <li><a href="https://learn.javascript.ru/closure">closure</a></li>
             <li><a href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Closures">Замыкания</a></li>
             <li><a href="https://www.codecademy.com/">Онлайн обучение Java-Script</a></li>
             <li><a href="https://html5book.ru/block-inline-elements/">Блочные и строчные элементы</a></li>
@@ -63,6 +64,20 @@
         Ошибок не возникнет даже если внутренняя функция (замыкание) будет использовать
         переменные из внешней функции.
     </p>
+    <pre>
+function makeWorker() {
+  let name = "Pete";
+
+  return function() {
+    alert(name);
+  };
+}
+
+let name = "John";
+
+// create a function
+let work = makeWorker();
+    </pre>
 
     <h2>Лексической области видимости (lexical scoping)</h2>
     <p>Lexical scoping - это видимость переменных из внутренего метода во внешний.</p>
