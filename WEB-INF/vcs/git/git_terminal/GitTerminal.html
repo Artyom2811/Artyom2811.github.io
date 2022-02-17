@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>GitTerminal</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Git.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>GitTerminal</h1>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#work_example">Пример работы</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="work_example">Пример работы</h2>
+        <p>Выбираем папку и инициализируем ее.</p>
+        <pre>git init</pre>
+        <p>Проверяем.</p>
+        <pre>git status</pre>
+        <p>Добавить новые файлы.</p>
+        <pre>
+git add .
+или
+git add название_файла
+        </pre>
+        <p>Удалить выбранные файлы.</p>
+        <pre>
+rm .
+или
+rm название_файла
+        </pre>
+        <p>Комитим изменения.</p>
+        <pre>git commit -m "comment"</pre>
+        <p>Создаем доступ к удаленному репозиторию.</p>
+        <pre>git remote add github https://github.com/myuser/project.git</pre>
+        <p>Делаем пуш.</p>
+        <pre>git push -u github master</pre>
+        <p>Ключ -u используется для того, чтобы установить связь между удаленным репозиторием github и вашей веткой
+            master. Все дальнейшие изменения вы можете переносить на удаленный репозиторий упрощенной командой.
+        </p>
+        <pre>git push</pre>
+        <p>Создание репозитория на Github</p>
+        <p>Добавляем удаленный репозиторий (по протоколу SSH) под именем origin (вместо origin можно использовать любое
+            другое имя).
+        </p>
+        <pre>git remote add origin git@github.com:myuser/project.git</pre>
+        <p>Можем просмотреть результат добавления с помощью команды:</p>
+        <pre>git remote -v</pre>
+        <p>Если все было правильно сделано, то увидим.</p>
+        <pre>
+origin git@github.com:myuser/project.git (fetch)
+origin git@github.com:myuser/project.git (push)
+        </pre>
+        <p>Для того, чтобы отменить регистрацию удаленного репозитария введите.</p>
+        <pre>git remote rm origin</pre>
+        <p>Клонирование проекта.</p>
+        <pre>
+git clone https://github.com/myuser/project.
+        </pre>
+        <p>Для получения обновлений.</p>
+        <pre>git pull</pre>
+        <p>Если вы уверены, что хотите перезаписать файлы в удаленном репозитории несмотря на конфликт версий.</p>
+        <pre>git push -f</pre>
+        <p>Отложить ваши текущие изменения.</p>
+        <pre>
+git stash
+        </pre>
+        <p>Вернуть отложенные изменения.</p>
+        <pre>git stash pop</pre>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
