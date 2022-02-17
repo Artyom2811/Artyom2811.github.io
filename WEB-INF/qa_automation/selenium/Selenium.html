@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>JAVA</title>
+    <title>Selenium</title>
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js" defer></script>
 </head>
@@ -10,14 +10,58 @@
 <body>
 <div><a href="../QA Automation.html" class="backButton"></a></div>
 <div class="bodyStyle">
-    <h1>Содержание</h1>
-    <p>Selenium – это проект, в рамках которого разрабатывается серия программных продуктов с открытым исходным кодом
-        (open source):
-    <p><a href="Web Driver/Web Driver.html"><b>Selenium WebDriver</b></a></p>
-    <p><a href="Web Driver/Web Driver.html"><b>Selenium RC</b></a></p>
-    <p><a href="Web Driver/Web Driver.html"><b>Selenium Server</b></a></p>
-    <p><a href="Web Driver/Web Driver.html"><b>Selenium Grid</b></a></p>
-    <p><a href="Web Driver/Web Driver.html"><b>Selenium IDE</b></a></p>
+    <h1>Selenium</h1>
+
+    <section>
+        <h2>Что это</h2>
+        <p>Selenium – это проект, в рамках которого разрабатывается серия программных продуктов с открытым исходным
+            кодом (open source). Отвечает за управление браузером.
+        </p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <p><a href="Web Driver/Web Driver.html"><b>Selenium WebDriver</b></a></p>
+        <p><a href="Web Driver/Web Driver.html"><b>Selenium RC</b></a></p>
+        <p><a href="Web Driver/Web Driver.html"><b>Selenium Server</b></a></p>
+        <p><a href="Web Driver/Web Driver.html"><b>Selenium Grid</b></a></p>
+        <p><a href="Web Driver/Web Driver.html"><b>Selenium IDE</b></a></p>
+    </section>
+
+    <section>
+        <h2>Общая информация</h2>
+        <p>Webelement - абстракция над, веб элементом.</p>
+
+        <p>By - абстракция над, локатором веб элементом.</p>
+
+        <p>Ожидания</p>
+        <ol>
+            <li>implicit(не явные):<br>
+                manage.timeouts().pageLoadTimeout(60, TimeUnit.Second() - ожидание загрузки страницы.<br>
+                manage.timeouts().setScriptTimeout() - ожидание выполнения Java Script команд.<br>
+                manage.timeouts().implicitWait() - ожидание загрузки элемента.
+            </li>
+            <li>explicit(явные) - через объект WebDriverWait<br>
+                WaitWebDriver wait = new WebDriverWait(driver, 5).withMessage("")<br>
+                wait.until(ExpectedConditions.visibilityof(driver.findElement(By.id("table"))));
+            </li>
+            <li>частные</li>
+        </ol>
+        <p></p>
+
+        <p>Web driver</p>
+        <ol>
+            <li>get(String) - получить и открыть страницу.</li>
+            <li>getTitle() - получить название вкладки.</li>
+            <li>getCurrentUrl() - получить URL.</li>
+            <li>findElement</li>
+            <li>findElements</li>
+            <li>close()</li>
+            <li>quite()</li>
+            <li>getWindowHandle()</li>
+            <li>switchTo - переключение между окнами.</li>
+        </ol>
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>
