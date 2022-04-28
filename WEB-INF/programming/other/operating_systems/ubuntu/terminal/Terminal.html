@@ -12,10 +12,41 @@
 <div class="bodyStyle">
     <h1>Terminal</h1>
 
-    <h2>Работа с терминалом:</h2>
-    <ol>
-        <li>clear - очистить историю терминала.</li>
-        <li>uname -a - получить информацию о системе.</li>
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://www.hostinger.com.ua/rukovodstva/komanda-cat-v-linux#:~:text=%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20cat%20%D0%B2%20Linux%20%E2%80%94%20%D0%BE%D0%B4%D0%BD%D0%B0,%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B5%20%D0%B8%D0%BB%D0%B8%20%D0%B2%20%D0%B4%D1%80%D1%83%D0%B3%D0%BE%D0%BC%20%D1%84%D0%B0%D0%B9%D0%BB%D0%B5.">Команда Cat в Linux</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#defaultCommands">Общие команды</a></li>
+            <li><a href="#top">top</a></li>
+            <li><a href="#navigation">Навигации в Terminal</a></li>
+            <li><a href="#network">Работа с сетью</a></li>
+            <li><a href="#scriptWorker">Среды выполнения скриптов</a></li>
+            <li><a href="#search">Поиск файла или папки</a></li>
+            <li><a href="#files">Работа с файлами</a></li>
+            <li><a href="#addCommands">Добавление команд для терминала</a></li>
+            <li><a href="#changePassword">Для смены пароля шифрования диска</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="defaultCommands">Общие команды:</h2>
+        <ol>
+            <li>clear - очистить терминал.</li>
+            <li>uname -a - получить информацию о системе.</li>
+            <li>sudo -i - создает новую среду, как будто root только что вошел в систему</li>
+            <li>sudo su - изменяет текущего пользователя на root.</li>
+            <li>history - посмотреть историю выполненных команд.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2 id="top">Top</h2>
         <li>top - получить информацию процессах.
             <ul>Горячие клавиши:
                 <li>? - help</li>
@@ -28,60 +59,78 @@
                 <li>W - сохранение настроек</li>
             </ul>
         </li>
-        <li>sudo -i - создает новую среду, как будто root только что вошел в систему</li>
-        <li>sudo su - изменяет текущего пользователя на root.</li>
-        <li>history - посмотреть историю выполненных команд.</li>
-    </ol>
+    </section>
 
-    <h2>Команды навигации в Terminal</h2>
-    <ol>
-        <li>ls -la - отобразить список файлов и папок в текущей директории</li>
-        <li>cd - выполнить переход из текущей директории</li>
-        <li>pwd(print working directory) - вывести текущую директорию.</li>
-    </ol>
+    <section>
+        <h2 id="navigation">Навигации в Terminal</h2>
+        <ol>
+            <li>ls -la - отобразить список файлов и папок в текущей директории</li>
+            <li>cd - выполнить переход из текущей директории</li>
+            <li>pwd(print working directory) - вывести текущую директорию.</li>
+        </ol>
+    </section>
 
-    <h2>Среды выполнения скриптов:</h2>
-    <ol>
-        <li>sh(Shell)</li>
-        <li>Bash</li>
-    </ol>
+    <section>
+        <h2 id="network">Работа с сетью:</h2>
+        <ol>
+            <li>ping - пинг по ip. Пример:ping 8.8.8.8</li>
+            <li>host - получения ip по домен имени. Пример:host google.com</li>
+            <li>telnet - пинг по ip и порту. Пример:telnet opennet.ru 80</li>
+            <li>netstat -ntlp - команда для отображения занятых портов.</li>
+        </ol>
+        <p>Для просмотра файла через терминал можно использовать команду "сat". Пример:cat app.log</p>
+    </section>
 
-    <h2>Поиск файла или папки:</h2>
-    <ol>
-        <li>locale - поиск по имени. Но перед поиском необходимо выполнить команду "sudo updatedb" для обновления
-            индексов.
-        </li>
-        <li>find /. -name "abc" -type d - поиск папки abc из корневой директории.</li>
-    </ol>
+    <section>
+        <h2 id="scriptWorker">Среды выполнения скриптов:</h2>
+        <ol>
+            <li>sh(Shell)</li>
+            <li>Bash</li>
+        </ol>
+    </section>
 
-    <h2>Работа с файлами:</h2>
-    <ol>
-        <li>touch - создание файла</li>
+    <section>
+        <h2 id="search">Поиск файла или папки:</h2>
+        <ol>
+            <li>locale - поиск по имени. Но перед поиском необходимо выполнить команду "sudo updatedb" для обновления
+                индексов.
+            </li>
+            <li>find /. -name "abc" -type d - поиск папки abc из корневой директории.</li>
+        </ol>
+    </section>
 
-        <li>mkdir - создание папки</li>
-        <pre>
+    <section>
+        <h2 id="files">Работа с файлами:</h2>
+        <ol>
+            <li>touch - создание файла</li>
+
+            <li>mkdir - создание папки</li>
+            <pre>
 mkdir /home/joe/Desktop/new_folder
         </pre>
 
-        <li>tail -f -n 5 syslog - открыть последние 5 строк файла syslog с дальнейшим отслеживание.</li>
-        <li>cp - копирование файла. Параметры: указать путь файл, указать путь куда копировать</li>
-        <pre>
+            <li>tail -f -n 5 syslog - открыть последние 5 строк файла syslog с дальнейшим отслеживание.</li>
+            <li>cp - копирование файла. Параметры: указать путь файл, указать путь куда копировать</li>
+            <pre>
 cp ./hosts-m3-dev-artyom ./hosts-m3-dev-artyom-backup
         </pre>
 
-        <li>mv - перемещение/переименование</li>
-        <pre>
+            <li>mv - перемещение/переименование</li>
+            <pre>
 mv /home/user/my_static /home/user/static
         </pre>
 
-        <li>rm - удаление</li>
-        <pre>
+            <li>rm - удаление</li>
+            <pre>
 rm /tmp/readme.txt
         </pre>
-    </ol>
+        </ol>
+    </section>
 
-    <h2>Для включения возможности именование терминальных окон нужно в файл "sudo nano ~/.bashrc" добавить:</h2>
-    <div>
+    <section>
+        <h2 id="addCommands">Добавление команд для терминала</h2>
+        <h3>Для включения возможности именование терминальных окон нужно в файл "sudo nano ~/.bashrc" добавить:</h3>
+
         <pre>
 # change name of tab for terminal
 set-title(){
@@ -90,11 +139,10 @@ set-title(){
   PS1=${ORIG}${TITLE}
 }
         </pre>
-        <p>Пример команды: set-title новое_имя</p>
-    </div>
+            <p>Пример команды: set-title новое_имя</p>
 
-    <h2>Для быстрого отображения погоды в терминале</h2>
-    <pre>
+        <h3>Для быстрого отображения погоды в терминале</h3>
+        <pre>
 we() # Weather report, no parameter defaults to braila
 {
     printf '\033[8;40;130t';
@@ -104,13 +152,16 @@ we() # Weather report, no parameter defaults to braila
         curl wttr.in/$1
     fi
 }
-    </pre>
+        </pre>
+    </section>
 
-    <h2>Для смены пароля шифрования диска:</h2>
-    <p>Выполняем команду -> blkid</p>
-    <p>Находим строку с TYPE="crypto_LUKS" и берем из нее первую часть - Пример:/dev/nvme0n1p3</p>
-    <p>Выполняем команду используя полученное -> sudo cryptsetup luksChangeKey /dev/nvme0n1p3</p>
-    <p>Вводим старый пароль и 2 новых.</p>
+    <section>
+        <h2 id="changePassword">Для смены пароля шифрования диска:</h2>
+        <p>Выполняем команду -> blkid</p>
+        <p>Находим строку с TYPE="crypto_LUKS" и берем из нее первую часть - Пример:/dev/nvme0n1p3</p>
+        <p>Выполняем команду используя полученное -> sudo cryptsetup luksChangeKey /dev/nvme0n1p3</p>
+        <p>Вводим старый пароль и 2 новых.</p>
+    </section>
 
 </div>
 </body>
