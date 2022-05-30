@@ -30,7 +30,8 @@
             <li><a href="#search">Поиск файла или папки</a></li>
             <li><a href="#files">Работа с файлами</a></li>
             <li><a href="#addCommands">Добавление команд для терминала</a></li>
-            <li><a href="#changePassword">Для смены пароля шифрования диска</a></li>
+            <li><a href="#changePasswordUser">Для смены пароля пользователя</a></li>
+            <li><a href="#changePasswordDisk">Для смены пароля шифрования диска</a></li>
         </ul>
     </section>
 
@@ -162,7 +163,12 @@ we() # Weather report, no parameter defaults to braila
     </section>
 
     <section>
-        <h2 id="changePassword">Для смены пароля шифрования диска:</h2>
+        <h2 id="changePasswordUser">Для смены пароля пользователя:</h2>
+        <p>Выполняем команду -> sudo passwd</p>
+    </section>
+
+    <section>
+        <h2 id="changePasswordDisk">Для смены пароля шифрования диска:</h2>
         <p>Выполняем команду -> blkid</p>
         <p>Находим строку с TYPE="crypto_LUKS" и берем из нее первую часть - Пример:/dev/nvme0n1p3</p>
         <p>Выполняем команду используя полученное -> sudo cryptsetup luksChangeKey /dev/nvme0n1p3</p>

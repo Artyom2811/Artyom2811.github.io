@@ -30,6 +30,16 @@
     <p>комманда: </p>
     <p>пример: ssh -L 9999:localhost:5432 host2</p>
 
+    <section>
+        <h2>.ssh</h2>
+        <h3>Проверка пароля для private key</h3>
+        <p>ssh-keygen -y -f ~/.ssh/id_ed25519</p>
+        <p>Должно вывести информацию о ключе.</p>
+
+        <h3>Изменение пароля(passphrase) private key</h3>
+        <p>ssh-keygen -p -f ~/.ssh/id_ed25519</p>
+    </section>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>
