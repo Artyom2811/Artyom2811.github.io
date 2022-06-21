@@ -1,0 +1,60 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>JavaDoc</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Core.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>JavaDoc</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://ru.wikipedia.org/wiki/Javadoc">Javadoc</a></li>
+            <li><a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javadoc.html">The Java API Documentation Generator</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <p>JavaDoc - инструмент для извлечения комментариев(HTML файлы). Является частью пакета JDK. По умолчанию
+            обрабатываются только public и protected элементы программы. Для некоторых тегов необходимо указать их при
+        запуске создания HTML файла чтобы они были добавлены в файл.</p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#writePlace">Место записи</a></li>
+            <li><a href="#tagExample">Примеры тегов</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="writePlace">Место записи</h2>
+        <p>Над классом или методом в блоке комментария /** */</p>
+    </section>
+
+    <section>
+        <h2 id="tagExample">Примеры тегов</h2>
+        <p>@see - ссылка на другие классы и методы. HTML документ использует описание с другого класса.</p>
+        <p>@version - информация о версии класса/метода.</p>
+        <p>@author - информация о создателе класса/метода.</p>
+        <p>@since - указывает версию проекта с которой этот код начал работать. Также используеться в документации JDK
+            для указания версии JDK.
+        </p>
+        <p>@param - для описания параметров метода.</p>
+        <p>@return - описание возвращаемого значения.</p>
+        <p>@throw - описание возможное возвращаемое исключение.</p>
+        <p>@deprecated - для пометки устаревших возможностей.</p>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
