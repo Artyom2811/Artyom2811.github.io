@@ -16,30 +16,35 @@
     <ul>
         <li><a href="#converting">Преобразования</a></li>
         <li><a href="#if">if</a></li>
+        <li><a href="#ternary_operator">ternary operator</a></li>
         <li><a href="#loops">Циклы(loops)</a></li>
         <li><a href="#switch">switch</a></li>
         <li><a href="#textBlocks">Text Blocks</a></li>
     </ul>
 
-    <h2 id="converting">Преобразования</h2>
-    <h3>Восходящее</h3>
-    <p>Восходящее - преобразование от потомка к предку.</p>
+    <section>
+        <h2 id="converting">Преобразования</h2>
+        <h3>Восходящее</h3>
+        <p>Восходящее - преобразование от потомка к предку.</p>
 
-    <h3>Нисходящее</h3>
-    <p>Нисходящее - преобразование от предка к потомку. Должно указываться явно с помощью указания нового типа
-        в скобках.
-    </p>
-    <pre>
+
+        <h3>Нисходящее</h3>
+        <p>Нисходящее - преобразование от предка к потомку. Должно указываться явно с помощью указания нового типа
+            в скобках.
+        </p>
+        <pre>
 int x = 100;
 byte y = (byte) x;
-    </pre>
-    <p>или</p>
-    <pre>Animal dog = new Dog(); //восходящее преобразование. Будет потерян доступ ко всем методам, которые есть
+        </pre>
+        <p>или</p>
+        <pre>Animal dog = new Dog(); //восходящее преобразование. Будет потерян доступ ко всем методам, которые есть
         только у класса Dog.
-    </pre>
+        </pre>
+    </section>
 
-    <h2 id="if">if</h2>
-    <pre>
+    <section>
+        <h2 id="if">if</h2>
+        <pre>
 if(условие) {
     тело(блок)
 } else if  (условие) {
@@ -49,86 +54,121 @@ if(условие) {
 } else {
     тело(блок)
 }
-    </pre>
+        </pre>
+    </section>
 
-    <h2 id="loops">Циклы(loops)</h2>
-    <h3>while</h3>
-    <pre>
+    <section>
+        <h2 id="ternary_operator">ternary operator</h2>
+        <p>Пример:</p>
+        <pre>
+String a = true ? "true" : "false";
+        </pre>
+    </section>
+
+    <section>
+        <h2 id="loops">Циклы(loops)</h2>
+        <h3>while</h3>
+        <pre>
 while(условие) {
     тело(блок)
 }
-    </pre>
+        </pre>
 
-    <h3>do while</h3>
-    <pre>
+        <h3>do while</h3>
+        <pre>
 do {
     тело(блок)
 } while (условие)
-    </pre>
+        </pre>
 
-    <h3>for</h3>
-    <pre>
+        <h3>for</h3>
+        <pre>
 for (инициализация; условие; инкремент/декремент) {
     System.out.println(i);
 }
-    </pre>
-    <pre>
+        </pre>
+        <pre>
 for (int i = 0, j = 0; i < 10; i++) {
     System.out.println(i);
 }
-    </pre>
+        </pre>
 
-    <p>Бесконечные циклы - while(true), for(;;)</p>
+        <p>Бесконечные циклы - while(true), for(;;)</p>
+    </section>
 
-    <h2 id="switch">Switch</h2>
-    <p>Если не стоит break выполниться несколько case.</p>
-    <p>Типы данных:byte, short, char, int, Byte, Short, Character, Integer, String, Enum.</p>
-    <h3>Синтаксис</h3>
-    <pre>
+    <section>
+        <h2 id="switch">Switch</h2>
+        <p>Если не стоит break выполниться несколько case.</p>
+        <p>Типы данных:byte, short, char, int, Byte, Short, Character, Integer, String, Enum.</p>
+        <h3>Синтаксис</h3>
+        <pre>
 switch(выражение) {
-    case значение1 : команда; break;
-    case значение2 : команда; break;
+    case значение1, значение2 : команда; break;
     case значение3 : команда; break;
-    default : оператор;
+    case значение4 : команда; break;
+    default : команда;
 }
-    </pre>
+        </pre>
 
-    <h2 id="textBlocks">Text Blocks(since v.15)</h2>
-    <p>Указание текста в том виде в котором он должен храниться(с переносами строки).</p>
-    <h3>Синтаксис</h3>
-    <pre>
+        Новый вид записи(since v.13) без необходимости break для остановки между case.
+        <pre>
+switch(выражение) {
+    case значение1, значение2 -> команда;
+    case значение3 -> команда;
+    case значение4 -> команда;
+    default -> команда;
+}
+        </pre>
+
+        <p>Также теперь можно возвращать значения. Но для выполнения блока кода нужно использовать yield.</p>
+        <pre>
+boolean result = switch (a) {
+    case "1", "2" -> true;
+    case "3" -> {
+        System.out.println("get 3");
+        yield false;
+    }
+    default -> throw new IllegalArgumentException("something is wrong!");
+};
+        </pre>
+    </section>
+
+    <section>
+        <h2 id="textBlocks">Text Blocks(since v.15)</h2>
+        <p>Указание текста в том виде в котором он должен храниться(с переносами строки).</p>
+        <h3>Синтаксис</h3>
+        <pre>
 
 String b ="""
 1
 2
 3
 """;
-    </pre>
-    <p>Вставка значений с строку</p>
-    <pre>
+        </pre>
+        <p>Вставка значений с строку</p>
+        <pre>
 String a = "1";
 
 """
     Some parameter: %s
 """.formatted(a);
-    </pre>
-    <h3>Экранирование</h3>
-    <h4>Отмена новой строки(\)</h4>
-    <pre>
+        </pre>
+        <h3>Экранирование</h3>
+        <h4>Отмена новой строки(\)</h4>
+        <pre>
 """1 \
    2
 """;
-    </pre>
+        </pre>
 
-    <h4>Отмена новой строки(\s)</h4>
-    <p>По умолчанию идет обрезка пробелов в каждой строке.</p>
-    <pre>
+        <h4>Отмена новой строки(\s)</h4>
+        <p>По умолчанию идет обрезка пробелов в каждой строке.</p>
+        <pre>
 """1      \s
    2
 """;
-    </pre>
-
-
+        </pre>
+    </section>
 
 </div>
 </body>
