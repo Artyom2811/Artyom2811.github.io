@@ -36,6 +36,7 @@
             <li><a href="java_util/JavaUtil.html">java.util</a></li>
             <li><a href="java_lang/JavaLang.html">java.lang</a></li>
             <li><a href="java_sql/JavaSql.html">java.sql</a></li>
+            <li><a href="#accessLevel">Уровни доступа</a></li>
         </ul>
     </section>
 
@@ -77,6 +78,17 @@
     <section>
         <h2>Переполнение</h2>
         <p>Числовые переменные при переполнении не создадут исключение, а просто начнутся заново.</p>
+    </section>
+
+    <section>
+        <h2 id="accessLevel">Уровни доступа</h2>
+        <ul>
+            <li>public - открыт для всех.</li>
+            <li>protected - в пределах пакета и для классов наследников.</li>
+            <li>default - в пределах пакета.</li>
+            <li>private - открыт только для себя.</li>
+        </ul>
+        <p>Class - нельзя объявить privat или protected если это не внутренние классы. </p>
     </section>
 
 </div>
