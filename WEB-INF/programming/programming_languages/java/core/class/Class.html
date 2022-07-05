@@ -39,11 +39,27 @@
                 <ol>
                     <li>Nested Inner classes (вложенные внутренние классы)</li>
                     Создание объекта: Outer.Inner inner = new Outer().new Inner();
-                    <li>Static Nested classes or Member of outer class (статические вложенные классы)</li>
                     <li>Method Local Inner classes (внутренние классы в локальном методе)</li>
-                    <li>Anonymous Inner classes (анонимные классы) - для быстрой реализации интерфейсов. Без создания
-                        класса с реализацией.
-                    </li>
+                    <li>Static Nested classes or Member of outer class (статические вложенные классы)</li>
+                    <li>Anonymous Inner classes (анонимные классы)</li>
+                    <p>Пример:</p>
+                    <pre>
+interface AnimalActions {
+    void eat();
+}
+
+Animal animal = new AnimalActions() {
+    @Override
+    public void eat() {
+        System.out.printf("Animal %s eating...", getAnimal());
+    }
+
+    public String getAnimal() {
+        return cow;
+    }
+};
+eatAction.eat();
+                    </pre>
                 </ol>
                 <p><b>Примечание:</b> при создании нескольких классов в одном файле. С доступом public может быть
                     только один. Тот который соответствует имени файла. Или ошибка компиляции.
