@@ -17,58 +17,74 @@
         <ol>
             <li><a href="https://vertex-academy.com/tutorials/ru/list-java-primer/">List в Java</a></li>
             <li><a href="https://javarush.ru/groups/posts/1936-rabota-arraylist-v-kartinkakh--">Работа ArrayList в
-                картинках</a>
-            </li>
+                картинках</a></li>
         </ol>
     </div>
 
-    <h2>Что это</h2>
-    <p>List(список) - коллекция в которой элементы хранится по индексам. Также предоставляет доступ к элементам
-        по значению. Допускает дубликаты.
-    </p>
+    <section>
+        <h2>Что это</h2>
+        <p>List(список) - коллекция в которой элементы хранится по индексам. Также предоставляет доступ к элементам
+            по значению. Допускает дубликаты.
+        </p>
+    </section>
 
-    <h2>Сложность алгоритмов ArrayList</h2>
-    <ol>
-        <li>Получение по индексу - O(1)</li>
-        <li>Поиск - O(n)</li>
-        <li>Вставить - O(n)</li>
-        <li>Удаление - O(n)</li>
-    </ol>
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#howItWorks">Как она работает</a></li>
+            <li><a href="architecture/Architecture.html">Ссылки на другие страницы</a></li>
+        </ul>
+    </section>
 
-    <h2>Сложность алгоритмов LinkedList</h2>
-    <ol>
-        <li>Получение по индексу - O(1), получение по значению O(n)</li>
-        <li>Поиск по индексу - O(1), поиск по значению O(n)</li>
-        <li>Вставить - в начало или конец - O(1), в середину по индексу - O(1), по значению - O(n).</li>
-        <li>Удаление - из начало или конец - O(1), в середину по индексу - O(1), по значению - O(n).</li>
-    </ol>
+    <section>
+        <h2>Основные реализации</h2>
+        <ol>
+            <li><a href="#arrayList">ArrayList</a></li>
+            <li><a href="#linkedList">LinkedList</a></li>
+            <li>Vector</li>
+            <li>CopyOnWriteArrayList - это потокобезопасный вариант of ArrayList. Разница в том, что все мутативные
+                операции, такие как add, set, remove, clear,... создают новую копию массива.
+            </li>
+        </ol>
+    </section>
 
-    <h2>Основные реализации</h2>
-    <ol>
-        <li>ArrayList</li>
-        <li>LinkedList</li>
-        <li>Vector</li>
-        <li>CopyOnWriteArrayList - это потокобезопасный вариант of ArrayList. Разница в том, что все мутативные
-            операции, такие как add, set, remove, clear,... создают новую копию массива.
-        </li>
-    </ol>
+    <section>
+        <h2 id="arrayList">ArrayList</h2>
+        <p>При добавлении в середину списка создаётся новый массив в него помещается:<br>
+            первая часть -> новый элемент -> вторая часть
+        </p>
+        <p>Сложность алгоритмов ArrayList</p>
+        <ol>
+            <li>Получение по индексу - O(1)</li>
+            <li>Поиск - O(n)</li>
+            <li>Вставить - O(n)</li>
+            <li>Удаление - O(n)</li>
+        </ol>
+    </section>
 
-    <h2>ArrayList</h2>
-    <p>При добавлении в середину списка создаётся новый массив в него помещается:<br>
-        первая часть -> новый элемент -> вторая часть
-    </p>
+    <section>
+        <h2 id="linkedList">LinkedList</h2>
+        <p>Элементы хранятся в объекте Node. Которые имеют ссылки на предыдущий и следующий элементы.</p>
+        <p>LinkedList - используеться если необходим функционал Queue, Dequeue или Stack.</p>
+        <p>Сложность алгоритмов LinkedList</p>
+        <ol>
+            <li>Получение по индексу - O(1), получение по значению O(n)</li>
+            <li>Поиск по индексу - O(1), поиск по значению O(n)</li>
+            <li>Вставить - в начало или конец - O(1), в середину по индексу - O(1), по значению - O(n).</li>
+            <li>Удаление - из начало или конец - O(1), в середину по индексу - O(1), по значению - O(n).</li>
+        </ol>
+    </section>
 
-    <h2>LinkedList</h2>
-    <p>Элементы хранятся в объекте Node. Которые имеют ссылки на предыдущий и следующий элементы.</p>
-
-    <h2>Быстрый способ создания immutable collections(JAVA 9).</h2>
-    <p>После создания никак нельзя изменить(add, remove, put). Но элементы в коллекции могут быть изменены.
-    Нельзя добавлять null(NullPointerException).</p>
-    <ol>
-        <li>List.of("Luke", "Eva", "John");</li>
-        <li>Map.of("name", "Luke", "age", "23", "city", "New York");</li>
-        <li>Set.of("Luke", "Eva", "John");</li>
-    </ol>
+    <section>
+        <h2>Быстрый способ создания immutable collections(JAVA 9).</h2>
+        <p>После создания никак нельзя изменить(add, remove, put). Но элементы в коллекции могут быть изменены.
+            Нельзя добавлять null(NullPointerException).</p>
+        <ol>
+            <li>List.of("Luke", "Eva", "John");</li>
+            <li>Map.of("name", "Luke", "age", "23", "city", "New York");</li>
+            <li>Set.of("Luke", "Eva", "John");</li>
+        </ol>
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>
