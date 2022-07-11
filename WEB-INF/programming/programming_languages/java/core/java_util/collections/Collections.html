@@ -29,38 +29,59 @@
         </ol>
     </div>
 
-    <h2>Основные разделы:</h2>
-    <ul>
-        <li>Queue</li>
-        <li><a href="list/List.html">List</a></li>
-        <li><a href="map/Map.html">Map</a></li>
-        <li><a href="set/Set.html">Set</a></li>
-    </ul>
+    <section>
+        <h2>Что это</h2>
+        <p>Collections - это специальные классы для хранения использования и удаление множества одинаковых объектов.
+            Нельзя работать с примитивами.
+        </p>
+        <img src="Collection.png" width="900" height="600">
+    </section>
 
-    <p>Коллекции- это специальные классы для хранения использования и удачение множества одинаковых объектов.</p>
-    <img src="Collection.png" width="900" height="600">
 
-    <h2>Вопросы на собеседование:</h2>
-    <ul>
-        <h2>Iterator </h2>
-        <li>Методы Iterator - boolean hasNext(); E next(); void remove();</li>
-        <h2>List</h2>
-        <li>Разница HashSet и LinkedHashSet? - LinkedHashSet хранит записи в порядке добавления, двухсвязный список.</li>
-        <li>Разница HashSet и TreeSet? - TreeSet на основе дерева. При добавлении сортирует. Для добавления необходимо
-            передать Comparator или чтобы его элементы реализовывали Comparable.
-        </li>
+    <section>
+        <h2>Основные разделы:</h2>
+        <ul>
+            <li>Queue - FIFO.</li>
+            <li>PriorityQueue - FIFO. Queue в котором приоритетные элементы будут помещаться в начало очереди.
+                Для пользовательских классов использует Comparator, для Integer, String, Character не нужно.
+            </li>
+            <li>Stack - FILO.</li>
+            <li><a href="list/List.html">List</a></li>
+            <li><a href="map/Map.html">Map</a></li>
+            <li><a href="set/Set.html">Set</a></li>
+        </ul>
+    </section>
 
-        <h2>Set</h2>
-        <li>Как получить значение из Hashset? Вызвать его Iterator или использовать метод toArray()</li>
+    <section>
+        <h2>Вопросы на собеседование:</h2>
+        <ul>
+            <h3>Методы Iterator</h3>
+            <ol>
+                <li>boolean hasNext()</li>
+                <li>E next()</li>
+                <li>void remove()</li>
+            </ol>
 
-        <h2>Map</h2>
-        <li>Что происходит при получении значение из Hashmap? Мы ищем по ключу баккет, а дальше проверяем на equals()
-            элементы пока не найдем.
-        </li>
-    </ul>
+            <h3>List</h3>
+            <li>Разница HashSet и LinkedHashSet? - LinkedHashSet хранит записи в порядке добавления, двухсвязный список.
+            </li>
+            <li>Разница HashSet и TreeSet? - TreeSet на основе дерева. При добавлении сортирует. Для добавления
+                необходимо
+                передать Comparator или чтобы его элементы реализовывали Comparable.
+            </li>
 
-    <h2>Вопросы на собеседование</h2>
-    <p>Как бы вы инвертировали массив</p>
+            <h3>Set</h3>
+            <li>Как получить значение из Hashset? Вызвать его Iterator или использовать метод toArray()</li>
+
+            <h3>Map</h3>
+            <li>Что происходит при получении значение из Hashmap? Мы ищем по ключу баккет, а дальше проверяем на
+                equals()
+                элементы пока не найдем.
+            </li>
+        </ul>
+
+        <p>Как бы вы инвертировали массив.</p>
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

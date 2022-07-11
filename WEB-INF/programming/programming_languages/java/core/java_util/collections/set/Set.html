@@ -39,17 +39,38 @@
 
     <h2>Основные реализации</h2>
     <ol>
-        <li><a href="hash_set/HashSet.html">HashSet</a></li>
-        <li>TreeSet</li>
-        <li>LinkedHashSet - отличается от HashSet только тем, что в основе лежит LinkedHashMap вместо HashMap.</li>
+        <li><a href="#hashSet">HashSet</a></li>
+        <li><a href="#treeSet">TreeSet</a></li>
+        <li><a href="#linkedHashSet">LinkedHashSet</a></li>
         <li>CopyOnWriteArraySet - это потокобезопасный вариант of ArrayList, но буз дубликатов. Разница в том,
-            что все мутативные операции, такие как add, set, remove, clear... создают новую копию массива.</li>
+            что все мутативные операции, такие как add, set, remove, clear... создают новую копию массива.
+        </li>
     </ol>
 
+    <section>
+        <h2 id="hashSet">HashSet</h2>
 
-    <h2>TreeSet</h2>
+        <p>HashSet - реализация Set, которая не хранит дубликатов.</p>
 
-    <h2>LinkedHashMap</h2>
+        <h3>Особенности</h3>
+        <p>Внутри использует HashMap(значение помещается в Key а в Value объект пустышка(new Object())).</p>
+        <p>Элементы хранятся в односвязном списке.</p>
+        <p>Метод add() возвращает true - был ли заменён объект.</p>
+        <p>Позволяет добавить (null).</p>
+
+        <h3>Сложность алгоритмов</h3>
+        <ol>
+            <li>Получение - если нет коллизии - O(1), если есть коллизия O(n).</li>
+            <li>Вставить - если нет коллизии - O(1), если есть коллизия O(n).</li>
+            <li>Удаление - если нет коллизии - O(1), если есть коллизия O(n).</li>
+        </ol>
+    </section>
+
+    <h2 id="treeSet">TreeSet</h2>
+    <p>TreeSet - хранение уникальных значений в сортированном виде. Реализует красно-чёрное дерево.</p>
+
+    <h2 id="linkedHashSet">LinkedHashSet</h2>
+    <p>LinkedHashSet - HashSet в порядке добавления. В основе лежит LinkedHashMap вместо HashMap.</p>
 </div>
 </body>
 <script>setBackButtonHeight();</script>
