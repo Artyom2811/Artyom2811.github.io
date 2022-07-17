@@ -75,6 +75,7 @@ main.&lt;Integer&gt;f(2);
 
     <section>
         <h2>Ключевые слова для ограничений.</h2>
+        <p>Используется для создания ковариантности и контравариантности. Тк по умолчанию generics инвариантны.</p>
         <ol>
             <li>extend - ограничивает типизацию до указанного класса и его потомков.
                 <p>И стирания типа при компиляции будет до указанного класса, а не до Object.</p>
@@ -82,8 +83,42 @@ main.&lt;Integer&gt;f(2);
 &lt;T extend Animal&gt;
                 </pre>
             </li>
-            <li>super - </li>
+            <li>super - ограничивает типизацию от Object до указанного класса.
+                <p>И стирания типа при компиляции будет до Object.</p>
+                <pre>
+&lt;? super Animal&gt;
+                </pre>
+            </li>
         </ol>
+        <h3>Параметризованный тип не может использовать ограничение super(только extend), как WildCard.</h3>
+        <pre>
+public void print(List&lt;? super Integer&gt; list)  // OK
+//but you can't use type parameter:
+ public &lt;T super Integer&gt; void print(List&lt;T&gt; list)  // Won't compile
+        </pre>
+    </section>
+
+    <section>
+        <h2>Multiple bounds</h2>
+        <p>Multiple bounds - возможность добавлять несколько ограничений.</p>
+        <pre>
+&lt;T extends B1 & B2 & B3&gt;
+        </pre>
+    </section>
+
+    <section>
+        <h2>WildCard</h2>
+        <p>WildCard обозначается знаком "?". Необходим когда мы не будем указывать тип generic вручную. Но мы не можем
+            создавать связь между указанным типом в реализации.</p>
+        <pre>
+Пример с типизацией:
+public static &lt;T extends Number> void copy(List&lt;T&gt; dest, List&lt;T&gt; src)
+Пример с WildCard:
+public static void copy(List&lt;? extends Number&gt; dest, List&lt;? extends Number&gt; src)
+        </pre>
+        <p>? and ? extends Object - это одно и тоже.</p>
+        <p>WildCard не потдерживает "multiple bounds".</p>
+
     </section>
 
     <section>
@@ -96,13 +131,12 @@ main.&lt;Integer&gt;f(2);
         <p>
             если &lt;? extends A&gt;
             Мы можем передать коллекцию с generic &lt;A&gt; или generic &lt;subclass A&gt;
-            Мы не можем добавлять в коллекцию(кроме null), но можем выполнять действия над элементами. <br>
-            Проверить на работу не с коллекциями
+            Мы не можем добавлять в коллекцию(кроме null), но можем выполнять действия над элементами.
         </p>
         <p>
             если &lt;? super A&gt;
             Мы можем передать объект с generic &lt;A&gt; или generic &lt;superclass A&gt;.
-            Мы можем добовлять в эту коллекцию(тип той коллекции что мы положили или subclasses) , но не можем выполнять
+            Мы можем добавлять в эту коллекцию(тип той коллекции что мы положили или subclasses), но не можем выполнять
             действия над ней кроме методом Object.
         </p>
     </section>
