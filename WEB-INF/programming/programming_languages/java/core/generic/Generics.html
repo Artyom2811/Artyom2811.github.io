@@ -7,7 +7,7 @@
     <script src="/script.js" defer></script>
 </head>
 <body>
-<div><a href="../JAVA5.html" class="backButton"></a></div>
+<div><a href="../Core.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>Generics</h1>
 
@@ -55,7 +55,7 @@ public static void main(String[] args) {
                 <p>Но можно и указать</p>
                 <pre>
 main.&lt;Integer&gt;f(2);
-        </pre>
+                </pre>
             </li>
             <li>Для конструкторов.</li>
         </ul>
@@ -90,6 +90,7 @@ main.&lt;Integer&gt;f(2);
                 </pre>
             </li>
         </ol>
+
         <h3>Параметризованный тип не может использовать ограничение super(только extend), как WildCard.</h3>
         <pre>
 public void print(List&lt;? super Integer&gt; list)  // OK
@@ -117,7 +118,7 @@ public static &lt;T extends Number> void copy(List&lt;T&gt; dest, List&lt;T&gt; 
 public static void copy(List&lt;? extends Number&gt; dest, List&lt;? extends Number&gt; src)
         </pre>
         <p>? and ? extends Object - это одно и тоже.</p>
-        <p>WildCard не потдерживает "multiple bounds".</p>
+        <p>WildCard не поддерживает "multiple bounds".</p>
 
     </section>
 

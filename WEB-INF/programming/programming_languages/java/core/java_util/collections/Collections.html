@@ -79,7 +79,49 @@
                 элементы пока не найдем.
             </li>
         </ul>
+    </section>
 
+    <section>
+        <h2>Новые методы в коллекциях:</h2>
+        <ol>
+            <li>Iterable.forEach(Consumer<? super T> action)</li>
+            <li>Map.forEach(BiConsumer<? super K, ? super V> action)</li>
+            <li>Collection.removeIf(Predicate<? super E> filter)</li>
+            <li>Map.compute(K key,BiFunction<? super K, ? super V, ? extends V> remappingFunction) - если по ключу есть/нет
+                элемент, заменить/добавить значение на результат переданной функции.
+            </li>
+            <li>Map.computeIfPresent(K key, BiFunction<? super K, ? super V, ? extends V> remappingFunction) - ТОЛЬКО если
+                по ключу есть элемент, заменить значение на результат переданной функции.
+            </li>
+            <li>Map.computeIfAbsent(K key, Function<? super K, ? extends V> mappingFunction) - если отсутствует по ключу,
+                добавить переданный ключ, а значение на результат переданной функции.
+            </li>
+            <li>Map.getOrDefault(Object key, V defaultValue) - возвращает значение, соответствующее ключу key. Если такой
+                ключ не существует — возвращает значение по умолчанию.
+            </li>
+            <li>Map.merge(K key, V value, BiFunction<? super V, ? super V, ? extends V> remappingFunction)<br>
+                Если в вашей Map ключ key не существует, или value для этого ключа равно null — метод добавляет в Map
+                переданную пару key-value.<br>
+                Если ключ Key существует и его value != null — метод меняет его value на результат выполнения переданной
+                функции remappingFunction.<br>
+                Если remappingFunction возвращает null - key удаляется из коллекции.
+            </li>
+            <li>Map.putIfAbsent(K key, V value) - если нужно положить в Map и не заменять значение, если элемент по
+                ключу уже лежит.
+            </li>
+            <li>Map.replace и Map.replaceAll()<br>
+                Map.replace(K key, V newValue — заменяет значение ключа key на newValue, если такой ключ существует.
+                Если нет — ничего не происходит.<br>
+                Map.replace(K key, V oldValue, V newValue) — делает то же самое, но только если текущее значение key
+                равно oldValue.<br>
+                Map.replaceAll(BiFunction<? super K, ? super V, ? extends V> function) — заменяет все значения value на
+                результат выполнения функции function.
+            </li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Вопросы</h2>
         <p>Как бы вы инвертировали массив.</p>
     </section>
 </div>

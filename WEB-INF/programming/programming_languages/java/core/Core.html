@@ -19,6 +19,18 @@
             <li><a href="http://www.quizful.net/post/features-of-the-application-of-modifiers-in-java">Особенности применения модификаторов в Java</a></li>
             <li><a href="https://habr.com/ru/post/103830/">Загрузка классов в Java. Теория</a></li>
             <li><a href="https://habr.com/ru/post/314386/">Шпаргалки Java программиста 9: Java SE — Шпаргалка для собеседований и повторений</a></li>
+            <h3>JAVA 8</h3>
+            <li><a href="https://www.geeksforgeeks.org/metaspace-in-java-8-with-examples/#:~:text=Due%20to%20the%20above%20problems,reaches%20its%20maximum%20metaspace%20size.">MetaSpace in Java 8</a></li>
+            <li><a href="https://vertex-academy.com/tutorials/ru/java-8-uchebnik/">Java 8 Учебник: теория и примеры</a></li>
+            <li><a href="https://habr.com/ru/post/216431/">Новое в Java 8</a></li>
+            <li><a href="https://vertex-academy.com/tutorials/ru/java-8-ssylki-na-metody/">Java 8 Ссылки на методы</a></li>
+            <li><a href="https://urvanov.ru/2016/05/27/java-8-%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE%D0%BF%D0%BE%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C/">Java 8 многопоточность</a></li>
+            <li><a href="https://habr.com/ru/post/256057/">Java 8: Овладейте новым уровнем абстракции</a></li>
+            <li><a href="https://vertex-academy.com/tutorials/ru/java-8-stream-flatmap/">Java 8 Stream flatMap()</a></li>
+            <li><a href="https://vertex-academy.com/tutorials/ru/java-8-completablefuture/">CompletableFuture</a></li>
+            <li><a href="https://javarush.ru/groups/posts/524-khvatit-pisatjh-ciklih-top-10-luchshikh-metodov-dlja-rabotih-s-kollekcijami-iz-java8">Хватит писать циклы! Топ-10 лучших методов для работы с коллекциями из Java 8</a></li>
+            <li><a href="https://vertex-academy.com/tutorials/ru/java-8-ssylki-na-metody/">Java 8 Ссылки на методы</a></li>
+            <li>Как вызвать stream несколько раз?</li>
         </ol>
     </div>
 
@@ -37,23 +49,26 @@
             <li><a href="#accessLevel">Уровни доступа</a></li>
             <li><a href="#multiArray">Многомерный массив</a></li>
             <h4>JAVA 5</h4>
-
+            <li><a href="annotation/Annotation.html">Annotation</a></li>
+            <li><a href="enum/Enum.html">Enum</a></li>
+            <li><a href="generic/Generics.html">Generics(обобщение)</a></li>
+            <li><a href="#autoboxing">Autoboxing/Unboxing</a></li>
+            <li>Методы с неопределённым числом параметров.(void foo(int ... v))</li>
             <h4>JAVA 8</h4>
-
+            <li>default - ключевое слово, которое мы можем использовать на методе интерфейса, и описать его реализацию.</li>
+            <li>Новые классы для работы с Дата/Время.</li>
+            <li>CompletableFuture</li>
+            <li><a href="lambda_function/LambdaFunction.html">Functional Interface</a></li>
+            <li><a href="method_references/MethodReferences.html">:: - ссылка на метод.</a></li>
+            <li><a href="option/Option.html">Optional</a></li>
+            <li><a href="stream_api/StreamApi.html">Stream API</a></li>
+            <li><a href="java_time/JavaTime.html">Java Time</a></li>
         </ul>
     </section>
 
     <section>
         <h2>JDK</h2>
         <img src="jdk.jpg" width="600" height="500">
-    </section>
-
-    <section>
-        <h2>Версии</h2>
-        <ul>
-            <p><a href="java5/JAVA5.html">JAVA 5</a></p>
-            <p><a href="java8/JAVA8.html">JAVA 8</a></p>
-        </ul>
     </section>
 
     <section>
@@ -101,6 +116,29 @@ int[][] a = {{1, 2, 3}, {4, 5, 6}};
 //[[1,2,3],[4,5,6]]
         </pre>
     </section>
+
+    <section>
+        <h2 id="autoboxing">Autoboxing/Unboxing - Автоупаковка/автораспаковка</h2>
+        <p>Autoboxing/Unboxing - преобразования примитивных типов в объектные и наоборот.</p>
+
+        <h3>Autoboxing</h3>
+        <pre>
+Integer integer = 9;
+        </pre>
+
+        <h3>Unboxing</h3>
+        <pre>
+int in = 0;
+in = new Integer(9);
+        </pre>
+    </section>
+
+    <section>
+        <h2>Integer pool</h2>
+        <p>От -128 до 127 - если создается объект без ключевого слова new будет использоваться pool. Integer(1) ==
+            Integer(1)</p>
+    </section>
+
 
 </div>
 </body>
