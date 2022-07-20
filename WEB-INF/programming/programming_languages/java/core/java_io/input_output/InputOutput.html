@@ -25,24 +25,34 @@
         </ol>
     </div>
 
-    <h2>Основные сущности:</h2>
-    <p>Stream - абстрактное понятие источника или приёмника данных, которые способны обрабатывать информацию.
-        Есть два типа потоков: байтовые и символьные.
-    </p>
+    <section>
+        <h2>Основные сущности:</h2>
+        <p>Stream - абстрактное понятие источника или приёмника данных, которые способны обрабатывать информацию.
+            Есть два типа потоков: байтовые и символьные.
+        </p>
+    </section>
 
     <h2>Основные разделы:</h2>
     <ul>
-        <li>File</li>
+        <li><a href="#file">File</a></li>
+        <h3>Байтовые потоки</h3>
         <li>InputStream</li>
         <li>OutputStream</li>
+
+        <h3>Символьные потоки</h3>
         <li>Reader</li>
         <li>Writer</li>
-        <li><a href="architecture/Architecture.html">Ссылки на другие страницы</a></li>
     </ul>
 
-    <h2>Scanner</h2>
-    <p>Пример:</p>
-    <pre>
+    <section>
+        <h2 id="file">File</h2>
+        <p>File - для работы с файлами и каталогами. Создание, редактирование, получение свойств.</p>
+    </section>
+
+    <section>
+        <h2>Scanner</h2>
+        <p>Пример:</p>
+        <pre>
 import java.util.Scanner;
 
 Scanner sc = new Scanner(System.in); //создание объекта сканер
@@ -51,12 +61,13 @@ int i;
 i = sc.nextInt(); // если нужно целое число
 i = sc.nextLine(); //если строка
 i = sc.nextDouble(); //если дробное
-</pre>
+        </pre>
+    </section>
 
-    <p> - .</p>
 
-    <h2>WriteInFile - Запись в файл</h2>
-    <pre>
+    <section>
+        <h2>WriteInFile - Запись в файл</h2>
+        <pre>
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -77,10 +88,12 @@ public class WriteInFile {
         }
     }
 }
-    </pre>
+        </pre>
+    </section>
 
-    <h2>ReadFromFile - Чтение из файла</h2>
-    <pre>
+    <section>
+        <h2>ReadFromFile - Чтение из файла</h2>
+        <pre>
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -104,9 +117,10 @@ public class ReadFromFile {
         return sb.toString();
     }
 }
-    </pre>
-    <h2>Пример:</h2>
-    <pre>
+        </pre>
+
+        <h3>Пример:</h3>
+        <pre>
 import jxl.read.biff.BiffException;
 import jxl.write.WriteException;
 
@@ -119,7 +133,9 @@ public class TestClass {
         ReadFromFile readFromFile = new ReadFromFile();
         String answer = readFromFile.read("test.txt");
         System.err.println(answer);
-    </pre>
+        </pre>
+    </section>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>
