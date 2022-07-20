@@ -8,28 +8,33 @@
 </head>
 
 <body>
-<div><a href="../InputOutput.html" class="backButton"></a></div>
+<div><a href="../JavaIo.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>InputOutput</h1>
 
-    <h2>Что это</h2>
-    <p>InputStream - поток байтового ввода.</p>
+    <section>
+        <h2>Что это</h2>
+        <p>InputStream - представляет классы, для получения данных из источников.</p>
+        <ul>
+            <li>Массив байтов.</li>
+            <li>String.</li>
+            <li>Файл.</li>
+            <li>Канал(pipe).</li>
+            <li>Последовательность потоков.</li>
+            <li>Другие источники(Интернет).</li>
+        </ul>
+    </section>
 
-    <h2>Как она работает</h2>
-
-    <h2>Особенности</h2>
-
-    <h2>Пример использования</h2>
-    <pre>
-BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-String name = reader.readLine();   //записываем строку
-// записываем int
-//int a = Integer.parseInt(reader.readLine());
-// записываем double
-//double b = Double.parseDouble(reader.readLine());
-// записываем boolean
-//boolean c = Boolean.parseBoolean(reader.readLine());
-    </pre>
+    <section>
+        <h2>Реализации</h2>
+        <ul>
+            <li>ByteArrayInputStream</li>
+            <li>StringBufferInputStream - Deprecated. Use StringReader.</li>
+            <li>FileInputStream</li>
+            <li>PipedInputStream</li>
+            <li>SequenceInputStream</li>
+        </ul>
+    </section>
 
 <img src="structure.png" width="255" height="213">
 </div>
