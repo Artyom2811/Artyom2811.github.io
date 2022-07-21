@@ -38,9 +38,13 @@
         <li><a href="input_stream/InputStream.html"></a>InputStream</li>
         <li><a href="output_stream/OutputStream.html"></a>OutputStream</li>
 
-        <h3>Символьные потоки</h3>
+        <h3>Символьные потоки(UTF)</h3>
         <li>Reader</li>
         <li>Writer</li>
+
+        <h3>Классы адаптеры</h3>
+        <li>InputStreamReader - конвертирует InputStream в Reader.</li>
+        <li>OutputStreamWriter - конвертирует OutputStream в Writer.</li>
     </ul>
 
     <section>
@@ -54,6 +58,14 @@
             <li>Последовательность потоков.</li>
             <li>Другие источники(Интернет).</li>
         </ul>
+    </section>
+
+    <section>
+        <h2>Выбор метода передачи</h2>
+        <p>Иерархия Reader/Writer результат интернационализации? Input/Output Stream поддерживают только 8-ми битные
+            символы. Некоторые операции возможны только через байтовые потоки. Лучший способ попытаться использовать
+            Reader/Writer, если будет ошибка Input/Output Stream.
+        </p>
     </section>
 
     <section>
