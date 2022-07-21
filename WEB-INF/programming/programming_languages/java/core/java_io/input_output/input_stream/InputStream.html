@@ -13,19 +13,6 @@
     <h1>InputOutput</h1>
 
     <section>
-        <h2>Что это</h2>
-        <p>InputStream - представляет классы, для получения данных из источников.</p>
-        <ul>
-            <li>Массив байтов.</li>
-            <li>String.</li>
-            <li>Файл.</li>
-            <li>Канал(pipe).</li>
-            <li>Последовательность потоков.</li>
-            <li>Другие источники(Интернет).</li>
-        </ul>
-    </section>
-
-    <section>
         <h2>Реализации</h2>
         <ul>
             <li>ByteArrayInputStream</li>
@@ -33,6 +20,14 @@
             <li>FileInputStream</li>
             <li>PipedInputStream</li>
             <li>SequenceInputStream</li>
+            <li>FilterInputStream - абстрактный класс для классов-надстроек.
+                <ul>
+                    <li>DataInputStream</li>
+                    <li>BufferedInputStream</li>
+                    <li>LineNumberInputStream - Deprecated.</li>
+                    <li>PushbackInputStream</li>
+                </ul>
+            </li>
         </ul>
     </section>
 
