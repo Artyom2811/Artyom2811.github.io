@@ -39,8 +39,8 @@
         <li><a href="output_stream/OutputStream.html"></a>OutputStream</li>
 
         <h3>Символьные потоки(UTF)</h3>
-        <li>Reader</li>
-        <li>Writer</li>
+        <li><a href="reader/Reader.html"></a>Reader</li>
+        <li><a href="writer/Writer.html"></a>Writer</li>
 
         <h3>Классы адаптеры</h3>
         <li>InputStreamReader - конвертирует InputStream в Reader.</li>
@@ -69,6 +69,58 @@
     </section>
 
     <section>
+        <h2>Соответствие двух иерархий</h2>
+        <table class="wikitable">
+            <tbody>
+            <tr>
+                <th>Транзакция 1</th>
+                <th>Транзакция 2</th>
+            </tr>
+            <tr>
+                <td><code>InputStream</code></td>
+                <td><code>Reader(адаптер InputStreamReader)</code></td>
+            </tr>
+            <tr>
+                <td><code>OutputStream</code></td>
+                <td><code>Writer(адаптер OutputStreamWriter)</code></td>
+            </tr>
+            <tr>
+                <td><code>FileInputStream</code></td>
+                <td><code>FileReader</code></td>
+            </tr>
+            <tr>
+                <td><code>FileOutputStream</code></td>
+                <td><code>FileWriter</code></td>
+            </tr>
+            <tr>
+                <td><code>StringBufferInputStream</code></td>
+                <td><code>StringReader</code></td>
+            </tr>
+            <tr>
+                <td><code>Отсутствует</code></td>
+                <td><code>StringWriter</code></td>
+            </tr>
+            <tr>
+                <td><code>ByteArrayInputStream</code></td>
+                <td><code>CharArrayReader</code></td>
+            </tr>
+            <tr>
+                <td><code>ByteArrayOutputStream</code></td>
+                <td><code>CharArrayWriter</code></td>
+            </tr>
+            <tr>
+                <td><code>PipedInputStream</code></td>
+                <td><code>PipedReader</code></td>
+            </tr>
+            <tr>
+                <td><code>PipedOutputStream</code></td>
+                <td><code>PipedWriter</code></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
         <h2>Основные сущности:</h2>
         <p>Stream - абстрактное понятие источника или приёмника данных, которые способны обрабатывать информацию.
             Есть два типа потоков: байтовые и символьные.
@@ -79,22 +131,6 @@
         <h2 id="file">File</h2>
         <p>File - для работы с файлами и каталогами. Создание, редактирование, получение свойств.</p>
     </section>
-
-    <section>
-        <h2>Scanner</h2>
-        <p>Пример:</p>
-        <pre>
-import java.util.Scanner;
-
-Scanner sc = new Scanner(System.in); //создание объекта сканер
-//создаем переменную необходимого типа
-int i;
-i = sc.nextInt(); // если нужно целое число
-i = sc.nextLine(); //если строка
-i = sc.nextDouble(); //если дробное
-        </pre>
-    </section>
-
 
     <section>
         <h2>WriteInFile - Запись в файл</h2>
@@ -167,19 +203,6 @@ public class TestClass {
         </pre>
     </section>
 
-    <section>
-        <h2>Пример использования</h2>
-        <pre>
-BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-String name = reader.readLine();   //записываем строку
-// записываем int
-//int a = Integer.parseInt(reader.readLine());
-// записываем double
-//double b = Double.parseDouble(reader.readLine());
-// записываем boolean
-//boolean c = Boolean.parseBoolean(reader.readLine());
-        </pre>
-    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

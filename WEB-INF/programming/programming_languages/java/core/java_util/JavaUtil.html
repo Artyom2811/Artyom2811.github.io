@@ -75,6 +75,35 @@
         </ol>
     </section>
 
+    <section>
+        <h2>Scanner</h2>
+        <p>Пример:</p>
+        <pre>
+import java.util.Scanner;
+
+Scanner sc = new Scanner(System.in); //создание объекта сканер
+//создаем переменную необходимого типа
+int i;
+i = sc.nextInt(); // если нужно целое число
+i = sc.nextLine(); //если строка
+i = sc.nextDouble(); //если дробное
+        </pre>
+    </section>
+
+    <section>
+        <h2>BufferedReader - аналог Scanner</h2>
+        <pre>
+BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+String name = reader.readLine();   //записываем строку
+// записываем int
+//int a = Integer.parseInt(reader.readLine());
+// записываем double
+//double b = Double.parseDouble(reader.readLine());
+// записываем boolean
+//boolean c = Boolean.parseBoolean(reader.readLine());
+        </pre>
+    </section>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>
