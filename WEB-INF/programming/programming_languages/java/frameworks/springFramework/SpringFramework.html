@@ -69,103 +69,123 @@
         </ol>
     </div>
 
-    <h2>Что это:</h2>
-    <p><b>Spring Framework</b> — один из самых популярных наборов фреймворков для создания веб-приложений на Java.</p>
+    <section>
+        <h2>Что это:</h2>
+        <p><b>Spring Framework</b> — один из самых популярных наборов фреймворков для создания веб-приложений на Java.</p>
+    </section>
 
-    <h2>Spring projects:</h2>
-    <ul>
-        <li><a href="spring_core/SpringCore.html">Spring Framework(core)</a></li>
-        <li><a href="spring_boot/SpringBoot.html">Spring Boot</a></li>
-        <li><a href="spring_mvc/SpringMvc.html">Spring MVC</a></li>
-        <li>Spring Data</li>
-        <li>Spring Cloud</li>
-        <li>Spring Security</li>
-        <li>Spring Session</li>
-    </ul>
+    <section>
+        <h2>Spring projects:</h2>
+        <ul>
+            <li><a href="spring_core/SpringCore.html">Spring Framework(core)</a></li>
+            <li><a href="spring_boot/SpringBoot.html">Spring Boot</a></li>
+            <li><a href="spring_mvc/SpringMvc.html">Spring MVC</a></li>
+            <li>Spring Data</li>
+            <li>Spring Cloud</li>
+            <li>Spring Security</li>
+            <li>Spring Session</li>
+        </ul>
+    </section>
 
-    <h2>Советы по оформлению кода:</h2>
-    <p>Объявления сторонних компонентов и подключение к ним писать в конце класса. Чтобы логика была видна сразу.</p>
+    <section>
+        <h2>Советы по оформлению кода:</h2>
+        <p>Объявления сторонних компонентов и подключение к ним писать в конце класса. Чтобы логика была видна
+            сразу.</p>
+    </section>
 
-    <h2>Bean scope:</h2>
-    <ol>
-        <li>singleton(by default) - определяет один единственный бин для каждого контейнера Spring IoC.</li>
-        <li>prototype - любое количество экземпляров бина.</li>
-        <li>request - один экземпляр бина на каждый HTTP запрос. Касается исключительно ApplicationContext.</li>
-        <li>session - один экземпляр бина на каждую HTTP сессию. Касается исключительно ApplicationContext.</li>
-        <li>global session - аналогичен session - он используется в портлетных веб приложениях. Когда вы используете
-            globalSession в "стандартном" сервлетном приложении эти бины имеют scope session.
-        </li>
-    </ol>
 
-    <h2>Spring аннотации:</h2>
-    <ul>
-        <li>@Autowired - автоматически установить значение поля.</li>
-        <li>@Component - общий компонент фреймворка.</li>
-        <li>@Service - подтип класса @Component для сервис-слоя.</li>
-        <li>@Repository - подтип класса @Component для DAO слоя. Перехватывает исключения из базы и меняет их под
-            стандарты Spring.
-        </li>
-        <li>@ResponseBody - показывает что данный метод может возвращать кастомный объект в виде xml, json...</li>
-        <li>@Controller - подтип класса @Component для контроллеров. Похож на обычный сервлет (HttpServlet)
-            (работающий с объектами HttpServletRequest и HttpServletResponse). Просматривает классы, аннотированные
-            @Controller и обнаруживает в них аннотации @RequestMapping. Нужен для ответа веб страницей.
-        </li>
-        <li>@RestController - содержит две аннотаций @Controller и @ResponseBody. Нужен для ответа телом(JSON, XML и тд.).</li>
-        <li>@Transactional - Перед исполнением метода помеченного данной аннотацией начинается транзакция,
-            после выполнения метода транзакция коммитится, при выбрасывании RuntimeException откатывается.
-        </li>
-        <li>@RequestMapping - используется для маппинга url запроса на указанный метод или класс(общий префикс url).
-            Можно указывать конкретный HTTP-метод, который будет обрабатываться (GET/POST), передавать
-            параметры запроса?, пример: @RequestMapping(method = RequestMethod.GET).
-        </li>
+    <section>
+        <h2>Bean scope:</h2>
+        <ol>
+            <li>singleton(by default) - определяет один единственный бин для каждого контейнера Spring IoC.</li>
+            <li>prototype - любое количество экземпляров бина.</li>
+            <li>request - один экземпляр бина на каждый HTTP запрос. Касается исключительно ApplicationContext.</li>
+            <li>session - один экземпляр бина на каждую HTTP сессию. Касается исключительно ApplicationContext.</li>
+            <li>global session - аналогичен session - он используется в портлетных веб приложениях. Когда вы используете
+                globalSession в "стандартном" сервлетном приложении эти бины имеют scope session.
+            </li>
+        </ol>
+    </section>
 
-        <li>@GetMapping - указывает GET mapping для метода.</li>
-        <li>@PostMapping - указывает POST mapping для метода.</li>
-        <li>@PutMapping - указывает PUT mapping для метода.</li>
-        <li>@PatchMapping - указывает PATCH mapping для метода.</li>
-        <li>@DeleteMapping - указывает DELETE mapping для метода.</li>
+    <section>
+        <h2>Spring аннотации:</h2>
+        <ul>
+            <li>@Autowired - автоматически установить значение поля.</li>
+            <li>@Component - общий компонент фреймворка.</li>
+            <li>@Service - подтип класса @Component для сервис-слоя.</li>
+            <li>@Repository - подтип класса @Component для DAO слоя. Перехватывает исключения из базы и меняет их под
+                стандарты Spring.
+            </li>
+            <li>@ResponseBody - показывает что данный метод может возвращать кастомный объект в виде xml, json...</li>
+            <li>@Controller - подтип класса @Component для контроллеров. Похож на обычный сервлет (HttpServlet)
+                (работающий с объектами HttpServletRequest и HttpServletResponse). Просматривает классы, аннотированные
+                @Controller и обнаруживает в них аннотации @RequestMapping. Нужен для ответа веб страницей.
+            </li>
+            <li>@RestController - содержит две аннотаций @Controller и @ResponseBody. Нужен для ответа телом(JSON, XML и
+                тд.).
+            </li>
+            <li>@Transactional - Перед исполнением метода помеченного данной аннотацией начинается транзакция,
+                после выполнения метода транзакция коммитится, при выбрасывании RuntimeException откатывается.
+            </li>
+            <li>@RequestMapping - используется для маппинга url запроса на указанный метод или класс(общий префикс url).
+                Можно указывать конкретный HTTP-метод, который будет обрабатываться (GET/POST), передавать
+                параметры запроса?, пример: @RequestMapping(method = RequestMethod.GET).
+            </li>
 
-        <li>@Lookup - помечается метод, который будет возвращать разные объекты при каждом вызове метода.</li>
-        <li>@Scope - для установки области жизни бина.</li>
-        <li>@PathVariable - показывает, что параметр метода должен быть связан с переменной из урл-адреса.</li>
-        <li>@PostConstruct - аннотация для метода, который будет вызван после вызова конструктора бина.</li>
-        <li>@PreDestroy - аннотация для метода, который будет вызван перед уничтожением бина.</li>
-        <li>@Qualifier - спользуется совместно с @Autowired для уточнения данных связывания, когда возможны коллизии
-            (например одинаковых имен\типов).
-        </li>
-        <li>@Profile - аннотация для создания профилей конфигурации проекта. Может применяться как к бинам так и
-            к конфигурационным классам.
-        </li>
-    </ul>
+            <li>@GetMapping - указывает GET mapping для метода.</li>
+            <li>@PostMapping - указывает POST mapping для метода.</li>
+            <li>@PutMapping - указывает PUT mapping для метода.</li>
+            <li>@PatchMapping - указывает PATCH mapping для метода.</li>
+            <li>@DeleteMapping - указывает DELETE mapping для метода.</li>
 
-    <h2>АОП(AOP)</h2>
-    <p>АОП(AOP) - Аспектно-ориентированное программирование. Идея АОП заключается в выделении так называемой сквозной
-        функциональности. Помогает разделить бизнес логику примеры: логгирование, обработка исключений, трассировка,
-        аутентификация и проверка прав доступа.
-    </p>
+            <li>@Lookup - помечается метод, который будет возвращать разные объекты при каждом вызове метода.</li>
+            <li>@Scope - для установки области жизни бина.</li>
+            <li>@PathVariable - показывает, что параметр метода должен быть связан с переменной из урл-адреса.</li>
+            <li>@PostConstruct - аннотация для метода, который будет вызван после вызова конструктора бина.</li>
+            <li>@PreDestroy - аннотация для метода, который будет вызван перед уничтожением бина.</li>
+            <li>@Qualifier - спользуется совместно с @Autowired для уточнения данных связывания, когда возможны коллизии
+                (например одинаковых имен\типов).
+            </li>
+            <li>@Profile - аннотация для создания профилей конфигурации проекта. Может применяться как к бинам так и
+                к конфигурационным классам.
+            </li>
+        </ul>
+    </section>
 
-    <h2>Жизненный цикл Bean:</h2>
-    <ol>
-        <li>Инициализация</li>
-        <li>Внедрение зависимостей</li>
-        <li>Выполнение работы</li>
-        <li>Уничтожение</li>
-    </ol>
-    <ol>
-        <li>Singltone - создаётся пристарте приложения и удаляется в конце.</li>
-        <li>Prototine - создаётся при вызове и удаляется GC.</li>
-    </ol>
+    <section>
+        <h2>АОП(AOP)</h2>
+        <p>АОП(AOP) - Аспектно-ориентированное программирование. Идея АОП заключается в выделении так называемой
+            сквозной
+            функциональности. Помогает разделить бизнес логику примеры: логгирование, обработка исключений, трассировка,
+            аутентификация и проверка прав доступа.
+        </p>
+    </section>
 
-    <h2>Для управления созданием и уничтожением бина у нас есть методы:</h2>
-    <ol>
-        <li>init-method</li>
-        <li>destroy-method</li>
-    </ol>
+    <section>
+        <h2>Жизненный цикл Bean:</h2>
+        <ol>
+            <li>Инициализация</li>
+            <li>Внедрение зависимостей</li>
+            <li>Выполнение работы</li>
+            <li>Уничтожение</li>
+        </ol>
+        <ol>
+            <li>Singltone - создаётся пристарте приложения и удаляется в конце.</li>
+            <li>Prototine - создаётся при вызове и удаляется GC.</li>
+        </ol>
+    </section>
 
-    <h2>Вопросы:</h2>
-    <p>Создание prototype в singleton:</p>
-    <p>Создадим класс singleton Car:</p>
-    <pre>
+    <section>
+        <h2>Для управления созданием и уничтожением бина у нас есть методы:</h2>
+        <ol>
+            <li>init-method</li>
+            <li>destroy-method</li>
+        </ol>
+
+        <h2>Вопросы:</h2>
+        <p>Создание prototype в singleton:</p>
+        <p>Создадим класс singleton Car:</p>
+        <pre>
 @Component
 public class Car {
     @Lookup
@@ -178,9 +198,9 @@ public class Car {
         return "car with " + passenger.getName();
     }
 }
-    </pre>
-    <p>Создадим класс prototype Passenger:</p>
-    <pre>
+        </pre>
+        <p>Создадим класс prototype Passenger:</p>
+        <pre>
 @Component
 @Scope("prototype")
 public class Passenger {
@@ -192,7 +212,20 @@ public class Passenger {
         this.name = name;
     }
 }
-    </pre>
+        </pre>
+    </section>
+
+    <section>
+        <h2>Jakarta Bean Validation(@Valid)</h2>
+        <ul>
+            <li>@NotNull: to say that a field must not be null.</li>
+            <li>@NotEmpty: to say that a list field must not empty.</li>
+            <li>@NotBlank: to say that a string field must not be the empty string (i.e. it must have at least one character).</li>
+            <li>@Min and @Max: to say that a numerical field is only valid when it’s value is above or below a certain value.</li>
+            <li>@Pattern: to say that a string field is only valid when it matches a certain regular expression.</li>
+            <li>@Email: to say that a string field must be a valid email address.</li>
+        </ul>
+    </section>
 
 </div>
 </body>

@@ -36,7 +36,7 @@
         <li>@Data - содержит: @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor.</li>
         <li>@Value - аналог @Data, но для immutable классов. Не содержит @Setter.</li>
         <li>@Builder - реализация паттерна Builder. Также можно указывать на переменные с коллекциями аннотацию
-            @Singular. Которая поможет по отдельности добавлять в коллекции.<br>
+            @Singular. Которая поможет по отдельности добавлять в коллекции.
             <pre>
 <b>Без @Singular</b>
 
@@ -47,6 +47,7 @@ Person person = Person.builder()
   .tags(Arrays.asList("fictional","incidental"))
   .build();
             </pre>
+
             <pre>
 <b> @Singular</b>
 
@@ -58,6 +59,7 @@ Person person = Person.builder()
   .interest("sport")
   .build();
             </pre>
+            @Builder(toBuilder = true) - добавляем возможность создания Builder с любого экземпляра.
         </li>
         <li>@SneakyThrows - заменяет ключевое слово throws. Указываться над методами</li>
         <li>@Synchronized - замена слова synchronized.</li>

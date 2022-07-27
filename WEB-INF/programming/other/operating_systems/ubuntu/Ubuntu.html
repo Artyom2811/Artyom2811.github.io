@@ -39,42 +39,53 @@
         </ul>
     </section>
 
-    <h2>Установка приложений</h2>
-    <p>.tag.gz - формат который можно распаковать и установить в систему.</p>
+    <section>
+        <h2>Установка приложений</h2>
+        <p>.tag.gz - формат который можно распаковать и установить в систему.</p>
+    </section>
 
-    <h2>Перезагрузка GNOME</h2>
-    <p>Alt + F2 -> R - перезагрузка GNOME. Помогает если что-то с GNOME не так.</p>
+    <section>
+        <h2>Перезагрузка GNOME</h2>
+        <p>Alt + F2 -> R - перезагрузка GNOME. Помогает если что-то с GNOME не так.</p>
+    </section>
 
-    <h2>Настройки системы:</h2>
-    <p>Выбор приложений по умолчанию - Setting -> Details -> Default Applications</p>
+    <section>
+        <h2>Настройки системы:</h2>
+        <p>Выбор приложений по умолчанию - Setting -> Details -> Default Applications</p>
+    </section>
 
-    <h2>Рекомендуемые программы для Ubuntu:</h2>
-    <ul>
-        <li>keepassx - программа хранения паролей</li>
-        <li>kazam - программа для записи экрана</li>
-        <li>pulseaudio и pavucontrol - для настройки звука
-            (Output Devices -> Line Out -> 70%,
-            Input Devices -> Rear Microphone -> 40%)
-        </li>
-        <li>Pitivi - программа для редактирования видео</li>
-        <li>VLC - программа для просмотра видео</li>
-        <li>Mechvibes - звук механической клавиатуры. Устанавливать через deb файл.</li>
-        <p>Для работы:</p>
-        <li>SDKMAN(SDK Manager) - менеджер приложений по версиям.<br>
-            https://sdkman.io/install
-        </li>
-        <li>GIT - система контроля версий</li>
-        <li>Pinta - аналог Paint.</li>
-        <li>wallch - программа для автоматической смены обоев.</li>
-    </ul>
+    <section>
+        <h2>Рекомендуемые программы для Ubuntu:</h2>
+        <ul>
+            <li>keepassx - программа хранения паролей</li>
+            <li>kazam - программа для записи экрана</li>
+            <li>pulseaudio и pavucontrol - для настройки звука
+                (Output Devices -> Line Out -> 70%,
+                Input Devices -> Rear Microphone -> 40%)
+            </li>
+            <li>Pitivi - программа для редактирования видео</li>
+            <li>VLC - программа для просмотра видео</li>
+            <li>Mechvibes - звук механической клавиатуры. Устанавливать через deb файл.</li>
 
-    <h2>Snap</h2>
-    <p>Для установки приложений из репозиториев.</p>
-    <p>Обновление установленных приложений.</p>
-    <ul>
-        <li>snap refresh --list</li>
-        <li>sudo snap refresh <Application></li>
-    </ul>
+            <p>Для работы:</p>
+            <li>SDKMAN(SDK Manager) - менеджер приложений по версиям.<br>
+                https://sdkman.io/install
+            </li>
+            <li>GIT - система контроля версий</li>
+            <li>Pinta - аналог Paint.</li>
+            <li>wallch - программа для автоматической смены обоев.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Snap</h2>
+        <p>Для установки приложений из репозиториев.</p>
+        <p>Обновление установленных приложений.</p>
+        <ul>
+            <li>snap refresh --list</li>
+            <li>sudo snap refresh 'name_of_application'</li>
+        </ul>
+    </section>
 
     <section>
         <h2>Структура файловой системы Linux</h2>
@@ -108,13 +119,15 @@
         </ol>
     </section>
 
-    <h2>Добавление приложение не из репозитория в Favorite:</h2>
-    <p>Создать файл в "/usr/share/applications/"</p>
-    <pre>
+    <section>
+        <h2>Добавление приложение не из репозитория в Favorite:</h2>
+        <p>Создать файл в "/usr/share/applications/"</p>
+        <pre>
 sudo nano /usr/share/applications/yourapp.desktop - изменить имя на необходимое
-    </pre>
-    <p>Добавить в него описание:</p>
-    <pre>
+        </pre>
+
+        <p>Добавить в него описание:</p>
+        <pre>
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
@@ -124,13 +137,17 @@ Exec=/path/to/yourapp - изменить путь к исполняемому ф
 Name=YourApp - изменить имя на необходимое
 Comment=Description of YourApp - изменить описание на необходимое
 Icon=/path/to/yourapp.png - указать путь к иконке(если нет скачать)
-    </pre>
-    <p>Если приложение открывается в отдельной задаче нужно добавить в описание:</p>
-    <pre>
+        </pre>
+
+        <p>Если приложение открывается в отдельной задаче нужно добавить в описание:</p>
+        <pre>
 StartupWMClass=jetbrains-idea-ce - изменить на необходимое.
-    </pre>
-<p>Получить WMClass программы можно выполнив команду в терминале "xprop WM_CLASS" и кликнув по окну необходимого
-    приложения.</p>
+        </pre>
+
+        <p>Получить WMClass программы можно выполнив команду в терминале "xprop WM_CLASS" и кликнув по окну необходимого
+            приложения.
+        </p>
+    </section>
 
 </div>
 </body>
