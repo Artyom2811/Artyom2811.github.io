@@ -11,7 +11,7 @@
 <body>
 <div><a href="../JavaIo.html" class="backButton"></a></div>
 <div class="bodyStyle">
-    <h1>InputOutput</h1>
+    <h1>InputStream</h1>
 
     <section>
         <h2>Реализации</h2>
@@ -19,7 +19,7 @@
             <li>ByteArrayInputStream</li>
             <li>StringBufferInputStream - Deprecated. Use StringReader.</li>
             <li>FileInputStream</li>
-            <li>PipedInputStream</li>
+            <li>PipedInputStream - для многопоточности.</li>
             <li>SequenceInputStream</li>
             <li>FilterInputStream - абстрактный класс для классов-надстроек.
                 <ul>
@@ -28,6 +28,17 @@
                     <li>LineNumberInputStream - Deprecated.</li>
                     <li>PushbackInputStream</li>
                 </ul>
+            </li>
+            <li>ObjectInputStream - для передачи сериализированных объектов.
+                <pre>
+ObjectInputStream objectInputStream =
+    new ObjectInputStream(new FileInputStream("object.data"));
+
+MyClass object = (MyClass) objectInputStream.readObject();
+//etc.
+
+objectInputStream.close();
+                </pre>
             </li>
         </ul>
     </section>

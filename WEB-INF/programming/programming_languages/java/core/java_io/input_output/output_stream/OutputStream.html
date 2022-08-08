@@ -18,13 +18,25 @@
         <ul>
             <li>ByteArrayOutputStream</li>
             <li>FileOutputStream</li>
-            <li>PipedOutputStream</li>
+            <li>PipedOutputStream - для многопоточности.</li>
             <li>FilterOutputStream - абстрактный класс для классов-надстроек.
                 <ul>
                     <li>DataOutputStream</li>
                     <li>PrintStream</li>
                     <li>BufferedOutputStream</li>
                 </ul>
+            </li>
+            <li>ObjectOutputStream - для передачи сериализированных объектов.
+                <pre>
+ObjectOutputStream objectOutputStream =
+new ObjectOutputStream(new FileOutputStream("object.data"));
+
+MyClass object = new MyClass();
+
+output.writeObject(object);
+
+output.close();
+                </pre>
             </li>
         </ul>
     </section>

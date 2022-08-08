@@ -249,6 +249,24 @@ timesTwo(3)
         <p>import com.json.{Formatter =&gt; JsonFormatter}</p>
     </section>
 
+    <section>
+        <h2>Заметки(Разобрать)</h2>
+        <p>Если не стоит стрелка - _ <- detectionImageService.deleteById(imageId) значит Future не выполниться</p>
+        <pre>
+//Проверка внутри for comprehension
+_ = {
+  println(s"newPlates = ${newPlates}")
+}
+        </pre>
+
+        <pre>
+Проверка Future из переменной
+//TODO: check for Future
+Await.result(createdPlatesArray, 10 seconds)
+println(s"test = ${createdPlatesArray}")
+        </pre>
+    </section>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>
