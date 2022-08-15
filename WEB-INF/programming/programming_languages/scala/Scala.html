@@ -64,11 +64,13 @@
             <li><a href="collections/Collections.html">Collections</a></li>
             <li><a href="for_comprehension/Collections.html">ForComprehension</a></li>
             <li><a href="frameworks/Frameworks.html">Frameworks</a></li>
+            <li><a href="#mainStack">Основной scala tech stack</a></li>
+            <li><a href="#mainStack">Основной scala tech stack</a></li>
         </ul>
     </section>
 
     <section>
-        <h2>Основной scala tech stack</h2>
+        <h2 id="mainStack">Основной scala tech stack</h2>
         <ul>
             <li>SBT(scala build tool) - система сборки проекта</li>
             <li>Play Framework - MVC фреймворк.</li>
@@ -76,52 +78,6 @@
             <li>Quill - Библиотека работы с БД (https://getquill.io/)</li>
             <li>Silhouette - Библиотека для аутентификации</li>
         </ul>
-    </section>
-
-    <section>
-        <h2>Функциональное программирование</h2>
-        <p>Функциональное программирование — парадигма программирования, в которой процесс вычисления трактуется как
-            вычисление значений функций в математическом понимании последних (в отличие от функций как подпрограмм в
-            процедурном программировании). На практике отличие математической функции от понятия «функции» в
-            императивном программировании заключается в том, что императивные функции могут опираться не только
-            на аргументы, но и на состояние внешних по отношению к функции переменных, а также иметь побочные
-            эффекты и менять состояние внешних переменных. Таким образом, в императивном программировании при
-            вызове одной и той же функции с одинаковыми параметрами, но на разных этапах выполнения алгоритма,
-            можно получить разные данные на выходе из-за влияния на функцию состояния переменных. А в функциональном
-            языке при вызове функции с одними и теми же аргументами мы всегда получим одинаковый результат: выходные
-            данные зависят только от входных. Это позволяет средам выполнения программ на функциональных языках кешировать
-            результаты функций и вызывать их в порядке, не определяемом алгоритмом и распараллеливать их без каких-либо
-            дополнительных действий со стороны программиста
-        </p>
-    </section>
-
-    <section>
-        <h2>Функция высшего порядка</h2>
-        <p>Функция высшего порядка(Higher-order function) - функция/метод которая принимающая в качестве аргументов
-            другие функции или возвращающая другую функцию в качестве результата. Также в нее можно передать метод.
-        </p>
-    </section>
-
-    <section>
-        <h2>Чистые функции</h2>
-        <p>Чистые функции - функции, которые не имеют побочных эффектов ввода-вывода и памяти.</p>
-        <ul>
-            <li>если результат чистой функции не используется, её вызов может быть удалён без вреда для других
-                выражений.
-            </li>
-            <li>результат вызова чистой функции может быть мемоизирован, то есть сохранён в таблице значений вместе с
-                аргументами вызова.
-            </li>
-            <li>если нет никакой зависимости по данным между двумя чистыми функциями, то порядок их вычисления можно
-                поменять или распараллеливать (говоря иначе, вычисление чистых функций удовлетворяет принципам
-                потокобезопасности).
-            </li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Side effect</h2>
-        <p>Side effect - это действие, которое выходит за границы функции.</p>
     </section>
 
     <section>
@@ -164,8 +120,8 @@ println(b)
         </p>
     </section>
 
-    <section>E
-    <h2>Either and Try</h2>
+    <section>
+        <h2>Either and Try</h2>
         <p>Either[Error, T] - это тип, который содержит либо значение, либо исключение.</p>
 
         <p>Try[T] - это подмножество "Either[Error, T]", который содержит либо значение, либо исключение.
@@ -204,9 +160,9 @@ println(g(_ + 3, 7))
             <li>Блокировка для многопоточности больше не является проблемой: если данные не изменяются, нет необходимости в
                 какой-либо блокировке, чтобы синхронизировать разные потоки
             </li>
-            <li>хранение (persistence) — ещё один ключевой концепт, который мы рассмотрим позже, становится проще</li>
-            <li>копирование возможно за константное время, потому что этот процесс становится лишь вопросом создания новой
-                ссылки на уже существующий экземпляр структуры данных
+            <li>хранение (persistence) — становится проще.</li>
+            <li>копирование возможно за константное время, потому что этот процесс становится лишь вопросом создания
+                новой ссылки на уже существующий экземпляр структуры данных.
             </li>
         </ul>
         <p>Недостатки Immutable - используется много Heap(молодой) памяти, так как часто удаляются уже использованные
@@ -265,6 +221,52 @@ _ = {
 Await.result(createdPlatesArray, 10 seconds)
 println(s"test = ${createdPlatesArray}")
         </pre>
+    </section>
+
+    <section>
+        <h2>Pattern matching</h2>
+        <p>Часто используемый паттерн для работы с ходом выполнения программы.</p>
+        <p>Может использоваться как обычный match(java - switch)</p>
+        <pre>
+import scala.util.Random
+
+val x: Int = Random.nextInt(10)
+
+x match
+  case 0 => "zero"
+  case 1 => "one"
+  case 2 => "two"
+  case _ => "other"
+        </pre>
+
+        <p>Также может быть применен для case classes.</p>
+        <pre>
+sealed trait Notification
+
+case class Email(sender: String, title: String, body: String) extends Notification
+case class SMS(caller: String, message: String) extends Notification
+case class VoiceRecording(contactName: String, link: String) extends Notification
+        </pre>
+        <pre>
+def showNotification(notification: Notification): String =
+  notification match
+    case Email(sender, title, _) =>
+      s"You got an email from $sender with title: $title"
+    case SMS(number, message) =>
+      s"You got an SMS from $number! Message: $message"
+    case VoiceRecording(name, link) =>
+      s"You received a Voice Recording from $name! Click the link to hear it: $link"
+
+val someSms = SMS("12345", "Are you there?")
+val someVoiceRecording = VoiceRecording("Tom", "voicerecording.org/id/123")
+
+println(showNotification(someSms))  // prints You got an SMS from 12345! Message: Are you there?
+
+println(showNotification(someVoiceRecording))  // prints You received a Voice Recording from Tom! Click the link to hear it: voicerecording.org/id/123
+        </pre>
+
+        <p></p>
+
     </section>
 
 </div>
