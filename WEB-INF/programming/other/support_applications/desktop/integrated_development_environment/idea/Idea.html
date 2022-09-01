@@ -1,3 +1,4 @@
+<!--html_style_version_1-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -11,84 +12,117 @@
 <div><a href="../IntegratedDevelopmentEnvironment.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>IntelliJ IDEA</h1>
-    <p>IntelliJ IDEA - интегрированная среда разработки программного обеспечения для многих языков программирования,
-        в частности Java, JavaScript, Python, разработанная компанией JetBrains.
-    </p>
 
-    <h2>Установка</h2>
-    <p>IntelliJ Toolbox App - менеджер intellij приложений.</p>
+    <section>
+        <h2>Что это</h2>
+        <p>IntelliJ IDEA - интегрированная среда разработки программного обеспечения для многих языков программирования,
+            в частности Java, JavaScript, Python, разработанная компанией JetBrains.
+        </p>
+    </section>
 
-    <h2>Настройки</h2>
-    <ol>
-        <li>Добавление русской орфографии - <br>
-            Добавить язык в Settings | Editor | Natural Languages | Languages<br>
-            Скачать словарь с сайта - winedt.org/dict.html и добавить словари в<br>
-            Settings/Preferences | Editor | Natural Languages | Spelling | Custom dictionaries
-        </li>
-        <li>Добавить hotkey для добавления javadoc для класса/метода:<br>
-            Settings | Keymap | Other | Fix doc comment - Alt+H
-        </li>
-        <li>Добавить hotkey открытия закрытой вкладки:<br>
-            Settings | Keymap | Main Menu | Window | Editor Tabs | Reopen Closed Tab
-        </li>
-        <li>Добавить hotkey для движения по коду(назад и вперед): <br>
-            Settings | Keymap | Main Menu | Navigate | Back - Ctrl+Alt+Left<br>
-            Settings | Keymap | Main Menu | Navigate | Forward - Ctrl+Alt+Right<br>
-            Для Ubuntu нужно отменить Hotkeys для GNOME которые блокируют добавление.<br>
-            gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"<br>
-            gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"<br>
-            Для отмены удаления GNOME hotkeys необходимо выполнить команды:<br>
-            gsettings reset org.gnome.desktop.wm.keybindings switch-to-workspace-left<br>
-            gsettings reset org.gnome.desktop.wm.keybindings switch-to-workspace-right
-        </li>
-    </ol>
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#setUp">Установка</a></li>
+            <li><a href="#settings">Настройки</a></li>
+            <li><a href="#liveTemplates">Live Templates</a></li>
+            <li><a href="#hotKey">Hot keys</a></li>
+            <li><a href="#indexError">Проблемы с индексацией</a></li>
+            <li><a href="#usefulPlugins">Полезные плагины</a></li>
+        </ul>
+    </section>
 
-    <h2>Live Templates</h2>
-    <p>Ctrl + j - посмотреть все сокращения</p>
-    <ol>
-        <li>psvm - Public Static Void Main</li>
-        <li>sout - System.out.println</li>
-        <li>serr - System.error.println</li>
-        <li>fori - for</li>
-        <li>I - foreach</li>
-        <li>St - String</li>
-        <li>thr - throw new</li>
-    </ol>
+    <section>
+        <h2 id="setUp">Установка</h2>
+        <p>IntelliJ Toolbox App - менеджер intellij приложений.</p>
+    </section>
 
-    <h2>Hot keys</h2>
-    <ol>
-        <li>ctrl + D - скопировать строку или блок и в ставить на след.</li>
-        <li>ctrl + W - увеличить выделенный блок кода.</li>
-        <li>ctrl + Shift + W - уменьшить выделенный блок кода.</li>
-        <li>ctrl + Y - удаление строки.</li>
-        <li>ctrl + C - если не выделять часть строки то скопирует всю строку.</li>
-        <li>ctrl + X - если не выделять часть строки то вырежит всю строку.</li>
+    <section>
+        <h2 id="settings">Настройки</h2>
+        <ol>
+            <li>Добавление русской орфографии - <br>
+                Добавить язык в Settings | Editor | Natural Languages | Languages<br>
+                Скачать словарь с сайта - winedt.org/dict.html и добавить словари в<br>
+                Settings/Preferences | Editor | Natural Languages | Spelling | Custom dictionaries
+            </li>
+            <li>Добавить hotkey для добавления javadoc для класса/метода:<br>
+                Settings | Keymap | Other | Fix doc comment - Alt+H
+            </li>
+            <li>Добавить hotkey открытия закрытой вкладки:<br>
+                Settings | Keymap | Main Menu | Window | Editor Tabs | Reopen Closed Tab
+            </li>
+            <li>Добавить hotkey для движения по коду(назад и вперед): <br>
+                Settings | Keymap | Main Menu | Navigate | Back - Ctrl+Alt+Left<br>
+                Settings | Keymap | Main Menu | Navigate | Forward - Ctrl+Alt+Right<br>
+                Для Ubuntu нужно отменить Hotkeys для GNOME которые блокируют добавление.<br>
+                gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"<br>
+                gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"<br>
+                Для отмены удаления GNOME hotkeys необходимо выполнить команды:<br>
+                gsettings reset org.gnome.desktop.wm.keybindings switch-to-workspace-left<br>
+                gsettings reset org.gnome.desktop.wm.keybindings switch-to-workspace-right
+            </li>
+        </ol>
+    </section>
 
-        <li>Ctrl + / - комментирование строки или выделенного текста.</li>
-        <li>alt + enter - применяется на часть кода подсвеченный как ошибка, чтобы увилить варианты решения.</li>
-        <li>F2 - перейти на следующую ошибку, предупреждение или предложение.</li>
-        <li>Alt + 1 - перейти в окно Project.</li>
-        <li>Esc - вернуться в окно редактирования.</li>
-        <li>Ctrl + B - перейти в место создания/использование для метода/переменной.</li>
-        <li>Ctrl + Ctrl - выбор и запуск класса или прежних конфигураций.</li>
+    <section>
+        <h2 id="liveTemplates">Live Templates</h2>
+        <p>Ctrl + j - посмотреть все сокращения</p>
+        <ol>
+            <li>psvm - Public Static Void Main</li>
+            <li>sout - System.out.println</li>
+            <li>serr - System.error.println</li>
+            <li>fori - for</li>
+            <li>I - foreach</li>
+            <li>St - String</li>
+            <li>thr - throw new</li>
+        </ol>
+    </section>
 
-        <li>Ctrl + Alt + M - Extract Method. Вынести часть метода в отдельный метод.</li>
-        <li>Ctrl + Alt + C - Extract Constant. Вынести хардкод в константу.</li>
-        <li>Ctrl + Alt + F - Extract Field. Вынести хардкод в поле.</li>
-        <li>Ctrl + Alt + V - Extract Variable. Вынести часть цепочки вызова в именованную переменную.</li>
-        <li>Ctrl + Alt + P - Extract Parameter. Вынести переменную в параметры метода.</li>
-        <li>Ctrl + Alt + N - Inline Anything. Обратные Extract изменения.</li>
-        <li>Shift + F6 - Renaming. Применяется на имени переменной/метода.</li>
-        <li>Ctrl + F6 - Change Signature. Применяется на имени метода.</li>
-    </ol>
+    <section>
+        <h2 id="hotKey">Hot keys</h2>
+        <ol>
+            <li>ctrl + D - скопировать строку или блок и вставить на след.</li>
+            <li>ctrl + W - увеличить выделенный блок кода.</li>
+            <li>ctrl + Shift + W - уменьшить выделенный блок кода.</li>
+            <li>ctrl + Y - удаление строки.</li>
+            <li>ctrl + C - если не выделять часть строки то скопирует всю строку.</li>
+            <li>ctrl + X - если не выделять часть строки то вырежит всю строку.</li>
 
-    <h2>Полезные плагины</h2>
-    <ul>
-        <li>Lombok - это плагин компилятора, который добавляет в Java новые «ключевые слова» и превращает
-            аннотации в Java-код, уменьшая усилия на разработку и обеспечивая некоторую дополнительную функциональность.
-        </li>
-        <li>Extra Icons - красивые иконки для множества расширений файлов.</li>
-    </ul>
+            <li>Ctrl + / - комментирование строки или выделенного текста.</li>
+            <li>alt + enter - применяется на часть кода подсвеченный как ошибка, чтобы увилить варианты решения.</li>
+            <li>F2 - перейти на следующую ошибку, предупреждение или предложение.</li>
+            <li>Alt + 1 - перейти в окно Project.</li>
+            <li>Esc - вернуться в окно редактирования.</li>
+            <li>Ctrl + B - перейти вместо создания/использование для метода/переменной.</li>
+            <li>Ctrl + Ctrl - выбор и запуск класса или прежних конфигураций.</li>
+
+            <li>Ctrl + Alt + M - Extract Method. Вынести часть метода в отдельный метод.</li>
+            <li>Ctrl + Alt + C - Extract Constant. Вынести хардкод в константу.</li>
+            <li>Ctrl + Alt + F - Extract Field. Вынести хардкод в поле.</li>
+            <li>Ctrl + Alt + V - Extract Variable. Вынести часть цепочки вызова в именованную переменную.</li>
+            <li>Ctrl + Alt + P - Extract Parameter. Вынести переменную в параметры метода.</li>
+            <li>Ctrl + Alt + N - Inline Anything. Обратные Extract изменения.</li>
+            <li>Shift + F6 - Renaming. Применяется на имени переменной/метода.</li>
+            <li>Ctrl + F6 - Change Signature. Применяется на имени метода.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2 id="indexError">Проблемы с индексацией</h2>
+        <p>Idea подсвечивает красным, но build проходит нормально.</p>
+        <p>В выпадающем окне File -> Invalidate Caches</p>
+    </section>
+
+    <section>
+        <h2 id="usefulPlugins">Полезные плагины</h2>
+        <ul>
+            <li>Lombok - это плагин компилятора, который добавляет в Java новые «ключевые слова» и превращает
+                аннотации в Java-код, уменьшая усилия на разработку и обеспечивая некоторую дополнительную функциональность.
+            </li>
+            <li>Extra Icons - красивые иконки для множества расширений файлов.</li>
+        </ul>
+    </section>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>

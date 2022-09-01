@@ -50,7 +50,7 @@ catch(Exception e) {}
 catch(ClassCastException | ArrayStoreException e1) {}
 finally {}
             </pre>
-            <p>try-with-resources - дает возможность объявлять один или несколько ресурсов в блоке try, которые
+            <p>try-with-resources(since v.9) - дает возможность объявлять один или несколько ресурсов в блоке try, которые
                 будут закрыты автоматически без использования finally блока. Проверяет наличие интерфейса AutoCloseable
                 или Closeable. И выполняет метод close.
                 <pre>
