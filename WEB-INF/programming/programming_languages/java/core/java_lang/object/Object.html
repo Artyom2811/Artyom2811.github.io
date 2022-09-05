@@ -72,7 +72,7 @@ class Color{
         <br>
         Person guest = (Person) obj;<br>
         return a == guest.a && b.equals(guest.b) && c.equals(guest.c) //Если ссылочная переменная то equals()<br>
-        }<br>
+        }
     </div>
 
     <h2>Пример hashcode():</h2>
@@ -80,7 +80,7 @@ class Color{
     return Objects.hash(a, b, c);<br>
     }
 
-    <h2>Договор между equals() и hashcode():</h2>
+    <h2>Договор(контракт) между equals() и hashcode():</h2>
     <ul>
         <li>Если два объекта равны, то они должны иметь один и тот же хэш-код.</li>
         <li>Если два объекта не равны, то они могут иметь или не иметь один и тот же хэш-код(коллизия).</li>

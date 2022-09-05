@@ -31,14 +31,45 @@
         <h2>Основные разделы</h2>
         <ul>
             <li><a href="#memoryTypes">Типы памяти</a></li>
-            <li><a href="#garbageCollectorTypes">Виды сборщика мусора</a></li>
-            <li><a href="#garbageCollectorDefault">Сборщики мусора по умолчанию</a></li>
+            <li><a href="#garbageCollector">Garbage Collector</a></li>
+            <li><a href="#garbageCollectorTypes">Виды Garbage Collector</a></li>
+            <li><a href="#garbageCollectorDefault">Garbage Collector по умолчанию</a></li>
             <li><a href="#questions">Вопросы</a></li>
         </ul>
     </section>
 
     <section>
         <h2 id="memoryTypes">Типы памяти</h2>
+        <img src="memorySchema.png" width="90%" height="20%">
+        <p>Вся область памяти называется Native Memory</p>
+
+        <h3>PermGen (Permanent Generation)</h3>
+        <h4>Описание</h4>
+        <ol>
+            <li>С Java 8 ему на смену пришла область Metaspace.</li>
+        </ol>
+
+        <h3>Metaspace (метаданные)</h3>
+        <h4>Описание</h4>
+        <ol>
+            <li>Является общими для всех.</li>
+            <li>Макс размер настраивается с помощью флага MaxMetaspaceSize.</li>
+        </ol>
+
+        <h4>Здесь хранятся</h4>
+        <ol>
+            <li>Хранятся метаданные классов.</li>
+            <li>Статические переменные.</li>
+        </ol>
+
+        <h3>CodeCache (кэш кода)</h3>
+        <h4>Описание</h4>
+        <ol>
+            <li>JIT-компилятор компилирует часто исполняемый код, преобразует его в нативный машинный код и кеширует
+                для более быстрого выполнения.
+            </li>
+        </ol>
+
         <h3>Heap(куча)</h3>
         <h4>Описание</h4>
         <ol>
@@ -79,25 +110,109 @@
 
         <h4>Здесь хранятся</h4>
         <ol>
-            <li>Локальные(внутри методов) примитивы</li>
-            <li>Ссылки на локальные объекты(которые хранятся в heap)</li>
+            <li>Stack вызова методов.</li>
+            <li>Локальные(внутри методов) примитивы.</li>
+            <li>Ссылки на локальные объекты(которые хранятся в heap).</li>
         </ol>
     </section>
 
-
     <section>
-        <h2 id="garbageCollectorTypes">Виды сборщика мусора</h2>
+        <h2 id="garbageCollector">Garbage Collector</h2>
+        <p>Мусор - объект в Heap на которого никто не ссылается.</p>
+
+        <h3>Работа Garbage Collector</h3>
         <ol>
-            <li>Serial Garbage Collector - S GC</li>
-            <li>Parallel Garbage Collector - P GC</li>
+            <li>Mark (маркировка) - на первом этапе GC сканирует все объекты и помечает живые. Выполнение программы
+                приостанавливается. Поэтому этот шаг также называется "Stop the World".
+            </li>
+            <li>Sweep (очистка) - очистка объектов без отметок.</li>
+            <li>Compact (уплотнение) - оставшиеся объекты подвигаются друг к другу для удобства.</li>
+        </ol>
+
+        <h3>Поколения объектов</h3>
+        <img src="objectGeneration.png" width="90%" height="20%">
+        <p>Для оптимизации сборки мусора память кучи дополнительно разделена на четыре области. В эти области, объекты
+            помещаются в зависимости от их возраста(как долго они используются в приложении).
+        </p>
+        <ol>
+            <h4>Young Generation</h4>
+            <li>EDEN - новые объекты.</li>
+            <li>S0, S1(Survivor space) - выжившие.</li>
+
+            <h4>Old generation</h4>
+            <li>OLD - для старых объектов.</li>
+        </ol>
+
+        <h4>Алгоритм сборки мусора, использующий поколения</h4>
+        <ol>
+            <li>Новые объекты создаются в EDEN.</li>
+            <li>Когда область Eden заполняется, происходит минорная сборка мусора (Minor GC). Minor GC — mark и sweep
+                выполняются для young generation.
+            </li>
+            <li>Живые объекты перемещаются в одну из областей Survivor (например, S0).</li>
+            <li>При следующем Minor GC процесс повторяется. Но объекты в областях S0 и S1 меняются метами, увеличивая
+                свой возраст.
+            </li>
+            <li>Объекты между областями Survivor копируются определенное количество раз (пока не переживут
+                определенное количество Minor GC) или пока там достаточно места. Затем эти объекты копируются
+                в область Old.
+            </li>
+            <li>Major GC - этапы mark и sweep выполняются для Old Generation. Major GC работает медленнее по сравнению
+                с Minor GC, поскольку старое поколение в основном состоит из живых объектов.
+            </li>
+        </ol>
+
+        <h4>Сборка мусора: флаги</h4>
+        <ul>
+            <li>-XX:NewRatio=n - отношение размера Old Generation к Young Generation</li>
+            <li>-XX:SurvivorRatio=n - отношение размера Eden к Survivor</li>
+            <li>-XX:MaxTenuringThreshold=n - возраст объекта, когда объект перемещается из области Survivor в область
+                Old Generation
+            </li>
+        </ul>
+
+        <h4>Включение логов GC</h4>
+        <pre>
+-XX:+PrintGCDateStamps -verbose:gc -XX:+PrintGCDetails -
+Xloggc:/tmp/[Application-Name]-[Application-port]-%t-gc.log -
+XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=20 -
+XX:GCLogFileSize=100M
+        </pre>
+
+    </section>
+
+    <section>
+        <h2 id="garbageCollectorTypes">Виды Garbage Collector(сборщик мусора)</h2>
+        <ol>
+            <li>Serial Garbage Collector - S GC
+                <p>Один поток.</p>
+                <p>-XX:+UseSerialGC</p>
+            </li>
+
+            <li>Parallel Garbage Collector - P GC
+                <p>Несколько потоков.</p>
+                <p>Многопоточность ускоряет сборку мусора.</p>
+                <p>-XX:+UseParallelGC</p>
+            </li>
+
             <li>CMS Garbage Collector - CMS GC</li>
-            <li>G1 Garbage Collector - G1 GC</li>
-            <li>The Z Garbage Collector - ZGC</li>
+
+            <li>G1 Garbage Collector - G1 GC
+                <p>Выполняет некоторую тяжелую работу параллельно с работой приложения.</p>
+                <p>-XX:+UseG1GC</p>
+            </li>
+
+            <li>The Z Garbage Collector - ZGC
+                <p>Выполняет всю тяжелую работу параллельно с работой приложения.</p>
+                <p>В приоритете время отклика.</p>
+                <p>Низкая задержка.</p>
+                <p>-XX:+UseZGC</p>
+            </li>
         </ol>
     </section>
 
     <section>
-        <h2 id="garbageCollectorDefault">Сборщики мусора по умолчанию</h2>
+        <h2 id="garbageCollectorDefault">Garbage Collector по умолчанию</h2>
         <ol>
             <li>Java 7 - Parallel GC</li>
             <li>Java 8 - Parallel GC</li>

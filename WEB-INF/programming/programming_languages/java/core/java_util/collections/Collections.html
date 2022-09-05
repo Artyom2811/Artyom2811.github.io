@@ -53,35 +53,6 @@
     </section>
 
     <section>
-        <h2>Вопросы на собеседование:</h2>
-        <ul>
-            <h3>Методы Iterator</h3>
-            <ol>
-                <li>boolean hasNext()</li>
-                <li>E next()</li>
-                <li>void remove()</li>
-            </ol>
-
-            <h3>List</h3>
-            <li>Разница HashSet и LinkedHashSet? - LinkedHashSet хранит записи в порядке добавления, двухсвязный список.
-            </li>
-            <li>Разница HashSet и TreeSet? - TreeSet на основе дерева. При добавлении сортирует. Для добавления
-                необходимо
-                передать Comparator или чтобы его элементы реализовывали Comparable.
-            </li>
-
-            <h3>Set</h3>
-            <li>Как получить значение из Hashset? Вызвать его Iterator или использовать метод toArray()</li>
-
-            <h3>Map</h3>
-            <li>Что происходит при получении значение из Hashmap? Мы ищем по ключу баккет, а дальше проверяем на
-                equals()
-                элементы пока не найдем.
-            </li>
-        </ul>
-    </section>
-
-    <section>
         <h2>Новые методы в коллекциях:</h2>
         <ol>
             <li>Iterable.forEach(Consumer<? super T> action)</li>
@@ -118,6 +89,37 @@
                 результат выполнения функции function.
             </li>
         </ol>
+    </section>
+
+    <section>
+        <h2>Вопросы на собеседование:</h2>
+        <ul>
+            <h3>Методы Iterator</h3>
+            <ol>
+                <li>boolean hasNext()</li>
+                <li>E next()</li>
+                <li>void remove()</li>
+            </ol>
+
+            <h3>List</h3>
+            <li>Разница HashSet и LinkedHashSet? - LinkedHashSet хранит записи в порядке добавления, двухсвязный список.
+
+            </li>
+            <li>Разница HashSet и TreeSet? - TreeSet на основе дерева. При добавлении сортирует. Для добавления
+                необходимо
+                передать Comparator или чтобы его элементы реализовывали Comparable.
+            </li>
+
+            <h3>Set</h3>
+            <li>Как получить значение из Hashset? Вызвать его Iterator или использовать метод toArray()</li>
+
+            <h3>Map</h3>
+            <li>Что происходит при получении значение из Hashmap? Мы ищем по ключу баккет, а дальше проверяем на
+                equals() элементы пока не найдем.
+            </li>
+
+            <li>Разница Set и List - List имеет порядок вставки.</li>
+        </ul>
     </section>
 
     <section>
