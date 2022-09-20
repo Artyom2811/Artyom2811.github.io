@@ -1,0 +1,69 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Liquibase</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Libraries.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Liquibase</h1>
+
+    <img src="img.png" width="200" height="200">
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Что это</h2>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#howItWorks">Как она работает</a></li>
+            <li><a href="architecture/Architecture.html">Ссылки на другие страницы</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="howItWorks">Для работы через console необходимо установить Liquibase на устройство.</h2>
+    </section>
+
+    <section>
+        <h2>Команды</h2>
+        <h3>Для всех запросов через консоль необходимо указывать параметры</h3>
+        <ul>
+            <li>url - url к БД.</li>
+            <li>classpath - пусть на устройстве к драйверу к БД.</li>
+            <li>username - к БД.</li>
+            <li>password - к БД.</li>
+            <li>changeLogFile - файл с необходимыми изменениями.</li>
+        </ul>
+
+        <p>update</p>
+        <pre>
+liquibase
+    --url=jdbc:postgresql://localhost:5434/app
+    --classpath=/home/.../.m2/repository/org/postgresql/postgresql/42.5.0/postgresql-42.5.0.jar
+    --username=name
+    --password=pass
+    --changeLogFile=db.changelog-2.0.xml
+    update
+        </pre>
+    </section>
+
+    <!--Пример экранирования знаков:меньше, больше-->
+    <!-- &lt; &gt; -->
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
