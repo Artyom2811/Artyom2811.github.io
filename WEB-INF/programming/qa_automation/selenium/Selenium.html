@@ -8,24 +8,22 @@
 </head>
 
 <body>
-<div><a href="../QA Automation.html" class="backButton"></a></div>
+<div><a href="../QaAutomation.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>Selenium</h1>
 
     <section>
         <h2>Что это</h2>
-        <p>Selenium – это проект, в рамках которого разрабатывается серия программных продуктов с открытым исходным
-            кодом (open source). Отвечает за управление браузером.
-        </p>
+        <p>Selenium – инструмент для автоматизируемого управления браузера(драйвер браузера).</p>
     </section>
 
     <section>
         <h2>Основные разделы</h2>
-        <p><a href="Web Driver/Web Driver.html"><b>Selenium WebDriver</b></a></p>
-        <p><a href="Web Driver/Web Driver.html"><b>Selenium RC</b></a></p>
-        <p><a href="Web Driver/Web Driver.html"><b>Selenium Server</b></a></p>
-        <p><a href="Web Driver/Web Driver.html"><b>Selenium Grid</b></a></p>
-        <p><a href="Web Driver/Web Driver.html"><b>Selenium IDE</b></a></p>
+        <p>Selenium WebDriver</p>
+        <p>Selenium RC</p>
+        <p>Selenium Server</p>
+        <p>Selenium Grid</p>
+        <p>Selenium IDE</p>
     </section>
 
     <section>
@@ -47,7 +45,6 @@
             </li>
             <li>частные</li>
         </ol>
-        <p></p>
 
         <p>Web driver</p>
         <ol>
@@ -61,6 +58,28 @@
             <li>getWindowHandle()</li>
             <li>switchTo - переключение между окнами.</li>
         </ol>
+    </section>
+
+    <section>
+        <table class="wikitable">
+            <tbody>
+            <tr><th>Description</th> <th>XPath</th> <th>CSS path</th></tr>
+            <tr><td>Direct child</td> <td>//div/a</td> <td>div > a</td></tr>
+            <tr><td>Child or Sub Child</td> <td>//div//a</td> <td>div a</td></tr>
+            <tr><td>Id</td> <td>//div[@id='idValue']//a</td> <td>div#idValue a</td></tr>
+            <tr><td>Class</td> <td>//div[@class='classValue']//a</td> <td>div.classValue a</td></tr>
+            <tr><td>Attribute</td> <td>//form/input[@name='username']</td> <td>form input[name='username']</td></tr>
+            <tr><td>Following sibling</td> <td>//li[@class='first']/following-sibling::li</td> <td>li.first + li</td></tr>
+            <tr><td>Multiple attributes</td> <td>//input[@name='continue' and @type='button']</td> <td>input[name='continue'][type='button']</td></tr>
+            <tr><td>nth child</td> <td>//ul[@id='list']/li[4]</td> <td>ul#list li:nth-child(4)</td></tr>
+            <tr><td>First child</td> <td>//ul[@id='list']/li[1]</td> <td>ul#list li:first-child</td></tr>
+            <tr><td>Last child</td> <td>//ul[@id='list']/li[last()]</td> <td>ul#list li:last-child</td></tr>
+            <tr><td>Attribute contains</td> <td>//div[contains(@title,'Title')]</td> <td>div[title*="Title"]</td></tr>
+            <tr><td>Attribute starts with</td> <td>//input[starts-with(@name,'user')]</td> <td>input[name^="user"]</td></tr>
+            <tr><td>Attribute ends with</td> <td>//input[ends-with(@name,'name')]</td> <td>input[name$="name"]</td></tr>
+            <tr><td>With attribute</td> <td>//div[@title]</td> <td>div[title]</td></tr>
+            </tbody>
+        </table>
     </section>
 </div>
 </body>
