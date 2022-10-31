@@ -1,3 +1,4 @@
+<!--html_style_version_1-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -21,13 +22,39 @@
         </ol>
     </div>
 
-    <h2>Как она работает</h2>
-    <p>Gradle основан на графе задач (task), которые могут зависеть друг от друга.</p>
+    <section>
+        <h2>Как она работает</h2>
+        <p>Gradle основан на графе задач (task), которые могут зависеть друг от друга.</p>
+    </section>
 
-    <h2>Настройка Gradle</h2>
-    <p>build.gradle - файл настройки Gradle.</p>
-    <p>Пример настроек:</p>
-    <pre>
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#terminalCommand">Терминальные команды</a></li>
+            <li><a href="#settings">Настройка Gradle</a></li>
+            <li><a href="#dependencyConfigurations">Dependency configurations</a></li>
+            <li><a href="#checkstyle">Checkstyle</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="terminalCommand">Терминальные команды</h2>
+        <h3>build</h3>
+            <p>./gradlew build - билд проекта.</p>
+        <h4>Параметры</h4>
+        <ol>
+            <li>--refresh-dependencies - обновление зависимостей.</li>
+            <li>-x test - пропуск тестов.</li>
+        </ol>
+            <ol>./gradlew build </ol>
+
+    </section>
+
+    <section>
+        <h2 id="settings">Настройка Gradle</h2>
+        <p>build.gradle - файл настройки Gradle.</p>
+        <p>Пример настроек:</p>
+        <pre>
 plugins {
     id 'java'
     // For task "run"
@@ -55,41 +82,46 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-    </pre>
+        </pre>
+    </section>
 
-    <h2>Dependency configurations</h2>
-    <ul>
-        <li>api(compile)- не ограничивает использование зависимости. Пример:<br>
-            проект_А подключил наш_проект, который подключил библиотека_B<br>
-            проект_А может использовать классы библиотека_B.
-        </li>
-        <li>implementation - ограничивает использование зависимости. Пример:<br>
-            проект_А подключил наш_проект, который подключил библиотека_B<br>
-            проект_А не может использовать классы библиотека_B.
-        </li>
-        <li>testImplementation(testCompile)</li>
-        <li>debugImplementation(debugCompile)</li>
-        <li>androidTestImplementation(androidTestCompile)</li>
-    </ul>
+    <section>
+        <h2 id="dependencyConfigurations">Dependency configurations</h2>
+        <ul>
+            <li>api(compile)- не ограничивает использование зависимости. Пример:<br>
+                проект_А подключил наш_проект, который подключил библиотека_B<br>
+                проект_А может использовать классы библиотека_B.
+            </li>
+            <li>implementation - ограничивает использование зависимости. Пример:<br>
+                проект_А подключил наш_проект, который подключил библиотека_B<br>
+                проект_А не может использовать классы библиотека_B.
+            </li>
+            <li>testImplementation(testCompile)</li>
+            <li>debugImplementation(debugCompile)</li>
+            <li>androidTestImplementation(androidTestCompile)</li>
+        </ul>
+    </section>
 
-    <h2>checkstyle - плагин для проверки кода.</h2>
-    <h3>@SuppressWarnings</h3>
-    <p>Если нужно использовать аннотацию "@SuppressWarnings" для отключение определенных проверок в методах. Необходимо
-        добавить в файл настройки "checkstyle.xml".
-    <ol>
-        <li>"
-            &lt;module name="SuppressWarningsFilter"/&gt;
-            " - в главный модуль
-        </li>
-        <li>"
-            &lt;module name="SuppressWarningsHolder"/&gt;
-            " - внутрь модуля "TreeWalker"
-        </li>
-    </ol>
-    Пример:
-    </p>
+    <section>
+        <h2 id="checkstyle">Checkstyle</h2>
+        <p>Checkstyle - плагин для проверки кода.</p>
+        <h3>@SuppressWarnings</h3>
+        <p>Если нужно использовать аннотацию "@SuppressWarnings" для отключение определенных проверок в методах. Необходимо
+            добавить в файл настройки "checkstyle.xml".
+        <ol>
+            <li>"
+                &lt;module name="SuppressWarningsFilter"/&gt;
+                " - в главный модуль
+            </li>
+            <li>"
+                &lt;module name="SuppressWarningsHolder"/&gt;
+                " - внутрь модуля "TreeWalker"
+            </li>
+        </ol>
+        Пример:
+        </p>
 
-    <pre>
+        <pre>
 &lt;module name="Checker"&gt;
 
     &lt;module name="SuppressWarningsFilter" /&gt;
@@ -103,12 +135,14 @@ test {
         &lt;/module&gt;
     &lt;/module&gt;
 &lt;/module&gt;
-    </pre>
-    <p>Пример использования</p>
-    <pre>
+        </pre>
+
+        <p>Пример использования</p>
+        <pre>
 @SuppressWarnings("ReturnCount")
 public boolean foo() {
-    </pre>
+        </pre>
+    </section>
 
 </div>
 </body>

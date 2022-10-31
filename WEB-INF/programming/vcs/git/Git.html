@@ -1,3 +1,4 @@
+<!--html_style_version_1-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -28,56 +29,67 @@
         </ol>
     </div>
 
-    <h2>Интерфейсы работы с GIT</h2>
-    <ul>
-        <li><a href="git_terminal/GitTerminal.html">Terminal</a></li>
-        <li>Plugin с Idea</li>
-    </ul>
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#implementation">Релизации GIT</a></li>
+            <li><a href="#interfaces">Интерфейсы работы с GIT</a></li>
+            <li><a href="#commands">Команды</a></li>
+            <li><a href="#squash">Squash</a></li>
+            <li><a href="#.git">.git</a></li>
+        </ul>
+    </section>
 
-    <h2>Терминальные команды для настройки credentials</h2>
-    <ol>
-        <li>git config --local --list - получить локальный настройки пользователя.</li>
-        <li>git config --local user.name имя - установить локальный name. Пример: git config --local user.name myName</li>
-        <li>git config --local user.email почта - установить локальный email. Пример: git config --local user.email а@i.ua</li>
-        <li>git config --local user.password пароль - установить локальный пароль. Пример: git config --local user.password qwerty</li>
-        <br>
-        <li>git config --global --list - получить глобальные настройки пользователя.</li>
-        <li>git config --global user.name имя - установить глобальный name. Пример: git config --global user.name myName.mySurname</li>
-        <li>git config --global user.email почта - установить глобальный email. Пример: git config --global user.email а@i.ua</li>
-        <li>git config --global user.password пароль - установить глобальный password. Пример: git config --global user.password qwerty</li>
-    </ol>
+    <section>
+        <h2 id="implementation">Релизации GIT</h2>
+        <ul>
+            <li><a href="gitlab/GitLab.html">GitLab</a></li>
+            <li><a href="github/GitHub.html">GitHub</a></li>
+        </ul>
+    </section>
 
-    <h2>Команды</h2>
-    <ol>
-        <li>fetch - забирает изменения из репозитория.</li>
-        <li>merge - слияние одной или нескольких веток в другую.</li>
-        <li>pull - fetch + merge.</li>
-        <li>push - добавление commits в репозиторий.</li>
-    </ol>
+    <section>
+        <h2 id="interfaces">Интерфейсы работы с GIT</h2>
+        <ul>
+            <li><a href="git_terminal/GitTerminal.html">Terminal</a></li>
+            <li>Plugin с Idea</li>
+        </ul>
+    </section>
 
-    <h2>Squash - сжатие нескольких commits в один.</h2>
-    <p>Squash for local commits:</p>
-    <p>git rebase -i HEAD~3 - где 3 это количество commits с конца.</p>
-    <p>Далее откроется редактор. Нужно перед каждым commit вверху выбрать и указать:</p>
-    <ol>
-        <li>pick - commit куда вмерджатся другие.</li>
-        <li>s - commits которые будут мерджится.</li>
-    </ol>
-    </p>
-    <p>После закрытия файла откроется текстовый редактор в котором мы должны указать общий commit message.</p>
+    <section>
+        <h2 id="commands">Команды</h2>
+        <ol>
+            <li>fetch - забирает изменения из репозитория.</li>
+            <li>merge - слияние одной или нескольких веток в другую.</li>
+            <li>pull - fetch + merge.</li>
+            <li>push - добавление commits в репозиторий.</li>
+        </ol>
+    </section>
 
-    <h2>.git - директория хранит</h2>
-    <ol>
-        <li>hash всех commits.</li>
-        <li>hooks - настройки действий во время git операций. Проверки, логирование, информирование и тд.</li>
-    </ol>
+    <section>
+        <h2 id="squash">Squash - сжатие нескольких commits в один.</h2>
+        <p>Squash for local commits:</p>
+        <p>git rebase -i HEAD~3 - где 3 это количество commits с конца.</p>
+        <p>Далее откроется редактор. Нужно перед каждым commit вверху выбрать и указать:</p>
+        <ol>
+            <li>pick - commit куда вмерджатся другие.</li>
+            <li>s - commits которые будут мерджится.</li>
+        </ol>
+        <p>После закрытия файла откроется текстовый редактор в котором мы должны указать общий commit message.</p>
+    </section>
 
-    <h2>Commit message</h2>
-    <p>Комментарий исправление опечаток - Fixed Typo</p>
+    <section>
+        <h2 id=".git">.git - директория в проекте для хранения:</h2>
+        <ol>
+            <li>hash всех commits.</li>
+            <li>hooks - настройки действий во время git операций. Проверки, логирование, информирование и тд.</li>
+        </ol>
+    </section>
 
-    <h2>Релизации GIT</h2>
-    <h3>Github</h3>
-    <p>Gist - функционал, который помогает делиться частью кода. Примеры, заготовки и тд.</p>
+    <section>
+        <h2 id="example">Example of commit message</h2>
+        <p>Комментарий исправление опечаток - Fixed Typo</p>
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

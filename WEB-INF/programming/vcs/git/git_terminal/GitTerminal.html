@@ -15,12 +15,13 @@
     <section>
         <h2>Основные разделы</h2>
         <ul>
-            <li><a href="#work_example">Пример работы</a></li>
+            <li><a href="#workExample">Пример работы</a></li>
+            <li><a href="#commands_set_creds">Команды для настройки credentials</a></li>
         </ul>
     </section>
 
     <section>
-        <h2 id="work_example">Пример работы</h2>
+        <h2 id="workExample">Пример работы</h2>
         <p>Выбираем папку и инициализируем ее.</p>
         <pre>git init</pre>
         <p>Проверяем.</p>
@@ -75,6 +76,25 @@ git stash
         </pre>
         <p>Вернуть отложенные изменения.</p>
         <pre>git stash pop</pre>
+    </section>
+
+    <section>
+        <h2 id="commands_set_creds">Команды для настройки credentials</h2>
+        <h3>Local</h3>
+        <ol>
+            <li>git config --local --list - получить локальный настройки пользователя.</li>
+            <li>git config --local user.name имя - установить локальный name. Пример: git config --local user.name myName</li>
+            <li>git config --local user.email почта - установить локальный email. Пример: git config --local user.email а@i.ua</li>
+            <li>git config --local user.password пароль - установить локальный пароль. Пример: git config --local user.password qwerty</li>
+        </ol>
+
+        <h3>Global</h3>
+        <ol>
+            <li>git config --global --list - получить глобальные настройки пользователя.</li>
+            <li>git config --global user.name имя - установить глобальный name. Пример: git config --global user.name myName.mySurname</li>
+            <li>git config --global user.email почта - установить глобальный email. Пример: git config --global user.email а@i.ua</li>
+            <li>git config --global user.password пароль - установить глобальный password. Пример: git config --global user.password qwerty</li>
+        </ol>
     </section>
 
 </div>
