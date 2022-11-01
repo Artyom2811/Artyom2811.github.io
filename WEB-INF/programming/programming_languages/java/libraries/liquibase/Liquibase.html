@@ -13,24 +13,24 @@
 <div class="bodyStyle">
     <h1>Liquibase</h1>
 
-    <img src="img.png" width="200" height="200">
-
-    <div class="todo">
-        <h2>Проработать</h2>
-        <ol>
-            <li></li>
-        </ol>
-    </div>
+    <img src="liquibase_logo.png" width="200" height="200">
 
     <section>
         <h2>Что это</h2>
+        <p>Liquibase - утилита для версионирования структуры реляционной БД и миграции этой структуры с одной версии
+            на другую.
+        </p>
     </section>
 
     <section>
         <h2>Основные разделы</h2>
         <ul>
             <li><a href="#howItWorks">Как она работает</a></li>
-            <li><a href="architecture/Architecture.html">Ссылки на другие страницы</a></li>
+            <li><a href="#commands">Команды</a></li>
+            <li><a href="#springProperties">Spring properties</a></li>
+            <li><a href="#changelog">Changelog</a></li>
+            <li><a href="#rollback">Rollback</a></li>
+            <li><a href="#databasechangelog">databasechangelog table</a></li>
         </ul>
     </section>
 
@@ -39,7 +39,7 @@
     </section>
 
     <section>
-        <h2>Команды</h2>
+        <h2 id="commands">Команды</h2>
         <h3>Для всех запросов через консоль необходимо указывать параметры</h3>
         <ul>
             <li>url - url к БД.</li>
@@ -49,7 +49,7 @@
             <li>changeLogFile - файл с необходимыми изменениями.</li>
         </ul>
 
-        <p>update</p>
+        <p>update - обновление базы с помощью changeLog файла.</p>
         <pre>
 liquibase
     --url=jdbc:postgresql://localhost:5434/app
@@ -61,8 +61,68 @@ liquibase
         </pre>
     </section>
 
-    <!--Пример экранирования знаков:меньше, больше-->
-    <!-- &lt; &gt; -->
+    <section>
+        <h2 id="springProperties">Spring properties</h2>
+        <p>spring.liquibase.change-log - параметр для указания root changelog файла. В котором будут указаны все
+            необходимые changelog файлы в include блоках.
+        </p>
+
+        <p>Пример</p>
+        <pre>
+spring.liquibase.change-log=classpath:db/changelog/db.changelog-root.xml
+        </pre>
+    </section>
+
+
+    <section>
+        <h2 id="changelog">Changelog</h2>
+        <p>Changelogs - file для описания изменений.</p>
+
+        <h3>databaseChangeLog</h3>
+        <p>databaseChangeLog - главный блок в котором описываются изменения.</p>
+
+        <h3>changeSet</h3>
+        <p>changeSet - блок в котором описываются изменения.</p>
+
+        <h3>preConditions</h3>
+        <p>preConditions - блок для описания условий для выполнения изменений.</p>
+
+        <h3>rollback</h3>
+        <p>rollback - тег для добавления SQL команды, которые будут выполнены во время выполнения rollback команды.</p>
+
+    </section>
+
+    <section>
+        <h2 id="rollback">Варианты rollback</h2>
+        <ul>
+            <li>rollbackCount - по количеству необходимых откатов от последнего.</li>
+            <li>rollback - по установленному tag метке.</li>
+            <li>rollbackDate - по дате изменения до которого необходимого откатить.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="databasechangelog">databasechangelog table</h2>
+        <p>databasechangelog - таблица для метаданных Liquibase.</p>
+        <h3>Поля</h3>
+        <ol>
+            <li>id - id изменения.</li>
+            <li>author</li>
+            <li>filename - путь к changelog файлу.</li>
+            <li>dateexecuted</li>
+            <li>orderexecuted</li>
+            <li>exectype</li>
+            <li>md5sum - хэшсумма файла.</li>
+            <li>description</li>
+            <li>comments</li>
+            <li>tag</li>
+            <li>liquibase</li>
+            <li>contexts</li>
+            <li>labels</li>
+            <li>deployment_id</li>
+        </ol>
+    </section>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>
