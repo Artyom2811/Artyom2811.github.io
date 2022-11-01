@@ -120,7 +120,7 @@
                 (работающий с объектами HttpServletRequest и HttpServletResponse). Просматривает классы, аннотированные
                 @Controller и обнаруживает в них аннотации @RequestMapping. Нужен для ответа веб страницей.
             </li>
-            <li>@RestController - содержит две аннотаций @Controller и @ResponseBody. Нужен для ответа телом(JSON, XML и
+            <li>@RestController - @Controller + @ResponseBody. Нужен для ответа телом(JSON, XML и
                 тд.).
             </li>
             <li>@Transactional - Перед исполнением метода помеченного данной аннотацией начинается транзакция,
@@ -136,6 +136,11 @@
             <li>@PutMapping - указывает PUT mapping для метода.</li>
             <li>@PatchMapping - указывает PATCH mapping для метода.</li>
             <li>@DeleteMapping - указывает DELETE mapping для метода.</li>
+
+            <li>@ControllerAdvice - ля оборачивания объекта, возвращаемого контроллерами, в новый класс на уровне
+                DispatcherServlet.
+            </li>
+            <li>@RestControllerAdvice - @ControllerAdvice + @ResponseBody</li>
 
             <li>@Lookup - помечается метод, который будет возвращать разные объекты при каждом вызове метода.</li>
             <li>@Scope - для установки области жизни бина.</li>
