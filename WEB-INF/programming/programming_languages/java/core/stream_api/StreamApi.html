@@ -45,6 +45,27 @@
         <li>reduce - позволяет выполнять агрегатные функции на всей коллекцией и возвращать один результат.</li>
     </ol>
 
+    <section>
+        <h2>Примеры</h2>
+        <h3>Поиск совпадений</h3>
+        <pre>
+var list = List.of("A", "B", "C");
+var matchingElements = List.of("B", "C", "D")
+    .stream()
+    .filter(list::contains)
+    .toList();
+        </pre>
+
+        <h3>Поиск не совпадений</h3>
+        <pre>
+var list = List.of("A", "B", "C");
+var matchingElements = List.of("B", "C", "D")
+    .stream()
+    .filter(element -> !list.contains(element))
+    .toList();
+        </pre>
+    </section>
+
     <p>Как переиспользовать Stream?</p>
 </div>
 </body>
