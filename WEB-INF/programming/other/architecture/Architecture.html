@@ -21,9 +21,30 @@
     </div>
 
     <ul>Основные разделы:
-        <li><a href="microservice/Microservice.html">Микросервисы</a></li>
-        <li><a href="monolith/Monolith.html">Монолит</a></li>
+        <li><a href="#monolith">Monolithic(Монолит)</a></li>
+        <li><a href="#multitier">Multitier(Многоуровневый)</a></li>
+        <li><a href="microservice/Microservice.html">Microservice(Микросервисы)</a></li>
     </ul>
+
+    <section>
+        <h2 id="monolith">Монолит</h2>
+        <p>Монолитное приложение(монолит) представляет собой приложение, доставляемое через единое развертывание.
+            Таким является приложение, доставленное в виде одной WAR или приложение Node с одной точкой входа.
+            Содержит: UI слой, сервис слой, слой работы с БД и тд.
+        </p>
+    </section>
+
+    <section>
+        <h2 id="multitier">Multitier</h2>
+        <p>Разделение монолита на несколько частей. Отличие от микросервисов - каждый микросервис может иметь все
+            слои в себе. Это значит микросервис - маленький монолит.</p>
+        <h3>Обычно разделяется на:</h3>
+        <ol>
+            <li>Presentation layer(Front-end)</li>
+            <li>Logic layer(Back-end)</li>
+            <li>Data layer(Database administrators)</li>
+        </ol>
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>
