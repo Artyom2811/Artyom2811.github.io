@@ -14,7 +14,7 @@
 
     <h2>Основные разделы</h2>
     <ul>
-        <li><a href="#converting">Преобразования</a></li>
+        <li><a href="#converting">Преобразования(приведение)</a></li>
         <li><a href="#if">if</a></li>
         <li><a href="#ternary_operator">ternary operator</a></li>
         <li><a href="#loops">Циклы(loops)</a></li>
@@ -23,7 +23,7 @@
     </ul>
 
     <section>
-        <h2 id="converting">Преобразования</h2>
+        <h2 id="converting">Преобразования(приведение)</h2>
         <h3>Восходящее</h3>
         <p>Восходящее - преобразование от потомка к предку.</p>
 
@@ -39,6 +39,11 @@ byte y = (byte) x;
         <p>или</p>
         <pre>Animal dog = new Dog(); //восходящее преобразование. Будет потерян доступ ко всем методам, которые есть
         только у класса Dog.
+        </pre>
+
+        <p>Можно привести char в int.</p>
+        <pre>
+(int) 'A'
         </pre>
     </section>
 

@@ -35,9 +35,17 @@
         <li>@AllArgsConstructor - создание конструктора со всеми полями.</li>
         <li>@Data - содержит: @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor.</li>
         <li>@Value - аналог @Data, но для immutable классов. Не содержит @Setter.</li>
-        <li>@Builder - реализация паттерна Builder. Также можно указывать на переменные с коллекциями аннотацию
-            @Singular. Которая поможет по отдельности добавлять в коллекции.
-            <pre>
+        <li>@Builder - реализация паттерна Builder. Также можно указывать на переменные с коллекциями аннотацию.</li>
+            @Builder(toBuilder = true) - добавляем возможность создания Builder с любого экземпляра.
+        </li>
+        <li>@SneakyThrows - заменяет ключевое слово throws. Указываться над методами</li>
+        <li>@Synchronized - замена слова synchronized.</li>
+        <li>@Log - добавление инициализации логирования, так же позволяет выбрать вид логгера: @CommonsLog, @JBossLog,
+            @Log, @Log4j, @Log4j2, @Slf4j, @XSlf4j.
+        </li>
+        <li>@Cleanup - замена try with resources.</li>
+        <li>@Singular. Которая поможет по отдельности добавлять в коллекции.</li>
+        <pre>
 <b>Без @Singular</b>
 
 Person person = Person.builder()
@@ -46,9 +54,9 @@ Person person = Person.builder()
   .familyName("Aardvark")
   .tags(Arrays.asList("fictional","incidental"))
   .build();
-            </pre>
+        </pre>
 
-            <pre>
+        <pre>
 <b> @Singular</b>
 
 Person person = Person.builder()
@@ -58,15 +66,7 @@ Person person = Person.builder()
   .interest("history")
   .interest("sport")
   .build();
-            </pre>
-            @Builder(toBuilder = true) - добавляем возможность создания Builder с любого экземпляра.
-        </li>
-        <li>@SneakyThrows - заменяет ключевое слово throws. Указываться над методами</li>
-        <li>@Synchronized - замена слова synchronized.</li>
-        <li>@Log - добавление инициализации логирования, так же позволяет выбрать вид логгера: @CommonsLog, @JBossLog,
-            @Log, @Log4j, @Log4j2, @Slf4j, @XSlf4j.
-        </li>
-        <li>@Cleanup - замена try with resources.</li>
+        </pre>
     </ul>
 
 </div>
