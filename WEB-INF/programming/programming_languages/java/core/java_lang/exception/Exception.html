@@ -15,87 +15,138 @@
         <h2>Проработать:</h2>
         <ol>
             <li><a href="https://javarush.ru/groups/posts/isklyucheniya-java">Исключения в Java</a></li>
-            <li><a href="https://habr.com/ru/company/golovachcourses/blog/223821/">Исключения в Java, Часть I (try-catch-finally)</a></li>
-            <li><a href="https://habr.com/ru/company/golovachcourses/blog/225585/">https://habr.com/ru/company/golovachcourses/blog/225585/#1</a></li>
+            <li><a href="https://habr.com/ru/company/golovachcourses/blog/223821/">Исключения в Java, Часть I
+                (try-catch-finally)</a></li>
+            <li><a href="https://habr.com/ru/company/golovachcourses/blog/225585/">https://habr.com/ru/company/golovachcourses/blog/225585/#1</a>
+            </li>
             <li><a href="https://habr.com/ru/post/540102/">Вы всё ещё ловите исключения? Тогда мы к вам</a></li>
         </ol>
     </div>
 
-    <h2>Два главных типа:</h2>
-    <ol>
-        <li>checked - компилятор их проверяет.</li>
-        <li>unchecked - компилятор их не проверяет.</li>
-    </ol>
+    <section>
+        <h2>Основные определения:</h2>
+        <ol>
+            <li>Exception(Исключение) - это нештатная ситуация, ошибка во время выполнения программы.</li>
+            <li>Error - не обрабатываемые исключения тк после из возникновений нет гарантий что программа будет
+                выполняться корректно.
+            </li>
+        </ol>
+    </section>
 
-    <h2>Основные определения:</h2>
-    <ol>
-        <li>Exception(Исключение) - это нештатная ситуация, ошибка во время выполнения программы.</li>
-        <li>Error - не обрабатываемые исключения тк после из возникновений нет гарантий что программа будет
-            выполняться корректно.
-        </li>
-    </ol>
+    <section>
+        <h2>Иерархия исключений:</h2>
+        <img src="ExceptionHierarchy.png" width="1100" height="500">
+    </section>
 
-    <h2>Иерархия исключений:</h2>
-    <img src="ExceptionHierarchy.png" width="1100" height="500">
+    <section>
+        <h2>Типы проверки компилятором:</h2>
+        <h3>Checked - компилятор их проверяет.</h3>
+        <ol>
+            <li>ClassNotFoundException - класс не найден.</li>
+            <li>CloneNotSupportedException - попытка клонировать объект который не реализует Cloneable интерфейс.</li>
+            <li>IllegalAccessException - запрещен доступ к классу.</li>
+            <li>InstantiationException - попытка создания объект абстрактного класса.</li>
+            <li>InterruptedException - один поток был прерван другим потоком.</li>
+            <li>NoSuchFieldException - Запрошенное поле не существует.</li>
+            <li>NoSuchMethodException - Запрошенное поле не существует.</li>
+        </ol>
 
-    <h2>Способы обработки исключений</h2>
-    <ol>
-        <li>throws - ключевое слово которое, используется при определении метода. Указывает что метод может выкинуть
-            ошибку.
-        </li>
-        <li>try - catch - finally
-            <pre>
+        <h3>Unchecked - компилятор их не проверяет.</h3>
+        <h4>Error</h4>
+        <ul>
+            <li>
+                <h5>VirtualMachineError</h5>
+                <ul>
+                    <li>UnknownError - неизвестная ошибка от JVM.</li>
+                    <li>InternalError - неизвестная внутренняя ошибка от JVM.</li>
+                    <li>OutOfMemoryError - недостаток Heap памяти.</li>
+                    <li>StackOverflowError - недостаток Stack памяти.</li>
+                </ul>
+            </li>
+            <li>ThreadDeath - создается потоком жертвой при вызове метода Thread.stop().</li>
+        </ul>
+
+        <h4>Runtime</h4>
+        <ul>
+            <li>ArithmeticException - арифметическая ошибка: деление на ноль и тд.</li>
+            <li>
+                <h5>IndexOutOfBoundsException</h5>
+                <ul>
+                    <li>IndexOutOfBoundsException - некоторый тип индекса находится вне границ.</li>
+                    <li>ArrayIndexOutOfBoundsException - индекс массива находится вне границ.</li>
+                    <li>StringIndexOutOfBoundsException - попытка индексации вне границ строки.</li>
+                </ul>
+            </li>
+            <li>ArrayStoreException - назначение элементу массива несовместимого типа.</li>
+            <li>ClassCastException - недопустимое приведение типов.</li>
+            <li>ConcurrentModificationException - некорректная модификация коллекции.</li>
+            <li>
+                <h5>IllegalArgumentException</h5>
+                <ul>
+                    <li>IllegalArgumentException - при вызове метода использован незаконный аргумент.</li>
+                    <li>IllegalThreadStateException - требуемая операция не совместима с текущим состоянием потока.</li>
+                    <li>NumberFormatException - недопустимое преобразование строки в числовой формат.</li>
+                </ul>
+            </li>
+            <li>IllegalArgumentException - при вызове метода использован незаконный аргумент.</li>
+            <li>IllegalMonitorStateException - незаконная операция монитора на разблокированном экземпляре.</li>
+            <li>IllegalStateException - среда или приложение находятся в некорректном состоянии.</li>
+            <li>NegativeArraySizeException - массив создавался с отрицательным размером.</li>
+            <li>NullPointerException - недопустимое использование нулевой ссылки.</li>
+            <li>UnsupportedOperationException - встретилась неподдерживаемая операция.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Способы обработки исключений</h2>
+        <ul>
+            <li>throws - ключевое слово которое, используется при определении метода. Указывает что метод может выкинуть
+                ошибку.
+            </li>
+            <li>try - catch - finally
+                <pre>
 try(try-with-resources){}
 catch(Exception e) {}
 catch(ClassCastException | ArrayStoreException e1) {}
 finally {}
             </pre>
-            <p>try-with-resources(since v.9) - дает возможность объявлять один или несколько ресурсов в блоке try, которые
-                будут закрыты автоматически без использования finally блока. Проверяет наличие интерфейса AutoCloseable
-                или Closeable. И выполняет метод close.
+                <p>try-with-resources(since v.9) - дает возможность объявлять один или несколько ресурсов в блоке try,
+                    которые
+                    будут закрыты автоматически без использования finally блока. Проверяет наличие интерфейса
+                    AutoCloseable
+                    или Closeable. И выполняет метод close.
                 <pre>
 try (BufferedReader br = new BufferedReader(new FileReader(path))) {
     return br.readLine();
 }
             </pre>
-            </p>
-        </li>
-    </ol>
+                </p>
+            </li>
+        </ul>
+    </section>
 
-    <h2>Иерархия исключений:</h2>
-    <ul>
-        <li>ArithmeticException - арифметическая ошибка: деление на ноль и тд.</li>
-        <li>ArrayIndexOutOfBoundsException - индекс массива находится вне границ.</li>
-        <li>ArrayStoreException - назначение элементу массива несовместимого типа.</li>
-        <li>ClassCastException - недопустимое приведение типов.</li>
-        <li>ConcurrentModificationException - некорректная модификация коллекции.</li>
-        <li>IllegalArgumentException - при вызове метода использован незаконный аргумент.</li>
-        <li>IllegalMonitorStateException - незаконная операция монитора на разблокированном экземпляре.</li>
-        <li>IllegalStateException - среда или приложение находятся в некорректном состоянии.</li>
-        <li>IllegalThreadStateException - требуемая операция не совместима с текущим состоянием потока.</li>
-        <li>IndexOutOfBoundsException - некоторый тип индекса находится вне границ.</li>
-        <li>NegativeArraySizeException - массив создавался с отрицательным размером.</li>
-        <li>NullPointerException - недопустимое использование нулевой ссылки.</li>
-        <li>NumberFormatException - недопустимое преобразование строки в числовой формат.</li>
-        <li>StringIndexOutOfBoundsException - попытка индексации вне границ строки.</li>
-        <li>UnsupportedOperationException - встретилась неподдерживаемая операция.</li>
-    </ul>
+    <section>
+        <h2>Вопросы на собеседование:</h2>
+        <ul>
+            <li>Если наследовать класс с throws. Наследник должен отлавливать throws не выше по иерархии чем у
+                родителя.
+            </li>
+            <li>Если используются несколько catch нужно писать их отлавливаемые исключения в порядке возвышения по
+                иерархии.
+            </li>
+            <li>Можно написать try - finally без блока catch.</li>
+            <li>try-with-resources - объект должен реализовывать Interface Closeable.</li>
+            <li>Условия не выполнения finally:
+                <ul>
+                    <li>System.exit(int)</li>
+                    <li>Сбой в JVM</li>
+                    <li>Exception в finally</li>
+                    <li>Death of Daemon thread</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
 
-    <h2>Вопросы на собеседование:</h2>
-    <ol>
-        <li>Если наследовать класс с throws. Наследник должен отлавливать throws не выше по иерархии чем у родителя.</li>
-        <li>Если используются несколько catch нужно писать их отлавливаемые исключения в порядке возвышения по иерархии.</li>
-        <li>Можно написать try - finally без блока catch.</li>
-        <li>try-with-resources - объект должен реализовывать Interface Closeable.</li>
-        <li>Условия не выполнения finally:
-            <ol>
-                <li>System.exit(int)</li>
-                <li>Сбой в JVM</li>
-                <li>Exception в finally</li>
-                <li>Death of Daemon thread</li>
-            </ol>
-        </li>
-    </ol>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

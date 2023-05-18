@@ -11,13 +11,32 @@
 <div class="bodyStyle">
     <h1>Final</h1>
 
-    <h2>Может быть пременим на</h2>
-    <ol>
-        <li>class - нельзя создавать наследников.</li>
-        <li>method - нельзя переопределять метод.</li>
-        <li>field - после инициализации нельзя изменить ссылку.</li>
-        <li>method parameter - нельзя изменить ссылку.</li>
-    </ol>
+    <section>
+        <h2>Может быть пременим на</h2>
+        <ol>
+            <li>class - нельзя создавать наследников.</li>
+            <li>method - нельзя переопределять метод.</li>
+            <li>field - после инициализации нельзя изменить ссылку.</li>
+            <li>method parameter - нельзя изменить ссылку.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Константа</h2>
+        <p>Если тип данных, на который ссылается переменная — immutable это константа. Необходимо это контролировать.</p>
+
+        <h3>Immutable final</h3>
+        <pre>
+            final static String FINAL_NAME = "name";
+            final static Integer FINAL_COUNT = 0;
+        </pre>
+
+        <h3>Mutable final</h3>
+        <pre>
+            final List&lt;String&gt; addresses = new ArrayList();
+            final StringBuilder finalStringBuilder = new StringBuilder("name");
+        </pre>
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>
