@@ -1,0 +1,66 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>JSTL</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../JSP.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>JSTL</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://www.codejava.net/java-ee/jstl/introduction-to-jstl">JSTL functions</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Что это</h2>
+        <p>JSP Standard Tag Library (JSTL) - </p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#connection">Подключение JSTL</a></li>
+            <li><a href="#forEach">forEach</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="connection">Подключение JSTL</h2>
+
+        <h3>Зависимости</h3>
+        <pre>
+implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
+implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+        </pre>
+
+
+        <h3>Импорт в JSP файл(выбирать что нужно)</h3>
+        <pre>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
+        </pre>
+    </section>
+
+    <section>
+        <h2 id="forEach">forEach</h2>
+        <p>Пример</p>
+        <pre>
+&lt;c:forEach items=&quot;${list}&quot; var=&quot;p&quot;&gt;
+        &lt;li&gt;${p}&lt;/li&gt;
+&lt;/c:forEach&gt;
+        </pre>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

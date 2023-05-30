@@ -80,6 +80,7 @@
             <li><a href="spring_core/SpringCore.html">Spring Framework(core)</a></li>
             <li><a href="spring_boot/SpringBoot.html">Spring Boot</a></li>
             <li><a href="spring_mvc/SpringMvc.html">Spring MVC</a></li>
+            <li><a href="spring_jdbc/SpringJdbc.html">Spring JDBC</a></li>
             <li>Spring Data</li>
             <li>Spring Cloud</li>
             <li>Spring Security</li>
@@ -123,7 +124,7 @@
             <li>@RestController - @Controller + @ResponseBody. Нужен для ответа телом(JSON, XML и
                 тд.).
             </li>
-            <li>@Transactional - Перед исполнением метода помеченного данной аннотацией начинается транзакция,
+            <li>@Transactional - перед исполнением метода помеченного данной аннотацией начинается транзакция,
                 после выполнения метода транзакция коммитится, при выбрасывании RuntimeException откатывается.
             </li>
             <li>@RequestMapping - используется для маппинга url запроса на указанный метод или класс(общий префикс url).
@@ -174,20 +175,34 @@
             <li>Уничтожение</li>
         </ol>
         <ol>
-            <li>Singltone - создаётся пристарте приложения и удаляется в конце.</li>
+            <li>Singltone - создаётся при старте приложения и удаляется в конце.</li>
             <li>Prototine - создаётся при вызове и удаляется GC.</li>
         </ol>
     </section>
 
     <section>
-        <h2>Для управления созданием и уничтожением бина у нас есть методы:</h2>
+        <h2>Для управления созданием и уничтожением bean у нас есть методы:</h2>
         <ol>
             <li>init-method</li>
             <li>destroy-method</li>
         </ol>
+    </section>
 
-        <h2>Вопросы:</h2>
-        <p>Создание prototype в singleton:</p>
+    <section>
+        <h2>Jakarta Bean Validation(@Valid)</h2>
+        <ul>
+            <li>@NotNull: to say that a field must not be null.</li>
+            <li>@NotEmpty: to say that a list field must not empty.</li>
+            <li>@NotBlank: to say that a string field must not be the empty string (i.e. it must have at least one character).</li>
+            <li>@Min and @Max: to say that a numerical field is only valid when it’s value is above or below a certain value.</li>
+            <li>@Pattern: to say that a string field is only valid when it matches a certain regular expression.</li>
+            <li>@Email: to say that a string field must be a valid email address.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Вопросы на собеседование</h2>
+        <h3>Создание prototype в singleton:</h3>
         <p>Создадим класс singleton Car:</p>
         <pre>
 @Component
@@ -203,7 +218,8 @@ public class Car {
     }
 }
         </pre>
-        <p>Создадим класс prototype Passenger:</p>
+
+        <h3>Создадим класс prototype Passenger:</h3>
         <pre>
 @Component
 @Scope("prototype")
@@ -217,18 +233,6 @@ public class Passenger {
     }
 }
         </pre>
-    </section>
-
-    <section>
-        <h2>Jakarta Bean Validation(@Valid)</h2>
-        <ul>
-            <li>@NotNull: to say that a field must not be null.</li>
-            <li>@NotEmpty: to say that a list field must not empty.</li>
-            <li>@NotBlank: to say that a string field must not be the empty string (i.e. it must have at least one character).</li>
-            <li>@Min and @Max: to say that a numerical field is only valid when it’s value is above or below a certain value.</li>
-            <li>@Pattern: to say that a string field is only valid when it matches a certain regular expression.</li>
-            <li>@Email: to say that a string field must be a valid email address.</li>
-        </ul>
     </section>
 
 </div>

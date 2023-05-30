@@ -1,0 +1,38 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Form</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../HTML.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Form</h1>
+
+    <section>
+        <h2>Что это</h2>
+        <p>HTML тег для отправки HTTP запросов.</p>
+    </section>
+
+    <section>
+        <h2 id="post">POST</h2>
+        <p>Не забывать параметр name который именует параметры запроса.</p>
+
+        <pre><code class="language-html">
+&lt;form action=&quot;./application&quot; method=&quot;POST&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;appName&quot; id=&quot;appCategory&quot; placeholder=&quot;Application name&quot;&gt;&lt;br&gt;&lt;br&gt;
+    &lt;input type=&quot;text&quot; name=&quot;appCategory&quot; id=&quot;appCategory&quot; placeholder=&quot;Application category&quot;&gt;&lt;br&gt;&lt;br&gt;
+    &lt;input type=&quot;text&quot; name=&quot;appDescription&quot; id=&quot;appDescription&quot; placeholder=&quot;Application description&quot;&gt;&lt;br&gt;&lt;br&gt;
+    &lt;input type=&quot;submit&quot; value=&quot;Save&quot;&gt;
+&lt;/form&gt;
+        </code></pre>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
