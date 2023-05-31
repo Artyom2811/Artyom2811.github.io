@@ -1,0 +1,72 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Spring boot jsp</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringBoot.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Spring boot jsp</h1>
+
+    <section>
+        <h2>Что это</h2>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#start_work">Начало работы</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="start_work">Начало работы</h2>
+        <p>Добавить в build.gradle</p>
+        <pre>
+implementation 'org.springframework.boot:spring-boot-starter-web'
+implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.9'
+        </pre>
+
+        <p>Добавить в application.properties</p>
+        <pre>
+## Spring view resolver set up
+spring.mvc.view.prefix=/WEB-INF/jsp/
+spring.mvc.view.suffix=.jsp
+        </pre>
+
+
+        <p>Папка для содержания jsp файлов</p>
+        <pre>
+src/main/webapp/WEB-INF/jsp
+        </pre>
+
+        <p>Пример контролера</p>
+        <pre>
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class ViewPageController {
+    @GetMapping("/")
+    public String getHomePage(ModelMap model) {
+        return "homePage";
+    }
+}
+        </pre>
+
+        <p>Для использования jstl - добовляем в </p>
+        <pre>
+implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
+        </pre>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
