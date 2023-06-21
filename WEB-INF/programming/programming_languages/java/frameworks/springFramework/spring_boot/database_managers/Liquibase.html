@@ -1,0 +1,58 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>English</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringBoot.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>English</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="parts_of_speech/Noun.html">Подключение к Spring boot</a></li>
+            <li><a href="parts_of_speech/Adjective.html">Отключение через Spring properties</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Подключение к Spring boot</h2>
+        <p>Добавление зависимостей</p>
+        <pre>
+implementation 'org.liquibase:liquibase-core:4.22.0'
+        </pre>
+
+        <p>Добавляем файл инициализации по пути - resources.db.changelog.db.changelog-master.xml</p>
+        <p>Или указать путь параметром - spring.liquibase.change-log=</p>
+    </section>
+
+    <section>
+        <h2>Отключение через Spring properties</h2>
+        <h3>Spring 4</h3>
+        <pre>
+flyway.enabled=false
+        </pre>
+
+        <h3>Spring 5</h3>
+        <pre>
+spring.flyway.enabled=false
+        </pre>
+
+    </section>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

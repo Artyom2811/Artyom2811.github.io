@@ -12,6 +12,15 @@
 <div class="bodyStyle">
     <h1>Spring Boot</h1>
 
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://habr.com/ru/articles/350864/">Учебник Thymeleaf: Глава 1. Знакомство</a></li>
+            <li><a href="https://habr.com/ru/articles/435062/">Руководство: Thymeleaf + Spring. Часть 1</a></li>
+        </ol>
+    </div>
+
     <section>
         <h2>Что это</h2>
         <p>Spring Boot - расширение Spring, используемым для создания приложений на основе микросервисов.</p>
@@ -27,9 +36,98 @@
 
     <section>
         <h2>Гайды</h2>
+
+        <h3>Front parts:</h3>
         <ol>
             <li><a href="guides/jsp.html">Работа с jsp</a></li>
+            <li><p>Thymeleaf - замена JSP в приложениях Spring MVC. Способный обрабатывать HTML, XML, JavaScript, CSS
+                и даже простой текст.
+            </p></li>
         </ol>
+
+        <h3>DataBase connectors:</h3>
+        <ul>
+            <li>Jdbc api</li>
+            <li>JdbcTemplate(Spring JDBC)</li>
+            <li>Hibernate</li>
+            <li>MyBatis</li>
+            <li>Spring Data JPA and CrudRepository or PagingAndSortingRepository</li>
+        </ul>
+
+        <h3>DataBase managers:</h3>
+        <ol>
+            <li><a href="database_managers/Liquibase.html">Liquibase</a></li>
+            <li><a href="database_managers/Flyway.html">Flyway</a></li>
+        </ol>
+
+        <h3>Инициализация DB</h3>
+        <p>Помещаем SQL файлы в 'resources'</p>
+        <p>Или указываем путь property. Пример для 'resources/jdbc'</p>
+        <pre>
+## jdbc schema creation
+spring.sql.init.schema-locations=classpath:jdbc/schema.sql
+## jdbc test data
+spring.sql.init.data-locations=classpath:jdbc/test-data.sql
+        </pre>
+
+        <h3>Spring profile</h3>
+        <p>Профили Spring позволяют кастомизировать приложение для работы в различном окружении.</p>
+        <p>В зависимости от активного профиля можно:</p>
+        <ol>
+            <li>Использовать различные реализации одного и того же bean.</li>
+            <li>Присваивать различные значения свойствам(properties) приложения.</li>
+        </ol>
+
+        <h4>Реализации bean</h4>
+        <p>Если Spring-бин имеет аннотацию @Profile, он будет инстанциирован только если указанный в аннотации профиль
+            соответствует какому-либо активному профилю.
+        </p>
+        <p>Пример:</p>
+        <pre>
+public interface SomeService {
+    String NAME = "demo_SomeService";
+
+    String hello(String input);
+}
+
+@Service(SomeService.NAME)
+@Profile("dev")
+public class SomeDevServiceBean implements SomeService {
+    @Override
+    public String hello(String input) {
+        return "Service stub: hello " + input;
+    }
+}
+
+@Service(SomeService.NAME)
+@Profile("prod")
+public class SomeProdServiceBean implements SomeService {
+    @Override
+    public String hello(String input) {
+        return "Real service: hello " + input;
+    }
+}
+        </pre>
+
+        <h4>Properties</h4>
+        <p>Для того, чтобы определить некоторые специфичные для профиля свойства приложения, создайте файл
+            application-имя_профиля.properties в том же пакете, что и основной файл application.properties. Специфичный для профиля
+            файл будет загружен сразу после базового файла, поэтому объявленные в нем свойства переопределят свойства,
+            заданные в базовом файле.
+        </p>
+
+        <p>Пример:</p>
+        <pre>
+com/company/demo/application.properties
+com/company/demo/application-prod.properties
+        </pre>
+
+        <h4>Для запуска определенного profile через Idea, необходимо добавить в VM option -Dspring.profiles.active=имя_профиля</h4>
+        <p>Пример</p>
+        <pre>
+-Dspring.profiles.active=prod
+        </pre>
+
     </section>
 
     <section>

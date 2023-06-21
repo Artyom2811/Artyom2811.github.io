@@ -1,0 +1,39 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Flyway</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringBoot.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Flyway</h1>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ol>
+            <li><a href="#turnoff_for_sb">Отключение через Spring properties</a></li>
+        </ol>
+    </section>
+
+    <section>
+        <h2 id="turnoff_for_sb">Отключение через Spring properties</h2>
+        <h3>Spring 4</h3>
+        <pre>
+liquibase.enabled=false
+        </pre>
+
+        <h3>Spring 5</h3>
+        <pre>
+spring.liquibase.enabled=false
+        </pre>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
