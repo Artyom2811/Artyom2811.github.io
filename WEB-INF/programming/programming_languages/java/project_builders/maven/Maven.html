@@ -1,3 +1,4 @@
+<!--html_style_version_1-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -23,35 +24,41 @@
         </ol>
     </div>
 
-    <h2>Что это</h2>
-    <p>Apache Maven - фреймворк для автоматизации сборки проектов на основе описания их структуры в файлах pom.xml</p>
-    <p>Некоторые библиотеки добавляют необходимые им зависимости. Рекомендуется добавить все эти зависимости
-        самостоятельно. Так как если библиотека не видит явной зависимости в pom.xml, она будет добавлена как
-        неявная зависимость для новой библиотеки:
-    <ul>
-        <li>Зависимость будет добавлена дважды. Возможно с разными версиями.</li>
-        <li>Библиотеки использующие неявную зависимость могут выбрать не правильную версию и работать неправильно.</li>
-    </ul>
-    </p>
+    <section>
+        <h2>Что это</h2>
+        <p>Apache Maven - фреймворк для автоматизации сборки проектов на основе описания их структуры в файлах pom.xml</p>
+        <p>Некоторые библиотеки добавляют необходимые им зависимости. Рекомендуется добавить все эти зависимости
+            самостоятельно. Так как если библиотека не видит явной зависимости в pom.xml, она будет добавлена как
+            неявная зависимость для новой библиотеки:
+        <ul>
+            <li>Зависимость будет добавлена дважды. Возможно с разными версиями.</li>
+            <li>Библиотеки использующие неявную зависимость могут выбрать не правильную версию и работать неправильно.</li>
+        </ul>
+        </p>
+    </section>
 
-    <h2><a href="https://repo.maven.apache.org/maven2/">Каталог репозитория</a></h2>
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#howWork">Как работает</a></li>
+            <li><a href="#mavenLifecycle">Maven Lifecycle</a></li>
+            <li><a href="#terminal_commands">Терминальные команды</a></li>
+            <li><a href="#structureOfPom">Структура pom.xml</a></li>
+            <li><a href="#defaultProperties">Default properties</a></li>
+            <li><a href="#mavenScope">Maven scope(область видимости)</a></li>
+            <li><a href="#addToProject">Добавление Maven в проект через Intellij Idea</a></li>
+            <li><a href="#releaseAndLatest">RELEASE and LATEST</a></li>
+            <li><a href="#mavenPlugin">Maven plugin</a></li>
+        </ul>
+    </section>
 
-    <h2>Основные разделы</h2>
-    <ul>
-        <li><a href="#howWork">Как работает</a></li>
-        <li><a href="#mavenLifecycle">Maven Lifecycle</a></li>
-        <li><a href="#structureOfPom">Структура pom.xml</a></li>
-        <li><a href="#defaultProperties">Default properties</a></li>
-        <li><a href="#mavenScope">Maven scope(область видимости)</a></li>
-        <li><a href="#addToProject">Добавление Maven в проект через Intellij Idea</a></li>
-        <li><a href="#releaseAndLatest">RELEASE and LATEST</a></li>
-        <li><a href="#mavenPlugin">Maven plugin</a></li>
-    </ul>
+    <section>
+        <h2 id="howWork">Как работает</h2>
+        <p>Maven использует модель определённых фаз (phase), к которым присоединяются определённые "цели" (goals).</p>
+    </section>
 
-    <h2 id="howWork">Как работает</h2>
-    <p>Maven использует модель определённых фаз (phase), к которым присоединяются определённые "цели" (goals).</p>
-
-    <h2 id="mavenLifecycle">Maven Lifecycle</h2>
+    <section>
+        <h2 id="mavenLifecycle">Maven Lifecycle</h2>
         <ul>
             <li>clean - очищает все сгенерированные файлы.</li>
             <li>validate - проверяет правильность конфигурации.</li>
@@ -63,21 +70,31 @@
             <li>site - генерирует документацию и javadoc.</li>
             <li>deploy(развертывания) - выкладывает созданные пакеты во внешний репозиторий.</li>
         </ul>
+    </section>
 
-    <h2 id="structureOfPom">Структура pom.xml</h2>
-    <ul>
-        <h3><b>The Basics</b></h3>
-        <li>groupId</li>
-        <li>artifactId</li>
-        <li>version</li>
-        <li>packaging</li>
-        <li>dependencies</li>
-        <li>parent</li>
-        <li>dependencyManagement</li>
-        <li>modules</li>
-        <li>properties - раздел где можно указывать переменные которые можно использовать в дальнейшем через ${x} -
-            где x это property. Пример:
-            <pre>
+    <section>
+        <h2 id="terminal_commands">Терминальные команды</h2>
+        <p>Обновление зависимостей</p>
+        <pre>
+mvn dependency:resolve
+        </pre>
+    </section>
+
+    <section>
+        <h2 id="structureOfPom">Структура pom.xml</h2>
+        <ul>
+            <h3><b>The Basics</b></h3>
+            <li>groupId</li>
+            <li>artifactId</li>
+            <li>version</li>
+            <li>packaging</li>
+            <li>dependencies</li>
+            <li>parent</li>
+            <li>dependencyManagement</li>
+            <li>modules</li>
+            <li>properties - раздел где можно указывать переменные которые можно использовать в дальнейшем через ${x} -
+                где x это property. Пример:
+                <pre>
 <b>Создание:</b>
 &lt;properties&gt;
     &lt;jxl.version&gt;2.6.12&lt;/jxl.version&gt;
@@ -86,73 +103,83 @@
 <b>Использование:</b>
 &lt;version&gt;${jxl.version}&lt;/version&gt;
             </pre>
-        </li>
+            </li>
 
-        <h3><b>Build Settings</b></h3>
-        <li>build - секция для настройки сборки проекта.</li>
-        <li>reporting</li>
+            <h3><b>Build Settings</b></h3>
+            <li>build - секция для настройки сборки проекта.</li>
+            <li>reporting</li>
 
-        <h3><b>More Project Information</b></h3>
-        <li>name</li>
-        <li>description</li>
-        <li>url</li>
-        <li>inceptionYear</li>
-        <li>licenses</li>
-        <li>organization</li>
-        <li>developers</li>
-        <li>contributors</li>
+            <h3><b>More Project Information</b></h3>
+            <li>name</li>
+            <li>description</li>
+            <li>url</li>
+            <li>inceptionYear</li>
+            <li>licenses</li>
+            <li>organization</li>
+            <li>developers</li>
+            <li>contributors</li>
 
-        <h3><b>Environment Settings</b></h3>
-        <li>issueManagement</li>
-        <li>ciManagement</li>
-        <li>mailingLists</li>
-        <li>scm</li>
-        <li>prerequisites</li>
-        <li>repositories</li>
-        <li>pluginRepositories</li>
-        <li>distributionManagement</li>
-        <li>profiles</li>
-    </ul>
+            <h3><b>Environment Settings</b></h3>
+            <li>issueManagement</li>
+            <li>ciManagement</li>
+            <li>mailingLists</li>
+            <li>scm</li>
+            <li>prerequisites</li>
+            <li>repositories</li>
+            <li>pluginRepositories</li>
+            <li>distributionManagement</li>
+            <li>profiles</li>
+        </ul>
+    </section>
 
-    <h2 id="defaultProperties">Default properties</h2>
-    <ol>
-        <li>maven.compiler.source - 5</li>
-        <li>maven.compiler.target - 5</li>
-    </ol>
+    <section>
+        <h2 id="defaultProperties">Default properties</h2>
+        <ol>
+            <li>maven.compiler.source - 5</li>
+            <li>maven.compiler.target - 5</li>
+        </ol>
+    </section>
 
-    <h2 id="mavenScope">Maven scope(область видимости)</h2>
-    <ol>
-        <li>compile - сборки, тестирования, зависимые пакеты, конечный пакет(будут доступны и во время исполнения).</li>
-        <li>provided - сборки, тестирования, конечный пакет(будут доступны и во время исполнения).</li>
-        <li>runtime - тестирования, зависимые пакеты, конечный пакет(будут доступны и во время исполнения)</li>
-        <li>test - тестирование.</li>
-        <li>system - область похожа на provided за исключением того, что необходимо определить физическое расположение
-            артефакта на диске. Артефакт с этой областью видимости maven не ищет в репозитории
-        </li>
-        <li>import - эта область используется в зависимости секции &lt;dependencyManagement&gt; при сложных связях.</li>
-    </ol>
+    <section>
+        <h2 id="mavenScope">Maven scope(область видимости)</h2>
+        <ol>
+            <li>compile - сборки, тестирования, зависимые пакеты, конечный пакет(будут доступны и во время исполнения).</li>
+            <li>provided - сборки, тестирования, конечный пакет(будут доступны и во время исполнения).</li>
+            <li>runtime - тестирования, зависимые пакеты, конечный пакет(будут доступны и во время исполнения)</li>
+            <li>test - тестирование.</li>
+            <li>system - область похожа на provided за исключением того, что необходимо определить физическое расположение
+                артефакта на диске. Артефакт с этой областью видимости maven не ищет в репозитории
+            </li>
+            <li>import - эта область используется в зависимости секции &lt;dependencyManagement&gt; при сложных связях.</li>
+        </ol>
+    </section>
 
-    <h2 id="addToProject">Добавление Maven в проект через Intellij Idea</h2>
-    <ol>
-        <li>Нажать на папку с проектом правой кнопкой мыши.</li>
-        <li>Выбрать "Add Framework Support"</li>
-        <img src="add_mv_in_project.png" width="453" height="116">
-        <li>Выбрать из списка Maven.</li>
-    </ol>
+    <section>
+        <h2 id="addToProject">Добавление Maven в проект через Intellij Idea</h2>
+        <ol>
+            <li>Нажать на папку с проектом правой кнопкой мыши.</li>
+            <li>Выбрать "Add Framework Support"</li>
+            <img src="add_mv_in_project.png" width="453" height="116">
+            <li>Выбрать из списка Maven.</li>
+        </ol>
+    </section>
 
-    <h2 id="releaseAndLatest">RELEASE and LATEST</h2>
-    <p>Использование RELEASE или LATEST в указании версий, не рекомендуется. Так plugin который отвечает за это
-        не всегда работает исправно. Необходимо указывать конкретную версию.
-    </p>
+    <section>
+        <h2 id="releaseAndLatest">RELEASE and LATEST</h2>
+        <p>Использование RELEASE или LATEST в указании версий, не рекомендуется. Так plugin который отвечает за это
+            не всегда работает исправно. Необходимо указывать конкретную версию.
+        </p>
+    </section>
 
-    <h2 id="mavenPlugin">Maven plugin</h2>
-    <p>Если говорить в целом, то Maven – это фреймворк, который выполняет плагины. В этом фреймворке каждая задача,
-        по сути своей, выполняется с помощью плагинов.
-    </p>
+    <section>
+        <h2 id="mavenPlugin">Maven plugin</h2>
+        <p>Если говорить в целом, то Maven – это фреймворк, который выполняет плагины. В этом фреймворке каждая задача,
+            по сути своей, выполняется с помощью плагинов.
+        </p>
 
-    <h3>compiler</h3>
-    <p>Maven использует JAVA 5. Для plugin можно указать версию в настройках.</p>
-    <pre>
+        <h3>compiler</h3>
+        <p>Maven использует JAVA 5. Для plugin можно указать версию в настройках.</p>
+        <pre>
 &lt;build&gt;
     &lt;plugins&gt;
         &lt;plugin&gt;
@@ -168,11 +195,12 @@
 &lt;/build&gt;
     </pre>
 
-    <h3>jar</h3>
-    <p>Плагин для сборки проекта в JAR файл, но без зависимостей.</p>
+        <h3>jar</h3>
+        <p>Плагин для сборки проекта в JAR файл, но без зависимостей.</p>
 
-    <h3>assembly</h3>
-    <p>Плагин аналогичен с "jar" плагином, но также добавляет все необходимые зависимости.</p>
+        <h3>assembly</h3>
+        <p>Плагин аналогичен с "jar" плагином, но также добавляет все необходимые зависимости.</p>
+    </section>
 
 </div>
 </body>

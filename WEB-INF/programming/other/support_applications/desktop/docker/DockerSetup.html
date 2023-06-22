@@ -12,20 +12,28 @@
 <div class="bodyStyle">
     <h1>Docker Setup</h1>
 
-    <h2>Установка Windows 10</h2>
-    <p>Если во время запуска будет ошибка "WSL 2 installation is incomplete")" - нужно в настройках Docker снять
-        чекбокс с "Use the WSL 2 based engine".
-    </p>
-    <p>Для добавления образа в docker - необходимо в "https://hub.docker.com/" найти необходимый образ и выполнить
-        команду через командную строку.
-    </p>
+    <section>
+        <h2>Установка Windows 10</h2>
+        <p>Если во время запуска будет ошибка "WSL 2 installation is incomplete")" - нужно в настройках Docker снять
+            чекбокс с "Use the WSL 2 based engine".
+        </p>
+        <p>Для добавления образа в docker - необходимо в "https://hub.docker.com/" найти необходимый образ и выполнить
+            команду через командную строку.
+        </p>
+    </section>
 
-    <h2>Установка Ubuntu</h2>
-    <p>Установить руководствуясь официальной документацией.</p>
-    <p>Выполнить для запуска docker daemon(службу) при старте системы:</p>
-    <pre>
+    <section>
+        <h2>Установка Ubuntu</h2>
+        <h3>Новая версия установки</h3>
+        <p><a href="https://docs.docker.com/desktop/install/linux-install/">Docker Install</a></p>
+
+        <h3>Старая версия установки</h3>
+        <p>Установить руководствуясь официальной документацией.</p>
+        <p>Выполнить для запуска docker daemon(службу) при старте системы:</p>
+        <pre>
 sudo systemctl start docker
     </pre>
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

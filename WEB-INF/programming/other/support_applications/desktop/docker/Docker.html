@@ -32,31 +32,47 @@
         контейнеризации, контейнеризатор приложений.
     </p>
 
-    <h2>Репозиторий с образами</h2>
-    <a href="https://hub.docker.com/search?type=image">hub.docker</a>
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="DockerSetup.html">Установка Docker</a></li>
+            <li><a href="#howItWorks">Как работает</a></li>
+            <li><a href="#repository">Репозиторий с образами</a></li>
+            <li><a href="#common_commands">Основные команды</a></li>
+        </ul>
+    </section>
 
-    <h2>Как работает</h2>
-    <p>Есть образы и контейнеры. Образ скачивается или создаётся. А после команды "run" с параметрами, будет
-        создан контейнер.
-    </p>
+    <section>
+        <h2 id="howItWorks">Как работает</h2>
+        <p>Есть образы и контейнеры. Образ скачивается или создаётся. А после команды "run" с параметрами, будет
+            создан контейнер.
+        </p>
+    </section>
 
-    <h2>Основные команды</h2>
-    <ul>
-        <h3>image</h3>
-        <li>docker images - получить список всех скачанных образов.</li>
-        <li>docker pull — загрузка образа из Docker Hub.</li>
-        <li>docker build — собирает образ.</li>
-        <li>docker rmi — удаляет образ.</li>
+    <section>
+        <h2 id="repository">Репозиторий с образами</h2>
+        <a href="https://hub.docker.com/search?type=image">hub.docker</a>
+    </section>
 
-        <h3>container</h3>
-        <li>docker ps - получить список всех запущенных контейнеров. Параметр "-a" покажет и незапущенные.</li>
-        <li>docker run — запускаем контейнер.</li>
-        <li>docker stop — останавливает контейнер. Мягкая остановка.</li>
-        <li>docker kill — «убивает» контейнер. Грубая остановка.</li>
-        <li>docker rm — удаляет контейнер.</li>
-        <li>docker logs — смотрим логи.</li>
-        <li>docker volume ls — список томов.</li>
-    </ul>
+    <section>
+        <h2 id="common_commands">Основные команды</h2>
+        <ul>
+            <h3>image</h3>
+            <li>docker images - получить список всех скачанных образов.</li>
+            <li>docker pull — загрузка образа из Docker Hub.</li>
+            <li>docker build — собирает образ.</li>
+            <li>docker rmi — удаляет образ.</li>
+
+            <h3>container</h3>
+            <li>docker ps - получить список всех запущенных контейнеров. Параметр "-a" покажет и незапущенные.</li>
+            <li>docker run — запускаем контейнер.</li>
+            <li>docker stop — останавливает контейнер. Мягкая остановка.</li>
+            <li>docker kill — «убивает» контейнер. Грубая остановка.</li>
+            <li>docker rm — удаляет контейнер.</li>
+            <li>docker logs — смотрим логи.</li>
+            <li>docker volume ls — список томов.</li>
+        </ul>
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>
