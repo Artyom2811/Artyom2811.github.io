@@ -1,3 +1,4 @@
+<!--html_style_version_1-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -21,57 +22,60 @@
         </ol>
     </div>
 
-    <h2>Шпаргалка:</h2>
+    <section>
+        <h2>Шпаргалка</h2>
+        <h3>Экранирование ключевых слов</h3>
+        <p>Для экранирования ключевых слов необходимо использовать "".</p>
 
-    <h2>TRIM всей колонки:</h2>
-    <pre>
-    UPDATE имя_таблицы
-    SET имя_колонки = TRIM(имя_колонки)
-    </pre>
+        <h3>TRIM всей колонки</h3>
+        <pre>
+UPDATE имя_таблицы
+SET имя_колонки = TRIM(имя_колонки)
+        </pre>
 
-    <h2>Проверка на дубликаты:</h2>
-    <pre>
-    SELECT ‘проверяемая колонка’ , COUNT(*)
-    FROM ‘проверяемая таблица’
-    GROUP BY ‘проверяемая колонка’
-    HAVING COUNT(*) > 1
-    </pre>
+        <h3>Проверка на дубликаты</h3>
+        <pre>
+SELECT ‘проверяемая колонка’ , COUNT(*)
+FROM ‘проверяемая таблица’
+GROUP BY ‘проверяемая колонка’
+HAVING COUNT(*) > 1
+        </pre>
 
-    <h2>CAST:</h2>
-    <pre>
-        Date to Text:
-        to_char(имя_колонки, 'yyyy-MM-dd')
-    </pre>
+        <h3>CAST</h3>
+        <pre>
+Date to Text:
+to_char(имя_колонки, 'yyyy-MM-dd')
+        </pre>
 
-    <h2>Заменить если null на Значение:</h2>
-    <pre>
-        COALESCE(имя_колонки, 'Нет значения')
-    </pre>
+        <h3>Заменить если null на Значение</h3>
+        <pre>
+COALESCE(имя_колонки, 'Нет значения')
+        </pre>
 
-    <h2>Если нужно упорядочить по дате, если дата строкой(Нужно в сортировке перевести в дату):</h2>
-    <pre>
-        SELECT *
-        FROM table
-        ORDER BY DATE(date_coloumn) DESC
-    </pre>
+        <h3>Если нужно упорядочить по дате, если дата строкой(Нужно в сортировке перевести в дату)</h3>
+        <pre>
+SELECT *
+FROM table
+ORDER BY DATE(date_coloumn) DESC
+        </pre>
 
-    <h2>Статистика запуска скпиптов с индексом и без:</h2>
-    <pre>
-        SELECT
-            relname,
-            seq_scan,
-            idx_scan
-        FROM pg_stat_all_tables
-        WHERE schemaname = 'имя_схемы'
+        <h3>Статистика запуска скриптов с индексом и без</h3>
+        <pre>
+SELECT
+    relname,
+    seq_scan,
+    idx_scan
+FROM pg_stat_all_tables
+WHERE schemaname = 'имя_схемы'
+        </pre>
 
-    </pre>
-
-    <h2>Получение grant для на таблицу:</h2>
-    <pre>
-        GRANT SELECT, INSERT, UPDATE, DELETE ON имя_таблицы TO пользователь
-        Пример:
-        grant select, insert, update, delete on table1 to IVAN
-    </pre>
+        <h3>Получение grant для на таблицу</h3>
+        <pre>
+GRANT SELECT, INSERT, UPDATE, DELETE ON имя_таблицы TO пользователь
+Пример:
+grant select, insert, update, delete on table1 to IVAN
+        </pre>
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>
