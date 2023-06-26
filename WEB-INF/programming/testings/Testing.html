@@ -1,3 +1,4 @@
+<!--html_style_version_1-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -20,6 +21,7 @@
             <li><a href="https://habr.com/ru/post/92038/">Почему юнит-тесты не работают в научных приложениях</a></li>
             <li><a href="https://dou.ua/forums/topic/13389/">Тестирование. Фундаментальная теория</a></li>
             <li><a href="https://dou.ua/forums/topic/14015/">Тестирование. Фундаментальная теория. Часть 2 — Методологии разработки ПО</a></li>
+            <li><a href="https://habr.com/ru/articles/577424/">Когда использовать mocks в юнит-тестировании</a></li>
         </ol>
     </div>
 
@@ -34,6 +36,8 @@
             <li><a href="#main_terms">Основные термины</a></li>
             <li><a href="#kinds_of_testing">Виды тестирования</a></li>
             <li><a href="#work_with_bug">Шаги работы с багом</a></li>
+            <li><a href="#testCoverage">Test coverage</a></li>
+            <li><a href="#mock">Mock</a></li>
             <li><a href="#tips_for_test_cases">Советы для тест кейсов</a></li>
         </ul>
     </section>
@@ -51,7 +55,7 @@
     <section>
         <h2 id="kinds_of_testing">Виды тестирования</h2>
         <ol>
-            <li>Unit - модульное тестирование</li>
+            <li>Unit - модульное тестирование. Unit - воспринимать как поведение.</li>
             <li>Integration - проверка работы нескольких методов.</li>
             <li>System - проверка всей системы в целом.</li>
             <li>Load(performance) - проверка нагрузки приложения.
@@ -78,10 +82,24 @@
     </section>
 
     <section>
-        <h2>Test coverage</h2>
+        <h2 id="testCoverage">Test coverage</h2>
         <p>Test coverage - тестовое покрытие кода - проверка какое количество классов, методов, строк было
             задействовано при прохождении тестов.
         </p>
+    </section>
+
+    <section>
+        <h2 id="mock">Mock</h2>
+        <p>Mock - объект представляет собой конкретную фиктивную реализацию интерфейса, предназначенную исключительно
+            для тестирования взаимодействия и относительно которого высказывается утверждение.
+        </p>
+
+        <h3>Следует использовать только для</h3>
+        <ul>
+            <li>Репозитории</li>
+            <li>DAO классы</li>
+            <li>Внешние источники</li>
+        </ul>
     </section>
 
     <section>

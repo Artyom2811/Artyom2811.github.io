@@ -1,0 +1,78 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>GraphQL</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../CommunicationProtocols.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>GraphQL</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://dou.ua/lenta/articles/working-with-qraphql/">Введение в GraphQL: что это за язык и как использовать его под Android</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Что это</h2>
+        <p>GraphQL — это язык запросов и манипулирования данными для API, а также среда для выполнения этих запросов.</p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#howItWorks">Как она работает</a></li>
+            <li><a href="#compare">Сравнение с REST</a></li>
+            <li><a href="#cons">Минусы</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="howItWorks">Как она работает</h2>
+        <p>Клиент при работе с GraphQL API совершенно не важно, откуда поступают данные, которые он запрашивает.
+            Он просто делает запрос в нужном ему объеме, а сервер GraphQL возвращает результат. Поэтому можно
+            представить, что схема — это контракт между API и клиентом, так как, прежде чем клиент выполнит
+            какой-либо запрос, этот запрос валидируется в соответствии со схемой данного API.
+        </p>
+    </section>
+
+    <section>
+        <h2 id="compare">Сравнение с REST</h2>
+
+        <h3>REST</h3>
+        <ul>
+            <li>Под каждый запрос нужен эндпоинт.</li>
+            <li>Backend решает какие данные выдавать.</li>
+            <li>Нет строгого контракта.</li>
+            <li>Обработка ошибок через коды ответа.</li>
+        </ul>
+
+
+        <h3>GraphQL</h3>
+        <ul>
+            <li>1 POST эндпоинт.</li>
+            <li>Client решает, какие данные запросить.</li>
+            <li>Контракт диктует схемой.</li>
+            <li>Код ответа всегда 200. Обработка ошибок через тело ответа.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="cons">Минусы</h2>
+        <ul>
+            <li>Не безопасно - клиент может запросить любые данные и любых размеров(DOS attack). Нужно это конфигурировать.</li>
+            <li>Редиректы, кеширование и ретраи - создают большие сложности.</li>
+        </ul>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

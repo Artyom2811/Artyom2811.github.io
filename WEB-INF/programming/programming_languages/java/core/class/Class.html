@@ -21,56 +21,104 @@
 
     <section>
         <h2>Основные разделы</h2>
+        <h3>Виды классов</h3>
         <ul>
-            <li><a href="#classTypes">Виды классов</a></li>
+            <li><a href="#class">Class</a></li>
+            <li><a href="#abstractClass">Абстрактный класс(Abstract Class)</a></li>
+            <li><a href="#record">Record(since v.14)</a></li>
+            <li><a href="#inner">Внутренние классы</a></li>
+            <li><a href="#interface">Интерфейс(Interface)</a></li>
+            <li><a href="#enum">Enum(Перечисления)</a></li>
+        </ul>
+
+        <h3>О классах</h3>
+        <ul>
             <li><a href="#classParts">Части класса</a></li>
             <li><a href="#initializationOrder">Порядок инициализации класса</a></li>
         </ul>
     </section>
 
     <section>
-        <h2 id="classTypes">Виды классов</h2>
-        <ol>
-            <li>Class - обычный класс для создания объектов.</li>
-            <li>Абстрактный класс(Abstract Class) - Для описания того из чего нельзя создать объект(например мебель).
-                Могут иметь абстракт методы и реализации. Наследование возможно только от одного класса.
-            </li>
-            <li>Внутренние классы:
-                <ol>
-                    <li>Nested Inner classes (вложенные внутренние классы)</li>
-                    Создание объекта: Outer.Inner inner = new Outer().new Inner();
-                    <li>Method Local Inner classes (внутренние классы в локальном методе)</li>
-                    <li>Static Nested classes or Member of outer class (статические вложенные классы)</li>
-                    <li>Anonymous Inner classes (анонимные классы)</li>
-                    <p>Пример:</p>
-                    <pre>
+        <h2 id="class">Class</h2>
+        <p>Class - обычный класс для создания объектов.</p>
+    </section>
+
+    <section>
+        <h2 id="abstractClass">Абстрактный класс(Abstract Class)</h2>
+        <p>Абстрактный класс(Abstract Class) - Для описания того из чего нельзя создать объект(например мебель).
+            Могут иметь абстракт методы и реализации. Наследование возможно только от одного класса.
+        </p>
+    </section>
+
+    <section>
+        <h2 id="record">Record(since v.14)</h2>
+        <p>Record - immutable класс для хранения записей.</p>
+        <pre>
+record Point(int x, int y) { }
+        </pre>
+
+        <p>Описание</p>
+        <ul>
+            <li>Авто создание конструктора для всех полей.</li>
+            <li>Авто создание getters для всех полей, но буз префикса get.</li>
+            <li>Авто реализация метода equals.</li>
+            <li>Авто реализация метода hashCode.</li>
+            <li>Авто реализация метода toString.</li>
+            <li>Можно добавлять статические поля и методы.</li>
+        </ul>
+
+        <p>Можно описывать конструктор вручную</p>
+        <pre>
+public Person(String name) {
+    this(name, "Unknown");
+}
+        </pre>
+    </section>
+
+    <section>
+        <h2 id="inner">Внутренние классы</h2>
+        <p>Примечание - при создании нескольких классов в одном файле. С доступом public может быть
+            только один. Тот который соответствует имени файла. Или ошибка компиляции.
+        </p>
+
+        <h3>Nested Inner classes(вложенные внутренние классы)</h3>
+        <p>Создание объекта: Outer.Inner inner = new Outer().new Inner();</p>
+
+        <h3>Static Nested classes or Member of outer class (статические вложенные классы)</h3>
+
+        <h3>Anonymous Inner classes (анонимные классы)</h3>
+        <pre>
 interface AnimalActions {
     void eat();
 }
 
-Animal animal = new AnimalActions() {
+AnimalActions animal = new AnimalActions() {
     @Override
     public void eat() {
-        System.out.printf("Animal %s eating...", getAnimal());
+        System.out.println("Animal %s eating...");
     }
 
-    public String getAnimal() {
-        return cow;
-    }
 };
-eatAction.eat();
-                    </pre>
-                </ol>
-                <p><b>Примечание:</b> при создании нескольких классов в одном файле. С доступом public может быть
-                    только один. Тот который соответствует имени файла. Или ошибка компиляции.
-                </p>
-            </li>
-            <li>Интерфейс(Interface) - специальный класс-контракт для добавления функционала в другие классы.
-                Имеет default methods. Все методы public. Поля только public static final. Имплементировать можно
-                несколько интерфейсов.
-            </li>
-            <li>Enum (Перечисления) - представляют набор логически связанных констант.</li>
-        </ol>
+animal.eat();
+        </pre>
+
+        <h3>Method Local Inner classes (внутренние классы в локальном методе)</h3>
+    </section>
+
+    <section>
+        <h2 id="interface">Интерфейс(Interface)</h2>
+        <p>Интерфейс(Interface) - специальный класс-контракт для добавления функционала в другие классы.</p>
+        <ul>
+            <li>Может иметь default methods(since v.8).</li>
+            <li>Может иметь private methods(since v.9).</li>
+            <li>Поля только public static final.</li>
+            <li>Возможно имплементировать несколько интерфейсов.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="enum">Enum(Перечисления)</h2>
+        <p>Enum (Перечисления) - представляют набор логически связанных констант.</p>
     </section>
 
     <section>
@@ -102,7 +150,9 @@ eatAction.eat();
             <li>Не статические блоки и не статические поля в порядке объявления подкласса(B)</li>
             <li>Конструктор подкласса(B)</li>
         </ol>
-        <ol><b>Пример:</b>
+
+        <h3>Пример</h3>
+        <ol>
             <li>static field parent</li>
             <li>static { } parent</li>
             <li>static field child</li>

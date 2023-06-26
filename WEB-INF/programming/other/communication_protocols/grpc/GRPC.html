@@ -1,0 +1,60 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>gRPC</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../CommunicationProtocols.html.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>gRPC</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://medium.com/maddevs-io/introduction-to-grpc-6de0d9c0fe61">Введение в gRPC</a></li>
+            <li><a href="https://habr.com/ru/companies/yandex/articles/484068/">gRPC в качестве протокола межсервисного взаимодействия. Доклад Яндекса</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Что это</h2>
+        <p>gRPC — опенсорсный фреймворк для удаленного вызова процедур.</p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#howItWorks">Как она работает</a></li>
+            <li><a href="#compare">Сравнение с REST API</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="howItWorks">Как она работает</h2>
+        <p>При задействовании RPC происходит коммуникация между клиентом и сервером, для которой используется
+            не HTTP-вызов, а вызов функции. Клиент вызывает удаленную процедуру, сериализует параметры и дополнительную
+            информацию в сообщении, после чего шлет сообщение на сервер. Приняв данные, сервер производит их
+            десериализацию, выполняет запрошенную операцию и шлет результат обратно клиенту. Такие объекты как stub
+            сервера и stub клиента берут на себя функцию сериализации и десериализации  параметров.
+        </p>
+    </section>
+
+    <section>
+        <h2 id="compare">Сравнение с REST API</h2>
+        <ul>
+            <li>Используется вместо JSON(символьный) бинарный формат Protobuf, благодаря чему размер сообщений
+                становится меньше и увеличивается пропускная способность. Скорость передачи возрастает в 7-10 раз.
+            </li>
+            <li>Используется протокол HTTP 2, согласно отдельным тестам скорость обмена данными увеличивается на 14 процентов.</li>
+        </ul>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
