@@ -1,0 +1,79 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Modules</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Core.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Modules</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://metanit.com/java/tutorial/11.1.php">Модульность</a></li>
+            <li><a href="https://habr.com/ru/articles/225189/">Многомодульный Java-проект с Gradle. Шаг за шагом</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Что это</h2>
+        <p>Модульность - как абстракция, но над пакетами.</p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#howItWorks">Как работает</a></li>
+            <li><a href="#restriction">Ограничение</a></li>
+            <li><a href="#contain">Что включает модуль</a></li>
+            <li><a href="#solveForWhat">Какие проблемы решает</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="howItWorks">Как работает</h2>
+        <p>Все модули ссылаются на java.base(как все классы на класс Object).</p>
+    </section>
+
+    <section>
+        <h2 id="restriction">Ограничение</h2>
+        <ul>
+            <li>Нельзя использовать одинаковые имена пакетов в нескольких модулях одного приложения.</li>
+            <li>Нельзя создавать циклические зависимости. Но это не относиться в unnamed модулей(которые создаются
+                автоматически из приложений и библиотек которые не являются модулями).
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="contain">Что включает модуль</h2>
+        <ul>
+            <li>the module's name(обязательно)</li>
+            <li>the module's dependencies(только если необходимы зависимости)</li>
+            <li>the packages it explicitly makes available to other modules(только если модуль будет использоваться
+                другими модулями)
+            </li>
+            <li>the services it offers(не обязательно)</li>
+            <li>the services it consumes(не обязательно)</li>
+            <li>to what other modules it allows reflection(не обязательно)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="solveForWhat">Какие проблемы решает</h2>
+        <ul>
+            <li>Избыточность подключаемых библиотек для работы приложения. Что приводит к увеличению итогового jar и jre.</li>
+            <li>Невозможность скрыть(инкапсулировать) все желаемые части пакета, особенно с учетом рефлексии.</li>
+        </ul>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
