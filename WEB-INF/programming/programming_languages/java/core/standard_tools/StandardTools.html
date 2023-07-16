@@ -14,8 +14,8 @@
 
     <h2>Основные разделы</h2>
     <ul>
-        <li><a href="#converting">Преобразования(приведение)</a></li>
-        <li><a href="#if">if</a></li>
+        <li><a href="#converting">Преобразования(приведение типов)</a></li>
+        <li><a href="#if">if оператор</a></li>
         <li><a href="#ternary_operator">ternary operator</a></li>
         <li><a href="#loops">Циклы(loops)</a></li>
         <li><a href="#switch">switch</a></li>
@@ -23,32 +23,31 @@
     </ul>
 
     <section>
-        <h2 id="converting">Преобразования(приведение)</h2>
-        <h3>Восходящее</h3>
-        <p>Восходящее - преобразование от потомка к предку.</p>
+        <h2 id="converting">Преобразования(приведение типов)</h2>
 
+        <h3>Восходящее</h3>
+        <p>Восходящее - преобразование от потомка к предку. Будут потеряны все методы которые имел наследник.</p>
+        <pre>
+Animal dog = new Dog();
+//or
+List&lt;String&gt; list = new ArrayList&lt;&gt;();
+        </pre>
 
         <h3>Нисходящее</h3>
         <p>Нисходящее - преобразование от предка к потомку. Должно указываться явно с помощью указания нового типа
             в скобках.
         </p>
         <pre>
-int x = 100;
-byte y = (byte) x;
-        </pre>
-        <p>или</p>
-        <pre>Animal dog = new Dog(); //восходящее преобразование. Будет потерян доступ ко всем методам, которые есть
-        только у класса Dog.
-        </pre>
-
-        <p>Можно привести char в int.</p>
-        <pre>
+byte y = (byte) 100;
+//or char to int - will be 65
 (int) 'A'
         </pre>
     </section>
 
     <section>
-        <h2 id="if">if</h2>
+        <h2 id="if">if оператор</h2>
+
+        <p>Синтаксис</p>
         <pre>
 if(условие) {
     тело(блок)
@@ -72,6 +71,7 @@ String a = true ? "true" : "false";
 
     <section>
         <h2 id="loops">Циклы(loops)</h2>
+
         <h3>while</h3>
         <pre>
 while(условие) {
@@ -113,6 +113,7 @@ for (элемент коллекции: коллекция) {
         <h2 id="switch">Switch</h2>
         <p>Если не стоит break выполниться несколько case.</p>
         <p>Типы данных:byte, short, char, int, Byte, Short, Character, Integer, String, Enum.</p>
+
         <h3>Синтаксис</h3>
         <pre>
 switch(выражение) {

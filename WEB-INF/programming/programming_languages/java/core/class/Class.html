@@ -35,6 +35,7 @@
         <ul>
             <li><a href="#classParts">Части класса</a></li>
             <li><a href="#initializationOrder">Порядок инициализации класса</a></li>
+            <li><a href="#sealed">Sealed классы</a></li>
         </ul>
     </section>
 
@@ -163,6 +164,27 @@ animal.eat();
             <li>non static field child</li>
             <li>non static { } child</li>
             <li>constructor child</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2 id="sealed">Sealed классы</h2>
+        <p>Модификатор final в классе не позволяет никому расширить его. А как насчет того, чтобы расширить класс,
+            но разрешить это только для некоторых классов?
+        </p>
+
+        <pre>
+public sealed class Vehicle permits Bicycle, Car {...}
+//and use it
+public final class Bicycle extends Vehicle {...}
+        </pre>
+
+        <p>Ограничения</p>
+        <ol>
+            <li>Разрешенные подклассы должны быть доступны запечатанному классу во время компиляции.</li>
+            <li>Разрешенные подклассы должны напрямую расширять запечатанный класс</li>
+            <li>Разрешенные подклассы должны иметь один из следующих модификаторов:final, sealed, non-sealed</li>
+            <li>Разрешенные подклассы должны находиться в одном Java модуле.</li>
         </ol>
     </section>
 </div>
