@@ -1,0 +1,77 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Architectural pattern</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../ProgrammingRules.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Architectural pattern</h1>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#list">Список</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="list">Список</h2>
+        <ul>
+            <li>Front controller</li>
+            <li>Interceptor</li>
+            <li>MVC</li>
+            <li>ADR</li>
+            <li>ECS</li>
+            <li>n-tier</li>
+            <li>Specification</li>
+            <li>Publish–subscribe</li>
+            <li>Naked objects</li>
+            <li>Service locator</li>
+            <li>Active record</li>
+            <li>Identity map</li>
+            <li>Data access object</li>
+            <li>Data transfer object</li>
+            <li>Inversion of control</li>
+            <li><a href="#ioc">Inversion Of Control(IoC)</a></li>
+            <li>Model 2</li>
+            <li>Broker</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="ioc">Inversion Of Control(IoC)</h2>
+        <p>Inversion of Control - инверсия управления. Абстрактный принцип, набор рекомендаций для написания слабо
+            связанного кода. Каждый компонент системы должен быть как можно более изолированным от других, не полагаясь
+            в своей работе на детали конкретной реализации других компонентов. Имеет несколько реализаций.
+        </p>
+
+        <ul>Реализации IoC:
+            <li>Dependency Injection</li>
+            <li>Factory Method</li>
+            <li>Service Locator</li>
+        </ul>
+
+        <p>Dependency Injection(DI) - процесс предоставления внешней зависимости программному компоненту. Является
+            специфичной формой Inversion of control(IoC, когда она применяется к управлению зависимостями. В полном
+            соответствии с принципом единственной обязанности объект отдаёт заботу о построении требуемых ему
+            зависимостей внешнему механизму.
+        </p>
+
+        <h2>Способы инъекций:</h2>
+        <ol>
+            <li>через setter - рекомендуемый. Тк не усложняет создание объекта для тестов.</li>
+            <li>через конструктор.</li>
+            <li>через поля - не рекомендуется.</li>
+        </ol>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
