@@ -184,6 +184,18 @@ String a = "1";
         </pre>
     </section>
 
+    <section>
+        <h2>Array</h2>
+        <h3>Переворот array</h3>
+        <pre>
+for (i = 0; i < array.length / 2; i++) {
+  int temp = array[i];
+  array[i] = array[array.length - 1 - i];
+  array[array.length - 1 - i] = temp;
+}
+        </pre>
+    </section>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>

@@ -42,7 +42,20 @@
     </section>
 
     <section>
-        <h2>Протоколы передачи данных</h2>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#connectionProtocols">Протоколы передачи данных</a></li>
+            <li><a href="#httpStructure">HTTP запрос структура</a></li>
+            <li><a href="#httpMethod">HTTP методы</a></li>
+            <li><a href="#stateCodes">Коды состояния</a></li>
+            <li><a href="#rest">REST</a></li>
+            <li><a href="#robustnessPrinciple">Robustness principle(Postel’s Law)</a></li>
+            <li><a href="#idempotency">Идемпотентность</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="connectionProtocols">Протоколы передачи данных</h2>
         <p>HTTP(Hypertext Transfer Protocol) - протокол прикладного уровня передачи данных, изначально — в виде
             гипертекстовых документов в формате HTML, в настоящее время используется для передачи произвольных данных.
             Если не указывать порт будет использован стандартный - "80".
@@ -55,7 +68,7 @@
     </section>
 
     <section>
-        <h2>HTTP запрос структура</h2>
+        <h2 id="httpStructure">HTTP запрос структура</h2>
         <ol>
             <li>Стартовая строка</li>
             <li><a href="#headers">Заголовки</a></li>
@@ -71,7 +84,7 @@
     </section>
 
     <section>
-        <h2>HTTP методы</h2>
+        <h2 id="httpMethod">HTTP методы</h2>
         <ol>
             <li>GET — получение ресурса. Передает данные серверу используя URL(1024 символами).</li>
             <li>POST — создание ресурса.</li>
@@ -87,26 +100,19 @@
     </section>
 
     <section>
-        <h2>Коды состояния</h2>
+        <h2 id="stateCodes">Коды состояния</h2>
         <ul>
-            <li>200 - OK</li>
-            <li>201 - Created</li>
+            <li>200 - OK. Используется для GET и DELETE.</li>
+            <li>201 - Created.  Используется для POST, PUT.</li>
             <li>400 - Bad Request</li>
-            <li>401 - Unauthorized</li>
+            <li>401 - Unauthorized - необходима авторизация.</li>
+            <li>403 - Forbidden - нет прав доступа к содержимому.</li>
             <li>404 - Not Found</li>
         </ul>
     </section>
 
     <section>
-        <h2>Рекомендации для HTTP методов</h2>
-        <ol>
-            <h3>GET</h3>
-            <li>200 - получение</li>
-        </ol>
-    </section>
-
-    <section>
-        <h2>REST</h2>
+        <h2 id="rest">REST</h2>
         <p>REST(Representational State Transfer) - архитектурный стиль взаимодействия компонентов распределённого
             приложения в сети. Другими словами это набор правил о том, как программисту организовать написание
             кода серверного приложения, чтобы все системы легко обменивались данными и приложение можно было
@@ -127,18 +133,16 @@
     </section>
 
     <section>
-        <h2>Robustness principle(Postel’s Law)</h2>
+        <h2 id="robustnessPrinciple">Robustness principle(Postel’s Law)</h2>
         <p><a href="https://engineering.klarna.com/why-you-should-follow-the-robustness-principle-in-your-apis-b77bd9393e4b">Robustness principle</a>
             - принцип объясняющий почему лучше не делать проверку на строгую схему протокола передачи. Коротко в запросе
-            могут быть другие параметры которые будут проигнорированы системой.
+            могут быть другие параметры которые будут проигнорированы системой. Коротко - не нужно проверять JSON на
+            отсутствие других полей. Убирает необходимость синхронизировать релизы зависимых сервисов.
         </p>
-        <ul>
-            <li>Убирает необходимость синхронизировать релизы зависимых сервисов.</li>
-        </ul>
     </section>
 
     <section>
-        <h2>Идемпотентность</h2>
+        <h2 id="idempotency">Идемпотентность</h2>
         <p>Идемпотентность(Idempotency) - это запрос, который выполняется всегда с одним результатом.
             Но ответ на запрос может быть разный. Пример "DELETE" первый запрос возвращает 200, а последующие 404.
             Http методы: GET, HEAD, PUT, OPTIONS, TRACE и DELETE.
