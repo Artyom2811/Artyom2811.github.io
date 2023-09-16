@@ -85,7 +85,7 @@
 
     <section>
         <h2>Что это:</h2>
-        <p><b>Spring Framework</b> — один из самых популярных наборов фреймворков для создания веб-приложений на Java.</p>
+        <p>Spring Framework — один из самых популярных наборов фреймворков для создания веб-приложений на Java.</p>
     </section>
 
     <section>
@@ -250,6 +250,15 @@ public class Passenger {
     </section>
 
 </div>
+
+<section>
+    <h2>Spring Value</h2>
+    <p>Пример создания пустого List как default</p>
+    <pre>
+@Value("${my.list.of.strings:}#{T(java.util.Collections).emptyList()}")
+private List&lt;String&gt; myList;
+    </pre>
+</section>
 </body>
 <script>setBackButtonHeight();</script>
 </html>

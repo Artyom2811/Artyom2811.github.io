@@ -1,3 +1,4 @@
+<!--html_style_version_1-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -16,6 +17,7 @@
         <h2>Проработать</h2>
         <ol>
             <li><a href="https://habr.com/ru/post/29694/">Основы Hibernate</a></li>
+            <li><a href="https://habr.com/ru/articles/435114/">Spring Data JPA</a></li>
             <li><a href="https://habr.com/ru/post/265061/">Шпаргалка Java программиста 1: JPA и Hibernate в вопросах и ответах</a></li>
             <li><a href="https://javarush.ru/groups/posts/hibernate-java">Ваше первое приложение на Hibernate</a></li>
             <li><a href="https://habr.com/ru/company/haulmont/blog/451986/">Выборка данных с ORM — это просто! Или нет?</a></li>
@@ -26,7 +28,9 @@
             <li><a href="https://habr.com/ru/company/otus/blog/529692/">Проблема с N+1 запросами в JPA и Hibernate</a></li>
             <li><a href="https://www.youtube.com/watch?v=C-wEZjEOhWc">Вячеслав Круглов — Введение в Hibernate: что, зачем, и где стандартные ловушки</a></li>
             <li><a href="https://www.youtube.com/watch?v=4CLlk9EeUeo">Изучите Hibernate на практике [GeekBrains]</a></li>
-            <li>ORM</li>
+
+            <li><a href="https://www.baeldung.com/spring-data-repositories">CrudRepository, JpaRepository, and PagingAndSortingRepository in Spring Data</a></li>
+            <li><a href="https://habr.com/ru/articles/714704/">Проблема N+1 и как её решить с помощью EntityGraph</a></li>
         </ol>
     </div>
 
@@ -35,24 +39,51 @@
         <p>Hibernate - одна из наиболее популярных реализаций ORM-модели. Объектно-реляционная модель описывает отношения
             между программными объектами и записями в БД.
         </p>
-        <p>Java Persistence API(JPA) — спецификация API Java EE, предоставляет возможность сохранять в удобном виде
-            Java-объекты в базе данных. Имеет только интерфейс. Как реализация чаще всего используется Hibernate.
-        </p>
+
     </section>
 
     <section>
-        <h2>Минусы</h2>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a href="#interactionLayers">Слои взаимодействия</a></li>
+            <li><a href="#cons">Минусы</a></li>
+            <li><a href="#jpql">Java Persistence Query Language (JPQL)</a></li>
+            <li><a href="#springProperties">Spring конфигурация application.properties</a></li>
+            <li><a href="#annotations">Аннотации для управления</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="interactionLayers">Слои взаимодействия</h2>
         <ol>
-            <li>Отслеживать проблему "N + 1"</li>
+            <li>Application</li>
+            <li>Spring Data JPA(Repository) - это механизм организации репозиториев, а репозиторий - это абстракция,
+                лежащая на уровень выше ORM.
+            </li>
+            <li>Java Persistence API(JPA) — спецификация API Java EE, предоставляет возможность сохранять в удобном виде
+                Java-объекты в базе данных. Имеет только интерфейс. Как реализация чаще всего используется Hibernate.
+            </li>
+            <li>Hibernate</li>
+            <li>JDBC</li>
+            <li>Relational Database</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2 id="cons">Минусы</h2>
+        <ol>
+            <li>Необходимо отслеживать проблему "N + 1"</li>
         </ol>
 
-        <p>Проблема N + 1 возникает, когда фреймворк доступа к данным выполняет N дополнительных SQL-запросов для
-            получения тех же данных, которые можно получить при выполнении одного SQL-запроса.
+        <p>Проблема N + 1 в JPA - возникает, когда мы генерируем запрос на получение одной сущности из базы данных,
+            но у данной сущности есть свои связанные сущности, которые мы тоже хотим получить и hibernate генерирует
+            вначале один (1) запрос к базе данных, чтобы получить интересующую нас сущность, а потом N запросов,
+            чтобы достать из базы данных связанные сущности.
         </p>
     </section>
 
     <section>
-        <h2>Java Persistence Query Language (JPQL)</h2>
+        <h2 id="jpql">Java Persistence Query Language (JPQL)</h2>
         <p>JPQL - платформенно-независимый объектно-ориентированный язык запросов, являющийся частью спецификации Java
             Persistence API (JPA). JPQL используется для написания запросов к сущностям, хранящимся в реляционной базе
             данных.
@@ -60,7 +91,7 @@
     </section>
 
     <section>
-        <h2>Конфигурация application.properties</h2>
+        <h2 id="springProperties">Spring конфигурация application.properties</h2>
         <ul>
             <li>spring.jpa.hibernate.ddl-auto=none - чтобы Hibernate не выполнял никаких действий по модификации схемы.
                 К примеру для работы через Liquibase.
@@ -69,15 +100,7 @@
     </section>
 
     <section>
-        <h2>JPA имеет 2 типа загрузки(FetchType)</h2>
-        <ol>
-            <li>LAZY(by default) - ORM загрузит сущность или коллекцию отложено, при первом обращении к ней из кода.</li>
-            <li>EAGER - заставляет ORM загружать связанные сущности и коллекции сразу, вместе с корневой сущностью.</li>
-        </ol>
-    </section>
-
-    <section>
-        <h2>Аннотации для управления</h2>
+        <h2 id="annotations">Аннотации для управления</h2>
         <ol>
             <li>@Entity(name = "") - указывает что данный класс является сущностью(entity bean). Такой класс должен
                 иметь конструктор по-умолчанию (пустой конструктор).
@@ -92,8 +115,6 @@
             <li>@Column - определяет к какому столбцу в таблице БД относится конкретное поле класса.
                 Аттрибуты: name, unique, nullable, length.
             </li>
-            <li>@OneToOne - передаётся CascadeType, FetchType и др.</li>
-            <li>@ManyToOne</li>
             <li>@Access - определяет режим доступа к полям. Мы можем использовать @Access на уровне класса, поля
                 или метода. Мы можем даже смешивать два типа в одном классе сущностей. По умолчанию тип доступа
                 определяется местом, в котором находится ваш идентификатор(@ Id). Если он будет в поле -
@@ -107,17 +128,35 @@
                 </ul>
             </li>
         </ol>
+
+        <h3>Отношения между таблицами</h3>
+        <ol>
+            <ul>
+                <li>@OneToOne - передаётся CascadeType, FetchType и др.</li>
+                <li>@OneToMany</li>
+                <li>@ManyToOne</li>
+                <li>@ManyToMany</li>
+            </ul>
+        </ol>
     </section>
 
     <section>
-        <h2>CascadeType</h2>
+        <h2 id="cascadeType">CascadeType</h2>
         <ol>
-            <li>CascadeType.ALL</li>
-            <li>CascadeType.PERSIST</li>
+            <li>CascadeType.ALL - необходимо выполнять каскадно сразу все операции.</li>
+            <li>CascadeType.PERSIST - когда выполняется метод save().</li>
             <li>CascadeType.MERGE</li>
             <li>CascadeType.REMOVE</li>
             <li>CascadeType.REFRESH</li>
             <li>CascadeType.DETACH</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2 id="fetchType">JPA имеет 2 типа загрузки(FetchType)</h2>
+        <ol>
+            <li>LAZY(by default) - ORM загрузит сущность или коллекцию отложено, при первом обращении к ней из кода.</li>
+            <li>EAGER - заставляет ORM загружать связанные сущности и коллекции сразу, вместе с корневой сущностью.</li>
         </ol>
     </section>
 
