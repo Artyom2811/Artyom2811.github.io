@@ -22,8 +22,6 @@
             <li><a href="https://habr.com/ru/post/455794/">Введение в Spring, или что делать, если по всему проекту @Autowired и @Component, а вы не понимаете, что это</a></li>
             <li><a href="https://ru.wikibooks.org/wiki/Spring_Framework_Guide">Spring Framework Guide</a></li>
             <li><a href="https://easyjava.ru/spring/spring-framework/inicializaciya-spring-java-konfiguraciya-annotacii-xml-i-groovy/">Инициализация Spring: XML, аннотации, Java конфигурация и</a></li>
-            <li><a href="https://javastudy.ru/interview/jee-spring-questions-answers/">Собеседование по Java EE — Spring Framework (вопросы и ответы). Часть 1</a></li>
-            <li><a href="https://jsehelper.blogspot.com/2016/02/spring-framework-1.html">Ответы на вопросы на собеседование Spring Framework (часть 1).</a></li>
             <li><a href="https://habr.com/ru/post/333756/">Как писать на Spring в 2017</a></li>
             <li><a href="https://docs.spring.io/spring-framework/docs/3.0.0.M3/reference/html/ch04s04.html">Bean scopes</a></li>
             <li><a href="http://www.finecosoft.ru/SpringDI">Dependency Injection и Spring</a></li>
@@ -33,7 +31,6 @@
             <li><a href="https://tproger.ru/articles/spring-modules-overview/">Обзор модулей Spring для Java</a></li>
             <li><a href="https://www.baeldung.com/spring-inject-prototype-bean-into-singleton">Injecting Prototype Beans into a Singleton Instance in Spring</a></li>
             <li><a href="https://habr.com/ru/post/334636/">Внедрение зависимостей через поля — плохая практика</a></li>
-            <li><a href="https://habr.com/ru/post/350682/">Spring: вопросы к собеседованию</a></li>
             <li><a href="https://www.youtube.com/watch?v=M4w6b2pENWU&list=PLwwk4BHih2fho6gmaAwdHYZ6QQq0aE7Zi">01 - Spring. Введение</a></li>
             <li><a href="https://javarush.ru/groups/posts/spring-framework-java-1">Spring для ленивых. Основы, базовые концепции и примеры с кодом. Часть 1</a></li>
             <li><a href="https://proselyte.net/tutorials/spring-tutorial-full-version/bean-lifecycle/">Руководство по Spring. Жизненный цикл бинов.</a></li>
@@ -99,6 +96,7 @@
             <li>Spring Cloud</li>
             <li>Spring Security</li>
             <li>Spring Session</li>
+            <li><a href="questions/Questions.html">Вопросы на собеседование</a></li>
         </ul>
     </section>
 
@@ -215,50 +213,15 @@
     </section>
 
     <section>
-        <h2>Вопросы на собеседование</h2>
-        <h3>Создание prototype в singleton:</h3>
-        <p>Создадим класс singleton Car:</p>
+        <h2>Spring Value</h2>
+        <p>Пример создания пустого List как default</p>
         <pre>
-@Component
-public class Car {
-    @Lookup
-    public Passenger createPassenger() {
-        return null;
-    };
-    public String drive(String name) {
-        Passenger passenger = createPassenger();
-        passenger.setName(name);
-        return "car with " + passenger.getName();
-    }
-}
-        </pre>
-
-        <h3>Создадим класс prototype Passenger:</h3>
-        <pre>
-@Component
-@Scope("prototype")
-public class Passenger {
-    private String name;
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-}
-        </pre>
-    </section>
-
-</div>
-
-<section>
-    <h2>Spring Value</h2>
-    <p>Пример создания пустого List как default</p>
-    <pre>
 @Value("${my.list.of.strings:}#{T(java.util.Collections).emptyList()}")
 private List&lt;String&gt; myList;
     </pre>
-</section>
+    </section>
+</div>
+
 </body>
 <script>setBackButtonHeight();</script>
 </html>

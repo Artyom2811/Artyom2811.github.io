@@ -24,13 +24,6 @@
         используют разный порядок хранения элементов.
     </p>
 
-    <h2>Сложность алгоритмов TreeSet</h2>
-    <ol>
-        <li>Получение - если первый элемент - O(1), если не первый O(log(n)).</li>
-        <li>Вставить - O(log(n)).</li>
-        <li>Удаление - O(log(n)).</li>
-    </ol>
-
     <h2>Особенности</h2>
     <ol>
         <li>Не возможны дубликаты.</li>
@@ -66,11 +59,22 @@
         </ol>
     </section>
 
-    <h2 id="treeSet">TreeSet</h2>
-    <p>TreeSet - хранение уникальных значений в сортированном виде. Реализует красно-чёрное дерево.</p>
+    <section>
+        <h2 id="treeSet">TreeSet</h2>
+        <p>TreeSet - хранение уникальных значений в сортированном виде. Реализует красно-чёрное дерево.</p>
 
-    <h2 id="linkedHashSet">LinkedHashSet</h2>
-    <p>LinkedHashSet - HashSet в порядке добавления. В основе лежит LinkedHashMap вместо HashMap.</p>
+        <h3>Сложность алгоритмов TreeSet</h3>
+        <ol>
+            <li>Получение - если первый элемент - O(1), если не первый O(log(n)).</li>
+            <li>Вставить - O(log(n)).</li>
+            <li>Удаление - O(log(n)).</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2 id="linkedHashSet">LinkedHashSet</h2>
+        <p>LinkedHashSet - HashSet в порядке добавления. В основе лежит LinkedHashMap вместо HashMap.</p>
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

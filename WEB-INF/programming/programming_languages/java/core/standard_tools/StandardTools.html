@@ -20,6 +20,7 @@
         <li><a href="#loops">Циклы(loops)</a></li>
         <li><a href="#switch">switch</a></li>
         <li><a href="#textBlocks">Text Blocks</a></li>
+        <li><a href="#array">Array</a></li>
     </ul>
 
     <section>
@@ -106,7 +107,11 @@ for (элемент коллекции: коллекция) {
 }
         </pre>
 
-        <p>Бесконечные циклы - while(true), for(;;)</p>
+        <h3>Бесконечные циклы</h3>
+        <pre>
+while(true);
+for(;;)
+        </pre>
     </section>
 
     <section>
@@ -184,7 +189,7 @@ String a = "1";
     </section>
 
     <section>
-        <h2>Array</h2>
+        <h2 id="array">Array</h2>
         <h3>Переворот array</h3>
         <pre>
 for (i = 0; i < array.length / 2; i++) {
@@ -192,6 +197,21 @@ for (i = 0; i < array.length / 2; i++) {
   array[i] = array[array.length - 1 - i];
   array[array.length - 1 - i] = temp;
 }
+        </pre>
+
+        <h3>Сравнение массивов</h3>
+        <pre>
+String[] myArray1 = {"HBase", "JavaFX", "OpenCV", "WebGL", "FlexBox"};
+String[] myArray2 = {"JavaFX", "HBase", "OpenCV", "WebGL", "FlexBox"};
+Arrays.sort(myArray1);
+Arrays.sort(myArray2);
+Boolean result = Arrays.equals(myArray1, myArray2);
+        </pre>
+
+        <p>Массивы в Java ковариантны.</p>
+        <pre>
+String[] strings = new String[] {"a", "b", "c"};
+Object[] arr = strings;
         </pre>
     </section>
 

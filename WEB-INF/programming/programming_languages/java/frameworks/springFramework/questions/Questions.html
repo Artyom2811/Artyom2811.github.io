@@ -1,0 +1,76 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Spring questions</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringFramework.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Spring questions</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://habr.com/ru/post/350682/">Spring: вопросы к собеседованию</a></li>
+            <li><a href="https://javastudy.ru/interview/jee-spring-questions-answers/">Собеседование по Java EE — Spring Framework (вопросы и ответы). Часть 1</a></li>
+            <li><a href="https://jsehelper.blogspot.com/2016/02/spring-framework-1.html">Ответы на вопросы на собеседование Spring Framework (часть 1).</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Список вопросов:</h2>
+        <ul>
+            <li><a href="#prototypeInSingleton">Создание prototype в singleton</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="prototypeInSingleton">Создание prototype в singleton:</h2>
+        <p>Создадим класс singleton Car:</p>
+        <pre>
+@Component
+@Scope("prototype")
+public class Passenger {
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+        </pre>
+
+        <pre>
+@Component
+public class Car {
+    @Lookup
+    public Passenger createPassenger() {
+        return null;
+    };
+    public String drive(String name) {
+        Passenger passenger = createPassenger();
+        passenger.setName(name);
+        return "car with " + passenger.getName();
+    }
+}
+        </pre>
+    </section>
+
+    <section>
+        <h2></h2>
+        <pre>
+
+        </pre>
+    </section>
+
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
