@@ -11,40 +11,6 @@
 <div><a href="../SpringFramework.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>Spring JDBC</h1>
-
-    <h2>Что это</h2>
-    <ol>
-        <p>Spring JDBC - .</p>
-    </ol>
-
-    <h2>Основные разделы</h2>
-    <ul>
-        <li><a href="#config">Виды Конфигурации beans</a></li>
-    </ul>
-
-    <h2 id="config">Виды Конфигурации beans</h2>
-    <ol>
-        <li>Конфигурация через <a href="configuration/SpringContextConfiguration.html/#annotation">аннотации</a> с
-            указанием пакета для сканирования — AnnotationConfigApplicationContext(“package.name”)
-        </li>
-        <li>Xml конфигурация — ClassPathXmlApplicationContext(“context.xml”)</li>
-        <li>JavaConfig — конфигурация через аннотации с указанием класса (или массива классов) помеченного аннотацией
-            @Configuration -AnnotationConfigApplicationContext(JavaConfig.class). Это как XML только в JAVA, без
-            @Service и @Inject и тд. только @Bean.
-        </li>
-        <li>Groovy конфигурация — GenericGroovyApplicationContext(“context.groovy”)</li>
-    </ol>
-
-    <h2>Виды Dependency injection(DI):</h2>
-    <ol>
-        <li>Через сэттеры</li>
-        <li>Через конструкторы</li>
-        <li>Через поля - плохая практика.</li>
-    </ol>
-
-    <h2>Без @Autowired</h2>
-    <p>Начиная с Spring Framework 4.3 если внедряемый класс имеет один конструктор, @Autowired можно не использовать.</p>
-
 </div>
 </body>
 <script>setBackButtonHeight();</script>
