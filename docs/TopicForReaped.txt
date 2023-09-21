@@ -1,16 +1,16 @@
 OOP
 Object
+JAVA память
+Порядок инициализации класса
 Пример equals(Object obj)
+Immutable class
 PECS
 SOLID
 Gang of four
+Grasp
 ACID
 Проблемы параллельного доступа(Потерянное обновление и тд.)
 Уровни изоляции транзакций
-PECS
-Functional Interface
-Grasp
-Immutable class
-Порядок инициализации класса
-JAVA память
+Lambda Function
+Stream API
 Spring

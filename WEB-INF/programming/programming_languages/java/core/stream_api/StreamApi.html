@@ -26,6 +26,8 @@
             <li><a href="https://habr.com/ru/post/437038/">Перевод руководства по Stream API от Benjamin Winterberg</a></li>
             <li><a href="https://www.youtube.com/watch?v=C6yYDfDqSJg/">Streams. Метод reduce (прокачанная Java)</a></li>
             <li><a href="https://metanit.com/java/tutorial/10.5.php">Метод reduce</a></li>
+            <li><a href="https://vertex-academy.com/tutorials/ru/java-8-stream-flatmap/">Java 8 Stream flatMap()</a></li>
+            <li>Как вызвать stream несколько раз?</li>
         </ol>
     </div>
 
@@ -33,20 +35,53 @@
         работают с коллекциями, но на самом деле этот механизм может использоваться для самых различных данных.
     </p>
 
-    <h2>Конвейерные методы</h2>
-    <ol>
-        <li>map - преобразует каждый элемент стрима. Одно выходное значение из каждого входного.</li>
-        <li>flatMap - создаёт произвольное количество выходных значений(0 или больше) для каждого входного.
-            Под капотом из каждого элемента создается новый поток и в конце все потоки создают исходный поток.
-        </li>
-    </ol>
-
     <section>
-        <h2>Терминальные методы</h2>
+        <h2>Виды операторов:</h2>
+        <h3>Конвейерные(Промежуточные, intermediate) операторы</h3>
+        <p>Конвейерные операторы - возвращают новый Stream и не выполняются без терминального оператора.</p>
+        <ol>
+            <li>map(Function mapper) - преобразует каждый элемент стрима. Одно выходное значение из каждого входного.</li>
+            <li>flatMap(Function&lt;T, Stream &lt;R&gt;&gt; mapper) - создаёт произвольное количество выходных значений(0 или больше) для каждого входного.
+                Под капотом из каждого элемента создается новый поток и в конце все потоки создают исходный поток.
+            </li>
+            <li>filter(Predicate predicate) - фильтрует стрим, пропуская только те элементы, что проходят по условию.</li>
+            <li>dropWhile(Predicate predicate) — фильтрует стрим, пропуская только те элементы, что не проходят по условию.</li>
+            <li>takeWhile(Predicate<? super T> predicate) — пропускает далее элементы пока условие выполняется
+                и при первом не выполнении больше никого не пропускает.
+            </li>
+            <li>limit(long maxSize) – ограничивает стрим по количеству элементов.</li>
+            <li>skip(long n) – пропускаем n элементов.</li>
+            <li>sorted() – сортировка.</li>
+            <li>sorted(Comparator comparator) – сортирует стрим (сортировка как у TreeMap).</li>
+            <li>distinct() — проверяет стрим на уникальность элементов(убирает повторы элементов).</li>
+        </ol>
+
+        <h3>Терминальные(terminal) операторы</h3>
         <p>После вызова терминального метода, поток завершиться и повторный вызов вернет ошибку IllegalStateException.</p>
         <ol>
+            <li>forEach(Consumer<? super T> action) - аналог for each.</li>
+            <li>count() – возвращает количество елементов стрима.</li>
             <li>reduce - позволяет выполнять агрегатные функции на всей коллекцией и возвращать один результат.</li>
+            <li>collect(Collector collector) – метод собирает все элементы в список, множество или другую коллекцию,
+                сгруппировывает элементы по какому-нибудь критерию, объединяет всё в строку и т.д.
+            </li>
+            <li>min(Comparator comparator)</li>
+            <li>max(Comparator comparator)</li>
+            <li>findFirst() - получить первый элемент стрима.</li>
+            <li>allMatch(Predicate predicate) - возвращает true, если все элементы стрима удовлетворяют условию или false.</li>
+            <li>anyMatch(Predicate predicate) - вернет true, если хотя бы один элемент стрима удовлетворяет условию predicate.</li>
+            <li>noneMatch(Predicate predicate) - вернёт true, если, пройдя все элементы стрима, ни один не удовлетворил условию.</li>
         </ol>
+    </section>
+
+    <section>
+        <h2>Примеры создания Stream</h2>
+        <ul>
+            <li>list.stream()</li>
+            <li>map.entrySet().stream()</li>
+            <li>Arrays.stream(array)</li>
+            <li>Stream.of("1", "2", "3")</li>
+        </ul>
     </section>
 
     <section>
