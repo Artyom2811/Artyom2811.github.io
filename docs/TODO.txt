@@ -58,4 +58,29 @@ Swagger для документации.
 Сайт для создание ботов:
     https://axiom.ai/
 
+Разница:
+    primal key - только один
+    unic
+    unic not null - можно много
+forent key - можно ссылаться не на PK?
+Виды индексов:
+    кластерный
+    не кластерный
+    Hash
+    B-tree
+Hibenate
+    Требования к User entity
+    Может Entity:
+        иметь final поля?
+        быть final?
+Какие Fetch связи рекомендуются к
+    OneToOne - Eger
+    OneToMany - Eger
+    ManyToMany - Lazy
+Когда можно получить и как избежать LazyIntExeption
+@Transaction Propagation
+saveAndFlush
+Spring Security
+
+
 

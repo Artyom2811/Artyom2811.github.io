@@ -165,7 +165,16 @@ in = new Integer(9);
     </section>
 
     <section>
-        <h2>Integer pool</h2>
+        <h2>Integer</h2>
+        <h3>Integer immutable</h3>
+        <pre>
+Integer a = 200;
+Integer b = a;
+a++;
+System.out.println(b); //200
+        </pre>
+
+        <h3>Integer pool</h3>
         <p>От -128 до 127 - если создается объект без ключевого слова new будет использоваться pool. Integer(1) ==
             Integer(1)</p>
     </section>
