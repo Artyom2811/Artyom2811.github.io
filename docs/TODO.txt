@@ -1,9 +1,14 @@
+leetcode.com - сайт с практикой
+
 Создать тестовы проект Spring Boot
 	Для проверки работы Swager iu
 	Для проверки работы spring boot actuator
 	Для проверки docker compose
 	Для проверки Hibernate
-	Для проверки MapStruckt
+	Для проверки Mapstruct
+	Для проверки Controller test (WireMock)
+
+
 
 Почему в Java.html кнопка назад выше чем высота соседнего блока
 Запустить проект на Tomcat(возможно будут работать относительные пути)
@@ -58,25 +63,6 @@ Swagger для документации.
 Сайт для создание ботов:
     https://axiom.ai/
 
-Разница:
-    primal key - только один
-    unic
-    unic not null - можно много
-forent key - можно ссылаться не на PK?
-Виды индексов:
-    кластерный
-    не кластерный
-    Hash
-    B-tree
-Hibenate
-    Требования к User entity
-    Может Entity:
-        иметь final поля?
-        быть final?
-Какие Fetch связи рекомендуются к
-    OneToOne - Eger
-    OneToMany - Eger
-    ManyToMany - Lazy
 Когда можно получить и как избежать LazyIntExeption
 @Transaction Propagation
 saveAndFlush

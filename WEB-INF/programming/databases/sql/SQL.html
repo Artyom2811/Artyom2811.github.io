@@ -30,13 +30,13 @@
             <li><a href="link_types/LinkTypes.html">Link Types</a></li>
             <li><a href="transactionLevels/TransactionLevels.html">TransactionLevels</a></li>
             <li><a href="normalization/Normalization.html">Нормализация(Normalization)</a></li>
+            <li><a href="indexes/Indexes.html">Indexes</a></li>
             <li><a class="anchor" href="#databases">Базы данных</a></li>
             <li><a class="anchor" href="#planning">Планирование схемы таблицы</a></li>
             <li><a class="anchor" href="#basic_concepts">Основные понятия</a></li>
             <li><a class="anchor" href="#requests">Виды запросов</a></li>
             <li><a class="anchor" href="#commands">Команды</a></li>
             <li><a class="anchor" href="#optimization">Оптимизация запросов</a></li>
-            <li><a class="anchor" href="#compare">Сравнение выборки с индексом и без</a></li>
             <li><a class="anchor" href="#injection">SQL-инъекции</a></li>
             <li><a class="anchor" href="#questions">Вопросы на собеседование</a></li>
         </ul>
@@ -59,9 +59,9 @@
             <li>Необходимые колонки данных</li>
             <li>Типы данных</li>
             <li>NOT NULL</li>
-            <li>PRIMARY KEY</li>
-            <li>FOREIGN KEYS</li>
-            <li>UNIQUE поле/поля/связки полей</li>
+            <li>PRIMARY KEY - может быть только один. Нельзя null. По умолчанию имеет кластерный индекс.</li>
+            <li>FOREIGN KEYS - можно применять как к PK, так и к обычным полям.</li>
+            <li>UNIQUE поле/поля/связки полей - можно несколько, можно null. Также можно указать при создании NOT NULL.</li>
             <li>INDEXES</li>
         </ol>
     </section>
@@ -78,8 +78,7 @@
     </section>
 
     <section>
-        <h2 id="requests">Виды запросов</h2>
-        <h3>DDL(Data Definition Language) - </h3>
+        <h2 id="ddl">DDL(Data Definition Language)</h2>
         <ul>
             <li>CREATE</li>
             <li>DROP</li>
@@ -88,12 +87,18 @@
             <li>COMMENT</li>
             <li>RENAME</li>
         </ul>
-        <h3>DQL(Data Query Language) - </h3>
+    </section>
+
+    <section>
+        <h2 id="dql">DQL(Data Query Language)</h2>
         <ul>
             <li>SELECT</li>
             <pre>SELECT * FROM table1;</pre>
         </ul>
-        <h3>DML(Data Manipulation Language) - </h3>
+    </section>
+
+    <section>
+        <h2 id="dml">DML(Data Manipulation Language)</h2>
         <ul>
             <li>INSERT</li>
             <pre>
@@ -108,12 +113,18 @@ UPDATE table2 SET user_id='2', phone_number='200' WHERE phone_id='1';
             <li>CALL</li>
             <li>EXPLAIN PLAN</li>
         </ul>
-        <h3>DCL(Data Control Language) - </h3>
+    </section>
+
+    <section>
+        <h2 id="dcl">DCL(Data Control Language)</h2>
         <ul>
             <li>GRANT</li>
             <li>REVOKE</li>
         </ul>
-        <h3>TCL(Transaction Control Language) - </h3>
+    </section>
+
+    <section>
+        <h2 id="tcl">TCL(Transaction Control Language)</h2>
         <ul>
             <li>COMMIT</li>
             <li>ROLLBACK</li>
@@ -128,12 +139,28 @@ UPDATE table2 SET user_id='2', phone_number='200' WHERE phone_id='1';
             <li>WHERE - ограничивающее команда для SELECT, UPDATE, DELETE. Оно выполняется до того, как будет получен
                 результат операции.
             </li>
+            <li>GROUP BY - используется для группировки данных.</li>
+            <pre>
+SELECT country, COUNT(*) AS n_companies
+FROM companies
+GROUP BY country
+            </pre>
             <li>HAVING - фильтрующее выражение. Работает в командой GROUP BY.</li>
+            <pre>
+SELECT
+    product_line,
+    AVG(unit_price) AS avg_price,
+    SUM(quantity) AS tot_pieces,
+    SUM(total) AS total_gain
+FROM sales
+WHERE SUM(total) > 40000
+GROUP BY product_line
+ORDER BY total_gain DESC
+            </pre>
             <li>Виды Joins:
                 <ul>
                     <li>INNER JOIN - общее</li>
                     <li>LEFT JOIN - левое и общее</li>
-                    <li>RIGHT JOIN - правое и общее</li>
                     <li>RIGHT JOIN - правое и общее</li>
                     <li>OUTER - не общее</li>
                     <li>CROSS(декартова произведения) - не общее</li>
@@ -160,16 +187,6 @@ INNER JOIN C c ON b.d = c.d --10000 Сткок
     </section>
 
     <section>
-        <h2 id="compare">Сравнение выборки с индексом и без</h2>
-        <pre>
-вариант с:
-SELECT * FROM table WHERE ...
-вариант без:
-SELECT * FROM table WITH (INDEX(0)) WHERE …
-        </pre>
-    </section>
-
-    <section>
         <h2 id="injection">SQL-инъекции</h2>
         <p>SQL-инъекция — это попытка изменить запрос к базе данных. Ввести ее можно через форму или ссылку, которая
             передает параметры методом GET.
@@ -180,11 +197,11 @@ SELECT * FROM table WITH (INDEX(0)) WHERE …
 
     <section>
         <h2 id="questions">Вопросы на собеседование</h2>
-        <p>DELETE vs TRUNCATE:</p>
+        <h3>DELETE vs TRUNCATE:</h3>
         <ul>
             <li>TRUNCATE не может использовать WHERE.</li>
             <li>TRUNCATE быстрее и использует меньше системных ресурсов и практически не пишет лог транзакции.</li>
-            <li>TRUNCATE - после использования, откат (rollback) невозможен.</li>
+            <li>TRUNCATE после использования, откат (rollback) невозможен.</li>
             <li>TRUNCATE обнуляет счетчик, уникальности новых записей.</li>
         </ul>
     </section>

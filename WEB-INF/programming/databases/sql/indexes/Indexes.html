@@ -1,0 +1,82 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Indexes</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SQL.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Indexes</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://otus.ru/journal/vse-chto-neobhodimo-znat-pro-indeksy-ms-sql/#:~:text=%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20%D0%B8%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B%20%D0%B2%20sql,%D0%B2%20%D0%BF%D0%BE%D0%B2%D1%8B%D1%88%D0%B5%D0%BD%D0%B8%D0%B8%20%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8%20sql%20%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%BE%D0%B2.">Все, что необходимо знать про индексы MS SQL</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Что это</h2>
+        <p>Index – это особые таблицы, используемые поисковыми системами для поиска данных. Их активное использование
+            играет важнейшую роль в повышении производительности sql серверов. Индексы добавляют время выполнений всех
+            изменяющих операций
+        </p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#compare">Сравнение выборки с индексом и без</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Виды индексов</h2>
+        <ul>
+            <li>Кластеризованный
+               <ul>
+                   <li>Хранит реальные строки данных в листьях индекса.</li>
+                   <li>Все значения отсортированы в определенном порядке либо возрастания, либо убывания.</li>
+                   <li>Таблица или представление может иметь только один кластеризованный индекс.</li>
+                   <li>Таблица не имеющая кластеризованного индекса называется кучей.</li>
+               </ul>
+            </li>
+            <li>Не кластеризованный - Хранит только ключевые(указанные в индексе) в листьях индекса и указатели
+                на реальные данные в таблице, нужна дополнительная операция для обнаружения и получения требуемых данных.
+            </li>
+            <li>Составной - можно включить до 16 столбцов в индекс, но их общая длина ограничена 900 байтами.
+                Как кластеризованный, так и некластеризованный индексы могут быть составными.
+            </li>
+            <li>R-Tree</li>
+            <li>B-Tree - на основе Бинарного дерева.</li>
+            <li>HASH - создание HASH больших записей для ускорения нахождения.</li>
+            <li>Пространственные индексы</li>
+            <li>Spatial grid</li>
+            <li>Quadtree</li>
+            <li>Bitmap</li>
+            <li>Reverse index</li>
+            <li>Inverted index</li>
+            <li></li>
+            <li></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="compare">Сравнение выборки с индексом и без</h2>
+        <pre>
+вариант с:
+SELECT * FROM table WHERE ...
+вариант без:
+SELECT * FROM table WITH (INDEX(0)) WHERE …
+        </pre>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
