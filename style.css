@@ -5,6 +5,10 @@
       overflow: hidden;
 }*/
 
+.anchor {
+    color: red;
+}
+
 body {
     font-size: 1em;
     margin-left: auto;
