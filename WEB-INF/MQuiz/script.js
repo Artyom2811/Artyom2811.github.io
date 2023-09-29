@@ -1,13 +1,13 @@
 let arr = [];
 
-function newGame(pathToFile) {
+async function newGame(pathToFile) {
     //remove old list
     let oldList = document.getElementById("list");
     if(oldList != null) {
         oldList.remove();
     }
 
-    getJsonByPath(pathToFile);
+    await getJsonByPath(pathToFile);
 
     //create list
     let list = document.createElement('ol');
