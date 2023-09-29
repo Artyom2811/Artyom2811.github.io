@@ -1,26 +1,13 @@
+let arr = [];
 
-
-let arr = [
-{name: "Преследование", year: 1998},
-{name: "Помни", year: 2000},
-{name: "Бессонница", year: 2002},
-{name: "Бэтмен: Начало", year: 2005},
-{name: "Престиж", year: 2006},
-{name: "Тёмный рыцарь", year: 2008},
-{name: "Начало", year: 2010},
-{name: "Тёмный рыцарь: Возрождение легенды", year: 2012},
-{name: "Интерстеллар", year: 2014},
-{name: "Дюнкерк", year: 2017},
-{name: "Довод", year: 2020},
-{name: "Оппенгеймер", year: 2023}
-];
-
-function newGame() {
+function newGame(pathToFile) {
     //remove old list
     let oldList = document.getElementById("list");
     if(oldList != null) {
         oldList.remove();
     }
+
+    getJsonByPath(pathToFile);
 
     //create list
     let list = document.createElement('ol');
@@ -92,6 +79,12 @@ function getHint(id) {
 
 function hideText(text) {
     return text.replace( /[0-9А-Яа-яA-Za-zёЁ]/g, "⌷");
+}
+
+function getJsonByPath(pathToFile) {
+    return fetch('https://artyom2811.github.io/WEB-INF/MQuiz/' + pathToFile)
+      .then(res => res.json())
+      .then((out) => arr = out);
 }
 
 //TODO Выделить list в отдельный файл
