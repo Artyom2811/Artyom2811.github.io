@@ -82,7 +82,7 @@ function hideText(text) {
 }
 
 function getJsonByPath(pathToFile) {
-    return fetch('https://artyom2811.github.io/WEB-INF/m-quiz/' + pathToFile)
+    return fetch('https://artyom2811.github.io/WEB-INF/m_quiz/' + pathToFile)
       .then(res => res.json())
       .then((out) => arr = out);
 }
