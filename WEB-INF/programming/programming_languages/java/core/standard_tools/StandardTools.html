@@ -150,6 +150,36 @@ boolean result = switch (a) {
     default -> throw new IllegalArgumentException("something is wrong!");
 };
         </pre>
+
+        <h3>when</h3>
+        <p>Можно использовать ограничение when</p>
+        <pre>
+Stream.of(1, 20)
+    .map(o ->
+        switch (o) {
+            case Integer i when i > 10 -> "Large Integer" + i;
+            case Integer i -> "Normal Integer" + i;
+            default -> "Unknown object";
+            }
+        )
+        .forEach(System.out::println)
+        </pre>
+
+        <h3>Pattern Matching fo switch(since v.21)</h3>
+        <p>Можно находить тип переменной и объявлять ее. Обязательно добавлять default.</p>
+        <pre>
+Stream.of(1, 20, 30L, "Hello")
+    .map(o ->
+        switch (o) {
+            case Integer i -> i + 1;
+            case Long l -> l + 1;
+            String s -> s + " World";
+            null -> "Null object";
+            default -> "Unknown object";
+            }
+        )
+        .forEach(System.out::println)
+        </pre>
     </section>
 
     <section>
