@@ -98,14 +98,12 @@ Future&lt;String&gt; f1 = executor.submit(new CallableSample2());
         <h2>Реализации</h2>
         <ol>
             <li>ThreadPoolExecutor - реализует интерфейс ExecutorService и обеспечивает поддержку управляемого пула
-                потоков
-                исполнения.
-            </li>
-            <li>ScheduledThreadPoolExecutor - реализует интерфейс ScheduledExecutorService для поддержки планирования,
-                пула
                 потоков исполнения.
             </li>
             <li>ForkJoinPool - реализует интерфейс ExecutorService и применяется в каркасе Fork/Join Framework.</li>
+            <li>ScheduledThreadPoolExecutor - реализует интерфейс ScheduledExecutorService для поддержки планирования,
+                пула потоков исполнения.
+            </li>
         </ol>
     </section>
 
