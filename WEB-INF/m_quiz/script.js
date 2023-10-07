@@ -29,15 +29,6 @@ async function newGame(pathToFile) {
 
 function getLiElement(li, element, numberItem, name) {
     li.setAttribute("id", "item" + (numberItem));
-    let movieName = document.createElement("span");
-    movieName.innerHTML = name;
-    movieName.setAttribute("id", "itemName" + (numberItem));
-    li.appendChild(movieName);
-
-    let movieYear = document.createElement("span");
-    movieYear.innerHTML = "(" + element.year + ")";
-    movieYear.setAttribute("id", "itemYear" + (numberItem));
-    li.appendChild(movieYear);
 
     //add button markAsAnswered
     let answeredButton = document.createElement("button");
@@ -52,6 +43,17 @@ function getLiElement(li, element, numberItem, name) {
     hintButton.style.backgroundColor = "#E9967A";
     hintButton.setAttribute("onclick", "getHint(" + numberItem + ")");
     li.appendChild(hintButton);
+
+    let movieName = document.createElement("span");
+    movieName.innerHTML = name;
+    movieName.setAttribute("id", "itemName" + (numberItem));
+    li.appendChild(movieName);
+
+    let movieYear = document.createElement("span");
+    movieYear.innerHTML = "(" + element.year + ")";
+    movieYear.setAttribute("id", "itemYear" + (numberItem));
+    li.appendChild(movieYear);
+
     return li;
 }
 
