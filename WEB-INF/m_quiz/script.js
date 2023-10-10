@@ -6,7 +6,13 @@ async function newGame(pathToFile) {
     if(oldList != null) {
         oldList.remove();
     }
+    //remove old link
+    let oldLink = document.getElementById("link");
+    if(oldLink != null) {
+        oldLink.remove();
+    }
 
+    //download movie's list
     await getMoviesByJsonPath(pathToFile);
 
     //create list
@@ -14,16 +20,24 @@ async function newGame(pathToFile) {
     list.id = 'list';
     let numberItem = 1;
 
+    //add json link, for look at answers
+    let link = document.createElement("a");
+    link.id = 'link';
+    var linkText = document.createTextNode('Answers');
+    link.appendChild(linkText);
+    link.setAttribute("href", 'https://artyom2811.github.io/WEB-INF/m_quiz/' + pathToFile);
+
     arr.forEach((element) => {
     //add to list
     let li = document.createElement("li");
-    let preparedLi = getLiElement(li, element, numberItem, "-");
+    let preparedLi = getLiElement(li, element, numberItem, " - ?");
     list.appendChild(preparedLi);
     ++numberItem;
     });
 
     let sect = document.querySelector("section");
     sect.appendChild(list);
+    sect.appendChild(link);
 
 }
 
@@ -44,15 +58,17 @@ function getLiElement(li, element, numberItem, name) {
     hintButton.setAttribute("onclick", "getHint(" + numberItem + ")");
     li.appendChild(hintButton);
 
-    let movieName = document.createElement("span");
-    movieName.innerHTML = name;
-    movieName.setAttribute("id", "itemName" + (numberItem));
-    li.appendChild(movieName);
-
+    //add movie year
     let movieYear = document.createElement("span");
     movieYear.innerHTML = "(" + element.year + ")";
     movieYear.setAttribute("id", "itemYear" + (numberItem));
     li.appendChild(movieYear);
+
+    //add movie name
+    let movieName = document.createElement("span");
+    movieName.innerHTML = name;
+    movieName.setAttribute("id", "itemName" + (numberItem));
+    li.appendChild(movieName);
 
     return li;
 }
@@ -61,7 +77,7 @@ function markAsAnswered(id) {
     let li = document.getElementById("item" + id);
     li.style.backgroundColor = "#4CAF50";
     let movie =  arr[(id - 1) ];
-    li.innerHTML = movie.name + " (" +  movie.year + ")";
+    li.innerHTML = " (" +  movie.year + ") " + movie.name;
 }
 
 function getHint(id) {
@@ -91,10 +107,9 @@ function getMoviesByJsonPath(pathToFile) {
 
 //TODO Добавить результат в процентном соотношении
 //TODO Добавить фото режиссеров и актеров из IMDB
-//TODO Добавить ссылку на json
-//TODO Изменить jsons -> year, name
 
 //TODO Увеличить шрифт
-//TODO Увеличить растояние между кнопками
+//TODO Увеличить расстояние между кнопками
+//TODO Добавить Иконку для вкладок Chrome
 
 
