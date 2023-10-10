@@ -7,7 +7,7 @@ async function newGame(pathToFile) {
         oldList.remove();
     }
 
-    await getJsonByPath(pathToFile);
+    await getMoviesByJsonPath(pathToFile);
 
     //create list
     let list = document.createElement('ol');
@@ -83,7 +83,7 @@ function hideText(text) {
     return text.replace( /[0-9А-Яа-яA-Za-zёЁ]/g, "⌷");
 }
 
-function getJsonByPath(pathToFile) {
+function getMoviesByJsonPath(pathToFile) {
     return fetch('https://artyom2811.github.io/WEB-INF/m_quiz/' + pathToFile)
       .then(res => res.json())
       .then((out) => arr = out);
@@ -91,6 +91,8 @@ function getJsonByPath(pathToFile) {
 
 //TODO Добавить результат в процентном соотношении
 //TODO Добавить фото режиссеров и актеров из IMDB
+//TODO Добавить ссылку на json
+//TODO Изменить jsons -> year, name
 
 //TODO Увеличить шрифт
 //TODO Увеличить растояние между кнопками
