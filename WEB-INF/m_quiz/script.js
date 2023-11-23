@@ -44,13 +44,6 @@ async function newGame(pathToFile) {
 function getLiElement(li, element, numberItem, name) {
     li.setAttribute("id", "item" + (numberItem));
 
-    //add button markAsAnswered
-    let answeredButton = document.createElement("button");
-    answeredButton.innerHTML = "+";
-    answeredButton.style.backgroundColor = "#4CAF50";
-    answeredButton.setAttribute("onclick", "markAsAnswered(" + numberItem + ")");
-    li.appendChild(answeredButton);
-
     //add button getHint
     let hintButton = document.createElement("button");
     hintButton.innerHTML = "Hint";
@@ -69,6 +62,13 @@ function getLiElement(li, element, numberItem, name) {
     movieName.innerHTML = name;
     movieName.setAttribute("id", "itemName" + (numberItem));
     li.appendChild(movieName);
+
+    //add button markAsAnswered
+    let answeredButton = document.createElement("button");
+    answeredButton.innerHTML = "+";
+    answeredButton.style.backgroundColor = "#4CAF50";
+    answeredButton.setAttribute("onclick", "markAsAnswered(" + numberItem + ")");
+    li.appendChild(answeredButton);
 
     return li;
 }

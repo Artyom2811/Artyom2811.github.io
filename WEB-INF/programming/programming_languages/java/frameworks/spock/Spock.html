@@ -1,0 +1,69 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Spock</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Frameworks.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Spock</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://spockframework.org/spock/docs/2.1/introduction.html">Spock Introduction</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Что это</h2>
+        <p>Spock - framework для тестирования JAVA и Groovy приложений. Используется с помощью Groovy.</p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#main_entities">Основные сущности</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="main_entities">Основные сущности</h2>
+        <h3>Mocks</h3>
+        <p>Используйте Mock для:</p>
+        <ul>
+            <li>проверки контракта между тестируемым кодом и зависимостями.</li>
+            <li>проверки того, что методы зависимостей вызываются корректное число раз.</li>
+            <li>проверки корректности параметров, с которыми вызывается код зависимостей.</li>
+        </ul>
+
+        <h3>Stubs</h3>
+        <p>Используйте Stub для:</p>
+        <ul>
+            <li>предоставления предопределённых результатов вызовов.</li>
+            <li>выполнения предопределённых действий, ожидаемых от зависимостей, таких как выбрасывание исключений.</li>
+        </ul>
+
+        <h3>Spies</h3>
+        <p>Бойтесь шпионов (Spy). Как сказано в документации Spock. Подумайте дважды, прежде чем использовать этот
+            механизм. Возможно, вам стоит изменить дизайн вашего решения и реорганизовать ваш код.
+        </p>
+        <p>Используйте Spy для:</p>
+        <ul>
+            <li>тестирования легаси кода, который невозможно протестировать другими методами.</li>
+            <li>проверки того, что методы зависимостей вызываются корректное число раз.</li>
+            <li>проверки корректности передаваемых параметров.</li>
+            <li>предоставления предопределённого ответа от зависимостей.</li>
+            <li>выполнения предопределённых действий в ответ на вызовы методов зависимостей.</li>
+        </ul>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

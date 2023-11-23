@@ -39,3 +39,8 @@ h2 {
     padding-left: 30px;
 }
 
+#list li {
+    list-style-type: none;
+    margin: 10px 0;
+}
+
