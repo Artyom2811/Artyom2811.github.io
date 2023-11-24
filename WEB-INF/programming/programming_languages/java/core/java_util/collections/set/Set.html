@@ -51,6 +51,9 @@
         <p>Метод add() возвращает true - был ли заменён объект.</p>
         <p>Позволяет добавить (null).</p>
 
+        <h3>Set</h3>
+        <li>Как получить значение из Hashset? Вызвать его Iterator или использовать метод toArray()</li>
+
         <h3>Сложность алгоритмов</h3>
         <ol>
             <li>Получение - если нет коллизии - O(1), если есть коллизия O(n).</li>
@@ -69,11 +72,16 @@
             <li>Вставить - O(log(n)).</li>
             <li>Удаление - O(log(n)).</li>
         </ol>
+
+        <li>Разница HashSet и TreeSet? - TreeSet на основе дерева. При добавлении сортирует. Для добавления
+            необходимо передать Comparator или чтобы его элементы реализовывали Comparable.
+        </li>
     </section>
 
     <section>
         <h2 id="linkedHashSet">LinkedHashSet</h2>
         <p>LinkedHashSet - HashSet в порядке добавления. В основе лежит LinkedHashMap вместо HashMap.</p>
+        <li>Разница HashSet и LinkedHashSet? - LinkedHashSet хранит записи в порядке добавления, двухсвязный список.
     </section>
 </div>
 </body>
