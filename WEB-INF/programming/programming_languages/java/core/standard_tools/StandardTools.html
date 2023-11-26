@@ -222,10 +222,11 @@ String a = "1";
         <h2 id="array">Array</h2>
         <h3>Переворот array</h3>
         <pre>
-for (i = 0; i < array.length / 2; i++) {
-  int temp = array[i];
-  array[i] = array[array.length - 1 - i];
-  array[array.length - 1 - i] = temp;
+var array = new int[]{1, 2, 3, 4};
+for (int i = 0; i < array.length / 2; i++) {
+    int temp = array[i];
+    array[i] = array[array.length - 1 - i];
+    array[array.length - 1 - i] = temp;
 }
         </pre>
 
