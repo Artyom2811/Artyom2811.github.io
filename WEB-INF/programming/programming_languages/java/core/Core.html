@@ -37,25 +37,29 @@
     <section>
         <h2>Основные разделы:</h2>
         <ul>
-            <li><a href="standard_tools/StandardTools.html">Стандартные инструменты</a></li>
+            <h3>Language Tools</h3>
             <li><a href="java_doc/JavaDoc.html">JavaDoc</a></li>
+            <li><a href="standard_tools/StandardTools.html">Стандартные инструменты</a></li>
             <li><a href="class/Class.html">Class</a></li>
             <li><a href="key_words/KeyWords.html">Keywords</a></li>
             <li><a href="reflection_api/ReflectionApi.html">Reflection Api</a></li>
             <li><a href="serialization/Serialization.html">Сериализация(serialization)</a></li>
-            <li><a href="java_util/JavaUtil.html">java.util</a></li>
-            <li><a href="java_lang/JavaLang.html">java.lang</a></li>
-            <li><a href="java_sql/JavaSql.html">java.sql</a></li>
             <li><a class="anchor" href="#accessLevel">Уровни доступа</a></li>
             <li><a class="anchor" href="#multiArray">Многомерный массив</a></li>
 
-            <h4>JAVA 5</h4>
+            <h3>Java base classes</h3>
+            <li><a href="java_lang/JavaLang.html">java.lang</a></li>
+            <li><a href="java_sql/JavaSql.html">java.sql</a></li>
+            <li><a href="java_nio/JavaNio.html">java.nio</a></li>
+            <li><a href="java_util/JavaUtil.html">java.util</a></li>
+
+            <h3>JAVA 5</h3>
             <li><a href="annotation/Annotation.html">Annotation</a></li>
             <li><a href="generic/Generics.html">Generics(обобщение)</a></li>
             <li><a class="anchor" href="#autoboxing">Autoboxing/Unboxing</a></li>
             <li>Методы с неопределённым числом параметров.(void foo(int ... v))</li>
 
-            <h4>JAVA 8</h4>
+            <h3>JAVA 8</h3>
             <li>default - ключевое слово, которое мы можем использовать на методе интерфейса, и описать его реализацию.</li>
             <li>Новые классы для работы с Дата/Время.</li>
             <li>CompletableFuture</li>
@@ -65,7 +69,7 @@
             <li><a href="stream_api/StreamApi.html">Stream API</a></li>
             <li><a href="java_time/JavaTime.html">Java Time</a></li>
 
-            <h4>JAVA 9</h4>
+            <h3>JAVA 9</h3>
             <li><a href="modules/Modules.html">Модульность</a></li>
         </ul>
     </section>
@@ -78,6 +82,14 @@ BufferedImage bimg = ImageIO.read(new File(filename));
 int width          = bimg.getWidth();
 int height         = bimg.getHeight();
         </pre>
+    </section>
+
+    <section>
+        <h2>UI десктоп реализация</h2>
+        <ul>
+            <li>AWT</li>
+            <li>Swing</li>
+        </ul>
     </section>
 
     <section>
@@ -95,6 +107,16 @@ int height         = bimg.getHeight();
         <h2>JAR</h2>
         <p>JAR(Java ARchive) - ZIP-архив, в котором содержится часть программы на языке Java.</p>
         <p>Из чего состоит jar - из классов и файла MANIFEST.MF(хранит путь к файлу с методом main)</p>
+    </section>
+
+    <section>
+        <h2>Примитивы</h2>
+        <ol>
+            <li>byte(1 байта), short(2 байта), int(4 байта), long(8 байта) - целочисленные.</li>
+            <li>float(4 байта), double(8 байта) - с десятичной точкой.</li>
+            <li>char - символ(2 байта).</li>
+            <li>boolean(1 байта) - логический.</li>
+        </ol>
     </section>
 
     <section>
@@ -133,7 +155,7 @@ int height         = bimg.getHeight();
         <ul>
             <li>public - открыт для всех.</li>
             <li>protected - в пределах пакета и для классов наследников.</li>
-            <li>default - в пределах пакета.</li>
+            <li>default(package) - в пределах пакета.</li>
             <li>private - открыт только для себя.</li>
         </ul>
         <p>Class - нельзя объявить privat или protected если это не внутренние классы. </p>
@@ -149,7 +171,7 @@ int[][] a = {{1, 2, 3}, {4, 5, 6}};
 
     <section>
         <h2 id="autoboxing">Autoboxing/Unboxing - Автоупаковка/автораспаковка</h2>
-        <p>Autoboxing/Unboxing - преобразования примитивных типов в объектные и наоборот.</p>
+        <p>Autoboxing/Unboxing - автоматическое преобразования примитивных типов в объектные и наоборот.</p>
 
         <h3>Autoboxing</h3>
         <pre>

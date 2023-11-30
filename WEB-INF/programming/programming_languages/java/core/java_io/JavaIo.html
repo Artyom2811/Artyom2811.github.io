@@ -25,23 +25,30 @@
             <li><a href="https://javarush.com/groups/posts/1919-schitihvanie-s-klaviaturih--riderih">Считывание с клавиатуры — «ридеры»</a></li>
             <li><a href="https://developer.alexanderklimov.ru/android/java/inputstream.php">Класс InputStream</a></li>
             <li><a href="https://mkyong.com/java/jexcel-api-reading-and-writing-excel-file-in-java/">JExcel API – Reading and Writing Excel file in Java</a></li>
+            <li><a href="https://metanit.com/java/tutorial/6.12.php">Работа с ZIP-архивами</a></li>
             <li>InputStream</li>
             <li>OutputStream</li>
         </ol>
     </div>
 
     <section>
+        <h2>Что это</h2>
+        <p>java.io - базовый пакет для работы с потоками ввода и вывода.</p>
+    </section>
+
+    <section>
         <h2>Основные разделы:</h2>
         <ul>
             <li><a class="anchor" href="#file">File</a></li>
+            <li><a class="anchor" href="#files">Files</a></li>
 
             <h3>Байтовые потоки</h3>
-            <li><a href="input_stream/InputStream.html"></a>InputStream</li>
-            <li><a href="output_stream/OutputStream.html"></a>OutputStream</li>
+            <li><a href="input_output/input_stream/InputStream.html"></a>InputStream</li>
+            <li><a href="input_output/output_stream/OutputStream.html"></a>OutputStream</li>
 
             <h3>Символьные потоки(UTF)</h3>
-            <li><a href="reader/Reader.html"></a>Reader</li>
-            <li><a href="writer/Writer.html"></a>Writer</li>
+            <li><a href="input_output/reader/Reader.html"></a>Reader</li>
+            <li><a href="input_output/writer/Writer.html"></a>Writer</li>
 
             <h3>Классы адаптеры</h3>
             <li>InputStreamReader - конвертирует InputStream в Reader.</li>
@@ -64,9 +71,8 @@
 
     <section>
         <h2>Выбор метода передачи</h2>
-        <p>Иерархия Reader/Writer результат интернационализации? Input/Output Stream поддерживают только 8-ми битные
-            символы. Некоторые операции возможны только через байтовые потоки. Лучший способ попытаться использовать
-            Reader/Writer, если будет ошибка Input/Output Stream.
+        <p>Input/Output Stream поддерживают только 8-ми битные символы. Некоторые операции возможны только через
+            байтовые потоки. Лучший способ попытаться использовать Reader/Writer, если будет ошибка Input/Output Stream.
         </p>
     </section>
 
@@ -75,8 +81,8 @@
         <table class="wikitable">
             <tbody>
             <tr>
-                <th>Транзакция 1</th>
-                <th>Транзакция 2</th>
+                <th>Байтовые</th>
+                <th>Символьные</th>
             </tr>
             <tr>
                 <td><code>InputStream</code></td>
@@ -130,8 +136,15 @@
     </section>
 
     <section>
-        <h2 id="file">File</h2>
-        <p>File - для работы с файлами и каталогами. Создание, редактирование, получение свойств.</p>
+        <h2 id="file">File(deprecated)</h2>
+        <p>File - для работы с файлами и каталогами. Создание, редактирование, получение свойств, переименование.</p>
+    </section>
+
+    <section>
+        <h2 id="files">Files</h2>
+        <p>File(since v.7) - новый класс Files, который упрощает создание, удаление и копирование файлов. В отличие от
+            класса File, Files создает или удаляет реальные файлы на диске, а не в памяти.
+        </p>
     </section>
 
     <section>
@@ -188,7 +201,7 @@ public class ReadFromFile {
 }
         </pre>
 
-        <h3>Пример:</h3>
+        <h3>Пример использования:</h3>
         <pre>
 import jxl.read.biff.BiffException;
 import jxl.write.WriteException;
@@ -202,6 +215,25 @@ public class TestClass {
         ReadFromFile readFromFile = new ReadFromFile();
         String answer = readFromFile.read("test.txt");
         System.err.println(answer);
+        </pre>
+    </section>
+
+    <section>
+        <h2>BufferedReader - аналог Scanner</h2>
+        <p>BufferedReader и BufferedWriter - позволяют ускорить работу с файлами. Так как чтение каждого байта обязывает
+            обращаться к источнику, а буфер позволяет за один раз получать необходимое число байтов. Использовать в
+            приоритете.
+        </p>
+        <p>Пример</p>
+        <pre>
+BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+String name = reader.readLine();   //записываем строку
+// записываем int
+//int a = Integer.parseInt(reader.readLine());
+// записываем double
+//double b = Double.parseDouble(reader.readLine());
+// записываем boolean
+//boolean c = Boolean.parseBoolean(reader.readLine());
         </pre>
     </section>
 

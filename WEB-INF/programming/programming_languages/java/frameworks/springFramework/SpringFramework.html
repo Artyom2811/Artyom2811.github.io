@@ -35,7 +35,6 @@
             <li><a href="https://habr.com/ru/articles/350682/">Spring: вопросы к собеседованию</a></li>
             <li><a href="https://www.youtube.com/watch?v=M4w6b2pENWU&list=PLwwk4BHih2fho6gmaAwdHYZ6QQq0aE7Zi">01 - Spring. Введение</a></li>
             <li><a href="https://javarush.ru/groups/posts/spring-framework-java-1">Spring для ленивых. Основы, базовые концепции и примеры с кодом. Часть 1</a></li>
-            <li><a href="https://proselyte.net/tutorials/spring-tutorial-full-version/bean-lifecycle/">Руководство по Spring. Жизненный цикл бинов.</a></li>
             <li><a href="https://sysout.ru/kak-ispolzovat-annotatsiyu-lookup/">Как использовать аннотацию @Lookup</a></li>
             <li><a href="https://xufocoder.medium.com/a-quick-intro-to-dependency-injection-what-it-is-and-when-to-use-it-de1367295ba8">Краткое введение во внедрение зависимостей: что это и когда это необходимо использовать</a></li>
             <li><a href="https://habr.com/ru/articles/434380/">Основы внедрения зависимостей</a></li>
@@ -54,6 +53,7 @@
             <li><a href="https://www.baeldung.com/spring-request-response-body">Spring’s RequestBody and ResponseBody Annotations</a></li>
             <li><a href="https://metanit.com/java/javaee/4.5.php">web.xml и маппинг сервлетов</a></li>
             <li><a href="https://habr.com/ru/articles/675716/">Изучаем ResponseEntity и избавляемся от него в контроллерах Spring</a></li>
+            <li><a href="https://javastudy.ru/spring-mvc/spring-mvc-load-file-with-validation/">Spring MVC — загрузка файла с валидацией</a></li>
 
             <h3>@Transactional</h3>
             <li><a href="http://akorsa.ru/2016/08/kak-na-samom-dele-rabotaet-transactional-spring/">Как на самом деле работает @Transactional Spring?</a></li>
@@ -110,8 +110,7 @@
 
     <section>
         <h2>Советы по оформлению кода:</h2>
-        <p>Объявления сторонних компонентов и подключение к ним писать в конце класса. Чтобы логика была видна
-            сразу.</p>
+        <p>Объявления сторонних компонентов и подключение к ним писать в конце класса. Чтобы логика была видна сразу.</p>
     </section>
 
     <section>
@@ -189,7 +188,7 @@
     </section>
 
     <section>
-        <h2>Жизненный цикл Bean:</h2>
+        <h2>Spring bean lifecycle:</h2>
         <ol>
             <li>Инициализация</li>
             <li>Внедрение зависимостей</li>
@@ -200,6 +199,22 @@
             <li>Singltone - создаётся при старте приложения и удаляется в конце.</li>
             <li>Prototine - создаётся при вызове и удаляется GC.</li>
         </ol>
+    </section>
+
+    <section>
+        <h2>Создание компонента:</h2>
+        <ul>
+            <li>Spring создает экземпляр компонента.</li>
+            <li>Spring внедряет значения и ссылки на компоненты в свойства данного компонента.</li>
+            <li>Если компонент реализует интерфейс BeanNameAware , Spring передает идентификатор компонента методу setBeanName()</li>
+            <li>Если компонент реализует интерфейс BeanFactoryAware , Spring вызывает метод setBeanFactory() , передавая ему саму фабрику компонентов.</li>
+            <li>Если компонент реализует интерфейс ApplicationContextAware , Spring вызывает метод setApplicationContext(), передавая ему ссылку на вмещающий контекст приложения. Контейнер компонентов 54 Введение в Spring</li>
+            <li>Если какие-либо из компонентов реализуют интерфейс BeanPost Processor, Spring вызывает их методы postProcessBeforeIniti alization().</li>
+            <li>Если какие-либо из компонентов реализуют интерфейс InitializingBean , Spring вызывает их методы afterPropertiesSet() . Аналогично, если компонент был объявлен с атрибутом initmethod , вызывается указанный метод инициализации.</li>
+            <li>Если какие-либо из компонентов реализуют интерфейс BeanPostProcessor , Spring вызывает их методы postProcessAfterI nitialization().</li>
+            <li>В этот момент компонент готов к использованию приложением и будет сохраняться в контексте приложения, пока он не будет уничтожен.</li>
+            <li>Если какие-либо из компонентов реализуют интерфейс DisposableBean , Spring вызывает их методы destroy() . Аналогично, если компонент был объявлен с атрибутом destroy-method, вызывается указанный метод.</li>
+        </ul>
     </section>
 
     <section>
