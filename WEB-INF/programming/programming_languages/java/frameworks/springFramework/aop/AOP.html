@@ -1,0 +1,79 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>AOP</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringFramework.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>AOP(Аспектно-ориентированное программирование)</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://habr.com/ru/articles/114649/">Знакомство с АОП</a></li>
+            <li><a href="https://habr.com/ru/articles/428548/">Аспектно-ориентированное программирование, Spring AOP</a></li>
+            <li><a href="https://proselyte.net/tutorials/spring-tutorial-full-version/aop-with-spring/aop-example-annotations/">Руководство по Spring. АОП в Spring с использованием аннотаций (пример приложения).</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Что это</h2>
+        <p>АОП добавляет сквозную функциональность. Мы можем вынести функциональность, которая не является бизнес
+            логикой в отдельное место.
+        </p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#join_point">Join point</a></li>
+            <li><a class="anchor" href="#pointcut">Pointcut</a></li>
+            <li><a class="anchor" href="#advice">Advice</a></li>
+            <li><a class="anchor" href="#aspect">Aspect</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="join_point">Join point</h2>
+        <p>Join point - следующее понятие АОП, это точки наблюдения, присоединения к коду, где планируется введение
+            сквозной функциональности.
+        </p>
+    </section>
+
+    <section>
+        <h2 id="pointcut">Pointcut</h2>
+        <p>Pointcut — это срез, запрос точек присоединения, — это может быть одна и более точек. Правила запросов
+            точек очень разнообразные.
+        </p>
+    </section>
+
+    <section>
+        <h2 id="advice">Advice</h2>
+        <p>Advice - набор инструкций выполняемых на точках среза (Pointcut). На один Pointcut можно «повесить»
+            несколько Advice разного типа. Инструкции можно выполнять по событию разных типов:
+        </p>
+        <ul>
+            <li>Before — перед вызовом метода.</li>
+            <li>After — после вызова метода.</li>
+            <li>After returning — после возврата значения из функции.</li>
+            <li>After throwing — в случае exception.</li>
+            <li>After finally — в случае выполнения блока finally.</li>
+            <li>Around — можно сделать пред., пост., обработку перед вызовом метода, а также вообще обойти вызов метода.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="aspect">Aspect</h2>
+        <p>Aspect — модуль в котором собраны описания Pointcut и Advice.</p>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

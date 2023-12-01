@@ -33,6 +33,7 @@
             <li><a href="normalization/Normalization.html">Нормализация(Normalization)</a></li>
             <li><a href="indexes/Indexes.html">Indexes</a></li>
             <li><a class="anchor" href="#databases">Базы данных</a></li>
+            <li><a class="anchor" href="#restrictions">Ограничения в SQL</a></li>
             <li><a class="anchor" href="#planning">Планирование схемы таблицы</a></li>
             <li><a class="anchor" href="#basic_concepts">Основные понятия</a></li>
             <li><a class="anchor" href="#requests">Виды запросов</a></li>
@@ -50,6 +51,38 @@
             <li><a href="databases/postgreSql/Postgre.html">Postgre</a></li>
             <li><a href="databases/h2/H2.html">H2</a></li>
             <li><a href="databases/sybase/Sybase.html">Sybase</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="restrictions">Ограничения в SQL</h2>
+        <ul>
+            <li>NOT NULL - столбец не может принимать значения NULL.</li>
+            <li>PRIMARY KEY - для определения уникального указателя для каждой строки.
+                <ul>
+                    <li>Гарантирует уникальность указанных полей.</li>
+                    <li>Нельзя значение NULL.</li>
+                    <li>Можно иметь только один PK.</li>
+                    <li>Создает кластерный индекс.</li>
+                    <li>Поддерживает авто инкремент.</li>
+                    <li>Нельзя менять/удалять выбранные поля.</li>
+                </ul>
+            </li>
+            <li>UNIQUE - в указанных столбцах уникальные значения.
+                <ul>
+                    <li>Гарантирует уникальность указанных полей.</li>
+                    <li>Можно значение NULL.</li>
+                    <li>Можно иметь несколько UNIQUE.</li>
+                    <li>Создает не кластерный индекс.</li>
+                    <li>Не поддерживает авто инкремент.</li>
+                    <li>Нельзя менять/удалять выбранные поля.</li>
+                </ul>
+            </li>
+            <li>DEFAULT - определяет значение по умолчанию для столбцов.</li>
+            <li>FOREIGN KEY - это столбец или комбинация столбцов, которые используются для установления и
+                обеспечения взаимосвязи между данными в двух таблицах.
+            </li>
+            <li>CHECK - используется для ограничения значений, которые могут быть помещены в столбец.</li>
         </ul>
     </section>
 
@@ -161,12 +194,14 @@ ORDER BY total_gain DESC
             <li>Виды Joins:
                 <ul>
                     <li>INNER JOIN - общее</li>
-                    <li>LEFT JOIN - левое и общее</li>
-                    <li>RIGHT JOIN - правое и общее</li>
+                    <li>LEFT JOIN - левое и общее. Если не будет совпадения, правая часть будет null.</li>
+                    <li>RIGHT JOIN - правое и общее. Если не будет совпадения, левая часть будет null.</li>
                     <li>OUTER - не общее</li>
                     <li>CROSS(декартова произведения) - не общее</li>
                 </ul>
             </li>
+            <li>UNION - объединяет таблицы с одинаковыми полями и значением.</li>
+            <li>UNION ALL - как UNION, но включает дубликаты.</li>
         </ol>
     </section>
 

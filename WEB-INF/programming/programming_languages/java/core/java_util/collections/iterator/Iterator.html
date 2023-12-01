@@ -1,0 +1,111 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Iterator</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Collections.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Iterator</h1>
+
+    <section>
+        <h2>Что это</h2>
+        <p>Итератор - переборщик способный перебрать все элементы в коллекции. При этом она позволяет это сделать
+            без вникания во внутреннюю структуру и устройство коллекций. Используется for each.
+        </p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#methods">Методы Iterator</a></li>
+            <li><a class="anchor" href="#editInLoop">Изменения коллекций из цикла.</a></li>
+            <li><a class="anchor" href="#list_iterator">ListIterator</a></li>
+            <li><a class="anchor" href="#map_iterator">Map iterator</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="methods">Методы Iterator:</h2>
+        <ul>
+            <li>boolean hasNext() - если есть следующий элемент - метод вернет true, если нет - false.</li>
+            <li>E next() - возвращает следующий элемент коллекции (объекта). Если элементов больше нет
+                бросит NoSuchElementException.
+            </li>
+            <li>void remove() - удалит элемент, который был в последний раз получен методом. Метод может
+                бросить UnsupportedOperationException, если данный итератор не поддерживает метод remove().
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="editInLoop">Изменения коллекций из цикла.</h2>
+        <p>Попытка изменения(добавление, удаление, изменения) элемента mutable(imutable нельзя менять и это кинет то
+            же исключение) коллекций из цикла вызовет исключение ConcurrentModificationException.
+        </p>
+        <pre>
+List&lt;String&gt; list = List.of("A", "B", "C");
+for (String s : list) {
+    if ("A".equals(s)) {
+        // throws java.util.ConcurrentModificationException
+        list.remove(s);
+    }
+}
+        </pre>
+
+        <p>Итератор может это сделать, так как при вызове итератора мы получаем новый список не нарушая конкурентность.</p>
+        <pre>
+        List&lt;Integer&gt; list = new ArrayList<>();
+        list.add(1);list.add(2);list.add(3);
+
+        Iterator&lt;Integer&gt; it = list.iterator();
+
+        while (it.hasNext()) {
+            it.next();
+            it.remove();
+        }
+        </pre>
+
+        <h3>fail-fast</h3>
+        <p>Fail-fast - итераторы немедленно вызывают ConcurrentModificationException, если есть структурная модификация
+            коллекции. Пример: ArrayList, HashMap.
+        </p>
+
+        <h3>fail-safe</h3>
+        <p>Fail-safe - итераторы не генерируют никаких исключений, если коллекция структурно изменена во время итерации
+            по ней. Они работают с клоном коллекции, а не с исходной коллекцией. Пример: CopyOnWriteArrayList,
+            ConcurrentHashMap. При удалении из коллекции без итератора - ошибки не будет.
+        </p>
+    </section>
+
+    <section>
+        <h2 id="list_iterator">ListIterator</h2>
+        <h3>Дополнительные методы:</h3>
+        <ol>
+            <li>void add(E e) — вставляет элемент E в List.</li>
+            <li>boolean hasPrevious() — вернет true, если при обратном переборе List имеются элементы.</li>
+            <li>int nextIndex()— вернет индекс следующего элемента.</li>
+            <li>E previous() — вернет предыдущий элемент листа.</li>
+            <li>int previousIndex() — вернет индекс предыдущего элемента.</li>
+            <li>void set(E e) — заменит элемент, возвращенный последним вызовом next() или previous() на элемент e.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2 id="map_iterator">Map iterator</h2>
+        <p>Map тоже имеет iterator, но его необходимо вызывать из Map.entrySet().</p>
+        <pre>
+Map&lt;String, Integer&gt; map = new HashMap<>();
+Iterator mapIterator = map.entrySet().iterator();
+        </pre>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

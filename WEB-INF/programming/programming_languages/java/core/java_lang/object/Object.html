@@ -75,42 +75,49 @@ class Color{
         </ul>
     </section>
 
-    <h2>Правила переопределения equals():</h2>
+    <section>
+        <h2>Правила переопределения equals():</h2>
+        <ol>
+            <li>Рефлексивность - a.equals(a).</li>
+            <li>Симетричность - a=b, b=a.</li>
+            <li>Транзитивность - a=b, b=c, a=c.</li>
+            <li>Согласованость - каждый раз одинаковый результат.</li>
+            <li>Проверка на NULL - если NULL вернуть false.</li>
+        </ol>
 
-    <ul>
-        <li>Рефлексивность - a.equals(a).</li>
-        <li>Симетричность - a=b, b=a</li>
-        <li>Транзитивность - a=b, b=c, a=c.</li>
-        <li>Согласованость - каждый раз одинаковый результат.</li>
-        <li>Проверка на NULL - если NULL вернуть false.</li>
-    </ul>
+        <h3>Пример equals(Object obj):</h3>
+        <div>
+            public boolean equals(Object obj) {<br>
+            if (obj == this) {<br>
+            return true;<br>
+            }<br>
+            if (obj == null || obj.getClass() != this.getClass()) {<br>
+            return false;<br>
+            }<br>
+            <br>
+            Person guest = (Person) obj;<br>
+            return a == guest.a && b.equals(guest.b) && c.equals(guest.c) //Если ссылочная переменная то equals()<br>
+            }
+        </div>
+    </section>
 
-    <h2>Пример equals(Object obj):</h2>
-    <div>
-        public boolean equals(Object obj) {<br>
-        if (obj == this) {<br>
-        return true;<br>
-        }<br>
-        if (obj == null || obj.getClass() != this.getClass()) {<br>
-        return false;<br>
-        }<br>
-        <br>
-        Person guest = (Person) obj;<br>
-        return a == guest.a && b.equals(guest.b) && c.equals(guest.c) //Если ссылочная переменная то equals()<br>
+    <section>
+        <h2>Пример hashcode():</h2>
+        public int hashCode() {<br>
+        return Objects.hash(a, b, c);<br>
         }
-    </div>
+    </section>
 
-    <h2>Пример hashcode():</h2>
-    public int hashCode() {<br>
-    return Objects.hash(a, b, c);<br>
-    }
+    <section>
+        <h2>Договор(контракт) между equals() и hashcode():</h2>
+        <ul>
+            <li>Если переопределен один метод - нужно переопределить второй.</li>
+            <li>Если два объекта равны, то они должны иметь один и тот же хэш-код.</li>
+            <li>Если два объекта не равны, то они могут иметь или не иметь один и тот же хэш-код(коллизия).</li>
+            <li>В обоих метода использовать одинаковые поля.</li>
+        </ul>
+    </section>
 
-    <h2>Договор(контракт) между equals() и hashcode():</h2>
-    <ul>
-        <li>Если два объекта равны, то они должны иметь один и тот же хэш-код.</li>
-        <li>Если два объекта не равны, то они могут иметь или не иметь один и тот же хэш-код(коллизия).</li>
-        <li>В обоих метода использовать одинаковые поля.</li>
-    </ul>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

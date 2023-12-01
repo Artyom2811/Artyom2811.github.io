@@ -31,8 +31,7 @@
             </li>
             <li>ObjectInputStream - для передачи сериализированных объектов.
                 <pre>
-ObjectInputStream objectInputStream =
-    new ObjectInputStream(new FileInputStream("object.data"));
+ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("object.data"));
 
 MyClass object = (MyClass) objectInputStream.readObject();
 //etc.

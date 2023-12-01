@@ -29,10 +29,10 @@
     <p>String - это immutable class. При создании без ключевого слова new значения будет храниться в String pool.
         При использовании new объекты создаются отдельно от pool.
     </p>
-    <p>StringBuffer - mutable, имеет одинаковые методы с StringBuilder. Но все его методы синхронизированы.
+    <p>StringBuffer - mutable, имеет одинаковые методы с StringBuilder, но все его методы синхронизированы.
         Значения хранятся в Heap.
     </p>
-    <p>StringBuilder - mutable. Значения хранятся в Heap.</p>
+    <p>StringBuilder - mutable. Значения хранятся в Heap. Под капотом это массив байтов, а после команды build уже создает String.</p>
 
     <h2>convert array of byte and String:</h2>
     <pre>

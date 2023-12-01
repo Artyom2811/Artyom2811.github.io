@@ -99,28 +99,28 @@
 
     <section>
         <h2>Способы обработки исключений</h2>
-        <ul>
-            <li>throws - ключевое слово которое, используется при определении метода. Указывает что метод может выкинуть
-                ошибку.
-            </li>
-            <li>try - catch - finally
-                <pre>
+        <h3>throws</h3>
+        <p>throws - ключевое слово которое, используется при определении метода. Указывает что метод может выкинуть
+            ошибку.
+        </p>
+
+        <h3>try - catch - finally</h3>
+        <pre>
 try(try-with-resources){}
 catch(Exception e) {}
 catch(ClassCastException | ArrayStoreException e1) {}
 finally {}
-                </pre>
-                <p>try-with-resources(since v.9) - дает возможность объявлять один или несколько ресурсов в блоке try,
-                    которые будут закрыты автоматически без использования finally блока. Проверяет наличие интерфейса
-                    AutoCloseable или Closeable. И выполняет метод close.
-                <pre>
+        </pre>
+
+        <p>try-with-resources(since v.9) - дает возможность объявлять один или несколько ресурсов в блоке try,
+            которые будут закрыты автоматически без использования finally блока. Проверяет наличие интерфейса
+            AutoCloseable или Closeable. И выполняет метод close.
+        </p>
+        <pre>
 try (BufferedReader br = new BufferedReader(new FileReader(path))) {
     return br.readLine();
 }
-                </pre>
-                </p>
-            </li>
-        </ul>
+        </pre>
     </section>
 
     <section>
@@ -133,7 +133,6 @@ try (BufferedReader br = new BufferedReader(new FileReader(path))) {
                 иерархии.
             </li>
             <li>Можно написать try - finally без блока catch.</li>
-            <li>try-with-resources - объект должен реализовывать Interface Closeable.</li>
             <li>Условия не выполнения finally:
                 <ul>
                     <li>System.exit(int)</li>
