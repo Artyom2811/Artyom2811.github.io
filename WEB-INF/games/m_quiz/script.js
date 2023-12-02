@@ -25,7 +25,7 @@ async function newGame(pathToFile) {
     link.id = 'link';
     var linkText = document.createTextNode('Answers');
     link.appendChild(linkText);
-    link.setAttribute("href", 'https://artyom2811.github.io/WEB-INF/m_quiz/' + pathToFile);
+    link.setAttribute("href", 'https://artyom2811.github.io/WEB-INF/games/m_quiz/' + pathToFile);
 
     arr.forEach((element) => {
     //add to list
@@ -100,7 +100,7 @@ function hideText(text) {
 }
 
 function getMoviesByJsonPath(pathToFile) {
-    return fetch('https://artyom2811.github.io/WEB-INF/m_quiz/' + pathToFile)
+    return fetch('https://artyom2811.github.io/WEB-INF/games/m_quiz/' + pathToFile)
       .then(res => res.json())
       .then((out) => arr = out);
 }
