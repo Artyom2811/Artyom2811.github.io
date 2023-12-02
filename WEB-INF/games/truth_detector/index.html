@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Truth Detector</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+<div class="bodyStyle">
+    <h1>Truth Detector</h1>
+
+    <section>
+        <h2>Как играть:</h2>
+        <ol>
+            <li>Начать новую игру.</li>
+            <li>Прочитать вопрос.</li>
+            <li>Все игроки в закрытую голосуют. Да - согласен. Нет - не согласен.</li>
+            <li>Каждый игрок предсказывает сколько игроков "Согласны".</li>
+            <li>Считает голоса. Если точно угадал 2 очка. Если на один меньше/больше 1 очко.</li>
+            <li>Между раундами игроки могут добирать индикаторы голосования в любом порядке/размере.</li>
+        </ol>
+    </section>
+
+    <button onclick="startNewGame()">New game</button>
+
+    <section>
+        <h2>Вопрос:</h2>
+        <p id="question"></p>
+        <button onclick="nextQuestion()">Next question</button>
+    </section>
+
+
+</body>
+</html>
