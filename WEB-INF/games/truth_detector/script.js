@@ -4,9 +4,19 @@ let counter = 0;
 async function startNewGame() {
     counter = 0;
     //get list of questions
-    let a = await getQuestionsByJsonPath('erotic.json');
-    let b = await getQuestionsByJsonPath('controversial.json');
-    let c = await getQuestionsByJsonPath('skeletons_in_closet.json');
+    let a = [];
+    let b = [];
+    let c = [];
+    if(document.getElementById("controversial").checked){
+        b = await getQuestionsByJsonPath('controversial.json');
+    }
+    if(document.getElementById("erotic").checked){
+        a = await getQuestionsByJsonPath('erotic.json');
+    }
+    if(document.getElementById("skeletons_in_closet").checked){
+        c = await getQuestionsByJsonPath('skeletons_in_closet.json');
+    }
+
     arr = a.concat(b, c);
 
     //shuffle
