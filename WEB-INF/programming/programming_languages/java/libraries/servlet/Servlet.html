@@ -1,0 +1,62 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Servlet</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Libraries.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Servlet</h1>
+
+    <section>
+        <h2>Что это</h2>
+        <p>Java Servlet API — стандартизированный API, предназначенный для реализации на сервере и работе с клиентом
+            по схеме запрос-ответ.
+        </p>
+        <p>Servlet - класс, который может получать HTTP запросы от клиента и возвращать ему ответы. С помощью servlet
+            строится клиент-серверная архитектура.
+        </p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#methods">Методы Servlet</a></li>
+            <li><a class="anchor" href="#dependency">Пример добавление зависимости</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="methods">Методы Servlet</h2>
+        <ul>
+            <li>doGet(HttpServletRequest req, HttpServletResponse resp)</li>
+            <li>doPost(HttpServletRequest req, HttpServletResponse resp)</li>
+            <li>doPut(HttpServletRequest req, HttpServletResponse resp)</li>
+            <li>doDelete(HttpServletRequest req, HttpServletResponse resp)</li>
+            <li>doHead(HttpServletRequest req, HttpServletResponse resp)</li>
+            <li>doOptions(HttpServletRequest req, HttpServletResponse resp)</li>
+            <li>doTrace(HttpServletRequest req, HttpServletResponse resp)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="dependency">Пример добавление зависимости</h2>
+        <pre>
+&lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+    &lt;version&gt;4.0.1&lt;/version&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+        </pre>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
