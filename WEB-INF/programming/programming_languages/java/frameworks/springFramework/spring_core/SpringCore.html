@@ -12,41 +12,50 @@
 <div class="bodyStyle">
     <h1>Spring Core</h1>
 
-    <h2>Что делает</h2>
-    <ol>
-        <li>Удобство создания объектов через Beans.</li>
-        <li>IoC - через управление beans.</li>
-    </ol>
+    <section>
+        <h2>Что делает</h2>
+        <ol>
+            <li>Удобство создания объектов через Beans.</li>
+            <li>IoC - через управление beans.</li>
+        </ol>
+    </section>
 
-    <h2>Основные разделы</h2>
-    <ul>
-        <li><a class="anchor" href="#config">Виды Конфигурации beans</a></li>
-    </ul>
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#config">Виды Конфигурации beans</a></li>
+        </ul>
+    </section>
 
-    <h2 id="config">Виды Конфигурации beans</h2>
-    <ol>
-        <li>Конфигурация через <a href="configuration/SpringContextConfiguration.html/#annotation">аннотации</a> с
-            указанием пакета для сканирования — AnnotationConfigApplicationContext(“package.name”)
-        </li>
-        <li>Xml конфигурация — ClassPathXmlApplicationContext(“context.xml”)</li>
-        <li>JavaConfig — конфигурация через аннотации с указанием класса (или массива классов) помеченного аннотацией
-            @Configuration -AnnotationConfigApplicationContext(JavaConfig.class). Это как XML только в JAVA, без
-            @Service и @Inject и тд. только @Bean.
-        </li>
-        <li>Groovy конфигурация — GenericGroovyApplicationContext(“context.groovy”)</li>
-    </ol>
+    <section>
+        <h2 id="config">Виды Конфигурации beans</h2>
+        <ol>
+            <li>Конфигурация через <a href="configuration/SpringContextConfiguration.html/#annotation">аннотации</a> с
+                указанием пакета для сканирования — AnnotationConfigApplicationContext(“package.name”).
+            </li>
+            <li>Xml конфигурация — ClassPathXmlApplicationContext(“context.xml”).</li>
+            <li>JavaConfig — конфигурация через аннотации с указанием класса (или массива классов) помеченного аннотацией
+                @Configuration - AnnotationConfigApplicationContext(JavaConfig.class). Это как XML только в JAVA, без
+                @Service и @Inject и тд., только @Bean. Используется когда мы используем сторонние библиотеки и не можем
+                использовать на них аннотации.
+            </li>
+            <li>Groovy конфигурация — GenericGroovyApplicationContext(“context.groovy”).</li>
+        </ol>
+    </section>
 
-    <h2>Виды Dependency injection(DI):</h2>
-    <ol>
-        <li>Через конструкторы - лучший способ. Поля final, предотвращает Circular Dependency.</li>
-        <li>Через сэттеры</li>
-        <li>Через поля - плохая практика.</li>
-    </ol>
+    <section>
+        <h2>Виды Dependency injection(DI) в порядке выполнения JAVA:</h2>
+        <ol>
+            <li>Через конструкторы - лучший способ. Поля final, предотвращает Circular Dependency.</li>
+            <li>Через поля - плохая практика.</li>
+            <li>Через сеттеры</li>
+        </ol>
 
-    <h2>Без @Autowired</h2>
-    <p>Начиная с Spring Framework 4.3 если внедряемый класс через конструктор, имея один конструктор, @Autowired можно
-        не использовать.
-    </p>
+        <h2>Без @Autowired</h2>
+        <p>Начиная с Spring Framework 4.3 если внедряемый класс через конструктор, имея один конструктор, @Autowired можно
+            не использовать.
+        </p>
+    </section>
 
 </div>
 </body>

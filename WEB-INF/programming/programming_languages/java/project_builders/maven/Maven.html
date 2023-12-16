@@ -31,11 +31,11 @@
         <p>Некоторые библиотеки добавляют необходимые им зависимости. Рекомендуется добавить все эти зависимости
             самостоятельно. Так как если библиотека не видит явной зависимости в pom.xml, она будет добавлена как
             неявная зависимость для новой библиотеки:
+        </p>
         <ul>
             <li>Зависимость будет добавлена дважды. Возможно с разными версиями.</li>
             <li>Библиотеки использующие неявную зависимость могут выбрать не правильную версию и работать неправильно.</li>
         </ul>
-        </p>
     </section>
 
     <section>
@@ -84,7 +84,7 @@ mvn dependency:resolve
     <section>
         <h2 id="structureOfPom">Структура pom.xml</h2>
         <ul>
-            <h3><b>The Basics</b></h3>
+            <h3>The Basics</h3>
             <li>groupId</li>
             <li>artifactId</li>
             <li>version</li>
@@ -106,11 +106,11 @@ mvn dependency:resolve
             </pre>
             </li>
 
-            <h3><b>Build Settings</b></h3>
+            <h3>Build Settings</h3>
             <li>build - секция для настройки сборки проекта.</li>
             <li>reporting</li>
 
-            <h3><b>More Project Information</b></h3>
+            <h3>More Project Information</h3>
             <li>name</li>
             <li>description</li>
             <li>url</li>
@@ -120,7 +120,7 @@ mvn dependency:resolve
             <li>developers</li>
             <li>contributors</li>
 
-            <h3><b>Environment Settings</b></h3>
+            <h3>Environment Settings</h3>
             <li>issueManagement</li>
             <li>ciManagement</li>
             <li>mailingLists</li>
@@ -134,6 +134,23 @@ mvn dependency:resolve
     </section>
 
     <section>
+        <h2>Избежать дублирования библиотеки</h2>
+        <p>Если несколько зависимостей использует зависимости на одну библиотеку с разными версиями. Для устранения
+            дублирования кода нужно исключить обычно более старую версию.
+        </p>
+        <p>Для удаления зависимых библиотек, которые вы не хотите нужно использовать 'exclusions' в блоке 'dependencies'.</p>
+        <p>Пример:</p>
+        <pre>
+&lt;exclusions&gt;
+    &lt;exclusion&gt;
+        &lt;artifactId&gt;servlet-api&lt;/artifactId&gt;
+        &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;/exclusion&gt;
+&lt;/exclusions&gt;
+        </pre>
+    </section>
+
+    <section>
         <h2 id="defaultProperties">Default properties</h2>
         <ol>
             <li>maven.compiler.source - 5</li>
@@ -143,13 +160,16 @@ mvn dependency:resolve
 
     <section>
         <h2 id="mavenScope">Maven scope(область видимости)</h2>
+        <p>Scope - указывает область действия(этап жизненного цикла проекта), в котором эта зависимость будет доступна.</p>
         <ol>
             <li>compile - сборки, тестирования, зависимые пакеты, конечный пакет(будут доступны и во время исполнения).</li>
             <li>provided - сборки, тестирования, конечный пакет(будут доступны и во время исполнения).</li>
-            <li>runtime - тестирования, зависимые пакеты, конечный пакет(будут доступны и во время исполнения)</li>
-            <li>test - тестирование.</li>
+            <li>runtime - тестирования, зависимые пакеты, конечный пакет(будут доступны и во время исполнения).</li>
+            <li>test - тестирования, зависимость будет "подсунута" maven-ом в проект, когда выполняется компиляция той
+                части проекта, которая содержит тесты (src/test).
+            </li>
             <li>system - область похожа на provided за исключением того, что необходимо определить физическое расположение
-                артефакта на диске. Артефакт с этой областью видимости maven не ищет в репозитории
+                артефакта на диске. Артефакт с этой областью видимости maven не ищет в репозитории.
             </li>
             <li>import - эта область используется в зависимости секции &lt;dependencyManagement&gt; при сложных связях.</li>
         </ol>

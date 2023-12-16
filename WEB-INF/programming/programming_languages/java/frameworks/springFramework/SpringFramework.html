@@ -124,15 +124,9 @@
 
     <section>
         <h2>Spring аннотации:</h2>
-        <h3>Controller</h3>
+
+        <h3>Controller annotations:</h3>
         <ul>
-            <li>@Controller - подтип класса @Component для контроллеров. Похож на обычный сервлет (HttpServlet)
-                (работающий с объектами HttpServletRequest и HttpServletResponse). Просматривает классы, аннотированные
-                @Controller и обнаруживает в них аннотации @RequestMapping. Нужен для ответа веб страницей.
-            </li>
-            <li>@RestController - @Controller + @ResponseBody. Нужен для ответа телом(JSON, XML и
-                тд.).
-            </li>
             <li>@ResponseBody - показывает что данный метод может возвращать кастомный объект в виде xml, json...</li>
             <li>@RequestMapping - используется для маппинга url запроса на указанный метод или класс(общий префикс url).
                 Можно указывать конкретный HTTP-метод, который будет обрабатываться (GET/POST), передавать
@@ -143,25 +137,40 @@
             <li>@PutMapping - указывает PUT mapping для метода.</li>
             <li>@PatchMapping - указывает PATCH mapping для метода.</li>
             <li>@DeleteMapping - указывает DELETE mapping для метода.</li>
+        </ul>
+
+        <h3>Аннотации для создания Bean:</h3>
+        <ul>
+            <li>@Component - общий компонент фреймворка.</li>
+            <li>@Controller - подтип класса @Component для контроллеров. Похож на обычный сервлет (HttpServlet)
+                (работающий с объектами HttpServletRequest и HttpServletResponse). Просматривает классы, аннотированные
+                @Controller и обнаруживает в них аннотации @RequestMapping. Нужен для ответа веб страницей.
+            </li>
+            <li>@RestController - @Controller + @ResponseBody. Нужен для ответа телом(JSON, XML и
+                тд.).
+            </li>
             <li>@ControllerAdvice - для оборачивания объекта, возвращаемого контроллерами, в новый класс на уровне
                 DispatcherServlet.
             </li>
             <li>@RestControllerAdvice - @ControllerAdvice + @ResponseBody</li>
-        </ul>
-        <ul>
-            <li>@Bean - используется для явного определения бинов в Java-конфигурации.</li>
-            <li>@Autowired - автоматически установить значение поля.</li>
-            <li>@Component - общий компонент фреймворка.</li>
             <li>@Service - подтип класса @Component для сервис-слоя.</li>
             <li>@Repository - подтип класса @Component для DAO слоя. Перехватывает исключения из базы и меняет их под
                 стандарты Spring.
             </li>
+            <li>@Configuration - аннотация уровня класса, указывающая, что объект является источником определений
+                компонента. Классы @Configuration объявляют bean-компоненты с помощью методов, аннотированных @Bean.
+            </li>
+        </ul>
+
+        <h3>Другие:</h3>
+        <ul>
+            <li>@Bean - используется для явного определения Beans в Java-конфигурации.</li>
+            <li>@Autowired - автоматически установить значение поля.</li>
             <li>@Transactional - перед исполнением метода помеченного данной аннотацией начинается транзакция,
                 после выполнения метода транзакция коммитится, при выбрасывании RuntimeException откатывается.
             </li>
-
             <li>@Lookup - помечается метод, который будет возвращать разные объекты при каждом вызове метода.</li>
-            <li>@Scope - для установки области жизни бина.</li>
+            <li>@Scope - для установки области жизни bean. Используется с аннотациями Component и Bean.</li>
             <li>@PathVariable - показывает, что параметр метода должен быть связан с переменной из урл-адреса.</li>
             <li>@PostConstruct - аннотация для метода, который будет вызван после вызова конструктора бина.</li>
             <li>@PreDestroy - аннотация для метода, который будет вызван перед уничтожением бина.</li>

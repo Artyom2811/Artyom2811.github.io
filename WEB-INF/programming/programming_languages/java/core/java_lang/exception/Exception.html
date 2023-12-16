@@ -29,19 +29,20 @@
         <ol>
             <li>Exception(Исключение) - это нештатная ситуация, ошибка во время выполнения программы.</li>
             <li>Error - не обрабатываемые исключения тк после из возникновений нет гарантий что программа будет
-                выполняться корректно.
+                выполняться корректно. Связанная с работой JVM.
             </li>
         </ol>
     </section>
 
     <section>
         <h2>Иерархия исключений:</h2>
-        <img src="ExceptionHierarchy.png" width="1100" height="500">
+        <img src="ExceptionHierarchy.png" width="80%">
     </section>
 
     <section>
         <h2>Типы проверки компилятором:</h2>
         <h3>Checked - компилятор их проверяет.</h3>
+        <p>Checked - ошибки ожидаемые в работающей программе и на их появление будет реакция.</p>
         <ol>
             <li>ClassNotFoundException - класс не найден.</li>
             <li>CloneNotSupportedException - попытка клонировать объект который не реализует Cloneable интерфейс.</li>
@@ -54,6 +55,7 @@
 
         <h3>Unchecked - компилятор их не проверяет.</h3>
         <h4>Error</h4>
+        <p>Error - это ошибки JVM. После их появления нормальная работа не гарантируется.</p>
         <ul>
             <li>
                 <h5>VirtualMachineError</h5>
@@ -67,7 +69,9 @@
             <li>ThreadDeath - создается потоком жертвой при вызове метода Thread.stop().</li>
         </ul>
 
-        <h4>Runtime</h4>
+        <h4>Runtime Exceptions</h4>
+        <p>Runtime Exceptions - ошибки которые должны быть предотвращены кодом. В рабочем приложении их быть не должно.</p>
+        <p>При использовании из или их наследников Idea не будет рекомендовать обработку из(красными рекомендациями).</p>
         <ul>
             <li>ArithmeticException - арифметическая ошибка: деление на ноль и тд.</li>
             <li>
@@ -99,12 +103,19 @@
 
     <section>
         <h2>Способы обработки исключений</h2>
-        <h3>throws</h3>
+        <h3>Throws</h3>
         <p>throws - ключевое слово которое, используется при определении метода. Указывает что метод может выкинуть
             ошибку.
         </p>
+        <p>Если переопределять метод с keyword 'throws'. Наследник должен отлавливать 'throws' не выше по иерархии чем у
+            родителя.
+        </p>
 
         <h3>try - catch - finally</h3>
+        <p>Если используются несколько catch нужно писать их отлавливаемые исключения в порядке возвышения по
+            иерархии.
+        </p>
+        <p>Можно написать try - finally без блока catch.</p>
         <pre>
 try(try-with-resources){}
 catch(Exception e) {}
@@ -124,23 +135,32 @@ try (BufferedReader br = new BufferedReader(new FileReader(path))) {
     </section>
 
     <section>
-        <h2>Вопросы на собеседование:</h2>
+        <h2>Создание кастомных Exception классов</h2>
         <ul>
-            <li>Если наследовать класс с throws. Наследник должен отлавливать throws не выше по иерархии чем у
-                родителя.
+            <li>Не создавать и использовать класс исключение, если он уже существует.</li>
+            <li>Наследоваться от класса Exception - так как логически бизнес логика не зависит от существующих классов
+                исключений. И - это конвенция!
             </li>
-            <li>Если используются несколько catch нужно писать их отлавливаемые исключения в порядке возвышения по
-                иерархии.
-            </li>
-            <li>Можно написать try - finally без блока catch.</li>
-            <li>Условия не выполнения finally:
-                <ul>
-                    <li>System.exit(int)</li>
-                    <li>Сбой в JVM</li>
-                    <li>Exception в finally</li>
-                    <li>Death of Daemon thread</li>
-                </ul>
-            </li>
+            <li>Использовать окончание Exception в имени класса.</li>
+        </ul>
+
+        <p>Пример:</p>
+        <pre>
+public class CustomException extends Exception {
+    public CustomException(String message) {
+        super(message);
+    }
+}
+        </pre>
+    </section>
+
+    <section>
+        <h2>Условия не выполнения finally:</h2>
+        <ul>
+            <li>System.exit(int)</li>
+            <li>Сбой в JVM</li>
+            <li>Exception в finally</li>
+            <li>Death of Daemon thread</li>
         </ul>
     </section>
 

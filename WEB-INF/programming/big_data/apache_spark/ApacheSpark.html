@@ -25,77 +25,116 @@
         </ol>
     </div>
 
-    <h2>Что это</h2>
-    <p>Apache Spark — фреймворк с открытым исходным кодом для реализации распределённой обработки неструктурированных
-        и слабоструктурированных данных, входящий в экосистему проектов Hadoop.
-    </p>
+    <section>
+        <h2>Что это</h2>
+        <p>Apache Spark — фреймворк с открытым исходным кодом для реализации распределённой обработки неструктурированных
+            и слабоструктурированных данных через параллельные вычисления на кластере, входящий в экосистему проектов
+            Hadoop.
+        </p>
+    </section>
 
-    <h2>Spark состоит</h2>
-    <ol>
-        <li>SQL</li>
-        <li>STREAMING DATA</li>
-        <li>MACHINE LEARNING</li>
-        <li>GRAPH ANALYTICS</li>
-    </ol>
+    <section>
+        <h2>Spark состоит:</h2>
+        <ol>
+            <li>SQL</li>
+            <li>STREAMING DATA</li>
+            <li>MACHINE LEARNING</li>
+            <li>GRAPH ANALYTICS</li>
+        </ol>
+    </section>
 
-    <h3>RDD</h3>
-    <p>RDD - основной компонент для Spark.</p>
-    <p>Его можно получить из</p>
-    <ol>
-        <li>Файла</li>
-        <li>Памяти</li>
-        <li>Другого RDD</li>
-    </ol>
-    <p>SparkContext или JavaSparkContext(для JAVA) - место откуда мы получает RDD.</p>
-    <p>Пример конфигурации JavaSparkContext</p>
-    <pre>
+    <section>
+        <h3>RDD(Resilient Distributed Datasets)</h3>
+        <p>RDD - основной базовая абстракция Spark, представляющая неизменный набор элементов, разделенных по узлам
+            кластера, что позволяет выполнять параллельные вычисления.
+        </p>
+
+        <h3>Его можно получить из:</h3>
+        <ol>
+            <li>Файла</li>
+            <li>Памяти</li>
+            <li>Другого RDD</li>
+        </ol>
+        <p>SparkContext или JavaSparkContext(для JAVA) - место откуда мы получает RDD.</p>
+        <p>Пример конфигурации JavaSparkContext:</p>
+        <pre>
 SparkConf conf = new SparkConf();
 conf.setAppName("my spark application");
 conf.setAppName("local[*]");
 JavaSparkContext sc = new JavaSparkContext(conf);
-    </pre>
+        </pre>
+    </section>
 
-    <h4>Методы</h4>
-    <p>Transformations</p>
-    <ol>
-        <li>map</li>
-        <li>flatMap</li>
-        <li>filter</li>
-        <li>mapPartitions, mapPartitionsWithIndex</li>
-        <li>sample</li>
-        <li>union, intersection, join, cogroup, cartesian</li>
-        <li>distinct</li>
-        <li>reduceByKey, aggregateByKey, sortByKey</li>
-        <li>pipe</li>
-        <li>coalesce, repartition, repartitionAndSortWithinPartitions</li>
-    </ol>
+    <section>
+        <h2>DataFrame</h2>
+        <p>DataFrame - состоит из RDD.</p>
 
-    <p>Actions</p>
-    <ol>
-        <li>reduce</li>
-        <li>collect</li>
-        <li>count, countByKey, countByValue</li>
-        <li>first</li>
-        <li>take, takeSample, takeOrdered</li>
-        <li>saveAsTextFile, saveAsSequenceFile, saveAsObjectFile</li>
-        <li>foreach</li>
-    </ol>
+    </section>
 
-    <p>Spark shuffle - это операция перемешивания(перераспределения ) данных между Экзекютерами.
-        Побочный эффект таких аналитических преобразований, как join(), groupBy(), orderBy(),
-        reduceByKey(), union() и тд.
-    </p>
+    <section>
+        <h2>Datasets</h2>
+        <p>Datasets - это типизированные DataFrame.</p>
 
-    <ol>Способы снижения отрицательного эффекта Shuffle-операций
-        <li>Сократить число Экзекюторов(меньше обмена между машинами)</li>
-        <li>Уменьших объем данных(сбрасывания лишних столбцов, фильтрация)</li>
-    </ol>
+    </section>
 
-    <h2>Примеры кода</h2>
-    <p>Проверка колонки на максимальное значение(Date или Numeric)</p>
-    <pre>
+    <section>
+        <h2>RDD Operations:</h2>
+        <h3>Transformations:</h3>
+        <ol>
+            <li>map</li>
+            <li>flatMap</li>
+            <li>filter</li>
+            <li>mapPartitions, mapPartitionsWithIndex</li>
+            <li>sample</li>
+            <li>union, intersection, join, cogroup, cartesian</li>
+            <li>distinct</li>
+            <li>reduceByKey, aggregateByKey, sortByKey</li>
+            <li>pipe</li>
+            <li>coalesce, repartition, repartitionAndSortWithinPartitions</li>
+        </ol>
+
+        <h3>Actions:</h3>
+        <ol>
+            <li>reduce</li>
+            <li>collect</li>
+            <li>count, countByKey, countByValue</li>
+            <li>first</li>
+            <li>take, takeSample, takeOrdered</li>
+            <li>saveAsTextFile, saveAsSequenceFile, saveAsObjectFile</li>
+            <li>foreach</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>DataFrame Operations:</h2>
+        <ul>
+            <li>show() - отображение контента DataFrame.
+                <ul>show(boolean) - truncate.</ul>
+                <ul>show(int) - number of rows.</ul>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Shuffle</h2>
+        <p>Spark shuffle - это операция перемешивания(перераспределения ) данных между Экзекютерами.
+            Побочный эффект таких аналитических преобразований, как join(), groupBy(), orderBy(),
+            reduceByKey(), union() и тд.
+        </p>
+
+        <ol>Способы снижения отрицательного эффекта Shuffle-операций
+            <li>Сократить число экзекюторов(меньше обмена между машинами)</li>
+            <li>Уменьши объем данных(сбрасывания лишних столбцов, фильтрация)</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Примеры кода</h2>
+        <h3>Проверка колонки на максимальное значение(Date или Numeric)</h3>
+        <pre>
 .groupBy(col(AF.OfficeId)).agg(min(AF.Date))
-    </pre>
+        </pre>
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>
