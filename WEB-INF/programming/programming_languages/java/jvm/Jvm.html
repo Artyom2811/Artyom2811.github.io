@@ -25,34 +25,54 @@
         </ol>
     </div>
 
-    <h2>Что это</h2>
-    <p>JVM(Java Virtual Machine) - основная часть исполняющей системы Java, так называемой Java Runtime Environment
-        JRE).
-    </p>
+    <section>
+        <h2>Что это</h2>
+        <p>JVM(Java Virtual Machine) - основная часть исполняющей системы Java, так называемой Java Runtime Environment
+            JRE).
+        </p>
+    </section>
 
-    <h2>Реализации</h2>
-    <p>JVM - имеет множество реализаций.</p>
-    <ol>
-        <li>HotSpot(Oracle) - самая популярная, но платная при использовании в коммерческих проектах.</li>
-        <li>OpenJDK - бесплатная.</li>
-    </ol>
-    <p> Самая популярная это (ранее Sun Microsystems).</p>
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#howItWorks">Как она работает</a></li>
+            <li><a class="anchor" href="#entities">Basic entities</a></li>
+            <li><a href="architecture/Architecture.html">Ссылки на другие страницы</a></li>
+        </ul>
+    </section>
 
-    <h2>Как работает</h2>
-    <p>JVM - читает java байт-код при помощи JIT(Just In Time, dynamic translation) как это делают интерпретатор и
-        выполняет программу на разных платформах.
-    </p>
-    <p>JIT имеет преимущество перед обычным интерпретаторами</p>
-    <ul>
-        <li>Части программы загружаются в память и не перечитываются вновь.</li>
-        <li>Читается только необходимые части кода.</li>
-    </ul>
+    <section>
+        <h2>Реализации</h2>
+        <p>JVM - имеет множество реализаций.</p>
+        <ol>
+            <li>HotSpot(Oracle) - самая популярная, но платная при использовании в коммерческих проектах.</li>
+            <li>OpenJDK - бесплатная.</li>
+        </ol>
+    </section>
 
-    <h2>Утилиты для JVM мониторинга</h2>
-    <ol>
-        <li>Jconsole</li>
-        <li>VisualVM</li>
-    </ol>
+    <section>
+        <h2>Как работает</h2>
+        <p>JVM - читает java байт-код при помощи JIT(Just In Time, dynamic translation) как это делают интерпретатор и
+            выполняет программу на разных платформах.
+        </p>
+        <p>JIT имеет преимущество перед обычным интерпретаторами</p>
+        <ul>
+            <li>Части программы загружаются в память и не перечитываются вновь.</li>
+            <li>Читается только необходимые части кода.</li>
+            <li>JIT компилирует часто исполняемый код, преобразует его в нативный машинный код и кеширует для более
+                быстрого выполнения.
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Утилиты для JVM мониторинга</h2>
+        <ol>
+            <li>Jconsole</li>
+            <li>VisualVM</li>
+        </ol>
+    </section>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>
