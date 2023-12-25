@@ -15,4 +15,4 @@ Lambda Function
 Stream API
 Spring
 SQL
-REST
+RESTFULL

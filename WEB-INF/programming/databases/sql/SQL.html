@@ -179,7 +179,7 @@ SELECT country, COUNT(*) AS n_companies
 FROM companies
 GROUP BY country
             </pre>
-            <li>HAVING - фильтрующее выражение. Работает в командой GROUP BY.</li>
+            <li>HAVING - фильтрующее выражение. Работает с командой GROUP BY(для результатов агрегированных функций).</li>
             <pre>
 SELECT
     product_line,
