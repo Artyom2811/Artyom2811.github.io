@@ -28,12 +28,20 @@
 
     <section>
         <p>Generics - это подход к реализации класса, который позволяет использовать его с различными типами данных
-            без изменения его описания. Ранее решалось через Object класс, но новый подход добавляет, проверку в местах
-            где мы ждем определенные типы на соответствие этим типа. А также будет автокаст к указанному типу.
+            без изменения его реализации.
+        </p>
+        <p>Ранее решалось через Object класс, но новый подход добавляет, проверку в местах где мы ждем определенные
+            типы на соответствие этим типа. А также будет автокаст к указанному типу.
         </p>
         <p>При сравнении Set&lt;String&gt; и Set&lt;Integer&gt; будет true. Тк. type erasure при компиляции заменить
             все на Object.
         </p>
+        <p>Но List&lt;String&gt; не является наследником List&lt;Object&gt; - Инвариантность.</p>
+        <pre>
+List&lt;String&gt; strings = new ArrayList&lt;String&gt;();
+// ошибка компиляции!
+List&lt;Object&gt; objects = strings;
+        </pre>
     </section>
 
     <section>
@@ -111,7 +119,8 @@ public void print(List&lt;? super Integer&gt; list)  // OK
     <section>
         <h2>WildCard</h2>
         <p>WildCard обозначается знаком "?". Необходим когда мы не будем указывать тип generic вручную. Но мы не можем
-            создавать связь между указанным типом в реализации.</p>
+            создавать связь между указанным типом в реализации.
+        </p>
         <pre>
 Пример с типизацией:
 public static &lt;T extends Number> void copy(List&lt;T&gt; dest, List&lt;T&gt; src)
@@ -120,27 +129,43 @@ public static void copy(List&lt;? extends Number&gt; dest, List&lt;? extends Num
         </pre>
         <p>? and ? extends Object - это одно и тоже.</p>
         <p>WildCard не поддерживает "multiple bounds".</p>
-
     </section>
 
     <section>
-        <h2>PECS - правило при использовании WILDCARD.</h2>
+        <h2>PECS</h2>
+        <p>>PECS - правило при использовании WILDCARD c коллекциями. Позволяет добавить Ковариантность или
+            Контравариантность в коллекции.
+        </p>
+
+        <h3>Условия:</h3>
         <ul>
             <li>Использовать коллекцию для получения, используем extend.</li>
             <li>Использовать коллекцию для вложения, используем super.</li>
             <li>Если то и другое - ничего не используем.</li>
         </ul>
-        <p>
-            если &lt;? extends A&gt;
-            Мы можем передать коллекцию с generic &lt;A&gt; или generic &lt;subclass A&gt;
-            Мы не можем добавлять в коллекцию(кроме null), но можем выполнять действия над элементами.
-        </p>
-        <p>
-            если &lt;? super A&gt;
-            Мы можем передать объект с generic &lt;A&gt; или generic &lt;superclass A&gt;.
-            Мы можем добавлять в эту коллекцию(тип той коллекции что мы положили или subclasses), но не можем выполнять
-            действия над ней кроме методом Object.
-        </p>
+
+        <h3>&lt;? extends A&gt;</h3>
+        <ol>
+            <li>Можно передать коллекцию с generic &lt;A&gt; или generic &lt;subclass A&gt;.</li>
+            <li>Можно добавлять в коллекцию(кроме null), но можем выполнять действия над элементами.</li>
+        </ol>
+        <pre>
+public void sendEmailsFixed(List&lt;? extends User&gt; users) {}
+List&lt;Customer&gt; customers = Arrays.asList(new Customer("john"), new Customer("arys"));
+sendEmailsFixed(customers);
+        </pre>
+
+        <h3>&lt;? super A&gt;</h3>
+        <ul>
+            <li>Можно передать коллекцию с generic &lt;A&gt; или generic &lt;superclass A&gt;.</li>
+            <li>Мы можем добавлять в эту коллекцию(тип той коллекции, что мы положили или subclasses),
+                но не можем выполнять действия над ней кроме методом Object.
+            </li>
+        </ul>
+        <pre>
+private void addUsersFromMarketingDepartmentFixed(List&lt;? super Operator&gt; users) {
+users.add(new Operator("john doe"));
+        </pre>
     </section>
 </div>
 </body>
