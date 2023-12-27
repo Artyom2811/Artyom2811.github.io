@@ -1,0 +1,63 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>SpringDoc</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringFramework.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>SpringDoc</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://springdoc.org/">Introduction</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Что это</h2>
+        <p>Swagger(OpenAPI) - это фреймворк для спецификации RESTful API. Его прелесть заключается в том, что он
+            дает возможность не только интерактивно просматривать спецификацию, но и отправлять запросы – так
+            называемый Swagger UI. Также возможно сгенерировать непосредственно клиента или сервер по спецификации
+            API Swagger, для этого понадобится Swagger Codegen.
+        </p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#howApply">Spring Boot подключение</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="howApply">Spring Boot подключение:</h2>
+        <p>Добавление зависимости.</p>
+        <pre>
+implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.3.0'
+        </pre>
+
+        <p>Добавление настроек в "application.yml".</p>
+        <pre>
+springdoc:
+    swagger-ui:
+        path: "/swagger-ui.html"
+        </pre>
+
+        <p>При запуске приложения, уже будет работать по адресу - http://localhost:8080/swagger-ui/index.html</p>
+    </section>
+
+    <section>
+        <h2>Добавление описания API</h2>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

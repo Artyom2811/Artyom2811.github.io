@@ -76,6 +76,30 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON имя_таблицы TO пользов�
 grant select, insert, update, delete on table1 to IVAN
         </pre>
     </section>
+
+    <section>
+        <h2>Начало работы через консоль:</h2>
+        <p>Получение списка баз данных</p>
+        <pre>
+\l
+        </pre>
+
+        <p>Подключение к БД - testdatabase</p>
+        <pre>
+\c testdatabase
+        </pre>
+
+        <p>Получение списка таблиц</p>
+        <pre>
+\dt
+        </pre>
+
+        <p>Получение из таблицы(нужно указывать schema)</p>
+        <pre>
+select * from public.user_table;
+        </pre>
+
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>
