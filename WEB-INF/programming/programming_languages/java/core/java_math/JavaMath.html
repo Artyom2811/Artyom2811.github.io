@@ -1,0 +1,43 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>JavaMath</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Core.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Java Math</h1>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#big_integer">BigInteger</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="big_integer">BigInteger</h2>
+        <p>Нет максимального размера(ограничен памятью устройства).</p>
+        <p>Для вычислений с крайне высокими требованиями к точности.</p>
+        <p>Конструктор может принимать строку. Так как очень большие числа, java(примитивы) не сможет обработать.</p>
+        <p>Immutable</p>
+
+        <h3>Методы математических операций:</h3>
+        <ul>
+            <li>add()</li>
+            <li>subtract()</li>
+            <li>multiply()</li>
+            <li>divide()</li>
+        </ul>
+        <p>Для сравнения чисел, рекомендуется использовать метод compareTo(). Equals допускает ошибки с округлением BigDecimal.</p>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

@@ -36,8 +36,10 @@
             <li><a class="anchor" href="#linkedList">LinkedList</a></li>
             <li>Vector</li>
             <li>CopyOnWriteArrayList - это потокобезопасный вариант of ArrayList. Разница в том, что все мутативные
-                операции, такие как add, set, remove, clear,... создают новую копию массива.
+                операции, такие как add, set, remove, clear,... создают новую копию массива - работает с ней,
+                при окончании работы выкидывается и при следующем обращении.
             </li>
+            <li>ConcurrentLinkedQueue - потокобезопасная очередь.</li>
         </ol>
     </section>
 

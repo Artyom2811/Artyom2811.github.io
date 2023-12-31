@@ -22,12 +22,12 @@
     <section>
         <h2>Основные разделы</h2>
         <ul>
-            <li><a class="anchor" href="#hashMap">#HashMap</a></li>
-            <li><a class="anchor" href="#treeMap">#TreeMap</a></li>
+            <li><a class="anchor" href="#hashMap">HashMap</a></li>
+            <li><a class="anchor" href="#treeMap">TreeMap</a></li>
             <li>LinkedHashMap - это упорядоченная реализация хэш-таблицы. В порядке добавления.</li>
             <li>HashTable - HashMap с синхронизацией.</li>
-            <li>ConcurrentHashMap - потокобезопасный HashMap. С эффективной блокировкой.</li>
-            <li>ConcurrentSkipListMap - потокобезопасная версия TreeMap.</li>
+            <li><a class="anchor" href="#concurrent_hash_map">ConcurrentHashMap</a></li>
+            <li>ConcurrentSkipListMap - потокобезопасная и отсортированная версия TreeMap.</li>
         </ul>
     </section>
 
@@ -114,28 +114,20 @@
     </section>
 
     <section>
-        <h2>Вопросы на собеседование</h2>
-        <ol>
-            <li>Различия между HashMap и ConcurrentHashMap: - ConcurrentHashMap имеет locks каждого для bucket. При
-                блокировке одного bucket, остальное не блокируются.
-                <ol>
-                    <li>имеет схожий интерфейс взаимодействия.</li>
-                    <li>в ConcurrentHashMap операции чтения не требуют блокировок и выполняются параллельно.</li>
-                    <li>в ConcurrentHashMap операции записи зачастую также могут выполняться параллельно без
-                        блокировок.
-                    </li>
-                    <li>в ConcurrentHashMap при создании указывается требуемый concurrencyLevel, определяемый по
-                        статистике
-                        чтения и записи.
-                    </li>
-                    <li>в ConcurrentHashMap value, объявленное как volatile.</li>
-                </ol>
-            </li>
-            <li>Hashtable и ConcurrentHashMap - Hashtable при обращении блокировалась полностью.</li>
-            <li>HashTable и Collection.synchronized(HashMap) - Очень похожи. Но HashTable имеет функционал
-                Enumerators(счетчики).
-            </li>
-        </ol>
+        <h2 id="concurrent_hash_map">ConcurrentHashMap</h2>
+        <p>ConcurrentHashMap - потокобезопасный HashMap. С эффективной блокировкой.</p>
+        <ul>
+            <li>Имеет locks каждого для bucket. При блокировке одного bucket, остальное не блокируются.</li>
+            <li>Имеет схожий интерфейс HashMap.</li>
+            <li>Операции чтения не требуют блокировок и выполняются параллельно.</li>
+            <li>Операции записи зачастую также могут выполняться параллельно без блокировок.</li>
+            <li>При создании указывается требуемый concurrencyLevel, определяемый по статистике чтения и записи.</li>
+            <li>Value - объявленное как volatile</li>
+        </ul>
+        <p>Hashtable при обращении блокировалась полностью.</p>
+        <p>HashTable и Collection.synchronized(HashMap) - Очень похожи. Но HashTable имеет функционал
+            Enumerators(счетчики).
+        </p>
     </section>
 
 </div>

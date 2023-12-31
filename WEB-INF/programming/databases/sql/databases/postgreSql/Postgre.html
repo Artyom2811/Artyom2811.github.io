@@ -84,7 +84,7 @@ grant select, insert, update, delete on table1 to IVAN
 \l
         </pre>
 
-        <p>Подключение к БД - testdatabase</p>
+        <p>Подключение к БД с именем testdatabase</p>
         <pre>
 \c testdatabase
         </pre>
@@ -96,9 +96,18 @@ grant select, insert, update, delete on table1 to IVAN
 
         <p>Получение из таблицы(нужно указывать schema)</p>
         <pre>
-select * from public.user_table;
+select * from public.users;
         </pre>
+    </section>
 
+    <section>
+        <h2>Управление Windows:</h2>
+        <p>Подставить необходимую версию PostgreSql</p>
+        <ul>
+            <li>net start postgresql-x64-16 - start.</li>
+            <li>net stop postgresql-x64-14 - stop.</li>
+            <li>net stop postgresql-x64-14 && net start postgresql-x64-14 - restart.</li>
+        </ul>
     </section>
 </div>
 </body>

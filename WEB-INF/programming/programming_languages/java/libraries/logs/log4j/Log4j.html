@@ -12,18 +12,20 @@
 <div class="bodyStyle">
     <h1>Log4j</h1>
 
-    <h2>Быстрый старт</h2>
-    <p>Добавить зависимость:</p>
-    <pre>
+    <section>
+        <h2>Быстрый старт</h2>
+        <p>Добавить зависимость:</p>
+        <pre>
 &lt;dependency&gt;
     &lt;groupId&gt;log4j&lt;/groupId&gt;
     &lt;artifactId&gt;log4j&lt;/artifactId&gt;
     &lt;version&gt;set_last_version&lt;/version&gt;
 &lt;/dependency&gt;
-    </pre>
-    <p>Добавить файл конфигурации /src/main/resources/log4j.properties</p>
-    <p>Задать начальные конфигурации через properties.</p>
-    <pre>
+        </pre>
+
+        <p>Добавить файл конфигурации /src/main/resources/log4j.properties</p>
+        <p>Задать начальные конфигурации через properties.</p>
+        <pre>
 log4j.rootLogger=DEBUG, file, stdout
 
 # Direct log messages to a log file
@@ -40,17 +42,18 @@ log4j.appender.stdout.encoding=UTF-8
 log4j.appender.stdout.Target=System.out
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=[%-5p] %d (%c) - %m%n
-    </pre>
+        </pre>
 
-    <p>Добавить в логируемый класс объект для логирования.</p>
-    <pre>
+        <p>Добавить в логируемый класс объект для логирования.</p>
+        <pre>
 import org.apache.log4j.Logger;
 public class App {
     private static final Logger logger = Logger.getLogger(App.class);
 }
-    </pre>
-    <p>Можно использовать:</p>
-    <p>logger.debug("Logger added");</p>
+        </pre>
+        <p>Можно использовать:</p>
+        <p>logger.debug("Logger added");</p>
+    </section>
 
 </div>
 </body>

@@ -47,9 +47,8 @@
     <section>
         <h2 id="methods">Thread методы(после получения через currentThread()):</h2>
         <ul>
-            <li>run() - описывает реализацию работы потока. При запуске - выполнит в том же потоке.</li>
-            <li>start() - запускает выполнение метода run, в отдельном потоке.
-            </li>
+            <li>void run() - описывает реализацию работы потока. При запуске - выполнит в том же потоке.</li>
+            <li>start() - запускает выполнение метода run, в отдельном потоке.</li>
             <li>long getId()</li>
             <li>String getName()</li>
             <li>join() - приостанавливает поток до завершения другого(переданного) потока.</li>
@@ -57,6 +56,9 @@
             <li>void setPriority(int priority) - задать приоритет потока.</li>
             <li>int getPriority() - получить приоритет потока.</li>
         </ul>
+        <p>Exception который появился в отдельном потоке не вернется в main поток. По этому должен быть обработан
+            в своём потоке.
+        </p>
     </section>
 
     <section>
@@ -83,8 +85,10 @@
             <li>public final void setPriority(int newPriority)</li>
 
             <h4>java.lang.Object</h4>
-            <li>public final void wait() throws InterruptedException</li>
-            <li>public final void notify()</li>
+            <li>public final void wait() throws InterruptedException - выйди из синхронного блока, освободить монитор,
+                остановиться перед ним, получить статус waiting, вызвать метод notify().
+            </li>
+            <li>public final void notify() - разбудит первого в очереди(массив) монитора.</li>
             <li>public final void notifyAll()</li>
         </ul>
     </section>

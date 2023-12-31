@@ -176,6 +176,19 @@
         </ol>
     </section>
 
+    <section>
+        <h2>Session methods</h2>
+        <ul>
+            <li>Get() - получение данных. Если объекта нет вернет null. Вернет полностью инициализированный
+                объект(eager load) по этому медленнее чем Load(). Если вы не увереныы что объект есть - используйте
+                Get().
+            </li>
+            <li>Load() - получение данных. Если объекта нет вернет ObjectNotFoundException. Вернет proxy объект
+                (lazy load) по быстрее чем Get(). Если вы увереныы что объект есть - используйте Load().
+            </li>
+        </ul>
+    </section>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>
