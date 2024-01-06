@@ -12,15 +12,18 @@
 <div class="bodyStyle">
     <h1>Callable</h1>
 
-    <h2>Что это</h2>
-    <p>Callable - очень похож на интерфейс Runnable, но может вернуть результат в виде объекта Object и способен бросать
-        исключения.
-    </p>
+    <section>
+        <h2>Что это</h2>
+        <p>Callable - расширенная версия интерфейса Runnable, но может вернуть результат в виде объекта Object и
+            способен бросать исключения.
+        </p>
+        <p>В отличии от Runnable, Callable можно запускать только через ExecutorService.</p>
+    </section>
 
-    <p>Callable.call() - возвращает значения типа T или проверяемое исключение.</p>
-    <p>V call() throws Exception - метод для имплементации.</p>
-    <p>Значение возвращается во Future.</p>
-    <p>Future - Если вызвать метод get на не законченном Future, будет ожидание потока до выполнения(блокировка).</p>
+    <section>
+        <h2>Методы</h2>
+        <p>V call() throws Exception - метод для имплементации.</p>
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>
