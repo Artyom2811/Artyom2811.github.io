@@ -116,10 +116,10 @@ for(;;)
 
     <section>
         <h2 id="switch">Switch</h2>
+
+        <h3>Default Syntax</h3>
         <p>Если не стоит break - выполниться несколько case.</p>
         <p>Типы данных:byte, short, char, int, Byte, Short, Character, Integer, String, Enum.</p>
-
-        <h3>Синтаксис</h3>
         <pre>
 switch(выражение) {
     case значение1, значение2 : команда; break;
@@ -129,9 +129,8 @@ switch(выражение) {
 }
         </pre>
 
-        <p>Новый вид записи(since v.13) без необходимости break для остановки между case. Объединять теперь нужно через
-            запятые.
-        </p>
+        <h3>New Syntax(since v.13)</h3>
+        <p>Не нужен break.</p>
         <pre>
 switch(выражение) {
     case значение1, значение2 -> команда;
@@ -142,7 +141,7 @@ switch(выражение) {
         </pre>
 
         <h3>Возвращение значения</h3>
-        <p>Также теперь можно возвращать значения. Но для выполнения в блоке кода нужно использовать yield.</p>
+        <p>Можно возвращать значения через yield.</p>
         <pre>
 boolean result = switch (a) {
     case "1", "2" -> true;
