@@ -1,0 +1,78 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Redis</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../CacheService.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Redis</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://habr.com/ru/companies/wunderfund/articles/685894/">Разбираемся с Redis</a></li>
+            <li><a href="https://www.youtube.com/watch?v=IpD8SCjHkyA">REDIS за 2 минуты</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Что это</h2>
+        <p>Redis(Remote dictionary service) - сервер баз данных типа ключ-значение. Redis находится в оперативной памяти.
+        В основном используется для кэша. Он находится перед БД(MySql, Postgres etc).
+        </p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#types">Поддерживает типы данных</a></li>
+            <li><a class="anchor" href="#deploy">Варианты развёртывания Redis</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="types">Поддерживает типы данных:</h2>
+        <ul>
+            <li>String</li>
+            <li>Bitmap</li>
+            <li>Bitfield</li>
+            <li>Hash</li>
+            <li>List</li>
+            <li>Set</li>
+            <li>Sorted Set</li>
+            <li>Geospatial</li>
+            <li>Hyperlog</li>
+            <li>Stream</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="deploy">Варианты развёртывания Redis:</h2>
+        <ul>
+            <li>Simple Database - единственный экземпляр.</li>
+            <li>Redis HA - один главный Redis и второй подчиненный. Синхронизация - репликацией.</li>
+            <li>Redis Sentinel - похож на HA, но подчиненных 2 и более. Также добавляются узлы Sentinel обеспечивающие:
+                мониторинг, управление администраторами, уведомления о происшествиях и установление узлов после них
+            </li>
+            <li>Redis Cluster - используется когда размер данных превышает размер оперативной памяти.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Способы взаимодействия</h2>
+        <ul>
+            <li>Консоль - с помощью Redis команд.</li>
+            <li>RedisInsight</li>
+        </ul>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
