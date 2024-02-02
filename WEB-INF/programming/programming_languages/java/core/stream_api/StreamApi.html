@@ -27,6 +27,7 @@
             <li><a href="https://www.youtube.com/watch?v=C6yYDfDqSJg/">Streams. Метод reduce (прокачанная Java)</a></li>
             <li><a href="https://metanit.com/java/tutorial/10.5.php">Метод reduce</a></li>
             <li><a href="https://vertex-academy.com/tutorials/ru/java-8-stream-flatmap/">Java 8 Stream flatMap()</a></li>
+            <li><a href="https://habr.com/ru/articles/745332/">Parallel Stream — не панацея или используй с умом (tutorial для начинающих)</a></li>
             <li>Как вызвать(переиспользовать) stream несколько раз?</li>
         </ol>
     </div>
@@ -64,7 +65,7 @@
         <p>После вызова терминального метода, поток завершиться и повторный вызов вернет ошибку IllegalStateException.</p>
         <ol>
             <li>forEach(Consumer<? super T> action) - аналог for each.</li>
-            <li>count() – возвращает количество елементов стрима.</li>
+            <li>count() – возвращает количество элементов стрима.</li>
             <li>reduce - позволяет выполнять агрегатные функции на всей коллекцией и возвращать один результат.</li>
             <li>collect(Collector collector) – метод собирает все элементы в список, множество или другую коллекцию,
                 сгруппировывает элементы по какому-нибудь критерию, объединяет всё в строку и т.д.
