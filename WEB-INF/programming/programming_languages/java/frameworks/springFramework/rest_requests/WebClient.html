@@ -1,0 +1,74 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>WebClient</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringFramework.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>WebClient</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://habr.com/ru/companies/otus/articles/541404/">Шпаргалка по Spring Boot WebClient</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Что это</h2>
+        <p>WebClient - это неблокирующий, асинхронный реактивный клиент для выполнения HTTP-запросов. Часть WebFlux.</p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#pros">Преимущества</a></li>
+            <li><a class="anchor" href="#cons">Недостатки</a></li>
+            <li><a class="anchor" href="#example">Пример</a></li>
+            <li><a class="anchor" href="#quick_start">Быстрый старт</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="pros">Преимущества</h2>
+        <ul>
+            <li>Поддерживает как синхронные, так и асинхронные модели программирования.</li>
+            <li>Предоставляет гибкий API для создания и выполнения HTTP-запросов.</li>
+            <li>Поддерживает реактивное программирование.</li>
+            <li>Неблокирующий по своей природе, что означает, что поток, отправляющий запрос, не будет заблокирован.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="cons">Недостатки</h2>
+        <ul>
+            <li>Более сложный API по сравнению с RestTemplate.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="example">Пример:</h2>
+        <pre>
+WebClient webClient = WebClient.create("https://api.example.com");
+Mono&lt;String&gt; response = webClient.get().uri("/users/{id}", 1).retrieve().bodyToMono(String.class);
+        </pre>
+    </section>
+
+    <section>
+        <h2 id="quick_start">Быстрый старт</h2>
+        <h3>Добавление зависимости</h3>
+        <pre>
+implementation 'org.springframework.boot:spring-boot-starter-webflux:3.2.2'
+        </pre>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

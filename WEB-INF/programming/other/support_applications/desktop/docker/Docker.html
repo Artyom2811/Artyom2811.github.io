@@ -15,6 +15,7 @@
     <div class="todo">
         <h2>Проработать</h2>
         <ol>
+            <li><a href="https://www.youtube.com/watch?v=jVV8CVURmrE">01-Docker: Основы. Принцип работы. Почему docker. Сравнение с виртульной машиной. Применение.</a></li>
             <li><a href="https://habr.com/ru/articles/337306/">Основы Docker за Х часов и Y дней</a></li>
             <li><a href="https://www.youtube.com/watch?v=HjBpp5X6Amk">Основы Docker для программистов</a></li>
             <li><a href="https://www.youtube.com/watch?v=_kV799129u8">I-hunt Live Stream on Docker for Interview</a></li>
@@ -33,11 +34,13 @@
             <li><a href="https://www.youtube.com/watch?v=_uZQtRyF6Eg">Docker - Полный курс Docker Для Начинающих [3 ЧАСА]</a></li>
             <li><a href="https://www.youtube.com/watch?v=VeiddqzBMls">Docker что это? Все о контейнеризации за 8 минут</a></li>
             <li><a href="https://habr.com/ru/articles/692198/">Как программист настроил автоматическое развертывание бекенда с базой данных</a></li>
+            <li><a href="https://habr.com/ru/articles/578744/">Запускаем PostgreSQL в Docker: от простого к сложному</a></li>
+            <li><a href="https://www.youtube.com/watch?v=J0NuOlA2xDc">Never install locally</a></li>
         </ol>
     </div>
 
     <h2>Что это</h2>
-    <p>Docker — программное обеспечение для автоматизации развёртывания и управления приложениями в средах с поддержкой
+    <p>Docker - программное обеспечение для автоматизации развёртывания и управления приложениями в средах с поддержкой
         контейнеризации, контейнеризатор приложений.
     </p>
 
@@ -46,13 +49,38 @@
         <ul>
             <li><a href="DockerSetup.html">Установка Docker</a></li>
             <li><a class="anchor" href="#howItWorks">Как работает</a></li>
+            <li><a class="anchor" href="#default_entities">Основные сущности</a></li>
             <li><a class="anchor" href="#repository">Репозиторий с образами</a></li>
-            <li><a class="anchor" href="#common_commands">Основные команды</a></li>
+            <li><a class="anchor" href="#docker_file">Docker File commands</a></li>
+            <li><a class="anchor" href="#common_commands">Основные терминальные команды</a></li>
         </ul>
     </section>
 
     <section>
         <h2 id="howItWorks">Как работает</h2>
+        <p>DockerFile (build)-> Image (run)-> Container</p>
+
+        <h3>Преимущество</h3>
+        <ul>
+            <li>Портативности - контейнер может работать в любой системе которая его поддерживает.</li>
+            <li>Изоляция - все приложения и зависимости изолированы.</li>
+            <li>Последовательность - необходимый нам сценарий запуска приложения(связей и зависимостей).</li>
+            <li>Масштабируемость - можно масштабировать горизонтально.</li>
+            <li>Ресурсоэффективность - из-за совместного использования ресурсов ОП хоста, Docker легче чем VM.</li>
+            <li>DevOps и цикл разработки - CI/CD и автоматическое развертывание.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="default_entities">Основные сущности:</h2>
+        <ul>
+            <li>image - образ скачивается из Docker Hub или создаётся.</li>
+            <li>container - создается с образа командой "run".</li>
+            <li>DockerFile - txt файл с последовательными шагами для создания образа докера.</li>
+            <li>Docker Compose - используется для одновременного управления несколькими контейнерами, входящими
+                в состав приложения.
+            </li>
+        </ul>
         <p>Есть образы и контейнеры. Образ скачивается или создаётся. А после команды "run" с параметрами, будет
             создан контейнер.
         </p>
@@ -64,22 +92,40 @@
     </section>
 
     <section>
-        <h2 id="common_commands">Основные команды</h2>
+        <h2 id="docker_file">Docker File commands</h2>
         <ul>
+            <li>FROM - указывает какой базовый образ использовать.</li>
+            <li>RUN - выполняет команды внутри контейнера.</li>
+            <li>WORKDIR - изменяет активный каталог.</li>
+            <li>USER - изменяет активного пользователя для следующих команд.</li>
+            <li>EXPOSE - указывает какой порт нужно отображать вне контейнера.</li>
+            <li>CMD - указывает команду для выполнения при запуске контейнера.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="common_commands">Основные терминальные команды</h2>
+        <ul>
+            <h3>default</h3>
+            <li>docker --version - проверка версии.</li>
+
             <h3>image</h3>
             <li>docker images - получить список всех скачанных образов.</li>
-            <li>docker pull — загрузка образа из Docker Hub.</li>
-            <li>docker build — собирает образ.</li>
-            <li>docker rmi — удаляет образ.</li>
+            <li>docker pull - загрузка образа из Docker Hub. Пример: docker pull postgres.</li>
+            <li>docker build - собирает образ из Docker File.</li>
+            <li>docker rmi - удаляет образ.</li>
 
             <h3>container</h3>
             <li>docker ps - (process status) получить список всех запущенных контейнеров. Параметр "-a" покажет и незапущенные.</li>
-            <li>docker run — запускаем контейнер.</li>
-            <li>docker stop — останавливает контейнер. Мягкая остановка.</li>
-            <li>docker kill — «убивает» контейнер. Грубая остановка.</li>
-            <li>docker rm — удаляет контейнер.</li>
-            <li>docker logs — смотрим логи.</li>
-            <li>docker volume ls — список томов.</li>
+            <li>docker run - запускаем контейнер. Пример: docker run --name test-db -p 5432:5432 -e POSTGRES_USER=test_user -e POSTGRES_PASSWORD=password -e POSTGRES_DB=testdb -d postgres:16</li>
+            <li>docker stop - останавливает контейнер. Мягкая остановка.</li>
+            <li>docker kill - «убивает» контейнер. Грубая остановка.</li>
+            <li>docker rm - удаляет контейнер по id.</li>
+            <li>docker logs - смотрим логи.</li>
+            <li>docker volume ls - список томов.</li>
+
+            <h3>docker-compose</h3>
+            <li>docker-compose up -d - запуск docker-compose.</li>
         </ul>
     </section>
 </div>

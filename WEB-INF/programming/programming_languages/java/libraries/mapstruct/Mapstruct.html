@@ -17,13 +17,34 @@
 
     <h2>Основные разделы</h2>
     <ul>
-        <li><a class="anchor" href="#howItWorks">Как она работает</a></li>
-        <li><a href="architecture/Architecture.html">Ссылки на другие страницы</a></li>
+        <li><a class="anchor" href="#quick_start">Быстрый старт</a></li>
     </ul>
 
-    <h2 id="howItWorks">Как она работает</h2>
+    <section>
+        <h2 id="quick_start">Быстрый старт</h2>
 
-    <h2>Особенности</h2>
+        <h3>Добавление зависимостей</h3>
+        <pre>
+implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+        </pre>
+
+        <h3>Создаем директорию mapper. Создаем Interface.</h3>
+        <pre>
+@Mapper(componentModel = "spring")
+public interface FirstObjMapper {
+    FirstObjMapperDTO toDTO(FirstObj firstObj);
+}
+        </pre>
+
+        <h3>Используем</h3>
+        <pre>
+@Autowired
+FirstObjMapper firstObjMapper;
+
+var foo = firstObjMapper.toDTO(firstObj);
+        </pre>
+    </section>
 
 </div>
 </body>

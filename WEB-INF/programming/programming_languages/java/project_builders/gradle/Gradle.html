@@ -33,19 +33,16 @@
     <section>
         <h2>Основные разделы</h2>
         <ul>
+            <li><a class="anchor" href="#build">Файл описание работы build.gradle</a></li>
             <li><a class="anchor" href="#terminalCommand">Терминальные команды</a></li>
-            <li><a class="anchor" href="#settings">Настройка Gradle</a></li>
             <li><a class="anchor" href="#dependencyConfigurations">Dependency configurations</a></li>
             <li><a class="anchor" href="#checkstyle">Checkstyle</a></li>
         </ul>
     </section>
 
     <section>
-        <h2>Файл для описание Gradle</h2>
-        <p>build.gradle</p>
-
-        <h3>plugins</h3>
-        <p></p>
+        <h2 id="build">build.gradle</h2>
+        <p><a href="build_gradle/BuildGradle.html">build.gradle</a> - файл описание работы Gradle</p>
     </section>
 
     <section>
@@ -76,41 +73,6 @@
         <p>Инкрементальная сборка - умный подход для определения необходимости запуска task.
             Пример: если код не поменялся не будет compile.
         </p>
-    </section>
-
-    <section>
-        <h2 id="settings">Настройка Gradle</h2>
-        <p>build.gradle - файл настройки Gradle.</p>
-        <p>Пример настроек:</p>
-        <pre>
-plugins {
-    id 'java'
-    // For task "run"
-    id 'application'
-}
-
-// For set direction of Main Class
-application {
-    mainClass = 'Main'
-}
-
-group 'org.example'
-version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation 'com.google.guava:guava:26.0-jre'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-}
-
-test {
-    useJUnitPlatform()
-}
-        </pre>
     </section>
 
     <section>

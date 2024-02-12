@@ -1,0 +1,61 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>RestTemplate</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringFramework.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>RestTemplate</h1>
+
+    <section>
+        <h2>Что это</h2>
+        <p>RestTemplate - это синхронный клиент для выполнения HTTP-запросов.</p>
+        <p>Deprecated - рекомендуется использовать более новый WebClient.</p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#pros">Преимущества</a></li>
+            <li><a class="anchor" href="#cons">Недостатки</a></li>
+            <li><a class="anchor" href="#example">Пример</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="pros">Преимущества</h2>
+        <ul>
+            <li>Простой в использовании и предоставляет удобный API.</li>
+            <li>Автоматически обрабатывает сериализацию и десериализацию тел запросов и ответов.</li>
+            <li>Поддерживает различные методы HTTP, такие как GET, POST, PUT, DELETE и т. д.</li>
+            <li>Предоставляет возможность добавлять собственные заголовки, параметры запроса и переменные URI.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="cons">Недостатки</h2>
+        <ul>
+            <li>Блокировка по своей природе, что означает, что поток, отправляющий запрос, будет заблокирован до тех пор,
+                пока не будет получен ответ.
+            </li>
+            <li>Не поддерживает реактивное программирование.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="example">Пример:</h2>
+        <pre>
+RestTemplate restTemplate = new RestTemplate();
+ResponseEntity&lt;String&gt; response = restTemplate.getForEntity("https://api.example.com/users/{id}", String.class, 1);
+        </pre>
+    </section>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
