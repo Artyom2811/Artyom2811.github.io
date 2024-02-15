@@ -146,7 +146,9 @@
         <h2>Bean scope:</h2>
         <ol>
             <li>singleton(by default) - определяет один единственный бин для каждого контейнера Spring IoC.</li>
-            <li>prototype - любое количество экземпляров бина.</li>
+            <li>prototype - любое количество экземпляров bean. Не храниться в Spring context, значит preDestroy и etc
+                - не будут выполняться.
+            </li>
             <li>request - один экземпляр бина на каждый HTTP запрос. Касается исключительно ApplicationContext.</li>
             <li>session - один экземпляр бина на каждую HTTP сессию. Касается исключительно ApplicationContext.</li>
             <li>global session - аналогичен session - он используется в портлетных веб приложениях. Когда вы используете

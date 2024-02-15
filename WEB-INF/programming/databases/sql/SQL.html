@@ -214,12 +214,18 @@ ORDER BY total_gain DESC
             <li>Скрипт должен идти по мере увеличения размера таблиц.</li>
             <pre>
 Select *
-From A a --100 Сткок
-INNER JOIN B b ON a.c = b.c --1000Сткок
-INNER JOIN C c ON b.d = c.d --10000 Сткок
+From A a --100 записей
+INNER JOIN B b ON a.c = b.c --1000 записей
+INNER JOIN C c ON b.d = c.d --10000 записей
             </pre>
             <li>Фильтровать как можно раньше для уменьшения размеров обрабатываемых данных.</li>
         </ol>
+    </section>
+
+    <section>
+        <h2 id="tips">Советы</h2>
+        <h3>Создание таблицы:</h3>
+        <p>Если есть хоть одно unique поле - оно будет гарантировать что вся запись уникальна.</p>
     </section>
 
     <section>
