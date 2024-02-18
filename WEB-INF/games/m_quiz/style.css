@@ -46,21 +46,20 @@ ul {
 }
 
 ul li {
-    width: 110px;
+    width: 160px;
     margin-right: 20px;
 }
 
 ul li img {
-    width: 100px;
-    height: 140px;
+    width: 135px;
+    height: 190px;
     margin-left: auto;
     margin-right: auto;
     display: block;
 }
 
 ul li span {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+  display: flex;
+  justify-content: center;
 }
 
