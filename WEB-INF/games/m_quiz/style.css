@@ -1,13 +1,8 @@
 body {
+    background-color: #F0F8FF;
     font-size: 1em;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
-}
-
-.bodyStyle {
-    float: left;
-    width: 70%; /* Ширина слоя */
 }
 
 .wikitable {
@@ -42,5 +37,30 @@ h2 {
 #list li {
     list-style-type: none;
     margin: 10px 0;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ul li {
+    width: 110px;
+    margin-right: 20px;
+}
+
+ul li img {
+    width: 100px;
+    height: 140px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+ul li span {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
