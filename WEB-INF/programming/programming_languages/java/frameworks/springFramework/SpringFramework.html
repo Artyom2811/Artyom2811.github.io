@@ -52,6 +52,7 @@
             <li><a href="https://javarush.com/quests/lectures/questspring.level01.lecture44">Дополнительные возможности ApplicationContext</a></li>
             <li><a href="https://www.youtube.com/watch?v=971sG9wInBs">Разработка интернет-магазина на Spring Framework</a></li>
             <li><a href="https://www.youtube.com/watch?v=Us40dUnbw80">Spring – лучший Java фреймворк для создания веб-приложений</a></li>
+            <li><a href="https://www.youtube.com/watch?v=DrMmHTHTcCo">Learn Spring Fundamentals for Beginners - Full Course</a></li>
             <li>Spring vs Spring Boot - разница</li>
 
             <h3>Spring MVC</h3>
@@ -104,7 +105,7 @@
 
     <section>
         <h2>Что это:</h2>
-        <p>Spring Framework — один из самых популярных наборов фреймворков для создания веб-приложений на Java.</p>
+        <p>Spring Framework - один из самых популярных наборов фреймворков для создания веб-приложений на Java.</p>
     </section>
 
     <section>
@@ -135,11 +136,9 @@
         <h4>JOOQ</h4>
         <p>JOOQ - создает сущности на основе БД, путем подключения и получения необходимых данных.</p>
         <p>Для запуска необходима заполненная БД.</p>
-    </section>
 
-    <section>
-        <h2>Советы по оформлению кода:</h2>
-        <p>Объявления сторонних компонентов и подключение к ним писать в конце класса. Чтобы логика была видна сразу.</p>
+        <h3>Logging</h3>
+        <p>Логирование через Lombok</p>
     </section>
 
     <section>
@@ -149,10 +148,10 @@
             <li>prototype - любое количество экземпляров bean. Не храниться в Spring context, значит preDestroy и etc
                 - не будут выполняться.
             </li>
-            <li>request - один экземпляр бина на каждый HTTP запрос. Касается исключительно ApplicationContext.</li>
-            <li>session - один экземпляр бина на каждую HTTP сессию. Касается исключительно ApplicationContext.</li>
+            <li>request - один экземпляр bean на каждый HTTP запрос. Касается исключительно ApplicationContext.</li>
+            <li>session - один экземпляр bean на каждую HTTP сессию. Касается исключительно ApplicationContext.</li>
             <li>global session - аналогичен session - он используется в портлетных веб приложениях. Когда вы используете
-                globalSession в "стандартном" сервлетном приложении эти бины имеют scope session.
+                globalSession в "стандартном" сервлетном приложении эти beans имеют scope session.
             </li>
         </ol>
     </section>

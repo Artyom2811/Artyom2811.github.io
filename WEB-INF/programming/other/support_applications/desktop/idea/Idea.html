@@ -48,29 +48,35 @@
 
     <section>
         <h2 id="settings">Настройки</h2>
+        <h3>Выключить ограничения для Imports</h3>
+        <p>Settings | Editor | Code Style | Java | General - Class count to use... - 99 and Names count to use... - 99.</p>
+
+        <h3>Выключить сворачивание Imports</h3>
+        <p>Settings | Editor | General | Code Folding | General - Imports.</p>
+
+        <h3>Добавление проверки русской орфографии</h3>
         <ol>
-            <li>Добавление русской орфографии - <br>
-                Добавить язык в Settings | Editor | Natural Languages | Languages<br>
-                Скачать словарь с сайта - winedt.org/dict.html и добавить словари в<br>
-                Settings/Preferences | Editor | Natural Languages | Spelling | Custom dictionaries
-            </li>
-            <li>Добавить hotkey для добавления javadoc для класса/метода:<br>
-                Settings | Keymap | Other | Fix doc comment - Alt+H
-            </li>
-            <li>Добавить hotkey открытия закрытой вкладки:<br>
-                Settings | Keymap | Main Menu | Window | Editor Tabs | Reopen Closed Tab
-            </li>
-            <li>Добавить hotkey для движения по коду(назад и вперед): <br>
-                Settings | Keymap | Main Menu | Navigate | Back - Ctrl+Alt+Left<br>
-                Settings | Keymap | Main Menu | Navigate | Forward - Ctrl+Alt+Right<br>
-                Для Ubuntu нужно отменить Hotkeys для GNOME которые блокируют добавление.<br>
-                gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"<br>
-                gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"<br>
-                Для отмены удаления GNOME hotkeys необходимо выполнить команды:<br>
-                gsettings reset org.gnome.desktop.wm.keybindings switch-to-workspace-left<br>
-                gsettings reset org.gnome.desktop.wm.keybindings switch-to-workspace-right
-            </li>
+            <li>Добавить язык в Settings | Editor | Natural Languages | Languages</li>
+            <li>Скачать словарь с сайта - winedt.org/dict.html и добавить словари в</li>
+            <li>Settings/Preferences | Editor | Natural Languages | Spelling | Custom dictionaries</li>
         </ol>
+
+        <h3>Добавить hotkey для добавления javadoc для класса/метода</h3>
+        <p>Settings | Keymap | Other | Fix doc comment - Alt+H</p>
+
+        <h3>Добавить hotkey открытия закрытой вкладки</h3>
+        <p>Settings | Keymap | Main Menu | Window | Editor Tabs | Reopen Closed Tab</p>
+
+        <h3>Добавить hotkey для движения по коду(назад и вперед)</h3>
+        <p>Settings | Keymap | Main Menu | Navigate | Back - Ctrl+Alt+Left</p>
+        <p>Settings | Keymap | Main Menu | Navigate | Forward - Ctrl+Alt+Right</p>
+        <p>Для Ubuntu нужно отменить Hotkeys для GNOME которые блокируют добавление.</p>
+        <p>gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "[]"</p>
+        <p>gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "[]"</p>
+        <p>Для отмены удаления GNOME hotkeys необходимо выполнить команды:</p>
+        <p>gsettings reset org.gnome.desktop.wm.keybindings switch-to-workspace-left</p>
+        <p>gsettings reset org.gnome.desktop.wm.keybindings switch-to-workspace-right</p>
+
     </section>
 
     <section>
