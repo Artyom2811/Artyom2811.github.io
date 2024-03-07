@@ -24,50 +24,74 @@
         Java компиляцией. При помощи аннотаций можно не писать часть кода.
     </p>
 
-    <h2>Основные аннотации</h2>
-    <ul>
-        <li>@NonNull - проверка переменных на отсутствие null.</li>
-        <li>@Getter/@Setter - создание getters и setters.</li>
-        <li>@ToString - создание toString().</li>
-        <li>@EqualsAndHashCode - создает equals() и hashCode().</li>
-        <li>@NoArgsConstructor - создание пустого конструктора.</li>
-        <li>@RequiredArgsConstructor - создание конструктора только с final полями.</li>
-        <li>@AllArgsConstructor - создание конструктора со всеми полями.</li>
-        <li>@Data - содержит: @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor.</li>
-        <li>@Value - аналог @Data, но для immutable классов. Не содержит @Setter.</li>
-        <li>@Builder - реализация паттерна Builder. Также можно указывать на переменные с коллекциями аннотацию.</li>
-            @Builder(toBuilder = true) - добавляем возможность создания Builder с любого экземпляра.
-        </li>
-        <li>@SneakyThrows - заменяет ключевое слово throws. Указываться над методами</li>
-        <li>@Synchronized - замена слова synchronized.</li>
-        <li>@Log - добавление инициализации логирования, так же позволяет выбрать вид логгера: @CommonsLog, @JBossLog,
-            @Log, @Log4j, @Log4j2, @Slf4j, @XSlf4j.
-        </li>
-        <li>@Cleanup - замена try with resources.</li>
-        <li>@Singular. Которая поможет по отдельности добавлять в коллекции.</li>
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#annotations">Основные аннотации</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="annotations">Основные аннотации</h2>
+        <ul>
+            <li>@NonNull - проверка переменных на отсутствие null.</li>
+            <li>@Getter/@Setter - создание getters и setters.</li>
+            <li>@ToString - создание toString().</li>
+            <li>@EqualsAndHashCode - создает equals() и hashCode().</li>
+            <li>@NoArgsConstructor - создание пустого конструктора.</li>
+            <li>@RequiredArgsConstructor - создание конструктора только с final полями.</li>
+            <li>@AllArgsConstructor - создание конструктора со всеми полями.</li>
+            <li>@Data - содержит: @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor.</li>
+            <li>@Value - аналог @Data, но для immutable классов. Не содержит @Setter.</li>
+            <li>@Builder - реализация паттерна Builder. Также можно указывать на переменные с коллекциями аннотацию.
+                @Builder(toBuilder = true) - добавляем возможность создания Builder с любого экземпляра.
+            </li>
+            <li>@SneakyThrows - заменяет ключевое слово throws. Указываться над методами</li>
+            <li>@Synchronized - замена слова synchronized.</li>
+            <li>@Log - добавление инициализации логирования, так же позволяет выбрать вид логгера: @CommonsLog, @JBossLog,
+                @Log, @Log4j, @Log4j2, @Slf4j, @XSlf4j.
+            </li>
+            <li>@Cleanup - замена try with resources.</li>
+            <li>@Singular. Которая поможет по отдельности добавлять в коллекции.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>@Singular</h2>
+        <p>Аннотация дополняющая Builder, применяется на поля типа Map, Set, List и позволяет в builder добавлять
+            объекты по одному, а не списком.
+        </p>
+
+        <h3>Без @Singular</h3>
         <pre>
-<b>Без @Singular</b>
+@Builder
+public class Person {
+    String name;
+    List&lt;String&gt; cars;
+}
 
 Person person = Person.builder()
-  .givenName("Aaron")
-  .additionalName("A")
-  .familyName("Aardvark")
-  .tags(Arrays.asList("fictional","incidental"))
-  .build();
+        .name("A")
+        .cars(Arrays.asList("fictional","incidental"))
+        .build();
         </pre>
 
+        <h3>С @Singular</h3>
         <pre>
-<b> @Singular</b>
+@Builder
+public class Person {
+    String name;
+    @Singular
+    List&lt;String&gt; cars;
+}
 
 Person person = Person.builder()
-  .givenName("Aaron")
-  .additionalName("A")
-  .familyName("Aardvark")
-  .interest("history")
-  .interest("sport")
-  .build();
+        .name("A")
+        .car("carA")
+        .car("carB")
+        .build();
         </pre>
-    </ul>
+    </section>
 
 </div>
 </body>

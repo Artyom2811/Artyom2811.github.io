@@ -44,6 +44,25 @@
             </li>
         </ul>
     </section>
+
+    <section>
+        <h2>Form download</h2>
+        <h3>POST field</h3>
+        <form method="POST" action="http://localhost:8080/registration/addFromFile.htm">
+            <input type="text"  name="date" value="1807" />
+
+            <input type="submit" value="send">
+            Press here to upload the field!
+        </form>
+
+        <h3>POST file</h3>
+        <form method="POST" action="http://localhost:8080/registration/addFromFile.htm" enctype="multipart/form-data">
+            File to upload: <input type="file" name="file"><br />
+
+            <input type="submit" value="Upload">
+            Press here to upload the file!
+        </form>
+    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

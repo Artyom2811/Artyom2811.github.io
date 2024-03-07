@@ -1,0 +1,87 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Spring Testing</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringFramework.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Testing</h1>
+
+<!--    <div class="todo">-->
+<!--        <h2>Проработать</h2>-->
+<!--        <ol>-->
+<!--            <li></li>-->
+<!--        </ol>-->
+<!--    </div>-->
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#unit_test">Unite tests </a></li>
+            <li><a class="anchor" href="#unit_test">Unite tests </a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="common_test">Common tests</h2>
+        <p>Каждый тест должен содержать:</p>
+        <ul>
+            <li>Arrange - создание необходимого для тестирования.</li>
+            <li>Act - выполнение тестируемых действий.</li>
+            <li>Assert - проверка результата.</li>
+        </ul>
+
+        <p>Лучше разделять тест комментариями</p>
+        <ul>
+            <li>//given</li>
+            <li>//when</li>
+            <li>//then</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="unit_test">Unite tests</h2>
+    </section>
+
+    <section>
+        <h2 id="unit_test_quick_start">Unite tests quick start</h2>
+        <p>Добавление зависимости</p>
+        <pre>
+testImplementation 'org.springframework.boot:spring-boot-starter-test:3.2.3'
+testImplementation 'org.mockito:mockito-core:5.10.0'
+        </pre>
+
+        <p>Добавление над тестируемым сервисом</p>
+        <pre>
+@ExtendWith(MockitoExtension.class)
+        </pre>
+
+        <h3>Тестирование repository</h3>
+        <p>Аннотация на тест класс</p>
+        <pre>@DataJpaTest</pre>
+    </section>
+
+    <section>
+        <h2>ParameterizedTest</h2>
+        <p>@ParameterizedTest - аннотация для параметризованного тестирования.</p>
+    </section>
+
+    <section>
+        <h2>Coverage</h2>
+    </section>
+
+    <section>
+        <h2>@ExtendWith</h2>
+        <p>Аннотация для </p>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

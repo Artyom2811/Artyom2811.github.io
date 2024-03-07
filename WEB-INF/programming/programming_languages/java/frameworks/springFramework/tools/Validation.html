@@ -1,0 +1,128 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Spring Validation</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringFramework.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Spring Validation</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://habr.com/ru/post/424819/">Проверка данных — Java & Spring Validation</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#addToProject">Validation в Spring-boot(Hibernate Validation)</a></li>
+            <li><a class="anchor" href="#annotations">Аннотации</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="addToProject">Validation в Spring-boot(Hibernate Validation)</h2>
+        <h3>Добавление зависимости</h3>
+        <pre>
+implementation 'org.springframework.boot:spring-boot-starter-validation:3.2.2'
+        </pre>
+
+        <p>Без Spring boot нужно добавить только зависимость:</p>
+        <pre>
+implementation 'org.hibernate:hibernate-validator:8.0.1.Final'
+        </pre>
+
+        <h3>Добавление @Valid на переменную</h3>
+        <pre>
+@Valid User user
+        </pre>
+
+        <h3>Добавить Аннотации на поля класса @NotNull, @NotEmpty etc.</h3>
+
+        <h3>Добавить Exception Handlers для обработки исключения.</h3>
+        <pre>
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+@ExceptionHandler(MethodArgumentNotValidException.class)
+public Map&lt;String, String&gt; handleValidationExceptions(
+  MethodArgumentNotValidException ex) {
+    Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();
+    ex.getBindingResult().getAllErrors().forEach((error) -> {
+        String fieldName = ((FieldError) error).getField();
+        String errorMessage = error.getDefaultMessage();
+        errors.put(fieldName, errorMessage);
+    });
+    return errors;
+}
+        </pre>
+    </section>
+
+    <section>
+        <h2 id="annotations">Аннотации</h2>
+        <h3>Аннотации общие:</h3>
+        <ul>
+            <li>Valid - для проверки всего объекта. Также необходима для запуска проверки вложенных свойств.
+                <pre>
+//пример проверки вложенных свойств
+@Valid
+@NotNull(groups = AdvanceInfo.class)
+private UserAddress useraddress;
+                </pre>
+            </li>
+
+            <li>Validated - для группового уровня. Что дает возможность выбирать группы проверок.
+                <pre>
+//объявление
+@NotNull(groups = BasicInfo.class)
+private String password;
+//указание проверки
+@Validated(BasicInfo.class) UserAccount useraccount,
+                </pre>
+            </li>
+        </ul>
+
+
+        <h3>Аннотации проверок:</h3>
+        <ul>
+            <li>@NotNull - поле не может быть null.</li>
+            <pre>
+@NotNull(message = "Name is mandatory.")
+private String name;
+            </pre>
+            <li>@NotEmpty - применяется к CharSequence, Collection, Map или Array и проверяет, что он не null имеет
+                размер больше 0.
+            </li>
+            <li>@NotBlank - применяется к String - должен иметь больше хотя бы один символ. Аннотация @Size(min=6)
+                пропустит строку состоящую из 6 пробелов и/или символов переноса строки, а @NotBlank не пропустит.
+            </li>
+            <li>@Size - проверяет размер - size.</li>
+            <pre>
+@NotEmpty(message = "Name may not be empty")
+@Size(min = 2, max = 32, message = "Name must be between 2 and 32 characters long")
+private String name;
+            </pre>
+            <li>@Min and @Max: to say that a numerical field is only valid when it’s value is above or below a certain
+                value.
+            </li>
+            <li>@Pattern: to say that a string field is only valid when it matches a certain regular expression.</li>
+            <li>@Email: to say that a string field must be a valid email address.</li>
+        </ul>
+
+        <h3>Проверки разных типов:</h3>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </section>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
