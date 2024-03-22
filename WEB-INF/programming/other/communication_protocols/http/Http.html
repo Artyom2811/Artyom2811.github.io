@@ -144,9 +144,9 @@
             <tr><td>Добавить элемент</td><td>POST/PUT</td><td>/products</td><td>201</td><td>Созданный элемент</td></tr>
             <tr><td>Получить элемент</td><td>GET</td><td>/products/{id}</td><td>200</td><td>Найденный элемент</td></tr>
             <tr><td>Получить все элементы</td><td>GET</td><td>/products</td><td>200</td><td>Найденные элементы</td></tr>
-            <tr><td>Обновить часть данных элемента</td><td>PATCH</td><td>/products/{id}</td><td>200</td><td>Обновленный элементы</td></tr>
+            <tr><td>Обновить часть данных элемента</td><td>PATCH</td><td>/products/{id}</td><td>204/200(есть тело ответа)</td><td>Обновленный элементы</td></tr>
             <tr><td>Обновить все данные элемента</td><td>PUT</td><td>/products/{id}</td><td>200</td><td>Обновленный элементы</td></tr>
-            <tr><td>Удалить элемент</td><td>DELETE</td><td>/products/{id}</td><td>204/200(есть тело ответа, не рекомендуется.)</td><td></td></tr>
+            <tr><td>Удалить элемент</td><td>DELETE</td><td>/products/{id}</td><td>204/200(есть тело ответа, не рекомендуется.)</td><td>-</td></tr>
             </tbody>
         </table>
     </section>
