@@ -17,8 +17,8 @@
         <li><a class="anchor" href="#converting">Преобразования(приведение типов)</a></li>
         <li><a class="anchor" href="#if">if оператор</a></li>
         <li><a class="anchor" href="#ternary_operator">ternary operator</a></li>
-        <li><a class="anchor" href="#loops">Циклы(loops)</a></li>
         <li><a class="anchor" href="#switch">switch</a></li>
+        <li><a class="anchor" href="#loops">Циклы(loops)</a></li>
         <li><a class="anchor" href="#textBlocks">Text Blocks</a></li>
         <li><a class="anchor" href="#array">Array</a></li>
     </ul>
@@ -71,50 +71,6 @@ String a = true ? "true" : "false";
     </section>
 
     <section>
-        <h2 id="loops">Циклы(loops)</h2>
-
-        <h3>while</h3>
-        <pre>
-while(условие) {
-    тело(блок)
-}
-        </pre>
-
-        <h3>do while</h3>
-        <pre>
-do {
-    тело(блок)
-} while (условие)
-        </pre>
-
-        <h3>for</h3>
-        <pre>
-for (инициализация; условие; инкремент/декремент) {
-    System.out.println(i);
-}
-        </pre>
-        <pre>
-for (int i = 0, j = 0; i < 10; i++) {
-    System.out.println(i);
-}
-        </pre>
-
-        <h3>foreach</h3>
-        <p>Foreach(since v.5) - Применяется для массивов и коллекций используя итератор.</p>
-        <pre>
-for (элемент коллекции: коллекция) {
-    ...
-}
-        </pre>
-
-        <h3>Бесконечные циклы</h3>
-        <pre>
-while(true);
-for(;;)
-        </pre>
-    </section>
-
-    <section>
         <h2 id="switch">Switch</h2>
 
         <h3>Default Syntax</h3>
@@ -128,6 +84,7 @@ switch(выражение) {
     default : команда;
 }
         </pre>
+        <p>Совет!!! - если нужно использовать switch для нахождения переменной по ключи - нужно использовать HashMap. </p>
 
         <h3>New Syntax(since v.13)</h3>
         <p>Не нужен break.</p>
@@ -181,6 +138,50 @@ Stream.of(1, 20, 30L, "Hello")
             }
         )
         .forEach(System.out::println)
+        </pre>
+    </section>
+
+    <section>
+        <h2 id="loops">Циклы(loops)</h2>
+
+        <h3>while</h3>
+        <pre>
+while(условие) {
+    тело(блок)
+}
+        </pre>
+
+        <h3>do while</h3>
+        <pre>
+do {
+    тело(блок)
+} while (условие)
+        </pre>
+
+        <h3>for</h3>
+        <pre>
+for (инициализация; условие; инкремент/декремент) {
+    System.out.println(i);
+}
+        </pre>
+        <pre>
+for (int i = 0, j = 0; i < 10; i++) {
+    System.out.println(i);
+}
+        </pre>
+
+        <h3>foreach</h3>
+        <p>Foreach(since v.5) - Применяется для массивов и коллекций используя итератор.</p>
+        <pre>
+for (элемент коллекции: коллекция) {
+    ...
+}
+        </pre>
+
+        <h3>Бесконечные циклы</h3>
+        <pre>
+while(true);
+for(;;)
         </pre>
     </section>
 

@@ -114,10 +114,13 @@
             <li><a href="spring_jdbc/SpringJdbc.html">Spring JDBC</a></li>
             <li><a href="spring_data/SpringData.html">Spring Data</a></li>
             <li><a href="spring_doc/SpringDoc.html">Spring Doc</a></li>
+            <li><a href="spring_cloud/SpringCloud.html">Spring Cloud</a></li>
             <li>Spring Data</li>
-            <li>Spring Cloud</li>
             <li>Spring Security</li>
             <li>Spring Session</li>
+            <li>Spring Vault - предназначен для интеграции с HashiCorp Vault, который является инструментом для
+                управления секретами, ключами доступа и другой конфиденциальной информацией в распределённых приложениях.
+            </li>
             <li><a href="aop/AOP.html">AOP</a></li>
             <li><a href="questions/Questions.html">Вопросы на собеседование</a></li>
         </ul>
@@ -237,14 +240,23 @@
     <section>
         <h2>Spring bean lifecycle:</h2>
         <ol>
-            <li>Инициализация</li>
-            <li>Внедрение зависимостей</li>
-            <li>Выполнение работы</li>
-            <li>Уничтожение</li>
+            <li>Container started</li>
+            <li>Bean instantiated</li>
+            <li>Dependencies Injected</li>
+            <li>Custom init() method</li>
+            <li>Custom utility method</li>
+            <li>Custom destroy() method</li>
         </ol>
         <ol>
-            <li>Singltone - создаётся при старте приложения и удаляется в конце.</li>
-            <li>Prototine - создаётся при вызове и удаляется GC.</li>
+            <li>Singleton - создаётся при старте приложения и удаляется в конце.</li>
+            <li>Prototype - создаётся при вызове и удаляется GC.</li>
+        </ol>
+        <h3>Для управления созданием и уничтожением bean у нас есть методы:</h3>
+        <ol>
+            <li>init-method</li>
+            <li>destroy-method</li>
+            <li>@PostConstruct</li>
+            <li>@PreDestroy</li>
         </ol>
     </section>
 
@@ -262,14 +274,6 @@
             <li>В этот момент компонент готов к использованию приложением и будет сохраняться в контексте приложения, пока он не будет уничтожен.</li>
             <li>Если какие-либо из компонентов реализуют интерфейс DisposableBean, Spring вызывает их методы destroy() . Аналогично, если компонент был объявлен с атрибутом destroy-method, вызывается указанный метод.</li>
         </ul>
-    </section>
-
-    <section>
-        <h2>Для управления созданием и уничтожением bean у нас есть методы:</h2>
-        <ol>
-            <li>init-method</li>
-            <li>destroy-method</li>
-        </ol>
     </section>
 
     <section>

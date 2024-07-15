@@ -27,10 +27,14 @@
         <li><a href="properties/Properties.html">Properties</a></li>
         <li><a href="arrays/Arrays.html">Arrays</a></li>
         <li><a href="comparator/Comparator.html">Comparator</a></li>
+        <li><a href="#random">Random</a></li>
+        <li><a href="#uuid">UUID</a></li>
+        <li><a href="#scanner">Scanner</a></li>
+        <li><a href="#base64">Base64</a></li>
     </ul>
 
     <section>
-        <h2>Random</h2>
+        <h2 id="random">Random</h2>
         <p>Класс для создания псевдослучайных значений.</p>
         <p>Методы для генерации</p>
         <ul>
@@ -42,7 +46,7 @@
     </section>
 
     <section>
-        <h2>UUID</h2>
+        <h2 id="uuid">UUID</h2>
         <p>UUID - универсальный уникальный идентификатор. Имеют почти ничтожную вероятность быть идентичными.</p>
 
         <h3>Есть несколько версий, по-разному генерирующий id.</h3>
@@ -91,7 +95,7 @@
     </section>
 
     <section>
-        <h2>Scanner</h2>
+        <h2 id="scanner">Scanner</h2>
         <p>Пример:</p>
         <pre>
 import java.util.Scanner;
@@ -103,6 +107,18 @@ i = sc.nextInt(); // если нужно целое число
 i = sc.nextLine(); //если строка
 i = sc.nextDouble(); //если дробное
         </pre>
+    </section>
+
+    <section>
+        <h2 id="base64">Base64</h2>
+        <h3>Возможность шифровать и дешифровать строки</h3>
+        <pre>
+var s = Base64.getEncoder().encodeToString("artem".getBytes(StandardCharsets.UTF_8));
+System.out.println(s);
+System.out.println(new String(Base64.getDecoder().decode(s)));
+        </pre>
+
+        <h3>Возможность шифровать и картинку в текст, который можно хранить в базе или облаке.</h3>
     </section>
 
 </div>

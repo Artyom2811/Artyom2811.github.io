@@ -77,8 +77,17 @@ testImplementation 'org.mockito:mockito-core:5.10.0'
     </section>
 
     <section>
-        <h2>@ExtendWith</h2>
-        <p>Аннотация для </p>
+        <h2>@ExtendWith(SpringExtension.class)</h2>
+        <p>@ExtendWith - аннотация для запуска тестов со Spring контекстом. До junit 5 использовали @RunWith(SpringRunner.class)</p>
+    </section>
+
+    <section>
+        <h2 id="integration_test_quick_start">Integration tests quick start</h2>
+        <h3>Аннотации:</h3>
+        <ul>
+            <li>@SpringBootTest - для запуска тестов со Spring приложением(не просто контекстом). Содержит @ExtendWith(SpringExtension.class).</li>
+            <li>AutoConfigureMockMvc - для подключения тестирования REST эндпоинта.</li>
+        </ul>
     </section>
 
 </div>

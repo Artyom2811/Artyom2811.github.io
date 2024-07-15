@@ -29,6 +29,7 @@
             <li><a class="anchor" href="#howItWorks">Как она работает</a></li>
             <li><a class="anchor" href="#commands">Команды</a></li>
             <li><a class="anchor" href="#springProperties">Spring properties</a></li>
+            <li><a class="anchor" href="#tips">Советы</a></li>
             <li><a class="anchor" href="#changelog">Changelog</a></li>
             <li><a class="anchor" href="#rollback">Rollback</a></li>
             <li><a class="anchor" href="#databasechangelog">databasechangelog table</a></li>
@@ -74,6 +75,17 @@ spring.liquibase.change-log=classpath:db/changelog/db.changelog-root.xml
         </pre>
     </section>
 
+    <section>
+        <h2 id="tips">Советы:</h2>
+        <p>Лучше использовать xml формат для Idea подсвечивает ошибки.</p>
+        <p>Лучше создать master.xml file в котором будут все записи изменений.</p>
+        <p>Пример имен файлов изменений и его же использовать как id.</p>
+        <ul>
+            <li>01_create_user_table.xml</li>
+            <li>02_alter_user_table.xml</li>
+            <li>03_create_user_table_v2.xml</li>
+        </ul>
+    </section>
 
     <section>
         <h2 id="changelog">Changelog</h2>
@@ -103,8 +115,8 @@ spring.liquibase.change-log=classpath:db/changelog/db.changelog-root.xml
     </section>
 
     <section>
-        <h2 id="databasechangelog">databasechangelog table</h2>
-        <p>databasechangelog - таблица для метаданных Liquibase.</p>
+        <h2 id="databasechangelog">Databasechangelog table</h2>
+        <p>databasechangelog - таблица для хранения метаданных Liquibase.</p>
         <h3>Поля</h3>
         <ol>
             <li>id - id изменения.</li>

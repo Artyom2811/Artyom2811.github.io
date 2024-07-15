@@ -59,7 +59,7 @@
             <li>skip(long n) – пропускаем n элементов.</li>
             <li>sorted() – сортировка.</li>
             <li>sorted(Comparator comparator) – сортирует стрим (сортировка как у TreeMap).</li>
-            <li>distinct() — проверяет стрим на уникальность элементов(убирает повторы элементов).</li>
+            <li>distinct() - убирает повторы элементов.</li>
         </ol>
 
         <h3>Терминальные(terminal) операторы</h3>
@@ -91,8 +91,15 @@
     </section>
 
     <section>
-        <h2>Примеры</h2>
-        <h3>Поиск совпадений</h3>
+        <h2>Примеры использования:</h2>
+        <h3>Проверка </h3>
+        <pre>
+var list = List.of("A", "B", "C");
+var matchingElements = Stream.of("B", "C", "D")
+        .anyMatch(list::contains);
+        </pre>
+
+        <h3>Поиск совпадений элементов двух списков</h3>
         <pre>
 var list = List.of("A", "B", "C");
 var matchingElements = List.of("B", "C", "D")
@@ -101,13 +108,47 @@ var matchingElements = List.of("B", "C", "D")
     .toList();
         </pre>
 
-        <h3>Поиск не совпадений</h3>
+        <h3>Поиск не совпадений элементов двух списков</h3>
         <pre>
 var list = List.of("A", "B", "C");
 var matchingElements = List.of("B", "C", "D")
     .stream()
     .filter(element -> !list.contains(element))
     .toList();
+        </pre>
+
+        <h3>Нахождения процентиля(перцентиль)</h3>
+        <pre>
+var latencies = Stream.of(10, 3, 6, 7, 8, 8, 9, 13, 15, 16, 20).toList();
+System.out.println(percentile(latencies, 25));
+System.out.println(percentile(latencies, 50));
+System.out.println(percentile(latencies, 75));
+System.out.println(percentile(latencies, 100));
+
+public static long percentile(List&lt;Integer&gt; latencies, double percentile) {
+    int index = (int) Math.ceil(percentile / 100.0 * latencies.size());
+    return latencies.get(index-1);
+}
+        </pre>
+
+        <h3>Нахождения процентиля(перцентиль)</h3>
+        <pre>
+var latencies = Stream.of(10, 3, 6, 7, 8, 8, 9, 13, 15, 16, 20).toList();
+System.out.println(percentile(latencies, 25));
+System.out.println(percentile(latencies, 50));
+System.out.println(percentile(latencies, 75));
+System.out.println(percentile(latencies, 100));
+
+public static long percentile(List&lt;Integer&gt; latencies, double percentile) {
+    int index = (int) Math.ceil(percentile / 100.0 * latencies.size());
+    return latencies.get(index-1);
+}
+        </pre>
+
+        <h3>List to Map</h3>
+        <pre>
+var list = Stream.of("1", "2", "3").toList();
+var map = list.stream().collect(Collectors.toMap(i -> i, i -> "sample"));
         </pre>
     </section>
 

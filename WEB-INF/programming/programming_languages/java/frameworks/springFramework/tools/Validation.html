@@ -77,7 +77,8 @@ private UserAddress useraddress;
                 </pre>
             </li>
 
-            <li>Validated - для группового уровня. Что дает возможность выбирать группы проверок.
+            <li>Validated - для группового уровня. Что дает возможность выбирать группы проверок. Также применяется
+                на контроллер, если нужно валидация на RequestParam.
                 <pre>
 //объявление
 @NotNull(groups = BasicInfo.class)

@@ -81,7 +81,7 @@
         <ol>
             <li>Стартовая строка</li>
             <li><a class="anchor" href="#headers">Заголовки</a></li>
-            <li>Тело Сообщения</li>
+            <li>Request Payload(Request Body) - есть у POST, PUT, PATCH. Нет у HEAD, GET, DELETE.</li>
         </ol>
 
         <h3 id="headers">Заголовки(Headers)</h3>
@@ -130,7 +130,7 @@
                 балансировки нагрузки, кэширования и тд. Пример: MVC или микросервисы.
             </li>
             <li>Отсутствие состояния(клиента) - сервер не хранит данные о запросах. Клиент каждый раз авторизуется.</li>
-            <li>Кэширование - для GET и POST.</li>
+            <li>Кэширование - для GET и POST(если есть Expires header or a Cache-Control header).</li>
             <li>Единообразие интерфейса.</li>
             <li>Код по требованию(необязательный) - исполнение кода на стороне клиента.</li>
         </ol>
@@ -140,13 +140,13 @@
         <p>В url не должно быть глаголов.</p>
         <table class="wikitable">
             <tbody>
-            <tr><th>Операция</th><th>URI</th><th>HTTP method</th><th>Status code</th><th>Тело ответа</th></tr>
-            <tr><td>Добавить элемент</td><td>POST/PUT</td><td>/products</td><td>201</td><td>Созданный элемент</td></tr>
-            <tr><td>Получить элемент</td><td>GET</td><td>/products/{id}</td><td>200</td><td>Найденный элемент</td></tr>
-            <tr><td>Получить все элементы</td><td>GET</td><td>/products</td><td>200</td><td>Найденные элементы</td></tr>
-            <tr><td>Обновить часть данных элемента</td><td>PATCH</td><td>/products/{id}</td><td>204/200(есть тело ответа)</td><td>Обновленный элементы</td></tr>
-            <tr><td>Обновить все данные элемента</td><td>PUT</td><td>/products/{id}</td><td>200</td><td>Обновленный элементы</td></tr>
-            <tr><td>Удалить элемент</td><td>DELETE</td><td>/products/{id}</td><td>204/200(есть тело ответа, не рекомендуется.)</td><td>-</td></tr>
+                <tr><th>Операция</th><th>URI</th><th>HTTP method</th><th>Status code</th><th>Тело ответа</th></tr>
+                <tr><td>Добавить элемент</td><td>POST/PUT</td><td>/products</td><td>201</td><td>Созданный элемент</td></tr>
+                <tr><td>Получить элемент</td><td>GET</td><td>/products/{id}</td><td>200</td><td>Найденный элемент</td></tr>
+                <tr><td>Получить все элементы</td><td>GET</td><td>/products</td><td>200</td><td>Найденные элементы</td></tr>
+                <tr><td>Обновить часть данных элемента</td><td>PATCH</td><td>/products/{id}</td><td>204/200(есть тело ответа)</td><td>Обновленный элементы</td></tr>
+                <tr><td>Обновить все данные элемента</td><td>PUT</td><td>/products/{id}</td><td>200</td><td>Обновленный элементы</td></tr>
+                <tr><td>Удалить элемент</td><td>DELETE</td><td>/products/{id}</td><td>204/200(есть тело ответа, не рекомендуется.)</td><td>-</td></tr>
             </tbody>
         </table>
     </section>

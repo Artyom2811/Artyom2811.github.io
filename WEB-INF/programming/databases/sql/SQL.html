@@ -89,11 +89,10 @@
     <section>
         <h2 id="planning">Планирование схемы таблицы</h2>
         <ol>
-            <li>Имя таблицы - во множественно числе: users, staff.</li>
+            <li>Имя таблицы - lowercase единичном или множественно числе: user_admin, users.</li>
             <li>Необходимые колонки данных</li>
-            <li>Типы данных</li>
-            <li>Ограничения на колонки - UNIQUE, NOT NULL</li>
-            <li>NOT NULL</li>
+            <li><a class="anchor" href="#reco_data_types">Типы данных</a></li>
+            <li>Ограничения на колонки - UNIQUE, NOT NULL, MAX, MIN</li>
             <li>PRIMARY KEY - может быть только один. Нельзя null. По умолчанию имеет кластерный индекс.</li>
             <li>FOREIGN KEYS - можно применять как к PK, так и к обычным полям.</li>
             <li>UNIQUE поле/поля/связки полей - можно несколько, можно null. Также можно указать при создании NOT NULL.</li>
@@ -126,10 +125,11 @@
 
     <section>
         <h2 id="dql">DQL(Data Query Language)</h2>
-        <ul>
-            <li>SELECT</li>
-            <pre>SELECT * FROM table1;</pre>
-        </ul>
+
+        <h3>SELECT</h3>
+        <pre>
+SELECT * FROM table1;
+        </pre>
     </section>
 
     <section>
@@ -247,6 +247,27 @@ INNER JOIN C c ON b.d = c.d --10000 записей
             <li>TRUNCATE после использования, откат (rollback) невозможен.</li>
             <li>TRUNCATE обнуляет счетчик, уникальности новых записей.</li>
         </ul>
+    </section>
+
+    <section>
+        <h2 id="data_types">Рекомендуемые типы данных</h2>
+        <h3>CHAR()</h3>
+        <p>CHAR() - символьная переменная ТОЛЬКО(не больше, не меньше) заданного размера.</p>
+
+        <h3>VARCHAR()</h3>
+        <p>VARCHAR() - символьная переменная до(можно меньше) заданного размера.</p>
+    </section>
+
+    <section>
+        <h2 id="reco_data_types">Рекомендуемые типы данных</h2>
+        <h3>Email</h3>
+        <p>VARCHAR(256)</p>
+
+        <h3>Phone number</h3>
+        <p>VARCHAR(15)</p>
+
+        <h3>Bcrypt hashed</h3>
+        <p>VARCHAR(60)</p>
     </section>
 </div>
 </body>
