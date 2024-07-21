@@ -28,6 +28,8 @@
         <h2>Основные разделы</h2>
         <ul>
             <li><a class="anchor" href="#annotations">Основные аннотации</a></li>
+            <li><a class="anchor" href="#singular">@Singular</a></li>
+            <li><a class="anchor" href="#spring">Подключение к Spring</a></li>
         </ul>
     </section>
 
@@ -57,7 +59,7 @@
     </section>
 
     <section>
-        <h2>@Singular</h2>
+        <h2 id="singular">@Singular</h2>
         <p>Аннотация дополняющая Builder, применяется на поля типа Map, Set, List и позволяет в builder добавлять
             объекты по одному, а не списком.
         </p>
@@ -72,7 +74,7 @@ public class Person {
 
 Person person = Person.builder()
         .name("A")
-        .cars(Arrays.asList("fictional","incidental"))
+        .cars(Arrays.asList("fictional", "incidental"))
         .build();
         </pre>
 
@@ -91,6 +93,11 @@ Person person = Person.builder()
         .car("carB")
         .build();
         </pre>
+    </section>
+
+    <section>
+        <h2 id="spring">Подключение к Spring</h2>
+
     </section>
 
 </div>

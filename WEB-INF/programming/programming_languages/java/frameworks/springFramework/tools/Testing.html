@@ -13,18 +13,22 @@
 <div class="bodyStyle">
     <h1>Testing</h1>
 
-<!--    <div class="todo">-->
-<!--        <h2>Проработать</h2>-->
-<!--        <ol>-->
-<!--            <li></li>-->
-<!--        </ol>-->
-<!--    </div>-->
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://www.youtube.com/watch?v=1wdYB8qdv1Q">Spring по верхам: Тестирование REST-сервиса</a></li>
+        </ol>
+    </div>
 
     <section>
         <h2>Основные разделы</h2>
         <ul>
-            <li><a class="anchor" href="#unit_test">Unite tests </a></li>
-            <li><a class="anchor" href="#unit_test">Unite tests </a></li>
+            <li><a class="anchor" href="#common_test">Common tests</a></li>
+            <li><a class="anchor" href="#unit_test">Unite tests</a></li>
+            <li><a class="anchor" href="#parameterized_test">ParameterizedTest</a></li>
+            <li><a class="anchor" href="#coverage">Coverage</a></li>
+            <li><a class="anchor" href="#extend_with">@ExtendWith</a></li>
+            <li><a class="anchor" href="#integration_test_quick_start">Integration tests quick start</a></li>
         </ul>
     </section>
 
@@ -68,16 +72,16 @@ testImplementation 'org.mockito:mockito-core:5.10.0'
     </section>
 
     <section>
-        <h2>ParameterizedTest</h2>
+        <h2 id="parameterized_test">ParameterizedTest</h2>
         <p>@ParameterizedTest - аннотация для параметризованного тестирования.</p>
     </section>
 
     <section>
-        <h2>Coverage</h2>
+        <h2 id="coverage">Coverage</h2>
     </section>
 
     <section>
-        <h2>@ExtendWith(SpringExtension.class)</h2>
+        <h2 id="extend_with">@ExtendWith(SpringExtension.class)</h2>
         <p>@ExtendWith - аннотация для запуска тестов со Spring контекстом. До junit 5 использовали @RunWith(SpringRunner.class)</p>
     </section>
 

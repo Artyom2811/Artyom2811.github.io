@@ -29,6 +29,7 @@
             <li><a href="https://www.youtube.com/watch?v=3h6VWJLK31U">Что такое Apache Spark</a></li>
             <li>spark join strategies</li>
             <li>dataset vs dataframe spark</li>
+            <li><a href="https://grouplens.org/datasets/movielens/">База данных Фильмов</a></li>
         </ol>
     </div>
 
@@ -139,6 +140,12 @@ JavaSparkContext sc = new JavaSparkContext(conf);
         <pre>
 .groupBy(col(AF.OfficeId)).agg(min(AF.Date))
         </pre>
+    </section>
+
+    <section>
+        <h2>Catalyst Optimizer</h2>
+        <p>Catalyst Optimizer - оптимизатор для DataSet.</p>
+        <p>RDD - мы оптимизируем сами.</p>
     </section>
 </div>
 </body>
