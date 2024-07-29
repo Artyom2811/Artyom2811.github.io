@@ -16,6 +16,7 @@
         <h2>Проработать</h2>
         <ol>
             <li><a href="https://javarush.ru/groups/posts/2753-biblioteka-lombok">Библиотека Lombok</a></li>
+            <li><a href="http://www.javabyexamples.com/lombok-log4j-slf4j-and-other-log-annotations">Lombok @Log4j, @Slf4j and Other Log Annotations</a></li>
         </ol>
     </div>
 
@@ -48,7 +49,7 @@
             <li>@Builder - реализация паттерна Builder. Также можно указывать на переменные с коллекциями аннотацию.
                 @Builder(toBuilder = true) - добавляем возможность создания Builder с любого экземпляра.
             </li>
-            <li>@SneakyThrows - заменяет ключевое слово throws. Указываться над методами</li>
+            <li>@SneakyThrows - позволяет обрабатывать проверенные исключения, не объявляя их в сигнатуре метода.</li>
             <li>@Synchronized - замена слова synchronized.</li>
             <li>@Log - добавление инициализации логирования, так же позволяет выбрать вид логгера: @CommonsLog, @JBossLog,
                 @Log, @Log4j, @Log4j2, @Slf4j, @XSlf4j.
@@ -92,6 +93,21 @@ Person person = Person.builder()
         .car("carA")
         .car("carB")
         .build();
+        </pre>
+    </section>
+
+    <section>
+        <h2>@SneakyThrows</h2>
+        <p>Аннотация оборачивает выбрасываемые исключения в RuntimeException, что позволяет избежать необходимости
+            объявления исключений в сигнатуре метода(throws) или использования блоков try-catch.
+        </p>
+        <pre>
+import lombok.SneakyThrows;
+
+@SneakyThrows
+public void someMethod() {
+    // код, который может бросить IOException
+}
         </pre>
     </section>
 

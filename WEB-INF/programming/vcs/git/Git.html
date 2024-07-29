@@ -26,6 +26,7 @@
             <li><a href="https://www.youtube.com/watch?v=SEvR78OhGtw">Git. Большой практический выпуск</a></li>
             <li><a href="https://habr.com/ru/articles/432420/">Введение в Git Merge и Git Rebase: зачем и когда их использовать</a></li>
             <li><a href="https://www.youtube.com/watch?v=YF-IHO8PvaM">Git в твоей IDE. Must have для разработки</a></li>
+            <li><a href="https://habr.com/ru/companies/oleg-bunin/articles/531632/">Монорепо: жизнь до и после</a></li>
             <li>force-with-lease vs force</li>
             <li>rebase vs merge vs cherry-pick</li>
         </ol>
@@ -39,6 +40,7 @@
             <li><a class="anchor" href="#commands">Команды</a></li>
             <li><a class="anchor" href="#squash">Squash</a></li>
             <li><a class="anchor" href="#.git">.git</a></li>
+            <li><a class="anchor" href="#tips">Советы</a></li>
         </ul>
     </section>
 
@@ -89,7 +91,27 @@
     </section>
 
     <section>
-        <h2 id="example">Example of commit message</h2>
+        <h2 id="stash">Git Stash</h2>
+        <p>Git stash - это команда в Git, которая позволяет временно сохранить изменения в рабочем каталоге и
+            индексе (staging area), чтобы вы могли переключиться на другую ветку или выполнить другую задачу,
+            не теряя текущих изменений.
+        </p>
+
+        <h3>Команды</h3>
+        <ol>
+            <li>git stash - сохраняет изменения и очищает рабочий каталог.</li>
+            <li>git stash list - показывает список всех сохраненных стэшей.</li>
+            <li>git stash apply - восстанавливает последние сохраненные изменения из стэша, оставляя запись в списке стэшей.</li>
+            <li>git stash pop - восстанавливает последние сохраненные изменения из стэша и удаляет запись из списка стэшей.</li>
+            <li>git stash drop - удаляет указанную запись из списка стэшей.</li>
+            <li>git stash clear - очищает все записи в списке стэшей.</li>
+        </ol>
+
+        <p>Git shelf - это не git команда. Такая функция если у некоторый IDE программ.</p>
+    </section>
+
+    <section>
+        <h2 id="tips">Советы</h2>
         <p>Комментарий исправление опечаток - Fixed Typo</p>
     </section>
 </div>

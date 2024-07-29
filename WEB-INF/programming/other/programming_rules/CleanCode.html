@@ -1,0 +1,170 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Clean Code</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Other.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Clean Code</h1>
+
+    <section>
+        <h2>Заметки из книги Чистый код</h2>
+        <p>Чистый код - может читать и улучшать любой разработчик. Улучшает читаемость, изменяемость, расширяемость и
+            поддерживаемость.
+        </p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#general_rules">General rules</a></li>
+            <li><a class="anchor" href="#design_rules">Design rules</a></li>
+            <li><a class="anchor" href="#understandability_tips">Understandability tips</a></li>
+            <li><a class="anchor" href="#names_rules">Names rules</a></li>
+            <li><a class="anchor" href="#functions_rules">Functions rules</a></li>
+            <li><a class="anchor" href="#comments_rules">Comments rules</a></li>
+            <li><a class="anchor" href="#source_code_structure">Source code structure</a></li>
+            <li><a class="anchor" href="#objects_and_data_structures">Objects and data structures</a></li>
+            <li><a class="anchor" href="#tests">Tests</a></li>
+            <li><a class="anchor" href="#code_smells">Code smells</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="general_rules">General rules</h2>
+        <ul>
+            <li>Follow standard conventions.</li>
+            <li>Keep it simple stupid. Simpler is always better. Reduce complexity as much as possible.</li>
+            <li>Boy scout rule. Leave the campground cleaner than you found it.</li>
+            <li>Always find root cause. Always look for the root cause of a problem.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="design_rules">Design rules</h2>
+        <ul>
+            <li>Keep configurable data at high levels.</li>
+            <li>Prefer polymorphism to if/else or switch/case.</li>
+            <li>Separate multi-threading code.</li>
+            <li>Prevent over-configurability.</li>
+            <li>Use dependency injection.</li>
+            <li>Follow Law of Demeter. A class should know only its direct dependencies.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="understandability_tips">Understandability tips</h2>
+        <ul>
+            <li>Be consistent. If you do something a certain way, do all similar things in the same way.</li>
+            <li>Use explanatory variables.</li>
+            <li>Encapsulate boundary conditions. Boundary conditions are hard to keep track of. Put the processing for them in one place.</li>
+            <li>Prefer dedicated value objects to primitive type.</li>
+            <li>Avoid logical dependency. Don't write methods which works correctly depending on something else in the same class.</li>
+            <li>Avoid negative conditionals.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="names_rules">Names rules</h2>
+        <ul>
+            <li>Choose descriptive and unambiguous names.</li>
+            <li>Make meaningful distinction.</li>
+            <li>Use pronounceable names.</li>
+            <li>Use searchable names.</li>
+            <li>Replace magic numbers with named constants.</li>
+            <li>Avoid encodings. Don't append prefixes or type information.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="functions_rules">Functions rules</h2>
+        <ul>
+            <li>Small.</li>
+            <li>Do one thing.</li>
+            <li>Use descriptive names.</li>
+            <li>Prefer fewer arguments.</li>
+            <li>Have no side effects.</li>
+            <li>Don't use flag arguments. Split method into several independent methods that can be called from the
+                client without the flag.
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="comments_rules">Comments rules</h2>
+        <ul>
+            <li>Always try to explain yourself in code.</li>
+            <li>Don't be redundant.</li>
+            <li>Don't add obvious noise.</li>
+            <li>Don't use closing brace comments.</li>
+            <li>Don't comment out code. Just remove.</li>
+            <li>Use as explanation of intent.</li>
+            <li>Use as clarification of code.</li>
+            <li>Use as warning of consequences.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="source_code_structure">Source code structure</h2>
+        <ul>
+            <li>Separate concepts vertically.</li>
+            <li>Related code should appear vertically dense.</li>
+            <li>Declare variables close to their usage.</li>
+            <li>Dependent functions should be close.</li>
+            <li>Similar functions should be close.</li>
+            <li>Place functions in the downward direction.</li>
+            <li>Keep lines short.</li>
+            <li>Don't use horizontal alignment.</li>
+            <li>Use white space to associate related things and disassociate weakly related.</li>
+            <li>Don't break indentation.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="objects_and_data_structures">Objects and data structures</h2>
+        <ul>
+            <li>Hide internal structure.</li>
+            <li>Prefer data structures.</li>
+            <li>Avoid hybrids structures (half object and half data).</li>
+            <li>Should be small.</li>
+            <li>Do one thing.</li>
+            <li>Small number of instance variables.</li>
+            <li>Base class should know nothing about their derivatives.</li>
+            <li>Better to have many functions than to pass some code into a function to select a behavior.</li>
+            <li>Prefer non-static methods to static methods.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="tests">Tests</h2>
+        <ul>
+            <li>One assert per test.</li>
+            <li>Readable.</li>
+            <li>Fast.</li>
+            <li>Independent.</li>
+            <li>Repeatable.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="code_smells">Code smells</h2>
+        <ul>
+            <li>Rigidity. The software is difficult to change. A small change causes a cascade of subsequent changes.</li>
+            <li>Fragility. The software breaks in many places due to a single change.</li>
+            <li>Immobility. You cannot reuse parts of the code in other projects because of involved risks and high effort.</li>
+            <li>Needless Complexity.</li>
+            <li>Needless Repetition.</li>
+            <li>Opacity. The code is hard to understand.</li>
+        </ul>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
