@@ -23,6 +23,8 @@
             <li><a href="https://habr.com/ru/company/dataart/blog/262817/">Обзор способов и протоколов аутентификации в веб-приложениях</a></li>
             <li><a href="https://www.youtube.com/watch?v=P2CPd9ynFLg">Why is JWT popular?</a></li>
             <li><a href="https://habr.com/ru/articles/444764/">Криптография в Java</a></li>
+            <li><a href="https://www.youtube.com/watch?v=fyTxwIa-1U0">Session Vs JWT: The Differences You May Not Know!</a></li>
+            <li><a href="https://www.youtube.com/watch?v=7iuwfKOcvkE">Что такое JWT и как его создать</a></li>
             <li>jsessionid vs jwt</li>
             <li>MD5</li>
         </ul>
@@ -124,6 +126,31 @@
             <li>В браузере храниться либо в DOM-хранилищах(sessionStorage/localStorage), либо в тех же Cookies.</li>
             <li>Короткое время жизни.</li>
         </ul>
+    </section>
+
+    <section>
+        <h2>JWT</h2>
+        <p>JWT - JSON Web Tokens. Это JSON-объект, который определен в стандарте RFC 7519. Нужен для безопасного
+            способа передачи информации.
+        </p>
+
+        <h3>Состоит из</h3>
+        <ul>
+            <li>Header(заголовок) - содержит информацию, как должна вычисляться JWT подпись. Пример: {"alg": "HS256", "typ": "JWT"}</li>
+            <li>Payload(полезная нагрузка) - поля которые мы хотим передать. Не шифруется, то есть не безопасно. Пример: {"userID": "1"}</li>
+            <li>Signature(подписи) - алгоритм base64ulr кодирует header и payload. Алгоритм соединяет закодированные
+                строки через точку. Далее эту строку хэширует алгоритмом заданным в header на основе нашего секретного ключа.
+                Далее через точки соединяем все 3 компонента.
+            </li>
+        </ul>
+        <p>В итоге будет - Header.Payload.Signature</p>
+
+        <h3>Шаги работы</h3>
+        <ol>
+            <li>Пользователь проходит аутентификацию на Аутентификационном сервере.</li>
+            <li>Аутентификационный сервер возвращает пользователю JWT token.</li>
+            <li>Пользователь добавляет JWT token в каждый запрос на Application Server.</li>
+        </ol>
     </section>
 
 </div>

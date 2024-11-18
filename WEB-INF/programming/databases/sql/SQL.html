@@ -21,6 +21,7 @@
             <li><a href="https://habr.com/ru/company/otus/blog/461067/">Топ-65 вопросов по SQL</a></li>
             <li><a href="http://www.skillz.ru/dev/php/article-Obyasnenie_SQL_obedinenii_JOIN_INNER_OUTER.html">Объяснение SQL объединений JOIN: LEFT/RIGHT/INNER/OUTER</a></li>
             <li><a href="https://habr.com/ru/companies/tensor/articles/676784/">SQL HowTo: наперегонки со временем</a></li>
+            <li><a href="https://habr.com/ru/companies/ozontech/articles/705912/">База по шардированию базы</a></li>
         </ol>
     </div>
 
@@ -91,11 +92,13 @@
         <ol>
             <li>Имя таблицы - lowercase единичном или множественно числе: user_admin, users.</li>
             <li>Необходимые колонки данных</li>
+            <li>Колонка PK - обычно id. Если числовое можно автоинерементацию.</li>
             <li><a class="anchor" href="#reco_data_types">Типы данных</a></li>
             <li>Ограничения на колонки - UNIQUE, NOT NULL, MAX, MIN</li>
             <li>PRIMARY KEY - может быть только один. Нельзя null. По умолчанию имеет кластерный индекс.</li>
             <li>FOREIGN KEYS - можно применять как к PK, так и к обычным полям.</li>
-            <li>UNIQUE поле/поля/связки полей - можно несколько, можно null. Также можно указать при создании NOT NULL.</li>
+            <li>UNIQUE поле/поля/связки полей - можно несколько, можно null(можно указать NOT NULL).</li>
+            <li>TRIM - для строковых полей.</li>
             <li>INDEXES</li>
         </ol>
     </section>

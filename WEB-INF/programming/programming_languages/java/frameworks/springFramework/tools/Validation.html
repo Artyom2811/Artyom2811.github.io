@@ -103,17 +103,18 @@ private String name;
             <li>@NotBlank - применяется к String - должен иметь больше хотя бы один символ. Аннотация @Size(min=6)
                 пропустит строку состоящую из 6 пробелов и/или символов переноса строки, а @NotBlank не пропустит.
             </li>
-            <li>@Size - проверяет размер - size.</li>
+            <li>@Size - применяется к CharSequence, Collection проверяет размер - size.</li>
             <pre>
 @NotEmpty(message = "Name may not be empty")
 @Size(min = 2, max = 32, message = "Name must be between 2 and 32 characters long")
 private String name;
             </pre>
-            <li>@Min and @Max: to say that a numerical field is only valid when it’s value is above or below a certain
-                value.
+            <li>@Min and @Max: - только для числительных переменных.
             </li>
+            <li>@DecimalMax and @DecimalMin - проверка на лимиты для Decimal, BigDecimal и тд. Пример - @DecimalMax("20.0").</li>
             <li>@Pattern: to say that a string field is only valid when it matches a certain regular expression.</li>
             <li>@Email: to say that a string field must be a valid email address.</li>
+            <li>@Past - проверяет LocalDateTime на то что дата в прошлом.</li>
         </ul>
 
         <h3>Проверки разных типов:</h3>

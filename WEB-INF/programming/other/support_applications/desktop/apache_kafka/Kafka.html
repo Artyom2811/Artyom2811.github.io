@@ -26,6 +26,7 @@
             <li><a href="https://www.youtube.com/watch?v=eHxOX3YYxGc">Apache Kafka: устройство, плюсы, минусы и границы применимости</a></li>
             <li><a href="https://www.youtube.com/watch?v=UNUz1-msbOM">System Design: Why is Kafka fast?</a></li>
             <li><a href="https://www.youtube.com/watch?v=lxTDkejd6xo">Общение микросервисов между собой | Java | Kafka на практике</a></li>
+            <li><a href="https://www.youtube.com/watch?v=-AZOi3kP9Js">Про Kafka (основы)</a></li>
         </ol>
     </div>
 
@@ -104,14 +105,16 @@
     <section>
         <h2 id="common_kafka_entities">Common kafka entities</h2>
         <ul>
-            <li>Kafka cluster - несколько Brokers Kafka под управлением ZooKeeper</li>
-            <li>Broker - одна единица Kafka</li>
-            <li>Producer - продюсер загружающий данные в kafka</li>
+            <li>Kafka cluster - несколько Brokers Kafka под управлением ZooKeeper.</li>
+            <li>Broker - одна единица Kafka.</li>
+            <li>Producer - продюсер загружающий данные в kafka.</li>
             <li>Consumer - потребитель забирающий данные из kafka.</li>
-            <li>Topic - раздел в Broker</li>
-            <li>Partition - раздел в Topic</li>
+            <li>Topic - раздел в Broker.</li>
+            <li>Partition - раздел в Topic. Нет ограничение на количество, но он требует ресурсы и рекомендуется э
+                не больше 5000. Желательно иметь столько же консюмеров.
+            </li>
             <li>Key - ключ по которому добавляются записи в Partition. Можно использовать его hash для выбора Partition или
-                в случае ошибки по ключу определить в каком offset ошибка
+                в случае ошибки по ключу определить в каком offset ошибка.
             </li>
             <li>Value - значение, которое храниться по ключу.</li>
             <li>Consumer group - группы для нескольких consumers, которые будут отслеживаться kafka как один consumer.</li>
