@@ -1,0 +1,118 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Build.Gradle</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../Gradle.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Build.Gradle</h1>
+
+<!--    <div class="todo">-->
+<!--        <h2>Проработать</h2>-->
+<!--        <ol>-->
+<!--            <li></li>-->
+<!--        </ol>-->
+<!--    </div>-->
+
+    <section>
+        <h2>Что это</h2>
+        <p>build.gradle - скрипт файл в корне проекта, описывающий работу Gradle.</p>
+        <p>По умолчанию заполняется на языке Groovy, но можно изменить на Kotlin добавление .kts к имени файла
+            build.gradle.kts.
+        </p>
+        <p>Изначальные команды такие как dependecies, plugins etc. - под капотом это методы объекта
+            <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html">project</a> -
+            project.repositories, project.plugins etc.
+        </p>
+
+        <h3>Groovy</h3>
+        <p>Не обязательно использовать круглые скобки при вызове методов.</p>
+        <pre>
+doSmth 'testStr'
+        </pre>
+
+        <p>Фигурные скобки - </p>
+    </section>
+
+<!--    <section>-->
+<!--        <h2>Основные разделы</h2>-->
+<!--        <ul>-->
+<!--            <li><a class="anchor" href="#howItWorks">Как она работает</a></li>-->
+<!--            <li><a class="anchor" href="#entities">Basic entities</a></li>-->
+<!--            <li><a href="architecture/Architecture.html">Ссылки на другие страницы</a></li>-->
+<!--        </ul>-->
+<!--    </section>-->
+
+    <section>
+        <h2>Common properties of object Project</h2>
+        <ul>
+            <li>name(String) - имя каталога проекта.</li>
+            <li>path(String) - полное имя проекта.</li>
+            <li>description(String) - описание к проекту.</li>
+            <li>dependencies(DependencyHandler) - возвращает DependencyHandler проекта.</li>
+            <li>repositories(RepositoryHandler) - возвращает RepositoryHandler проекта.</li>
+            <li>layout(ProjectLayout) - обеспечивает доступ к нескольким важным местам для проекта.</li>
+            <li>group(Object) - группа проекта.</li>
+            <li>version(Object) - версия проекта.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Настройка</h2>
+        <p>Пример настроек:</p>
+        <pre>
+plugins {
+    id 'java'
+    // For task "run"
+    id 'application'
+}
+
+// For set direction of Main Class
+application {
+    mainClass = 'Main'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:26.0-jre'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+        </pre>
+    </section>
+
+    <section>
+        <h2>Работа с переменными</h2>
+        <h3>Создание</h3>
+        <pre>
+det DB_USER = 'test_user'
+det DB_PASSWORD = 'test_password'
+        </pre>
+
+        <h3>Использование</h3>
+        <pre>
+user = DB_USER
+//Вставка в строку, обязательно использовать двойные скобки
+"${DB_PASSWORD}"
+        </pre>
+    </section>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

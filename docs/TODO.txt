@@ -7,8 +7,20 @@ leetcode.com - сайт с практикой
 	Для проверки Hibernate
 	Для проверки Mapstruct
 	Для проверки Controller test (WireMock)
+    Добавить константы - private static final
 
-
+- Евгений Борисов
+- Обновить раздел - Структуры данных
+- Разобраться с датами
+- Скопировать себе картинки и описание из Amigo...
+- Просмотреть - https://www.youtube.com/watch?v=wyABTfR9UTU
+- Просмотреть - https://www.youtube.com/watch?v=FjfgIImzhxc
+- Просмотреть - https://www.youtube.com/watch?v=IqHaGd9J42s
+- Просмотреть собеседования - https://www.youtube.com/@Jetbulb/videos
+- Просмотреть многопоточность - https://jenkov.com/tutorials/java-concurrency/locks.html
+- Spark actions
+- RDD vs. DataFrame vs. Dataset
+- Просмотреть https://www.youtube.com/watch?v=Pvkw8_zKa50 - Зачем нужна Scala, когда есть Java 21 — Тинькофф ИТ-фест
 
 Почему в Java.html кнопка назад выше чем высота соседнего блока
 Запустить проект на Tomcat(возможно будут работать относительные пути)
@@ -20,12 +32,15 @@ leetcode.com - сайт с практикой
 Приоритет технологий:
 Kafka
 Spring
+    Validation
 Spring Boot
 Concurrency
 Cloud Technology
 Akka
 Как сделать https
 Сессия и токен
+Работа с jacoco
+Работа с SonarQube
 
 Swagger для документации.
     Mandatory
@@ -57,9 +72,6 @@ Swagger для документации.
 16.Изучаем увлекательные статьи про настройку систем оркестрации Swarm, Kubernetes, Rancher Cattle. Следуем рекомендациям и поднимаем кластер.
 17.Меняем Jenkins: собираем Docker-образ, прогоняем тесты, запускаем собранный докер на кластере Kubernetes, проводим smoke-тесты, вводим наше приложение в балансировку.
 
-База данных Фильмов:
-	https://grouplens.org/datasets/movielens/
-
 Сайт для создание ботов:
     https://axiom.ai/
 
@@ -68,5 +80,26 @@ Swagger для документации.
 saveAndFlush
 Spring Security
 
+Josias De Lima Moreno
+    Specialties: Big Data architecture, Automatization, Virtualization, HA-Systems, and DevOps.
+    Coding languages:
+    - Python: automation, deployment, and data analysis scripts.
+    - Bash: automation for sysadmin tasks such as backup, monitoring, deployment, terminating, in Linux and Windows.
+    - PHP/CSS/HTML: basic web development, particularly using Wordpress.
+    - C++: development of hardware embedded programs.
+    Frameworks: Apache Hadoop (Hadoop core and Cloudera distribution), and Django.
+    Databases:
+    SQL: PostgreSql, MySql.
+    NoSQL: MogoDB, HBase.
+    Control system: Git, GitLab, and GitHub.
+    Platform system: Jenkins, CircleCI, Tableau, and PowerBI.
+    Operating Systems: strong skill set with Linux (Debian-based) and Windows.
+    Virtualization: Docker, Vagrant, and Hyper-V.
+    Cloud Technologies: AWS S3, EC2 (+ autoscaling), ELB, and Lightsail. Microsoft Azure services.
 
-
+=================================================================================================
+m_quiz
+    Clint Eastwood
+    Jeff Daniels - https://ru.wikipedia.org/wiki/%D0%94%D1%8D%D0%BD%D0%B8%D0%B5%D0%BB%D1%81,_%D0%94%D0%B6%D0%B5%D1%84%D1%84
+    Jack Nicholson - https://ru.wikipedia.org/wiki/%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D1%81%D0%BE%D0%BD,_%D0%94%D0%B6%D0%B5%D0%BA
+    Meg Ryan - https://en.wikipedia.org/wiki/Meg_Ryan_filmography
