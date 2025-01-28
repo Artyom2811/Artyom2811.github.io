@@ -17,16 +17,13 @@
         <ol>
             <h3>Basic</h3>
             <li><a href="https://www.youtube.com/playlist?list=PLcZsQzxdmDplQ5wy_IuhlYqdWkrae98k_">Евгений Борисов - Spring</a></li>
-            <li><a href="https://www.youtube.com/watch?v=RIGZgdALyps">ТОП популярных вопросов o Spring Framework за 13 минут с примерами | Java</a></li>
             <li><a href="https://www.youtube.com/watch?v=s6ZFVCjMXZ0">Spring Framework. Бины</a></li>
             <li><a href="https://www.youtube.com/watch?v=MR_h8kljt-w">Spring Framework. Жизненный цикл</a></li>
             <li><a href="https://www.youtube.com/watch?v=CT8dbbe783s/">10 Spring and Spring Boot Common Mistakes You Need To STOP</a></li>
-            <li><a href="https://www.youtube.com/watch?v=l20USjGgnTo">Java Spring Контекст</a></li>
             <li><a href="https://javastudy.ru/spring-mvc/hello-world-example/">Spring MVC — Hello World, пример приложения.</a></li>
             <li><a href="https://www.youtube.com/playlist?list=PL6jg6AGdCNaWF-sUH2QDudBRXo54zuN1t">Spring Framework - The Basics</a></li>
             <li><a href="https://habr.com/ru/articles/455794/">Введение в Spring, или что делать, если по всему проекту @Autowired и @Component, а вы не понимаете, что это</a></li>
             <li><a href="https://ru.wikibooks.org/wiki/Spring_Framework_Guide">Spring Framework Guide</a></li>
-            <li><a href="https://easyjava.ru/spring/spring-framework/inicializaciya-spring-java-konfiguraciya-annotacii-xml-i-groovy/">Инициализация Spring: XML, аннотации, Java конфигурация и</a></li>
             <li><a href="https://javastudy.ru/interview/jee-spring-questions-answers/">Собеседование по Java EE — Spring Framework (вопросы и ответы). Часть 1</a></li>
             <li><a href="https://habr.com/ru/articles/333756/">Как писать на Spring в 2017</a></li>
             <li><a href="https://docs.spring.io/spring-framework/docs/3.0.0.M3/reference/html/ch04s04.html">Bean scopes</a></li>
@@ -176,13 +173,34 @@
         <ol>
             <li>singleton(by default) - определяет один единственный бин для каждого контейнера Spring IoC.</li>
             <li>prototype - любое количество экземпляров bean. Не храниться в Spring context, значит preDestroy и etc
-                - не будут выполняться.
+                - не будут выполняться. Если он создается в singleton бине, то создан будет только 1 такой бин.
             </li>
             <li>request - один экземпляр bean на каждый HTTP запрос. Касается исключительно ApplicationContext.</li>
             <li>session - один экземпляр bean на каждую HTTP сессию. Касается исключительно ApplicationContext.</li>
             <li>global session - аналогичен session - он используется в портлетных веб приложениях. Когда вы используете
                 globalSession в "стандартном" сервлетном приложении эти beans имеют scope session.
             </li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Инициализация spring контекста:</h2>
+        <ol>
+            <li>XML - ClassPathXmlApplicationContext(”context.xml”). Был изначальным методом.</li>
+            <li>Annotations(с указанием пакета для сканирования) - AnnotationConfigApplicationContext(”package.name”).</li>
+            <li>Java configuration - AnnotationConfigApplicationContext(JavaConfig.class). конфигурация через аннотации
+                с указанием класса (или массива классов) помеченного аннотацией @Configuration. Используется если
+                необходимо создать bean класса, который не имеет spring аннотаций.
+            </li>
+            <li>Groovy - GenericGroovyApplicationContext(”context.groovy”)</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Имена в spring контексте</h2>
+        <ol>
+            <li>При создании через @Component, etc - имя bean будет использовано имя аннотированного класса.</li>
+            <li>При создании через @Bean - имя bean будет использовано имя аннотированного метода.</li>
         </ol>
     </section>
 
@@ -196,6 +214,7 @@
                 Можно указывать конкретный HTTP-метод, который будет обрабатываться (GET/POST), передавать
                 параметры запроса?, пример: @RequestMapping(method = RequestMethod.GET).
             </li>
+            <li>@PathVariable - показывает, что параметр метода должен быть связан с переменной из урл-адреса.</li>
             <li>@GetMapping - указывает GET mapping для метода.</li>
             <li>@PostMapping - указывает POST mapping для метода.</li>
             <li>@PutMapping - указывает PUT mapping для метода.</li>
@@ -203,7 +222,7 @@
             <li>@DeleteMapping - указывает DELETE mapping для метода.</li>
         </ul>
 
-        <h3>Аннотации для создания Bean:</h3>
+        <h3>Аннотации для создания Bean(Annotations):</h3>
         <ul>
             <li>@Component - общий компонент фреймворка.</li>
             <li>@Controller - подтип класса @Component для контроллеров. Похож на обычный сервлет (HttpServlet)
@@ -213,14 +232,20 @@
             <li>@RestController - @Controller + @ResponseBody. Нужен для ответа телом(JSON, XML и
                 тд.).
             </li>
-
             <li>@Service - подтип класса @Component для сервис-слоя.</li>
             <li>@Repository - подтип класса @Component для DAO слоя. Перехватывает исключения из базы и меняет их под
                 стандарты Spring.
             </li>
+
+        </ul>
+
+        <h3>Аннотации для создания Bean(Java configuration):</h3>
+        <ul>
             <li>@Configuration - аннотация уровня класса, указывающая, что объект является источником определений
                 компонента. Классы @Configuration объявляют bean-компоненты с помощью методов, аннотированных @Bean.
             </li>
+            <li>@Bean - используется для явного определения Beans в Java-конфигурации. Над методом класс @Configuration.</li>
+            <li>@Scope - для установки области жизни bean. Используется с аннотациями Component и Bean.</li>
         </ul>
 
         <h3>Advice</h3>
@@ -233,14 +258,11 @@
 
         <h3>Другие:</h3>
         <ul>
-            <li>@Bean - используется для явного определения Beans в Java-конфигурации. Над методом класс @Configuration.</li>
             <li>@Autowired - автоматически установить значение поля.</li>
             <li>@Transactional - перед исполнением метода помеченного данной аннотацией начинается транзакция,
                 после выполнения метода транзакция коммитится, при выбрасывании RuntimeException откатывается.
             </li>
             <li>@Lookup - помечается метод, который будет возвращать разные объекты при каждом вызове метода.</li>
-            <li>@Scope - для установки области жизни bean. Используется с аннотациями Component и Bean.</li>
-            <li>@PathVariable - показывает, что параметр метода должен быть связан с переменной из урл-адреса.</li>
             <li>@PostConstruct - аннотация для метода, который будет вызван после вызова конструктора бина.</li>
             <li>@PreDestroy - аннотация для метода, который будет вызван перед уничтожением бина.</li>
             <li>@Qualifier - спользуется совместно с @Autowired для уточнения данных связывания, когда возможны коллизии

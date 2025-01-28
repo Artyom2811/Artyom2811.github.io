@@ -17,7 +17,23 @@
         <ol>
             <li>Удобство создания объектов через Beans.</li>
             <li>IoC - через управление beans.</li>
+            <li>IoC Container - это реализация IoC и DI. Контейнер IoC создает и управляет bean-компонентами на
+                основе мета-информации. Он также может решать и предоставлять зависимости для создаваемых им объектов.
+            </li>
+            <li>BeanFactory - это интерфейс, который создает и предоставляет bean-компоненты на основе BeanDefinition-ов.
+                Он является ядром ApplicationContext.
+            </li>
         </ol>
+
+        <h3>ApplicationContext</h3>
+        <p>ApplicationContext - это центральный интерфейс который предоставляет следующий список возможностей.</p>
+        <ul>
+            <li>Возможности BeanFactory.</li>
+            <li>Загрузка ресурсов.</li>
+            <li>Публикация событий.</li>
+            <li>Интернационализация.</li>
+            <li>Автоматическая регистрация BeanPostProcessor и BeanFactoryPostProcessor.</li>
+        </ul>
     </section>
 
     <section>

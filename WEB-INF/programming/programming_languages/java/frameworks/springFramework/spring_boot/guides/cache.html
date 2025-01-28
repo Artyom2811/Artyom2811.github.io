@@ -1,0 +1,46 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Spring cache</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringBoot.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Spring cache</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <ol>
+            <li><a href="https://www.youtube.com/watch?v=QJUGF-kWaR0">Кэширование данных в приложении на Spring Boot</a></li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Что это</h2>
+        <p>Кэш - участок оперативной памяти содержащий информацию, которая часто запрашивается.</p>
+    </section>
+
+    <section>
+        <h2>Быстрый старт в Spring boot</h2>
+        <p>Добавить зависимость - spring-boot-starter-cache</p>
+        <p>Над конфигурационным классом(@Configuration) добавить аннотацию @EnableCaching.</p>
+        <p>Указать аннотацию @Cacheable над необходимым методом с параметром имени кеша - @Cacheable("userCache").</p>
+    </section>
+
+    <section>
+        <p>Если метод возвращает exception кеш отрабатывать не будет.</p>
+    </section>
+
+    <section>
+        <h2>@CachePut</h2>
+        <p>@CachePut - аннотация для обновления кеша.</p>
+    </section>
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
