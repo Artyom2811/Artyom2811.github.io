@@ -1,0 +1,130 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>@Schedule</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringBoot.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>@Schedule</h1>
+
+    <section>
+        <h2>Что это</h2>
+        <p>@Schedule - аннотация для управления выполнения действий по расписанию.</p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#set_up">Подключение к проекту</a></li>
+            <li><a class="anchor" href="#fixed_delay">Fixed Delay</a></li>
+            <li><a class="anchor" href="#fixed_rate">Fixed Rate</a></li>
+            <li><a class="anchor" href="#initial_delay">Initial Delay</a></li>
+            <li><a class="anchor" href="#cron_expressions">Cron Expressions</a></li>
+            <li><a class="anchor" href="#parameterizing">Parameterizing</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="set_up">Подключение к проекту</h2>
+        <p>Установить аннотацию @EnableScheduling в классе который помечен аннотацией @Configuration.</p>
+    </section>
+
+    <section>
+        <h2 id="fixed_delay">Fixed Delay</h2>
+        <p>Fixed Delay - запускает новую задачу через отмеченное время после выполнения прошлой запущенной задачи.</p>
+        <pre>
+@Scheduled(fixedDelay = 1000)
+public void scheduleFixedDelayTask() {
+    System.out.println(
+      "Fixed delay task - " + System.currentTimeMillis() / 1000);
+}
+        </pre>
+    </section>
+
+    <section>
+        <h2 id="fixed_rate">Fixed Rate</h2>
+        <p>Fixed Rate - запускает новую задачу через отмеченное время после запуска прошлой запущенной задачи.</p>
+        <pre>
+@Scheduled(fixedRate = 1000)
+public void scheduleFixedRateTask() {
+    System.out.println(
+      "Fixed rate task - " + System.currentTimeMillis() / 1000);
+}
+        </pre>
+
+        <p>Но задачи все равно не будут запущены параллельно, будет ожидание окончания прошлой задачи.</p>
+
+        <h3>Для запуска параллельно можно использовать @Async:</h3>
+        <pre>
+@EnableAsync
+public class ScheduledFixedRateExample {
+    @Async
+    @Scheduled(fixedRate = 1000)
+    public void scheduleFixedRateTaskAsync() throws InterruptedException {
+        System.out.println(
+          "Fixed rate task async - " + System.currentTimeMillis() / 1000);
+        Thread.sleep(2000);
+    }
+
+}
+        </pre>
+    </section>
+
+    <section>
+        <h2 id="initial_delay">Initial Delay</h2>
+        <p>Initial Delay - ожидание перед первым запуском.</p>
+        <pre>
+@Scheduled(fixedDelay = 1000, initialDelay = 1000)
+public void scheduleFixedRateWithInitialDelayTask() {
+
+    long now = System.currentTimeMillis() / 1000;
+    System.out.println(
+      "Fixed rate task with one second initial delay - " + now);
+}
+        </pre>
+    </section>
+
+    <section>
+        <h2 id="cron_expressions">Cron Expressions</h2>
+        <p>Cron Expressions - ожидание перед первым запуском.</p>
+        <p><a href="https://spring.io/blog/2020/11/10/new-in-spring-5-3-improved-cron-expressions">Spring cron</a></p>
+        <pre>
+@Scheduled(cron = "0 15 10 15 * ?")
+public void scheduleTaskUsingCronExpression() {
+
+    long now = System.currentTimeMillis() / 1000;
+    System.out.println(
+      "schedule tasks using cron jobs - " + now);
+}
+        </pre>
+
+        <h3>Также можно указывать Time Zone</h3>
+        <pre>
+@Scheduled(cron = "0 15 10 15 * ?", zone = "Europe/Paris")
+        </pre>
+    </section>
+
+    <section>
+        <h2 id="parameterizing">Parameterizing</h2>
+        <p>В случае передачи нужных нам параметров из переменных.</p>
+        <pre>
+@Scheduled(fixedDelayString = "${fixedDelay.in.milliseconds}")
+        </pre>
+        <pre>
+@Scheduled(fixedRateString = "${fixedRate.in.milliseconds}")
+        </pre>
+        <pre>
+@Scheduled(cron = "${cron.expression}")
+        </pre>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>
