@@ -130,6 +130,33 @@
         </p>
     </section>
 
+    <section>
+        <h2>Пример изменения типа в Map</h2>
+        <pre>
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class Main {
+    public static void main(String[] args) {
+        Map&lt;String, String&gt; stringMap = new HashMap&lt;&gt;();
+        stringMap.put("1", "100");
+        stringMap.put("2", "200");
+
+        Map&lt;Integer, Integer&gt; intMap = stringMap.entrySet()
+            .stream()
+            .collect(Collectors.toMap(
+                e -&gt; Integer.parseInt(e.getKey()),
+                e -&gt; Integer.parseInt(e.getValue())
+            ));
+
+        System.out.println(intMap); // {1=100, 2=200}
+    }
+}
+        </pre>
+    </section>
+
+
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>
