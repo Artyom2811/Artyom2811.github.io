@@ -125,6 +125,9 @@
 
             <h3>Продуктивность</h3>
             <li><a href="https://www.youtube.com/watch?v=-75rD2Sd_dQ">Коли прод росте на 1000% | Виклики на Різдво | Java: Про ІТ під каву - #49</a></li>
+
+            <li>Throttling - процесс лимитирования обработки запросов за определенное время Разобрать возможности тротлинга на spring.</li>
+            <li><a href="https://medium.com/teamarimac/implementing-throttling-in-java-spring-boot-ec4723cfce9f">Implementing Throttling in Java (Spring Boot)</a></li>
         </ol>
     </div>
 
@@ -262,6 +265,7 @@
             </li>
             <li>@Bean - используется для явного определения Beans в Java-конфигурации. Над методом класс @Configuration.</li>
             <li>@Scope - для установки области жизни bean. Используется с аннотациями Component и Bean.</li>
+            <li>@ConditionalOnProperty - дополнительная настройка для аннотации @Bean. </li>
         </ul>
 
         <h3>Advice</h3>
@@ -284,8 +288,12 @@
             <li>@Qualifier - спользуется совместно с @Autowired для уточнения данных связывания, когда возможны коллизии
                 (например одинаковых имен\типов).
             </li>
-            <li>@Profile - аннотация для создания профилей конфигурации проекта. Может применяться как к бинам так и
+            <li>@Profile - аннотация для создания профилей конфигурации проекта. Может применяться как к Beans, так и
                 к конфигурационным классам.
+            </li>
+            <li>@ConfigurationProperties - используется для привязки значений из конфигурационных файлов
+                (application.properties или application.yml) к Java-классам. Она помогает удобно управлять настройками
+                приложения и избегать жестко закодированных значений. Создает Java объект из application файла или его части.
             </li>
         </ul>
     </section>
