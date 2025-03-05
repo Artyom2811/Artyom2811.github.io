@@ -53,6 +53,7 @@
             <li><a href="https://www.youtube.com/watch?v=DrMmHTHTcCo">Learn Spring Fundamentals for Beginners - Full Course</a></li>
             <li><a href="https://habr.com/ru/articles/572828/">6 способов выполнения метода при старте Spring Boot приложения</a></li>
             <li><a href="https://www.youtube.com/watch?v=aZFYeHUpr-k">Spring Boot ПОЛНЫЙ курс для начинающих [2025]</a></li>
+            <li><a href="https://javarush.com/groups/posts/1676-spring-framework-vvedenie">Spring Framework. Введение</a></li>
             <li>Spring vs Spring Boot - разница</li>
 
             <li>Вопросы</li>
@@ -116,6 +117,7 @@
 
             <h3>DB connection</h3>
             <li><a href="https://www.youtube.com/watch?v=tVF0Zoeur1o">JOOQ – разбираем Java-библиотеку | SoftTeco Meetup</a></li>
+            <li><a href="https://habr.com/ru/articles/872562/">JOOQ — не замена Hibernate. Они решают разные проблемы</a></li>
 
             <h3>Реактивного программирования</h3>
             <li><a href="https://www.youtube.com/watch?v=eo6cb9AQvng">Основы реактивного программирования на Java, лекция 1</a></li>
@@ -353,6 +355,15 @@
 @Value("${my.list.of.strings:}#{T(java.util.Collections).emptyList()}")
 private List&lt;String&gt; myList;
     </pre>
+    </section>
+
+    <section>
+        <h2>Интерфейсы для слоев DAO и Service</h2>
+        <p>Интерфейсы нужны для возможности замены реализации не затрагивая основной код. При использовании интерфейсов
+            основной код ничего не знает об деталях реализации (слабая связанность). Соответственно, реализацию можно
+            вынести в отдельный модуль (изолировать сложность). Если реализация отделена от основного кода, то
+            становится легко подменить её в тестах, например, подсунуть in memory реализацию, вместо БД.
+        </p>
     </section>
 </div>
 
