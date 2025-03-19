@@ -41,6 +41,11 @@ Akka
 Сессия и токен
 Работа с jacoco
 Работа с SonarQube
+цelasticsearch
+Kubernetes
+Docker
+gRPC
+AWS
 
 Swagger для документации.
     Mandatory

@@ -21,7 +21,7 @@
     </div>
 
     <h2>Что это</h2>
-    <p>Lombok — проект по добавлению дополнительной функциональности в Java c помощью изменения исходного кода перед
+    <p>Lombok - проект по добавлению дополнительной функциональности в Java c помощью изменения исходного кода перед
         Java компиляцией. При помощи аннотаций можно не писать часть кода.
     </p>
 
@@ -30,7 +30,7 @@
         <ul>
             <li><a class="anchor" href="#annotations">Основные аннотации</a></li>
             <li><a class="anchor" href="#singular">@Singular</a></li>
-            <li><a class="anchor" href="#spring">Подключение к Spring</a></li>
+            <li><a class="anchor" href="#spring_boot">Подключение к Spring</a></li>
         </ul>
     </section>
 
@@ -112,8 +112,22 @@ public void someMethod() {
     </section>
 
     <section>
-        <h2 id="spring">Подключение к Spring</h2>
+        <h2 id="spring_boot">Подключение к Spring Boot + Gradle</h2>
+        <h3>Узнать последнюю версию в:</h3>
+        <p>https://mvnrepository.com/artifact/org.projectlombok/lombok</p>
 
+        <h3>build.gradle</h3>
+        <pre>
+def lombokVersion = '1.18.36'
+
+//dependency
+//Lombok
+compileOnly "org.projectlombok:lombok:${lombokVersion}"
+annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        </pre>
+
+        <h3>Установить Idea Plugin</h3>
+        <p>Lombok</p>
     </section>
 
 </div>
