@@ -267,7 +267,24 @@
             </li>
             <li>@Bean - используется для явного определения Beans в Java-конфигурации. Над методом класс @Configuration.</li>
             <li>@Scope - для установки области жизни bean. Используется с аннотациями Component и Bean.</li>
-            <li>@ConditionalOnProperty - дополнительная настройка для аннотации @Bean. </li>
+            <li>@ConditionalOnProperty - дополнительная настройка для аннотации @Bean. Позволяет создавать bean или
+                активировать компоненты только при наличии определённого свойства в application.properties или application.yml
+                <pre>
+//application.yml
+feature.toggle=true
+
+@Component
+@ConditionalOnProperty(name = "feature.toggle", havingValue = "true")
+public class FeatureService {
+    public void execute() {
+        System.out.println("Feature is enabled!");
+    }
+}
+                </pre>
+            </li>
+            <li>@Primary - дополнительная настройка для аннотации @Bean. Указывает основной bean, который должен быть
+                выбран при создании bean, если существует несколько beans одного типа. @Qualifier - отменяет его действие.
+            </li>
         </ul>
 
         <h3>Advice</h3>
@@ -287,7 +304,7 @@
             <li>@Lookup - помечается метод, который будет возвращать разные объекты при каждом вызове метода.</li>
             <li>@PostConstruct - аннотация для метода, который будет вызван после вызова конструктора бина.</li>
             <li>@PreDestroy - аннотация для метода, который будет вызван перед уничтожением бина.</li>
-            <li>@Qualifier - спользуется совместно с @Autowired для уточнения данных связывания, когда возможны коллизии
+            <li>@Qualifier - используется совместно с @Autowired для уточнения данных связывания, когда возможны коллизии
                 (например одинаковых имен\типов).
             </li>
             <li>@Profile - аннотация для создания профилей конфигурации проекта. Может применяться как к Beans, так и

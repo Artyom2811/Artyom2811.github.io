@@ -30,7 +30,7 @@
     </section>
 
     <section>
-        <h2 id="prototypeInSingleton">Создание prototype в singleton:</h2>
+        <h2 id="prototypeInSingleton">Создание в singleton prototype инстансов новый при каждом обращении:</h2>
         <p>Создадим класс singleton Car:</p>
         <pre>
 @Component
@@ -40,6 +40,7 @@ public class Passenger {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -53,6 +54,7 @@ public class Car {
     public Passenger createPassenger() {
         return null;
     };
+
     public String drive(String name) {
         Passenger passenger = createPassenger();
         passenger.setName(name);
@@ -60,6 +62,8 @@ public class Car {
     }
 }
         </pre>
+
+        <p>Но рекомендуется использовать подход через "ObjectProvider&lt;T&gt;"</p>
     </section>
 
     <section>

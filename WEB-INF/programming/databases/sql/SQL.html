@@ -197,12 +197,15 @@ WHERE SUM(total) > 40000
 GROUP BY product_line
 ORDER BY total_gain DESC
             </pre>
+
             <li>Виды Joins:
                 <ul>
                     <li>INNER JOIN - общее</li>
                     <li>LEFT JOIN - левое и общее. Если не будет совпадения, правая часть будет null.</li>
                     <li>RIGHT JOIN - правое и общее. Если не будет совпадения, левая часть будет null.</li>
-                    <li>OUTER - не общее</li>
+                    <li>FULL OUTER - выбирает не только записи с совпадающими значениями в этих столбцах, но и все
+                        оставшиеся строки из обеих таблиц.
+                    </li>
                     <li>CROSS(декартова произведения) - не общее</li>
                 </ul>
             </li>

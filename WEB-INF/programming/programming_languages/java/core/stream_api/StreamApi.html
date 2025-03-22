@@ -43,7 +43,7 @@
 
     <section>
         <h2>Виды операторов:</h2>
-        <h3>Конвейерные(промежуточные, intermediate) операторы</h3>
+        <h3>Intermediate(конвейерные, промежуточные) операторы</h3>
         <p>Конвейерные операторы - возвращают новый Stream и не выполняются без терминального оператора.</p>
         <ol>
             <li>map(Function mapper) - преобразует каждый элемент стрима. Одно выходное значение из каждого входного.</li>
@@ -63,7 +63,7 @@
             <li>distinct() - убирает повторы элементов.</li>
         </ol>
 
-        <h3>Терминальные(terminal) операторы</h3>
+        <h3>Terminal операторы</h3>
         <p>После вызова терминального метода, поток завершиться и повторный вызов вернет ошибку IllegalStateException.</p>
         <ol>
             <li>forEach(Consumer<? super T> action) - аналог for each.</li>
@@ -118,7 +118,7 @@ var matchingElements = List.of("B", "C", "D")
     .toList();
         </pre>
 
-        <h3>Нахождения процентиля(перцентиль)</h3>
+        <h3>Нахождения процентиля(персентиль)</h3>
         <pre>
 var latencies = Stream.of(10, 3, 6, 7, 8, 8, 9, 13, 15, 16, 20).toList();
 System.out.println(percentile(latencies, 25));
@@ -132,7 +132,7 @@ public static long percentile(List&lt;Integer&gt; latencies, double percentile) 
 }
         </pre>
 
-        <h3>Нахождения процентиля(перцентиль)</h3>
+        <h3>Нахождения процентиля(персентиль)</h3>
         <pre>
 var latencies = Stream.of(10, 3, 6, 7, 8, 8, 9, 13, 15, 16, 20).toList();
 System.out.println(percentile(latencies, 25));

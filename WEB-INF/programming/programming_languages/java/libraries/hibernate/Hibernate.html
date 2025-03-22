@@ -77,11 +77,72 @@
             <li>Необходимо отслеживать проблему "N + 1"</li>
         </ol>
 
-        <p>Проблема N + 1 в JPA - возникает, когда мы генерируем запрос на получение одной сущности из базы данных,
-            но у данной сущности есть свои связанные сущности, которые мы тоже хотим получить и hibernate генерирует
-            вначале один (1) запрос к базе данных, чтобы получить интересующую нас сущность, а потом N запросов,
-            чтобы достать из базы данных связанные сущности.
+        <p>Проблема "N + 1" запросов возникает, когда при работе с базой данных выполняется один основной запрос для
+            получения списка объектов (N), а затем для каждого из этих объектов выполняется еще один дополнительный
+            запрос (+1). Это приводит к множеству SQL-запросов, что сильно снижает производительность.
         </p>
+        <h3>Решения:</h3>
+        <p>Если вам нужна максимальная производительность, лучше использовать JOIN FETCH или @EntityGraph.</p>
+        <ul>
+            <li>Fetch Join (JOIN FETCH) - позволяет загружать связанные сущности. Минусы: Может приводить к дублирующим
+                данным, если есть несколько связанных коллекций.
+                <pre>
+List&lt;Book&gt; books = entityManager.createQuery(
+"SELECT b FROM Book b JOIN FETCH b.author", Book.class)
+.getResultList();
+                </pre>
+            </li>
+
+            <li>@EntityGraph - позволяет указывать, какие связанные сущности загружать сразу. Минусы: Не работает с
+                nativeQuery.
+                <pre>
+@EntityGraph(attributePaths = {"author"})
+@Query("SELECT b FROM Book b")
+List&lt;Book&gt; findAllWithAuthors();
+                </pre>
+            </li>
+
+            <li>@BatchSize - загружать связанные объекты партиями, уменьшая количество SQL-запросов. Минусы: Не даёт
+                полного контроля над SQL-запросами. Минусы: Не даёт полного контроля над SQL-запросами.
+                <pre>
+@Entity
+public class Book {
+    @ManyToOne
+    @BatchSize(size = 10) // Загружает авторов по 10 за раз
+    private Author author;
+}
+                </pre>
+            </li>
+
+            <li>@Fetch(FetchMode.SUBSELECT) - позволяет загружать коллекции через один подзапрос вместо множества
+                маленьких SQL. Минусы: Может быть неэффективным на больших объемах данных.
+                <pre>
+@Entity
+public class Author {
+    @OneToMany(mappedBy = "author")
+    @Fetch(FetchMode.SUBSELECT) // Загружает все книги автора одним подзапросом
+    private List&lt;Book&gt; books;
+}
+                </pre>
+            </li>
+
+            <li>@NamedEntityGraph - создать предопределённые графы загрузки. Минусы: Нужно явно указывать граф в запросе.
+                <pre>
+@NamedEntityGraph(name = "Book.withAuthor",
+    attributeNodes = @NamedAttributeNode("author"))
+@Entity
+public class Book {
+    @ManyToOne
+    private Author author;
+}
+
+EntityGraph&lt;?&gt; entityGraph = entityManager.getEntityGraph("Book.withAuthor");
+List&lt;Book&gt; books = entityManager.createQuery("SELECT b FROM Book b", Book.class)
+    .setHint("javax.persistence.fetchgraph", entityGraph)
+    .getResultList();
+                </pre>
+            </li>
+        </ul>
     </section>
 
     <section>
@@ -182,11 +243,11 @@
         <h2>Session methods</h2>
         <ul>
             <li>Get() - получение данных. Если объекта нет вернет null. Вернет полностью инициализированный
-                объект(eager load) по этому медленнее чем Load(). Если вы не увереныы что объект есть - используйте
+                объект(eager load) по этому медленнее чем Load(). Если вы не уверенны что объект есть - используйте
                 Get().
             </li>
             <li>Load() - получение данных. Если объекта нет вернет ObjectNotFoundException. Вернет proxy объект
-                (lazy load) по быстрее чем Get(). Если вы увереныы что объект есть - используйте Load().
+                (lazy load) по быстрее чем Get(). Если вы уверенны что объект есть - используйте Load().
             </li>
         </ul>
     </section>

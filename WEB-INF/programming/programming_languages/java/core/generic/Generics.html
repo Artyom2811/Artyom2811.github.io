@@ -143,10 +143,16 @@ public static void copy(List&lt;? extends Number&gt; dest, List&lt;? extends Num
             <li>Использовать коллекцию для вложения, используем super.</li>
             <li>Если то и другое - ничего не используем.</li>
         </ul>
+        <p>Пример с extend: если мы указали &lt;? extends Number&gt; - означает то что мы возьмем, будет наследоваться от
+            Number и мы знаем как с этим работать. Мы не можем в него класть так как мы не знаем какой конкретно тип там есть.
+        </p>
+        <p>Пример с super: если мы указали &lt;? super Number&gt; - означает то что мы возьмем, будет: Number или Object.
+            Мы не можем брать не зная конкретный тип. Но мы можем в него класть как Object.
+        </p>
 
         <h3>&lt;? extends A&gt;</h3>
         <ol>
-            <li>Можно передать коллекцию с generic &lt;A&gt; или generic &lt;subclass A&gt;.</li>
+            <li>Можно использовать коллекцию с generic &lt;A&gt; или generic &lt;subclass A&gt;.</li>
             <li>Можно добавлять в коллекцию(кроме null), но можем выполнять действия над элементами.</li>
         </ol>
         <pre>
@@ -157,9 +163,9 @@ sendEmailsFixed(customers);
 
         <h3>&lt;? super A&gt;</h3>
         <ul>
-            <li>Можно передать коллекцию с generic &lt;A&gt; или generic &lt;superclass A&gt;.</li>
+            <li>Можно использовать коллекцию с generic &lt;A&gt; или generic &lt;superclass A&gt;.</li>
             <li>Мы можем добавлять в эту коллекцию(тип той коллекции, что мы положили или subclasses),
-                но не можем выполнять действия над ней кроме методом Object.
+                но не можем выполнять действия над ней, кроме методов Object.
             </li>
         </ul>
         <pre>
