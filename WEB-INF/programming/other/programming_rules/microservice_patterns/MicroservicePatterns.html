@@ -39,8 +39,13 @@
             <li><a class="anchor" href="#problems">Решение проблем</a></li>
             <li><a class="anchor" href="#saga">Saga</a></li>
             <li><a class="anchor" href="#cqrs">Command and Query Responsibility Segregation(CQRS)</a></li>
+            <li><a class="anchor" href="#event_sourcing">Event sourcing</a></li>
             <li><a class="anchor" href="#database_per_microservice">Database per Microservice</a></li>
+            <li><a class="anchor" href="#retry_pattern">Retry pattern</a></li>
             <li><a class="anchor" href="#circuit_breaker">Circuit Breaker</a></li>
+            <li><a class="anchor" href="#timeout_pattern">Timeout pattern</a></li>
+            <li><a class="anchor" href="#fallback">Fallback</a></li>
+            <li><a class="anchor" href="#bulkhead">Bulkhead</a></li>
         </ul>
     </section>
 
@@ -185,16 +190,64 @@
     </section>
 
     <section>
-        <h2 id="circuit_breaker">Circuit Breaker</h2>
-        <p></p>
+        <h2 id="retry_pattern">Retry pattern</h2>
+        <p>Retry pattern - механизм повторения запросов.</p>
+        <p>Виды:</p>
+        <ul>
+            <li>Fixed delay - фиксированное время.</li>
+            <li>Incremental delay - время между попытками увеличивается.</li>
+            <li>Exponential backoff - время между попытками увеличивается экспоненциально.</li>
+        </ul>
     </section>
 
     <section>
-        <h2 id="interview">Interview</h2>
+        <h2 id="circuit_breaker">Circuit Breaker</h2>
+        <p>Circuit breaker pattern - защищает сервисы от избыточной нагрузки и отказов.</p>
+        <p>Помогает "Retry pattern" не добить нагруженный сервис количеством запросов.</p>
 
-        <h3>Узнать все требования.</h3>
-        <p>Количество юзеров.</p>
-        <p>Функциональные требования.</p>
+        <h3>Как работает:</h3>
+        <ol>
+            <li>Замеряет ошибки – если система часто отвечает сбоем, то "выключает" запросы.</li>
+            <li>Блокирует вызовы – на время переключается в режим отказа (open state).</li>
+            <li>Пробует восстановиться – спустя время делает тестовые запросы и, если сервис снова работает,
+                возвращает его в работу.
+             </li>
+        </ol>
+    </section>
+
+    <section>
+        <h2 id="timeout_pattern">Timeout pattern</h2>
+        <p>Timeout pattern - ограничивает время ожидания запросов.</p>
+        <p>Виды timeout:</p>
+        <ul>
+            <li>Connection timeout - попытка соединения.</li>
+            <li>Read/Write(response) timeout - время на запрос.</li>
+            <li>Idle Timeout - автоматический разрыв соединения, если оно неактивно в течение определенного времени.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="fallback">Fallback pattern</h2>
+        <p>Fallback pattern - запасное действие в случае ошибки.</p>
+        <p>Виды fallback:</p>
+        <ul>
+            <li>Response by default</li>
+            <li>Change client - попробовать другой способ получить данные(если такой есть)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="bulkhead">Bulkhead pattern</h2>
+        <p>Bulkhead pattern - используется для изоляции различных компонентов системы, чтобы сбои в одной части
+            не затронули всю систему. Для повышения отказоустойчивости и изоляции сбоев.</p>
+        <p> Применение Bulkhead pattern</p>
+        <ul>
+            <li>Разделение ресурсов — выделение отдельных пулов потоков, соединений с базой данных или очередей
+                сообщений для разных сервисов.
+            </li>
+            <li>Изоляция отказов — если один сервис перегружен или выходит из строя, другие продолжают работать.</li>
+            <li>Повышение устойчивости — уменьшение риска каскадных отказов.</li>
+        </ul>
     </section>
 
 </div>
