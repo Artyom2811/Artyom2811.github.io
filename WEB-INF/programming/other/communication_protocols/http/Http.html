@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<div><a href="../СommunicationProtocols.html" class="backButton"></a></div>
+<div><a href="../CommunicationProtocols.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>HTTP</h1>
 
@@ -112,6 +112,12 @@
             <li>OPTIONS - для получения параметров текущего HTTP соединения.</li>
             <li>TRACE - используется для получения информации о том, что происходит с сообщением на промежуточных узлах.</li>
         </ol>
+
+        <h3>Кеширование</h3>
+        <p>GET и HEAD - кешируемые.</p>
+        <p>POST - по умолчанию не кэшируются, но можно кэшировать, если к ответу добавить заголовок Expires или
+            заголовок Cache-Control с директивой, явно разрешающей кэширование.
+        </p>
     </section>
 
     <section>
