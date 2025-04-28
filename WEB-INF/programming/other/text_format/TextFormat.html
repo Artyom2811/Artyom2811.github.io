@@ -26,9 +26,64 @@
     </section>
 
     <section>
-        <h2>YAML(Yet Another Markup Language)(.yml, .yaml)</h2>
-        <p>YAML - разметка, которая использует пробелы. Табы запрещены.</p>
+        <h2>YAML(YAML Ain't Markup Language)(.yml, .yaml)</h2>
+        <p>YAML - формат сериализации данных, которая использует пробелы(табуляция запрещена).</p>
+
+        <h3>Комментарии</h3>
         <p># - символ комментариев.</p>
+
+        <h2>Использование переменных среды</h2>
+        <p>${USERNAME} - использовать переменную среды USERNAME.</p>
+        <p>${USERNAME:user} - пример с дефолтным значением.</p>
+        <pre>
+app.name=MyApp
+app.description=${app.name} is a Spring Boot application written by ${username:Unknown}
+        </pre>
+
+        <h3>Scalar types</h3>
+        <pre>
+n1: 1            # integer
+n2: 1.234        # float
+
+s1: 'abc'        # string
+s2: "abc"        # string
+s3: abc          # string
+
+b: false         # boolean type
+
+d: 2015-04-05    # date type
+        </pre>
+
+        <h3>Variables</h3>
+        <pre>
+some_thing: &VAR_NAME foobar
+other_thing: *VAR_NAME
+        </pre>
+
+        <h3>List</h3>
+        <pre>
+shopping:
+- milk
+- eggs
+- juice
+
+# or
+shopping: [milk, eggs, juice]
+        </pre>
+
+        <h3>Map</h3>
+        <pre>
+Employees:
+- dan:
+    name: Dan D. Veloper
+    job: Developer
+    team: DevOps
+- dora:
+   name: Dora D. Veloper
+   job: Project Manager
+   team: Web Subscriptions
+        </pre>
+
     </section>
 
     <section>
