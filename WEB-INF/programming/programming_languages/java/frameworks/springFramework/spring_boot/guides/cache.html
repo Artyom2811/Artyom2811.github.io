@@ -22,14 +22,15 @@
 
     <section>
         <h2>Что это</h2>
-        <p>Кэш - участок оперативной памяти содержащий информацию, которая часто запрашивается.</p>
+        <p>Кэш - участок оперативной памяти содержащий информацию, которая часто запрашивается. Spring cache хранит кеш в
+        ConcurrentMapCache. В качестве ключа использует все входящие параметры метода.</p>
     </section>
 
     <section>
         <h2>Быстрый старт в Spring boot</h2>
         <p>Добавить зависимость - spring-boot-starter-cache</p>
         <p>Над конфигурационным классом(@Configuration) добавить аннотацию @EnableCaching.</p>
-        <p>Указать аннотацию @Cacheable над необходимым методом с параметром имени кеша - @Cacheable("userCache").</p>
+        <p>Указать аннотацию @Cacheable над необходимым методом(в слое service) с параметром имени кеша - @Cacheable("userCache").</p>
     </section>
 
     <section>
@@ -37,8 +38,42 @@
     </section>
 
     <section>
+        <h2>@Cacheable</h2>
+        <p>@Cacheable - имеет параметр key, в котором можно указать что использовать в качестве ключа для кеша.</p>
+        <pre>
+Cacheable(key = "#lastName")
+        </pre>
+    </section>
+
+    <section>
         <h2>@CachePut</h2>
-        <p>@CachePut - аннотация для обновления кеша.</p>
+        <p>@CachePut - аннотация для обновления кеша. Ставиться над update методами на service слоях, c параметром имени
+            кеша - @Cacheable("userCache").
+        </p>
+    </section>
+
+    <section>
+        <h2>@CacheEvict</h2>
+        <p>@CacheEvict - указывает, что метод вызывает удаление из кеша, параметром имени кеша - @Cacheable("userCache").</p>
+        <p>Имеет дополнительный параметр allEntries = true - для удаление всех кешей по данному имени кеша.</p>
+    </section>
+
+    <section>
+        <h2>@CacheConfig</h2>
+        <p>@CacheConfig - общая аннотация на класс service в которой можно указать cacheNames для именнования кеша
+            для всех кеш аннотаций в классе.
+        </p>
+    </section>
+
+    <section>
+        <h2>CacheManager</h2>
+        <p>CacheManager класс который можно использовать для прямой работы с кешем.</p>
+        <pre>
+//spring injection
+private final CacheManager cacheManager;
+
+cacheManager.getCache("userCache");
+        </pre>
     </section>
 </div>
 </body>

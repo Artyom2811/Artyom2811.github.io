@@ -29,28 +29,51 @@
         </ol>
     </div>
 
-<!--    <section>-->
-<!--        <h2>Что это</h2>-->
-<!--    </section>-->
-
-<!--    <section>-->
-<!--        <h2>Основные разделы</h2>-->
-<!--        <ul>-->
-<!--            <li><a class="anchor" href="#howItWorks">Как она работает</a></li>-->
-<!--            <li><a class="anchor" href="#entities">Basic entities</a></li>-->
-<!--            <li><a href="architecture/Architecture.html">Ссылки на другие страницы</a></li>-->
-<!--        </ul>-->
-<!--    </section>-->
-
     <section>
-        <h2 id="howItWorks">Как она работает</h2>
-        <p>@Transaction - перед исполнением метода помеченного данной аннотацией начинается транзакция,
-            после выполнения метода транзакция коммитится, при выбрасывании RuntimeException откатывается.
+        <h2>Что это</h2>
+        <p>Transaction - группа последовательных операций с базой данных, которая представляет собой логическую единицу
+            работы с данными. Транзакция может быть выполнена либо полностью, соблюдая целостность данных и независимо
+            от параллельно идущих других транзакций, либо не выполнена и должна не произвести никакого эффекта.
         </p>
     </section>
 
     <section>
-        <h2>Propagation</h2>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#howItWorks">Как она работает</a></li>
+            <li><a class="anchor" href="#quick_start">Быстрый старт в Spring boot</a></li>
+            <li><a class="anchor" href="#propagation">Propagation</a></li>
+            <li><a class="anchor" href="#isolation">Transaction Isolation</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="howItWorks">Как она работает</h2>
+        <p>@Transactional - перед исполнением метода помеченного данной аннотацией начинается транзакция,
+            после выполнения метода транзакция коммитится, при выбрасывании RuntimeException откатывается.
+        </p>
+
+        <h3>Ошибки использования</h3>
+        <ol>
+            <li>Аннотацию @Transactional можно вызывать только из другого класс, если вызвать через метод из того же класса,
+                аннотация не отработает.
+            </li>
+            <li>@Transactional - откатиться только с RuntimeException и его наследниками. Для примера с Exception class
+                она не откатиться. Но можно указать ожидаемое исключение в параметре rollbackFor. Пример:
+                @Transactional(rollbackFor = Exception.class)
+            </li>
+            <li>Аннотация должна быть только на public методе.</li>
+            <li>Транзакция занимает соединения с БД. По этому нужно выносить долгую логику за пределы транзакции.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2 id="quick_start">Быстрый старт в Spring boot</h2>
+        <p>Указать аннотацию @Transaction над необходимым методом(в слое controller или service).</p>
+    </section>
+
+    <section>
+        <h2 id="propagation">Propagation</h2>
         <p>Propagation - определяет границу транзакции нашей бизнес-логики. Spring управляет запуском и приостановкой
             транзакции в соответствии с нашими настройками propagation. Spring вызывает TransactionManager::getTransaction
             для получения или создания транзакции в соответствии с распространением.
@@ -70,7 +93,7 @@
     </section>
 
     <section>
-        <h2>Transaction Isolation</h2>
+        <h2 id="isolation">Transaction Isolation</h2>
         <ol>
             <li>DEFAULT</li>
             <li>READ_UNCOMMITTED</li>
