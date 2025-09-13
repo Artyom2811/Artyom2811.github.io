@@ -1,0 +1,104 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Spring Load Balancing</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../SpringCloud.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Spring Load Balancing</h1>
+
+    <section>
+        <h2>Что это</h2>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#ribbon">Spring Cloud Ribbon</a></li>
+            <li><a class="anchor" href="#loadBalancer">Spring Cloud LoadBalancer</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="ribbon">Spring Cloud Ribbon</h2>
+        <p>Spring Cloud Ribbon - это библиотека из экосистемы Spring Cloud, которая используется для клиентской
+            балансировки нагрузки (client-side load balancing).
+        </p>
+
+        <h3>Клиентская балансировка нагрузки</h3>
+        <p>Обычно балансировка нагрузки делается на сервере через отдельный балансировщик (например, Nginx, HAProxy
+            или AWS ELB). В таком случае клиент всегда обращается к балансировщику, а он уже решает, к какому
+            экземпляру сервиса отправить запрос.
+        </p>
+        <p>Ribbon реализует другой подход:</p>
+        <ul>
+            <li>сам клиент (приложение) знает обо всех доступных экземплярах сервиса,</li>
+            <li>и самостоятельно выбирает, к какому из них обратиться (например, случайным образом, по кругу — round
+                robin, с учётом задержки и т. д.).
+            </li>
+        </ul>
+
+        <h3>Как Ribbon работает в Spring Cloud?</h3>
+        <ul>
+            <li>Ribbon встроен в Spring Cloud Netflix.</li>
+            <li>Вместе с Eureka (или другим сервисным реестром) он может автоматически узнавать, какие экземпляры
+                сервиса доступны.
+            </li>
+            <li>Когда ваш сервис вызывает другой сервис по его имени, Ribbon под капотом выбирает конкретный хост/порт
+                для запроса.
+            </li>
+        </ul>
+        <h3>Пример:</h3>
+        <pre>
+@LoadBalanced
+@Bean
+public RestTemplate restTemplate() {
+    return new RestTemplate();
+}
+        </pre>
+        <p>Здесь @LoadBalanced говорит Spring использовать Ribbon для выбора экземпляра сервиса.</p>
+
+        <h3>Особенности</h3>
+        <ul>
+            <li>Поддерживает разные алгоритмы балансировки: round robin, random, weighted response time и т. д.</li>
+            <li>Работает на стороне клиента → нет необходимости в отдельном балансировщике.</li>
+            <li>Часто используется вместе с Feign (декларативный HTTP-клиент в Spring Cloud).</li>
+        </ul>
+
+        <h3>Важно</h3>
+        <p>Сейчас Ribbon считается устаревшим (deprecated). Его больше не развивают. Spring Cloud рекомендует
+            использовать Spring Cloud LoadBalancer как замену.
+        </p>
+    </section>
+
+    <section>
+        <h2 id="loadBalancer">Spring Cloud LoadBalancer</h2>
+        <h3>Что это такое?</h3>
+        <p>Spring Cloud LoadBalancer — это библиотека для клиентской балансировки нагрузки (client-side load balancing)
+            в Spring Cloud.
+        </p>
+        <ul>
+            <li>Проще в настройке</li>
+            <li>Не зависит от Netflix OSS (который больше не поддерживается)</li>
+            <li>Лучше интегрируется с современным стеком Spring (WebClient, RestTemplate, Feign)</li>
+        </ul>
+
+        <h3>Как работает?</h3>
+        <ol>
+            <li>Приложение вызывает сервис по имени (например, http://user-service).</li>
+            <li>LoadBalancer находит список доступных инстансов (через Service Discovery, например Eureka, Consul или статический список в application.yml).</li>
+            <li>Применяет стратегию выбора (по умолчанию — Round Robin).</li>
+            <li>Подставляет реальный адрес (host:port) в запрос.</li>
+        </ol>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

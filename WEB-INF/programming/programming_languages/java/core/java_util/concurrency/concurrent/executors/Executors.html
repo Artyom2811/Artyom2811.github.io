@@ -94,10 +94,13 @@ Future&lt;String&gt; f1 = executor.submit(new CallableSample2());
     </section>
 
     <section>
-        <h2>Реализации</h2>
+        <h2>Реализации ExecutorServices:</h2>
         <ol>
             <li>ThreadPoolExecutor - реализует интерфейс ExecutorService и обеспечивает поддержку управляемого пула
-                потоков исполнения.
+                потоков исполнения. Используется очередь для хранения задач. Если очередь маленькая, то при большом
+                наплыве задач быстрее создаются новые потоки (до maximumPoolSize). Если очередь большая, то задачи
+                будут дольше ждать в очереди, но новых потоков будет создаваться меньше. После заполнения очереди и
+                достижения maximumPoolSize новые задачи будут отклоняться (RejectedExecutionHandler).
             </li>
             <li>ForkJoinPool - реализует интерфейс ExecutorService и применяется в каркасе Fork/Join Framework.</li>
             <li>ScheduledThreadPoolExecutor - реализует интерфейс ScheduledExecutorService для поддержки планирования,

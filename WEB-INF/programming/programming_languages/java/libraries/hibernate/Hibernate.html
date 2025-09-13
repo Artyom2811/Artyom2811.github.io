@@ -212,13 +212,20 @@ List&lt;Book&gt; books = entityManager.createQuery("SELECT b FROM Book b", Book.
     <section>
         <h2 id="cascadeType">CascadeType</h2>
         <ol>
-            <li>CascadeType.ALL - необходимо выполнять каскадно сразу все операции.</li>
-            <li>CascadeType.PERSIST - когда выполняется метод save().</li>
-            <li>CascadeType.MERGE</li>
-            <li>CascadeType.REMOVE</li>
-            <li>CascadeType.REFRESH</li>
-            <li>CascadeType.DETACH</li>
+            <li>CascadeType.PERSIST - сохранение нового дочернего объекта, вместе с родителем(save()/persist()).</li>
+            <li>CascadeType.MERGE - обновление родителя вместе с дочерним.</li>
+            <li>CascadeType.REMOVE - удаление родителя вместе с дочерним.</li>
+            <li>CascadeType.REFRESH - синхронизация родителя и дочернего с базой.</li>
+            <li>CascadeType.DETACH - при работе вне транзакции чтобы "отвязать" объект от сессии.</li>
+            <li>CascadeType.ALL - выполнение каскадно сразу все операции.</li>
         </ol>
+
+        <h3>Советы и подводные камни</h3>
+        <ul>
+            <li>REMOVE может быть опасен: удалит дочерние объекты — даже если вы этого не хотите.</li>
+            <li>PERSIST не работает, если дочерний объект уже в базе — используйте MERGE в этом случае.</li>
+            <li>CascadeType.ALL удобно, но не всегда безопасно — лучше указывать только нужные каскады.</li>
+        </ul>
     </section>
 
     <section>
@@ -240,16 +247,78 @@ List&lt;Book&gt; books = entityManager.createQuery("SELECT b FROM Book b", Book.
     </section>
 
     <section>
-        <h2>Session methods</h2>
+        <h2>Session methods - методы получения данных</h2>
+        <h3>get()</h3>
         <ul>
-            <li>Get() - получение данных. Если объекта нет вернет null. Вернет полностью инициализированный
-                объект(eager load) по этому медленнее чем Load(). Если вы не уверенны что объект есть - используйте
-                Get().
-            </li>
-            <li>Load() - получение данных. Если объекта нет вернет ObjectNotFoundException. Вернет proxy объект
-                (lazy load) по быстрее чем Get(). Если вы уверенны что объект есть - используйте Load().
+            <li>Немедленно выполняется запрос.</li>
+            <li>Если записи нет, вернет null.</li>
+            <li>Вернет полностью инициализированный объект(eager load) по этому медленнее чем Load().</li>
+            <li>Если вы не уверенны, что запись есть - используйте get().</li>
+        </ul>
+
+        <h3>load()</h3>
+        <ul>
+            <li>Возвращает прокси без немедленного запроса(ленивая загрузка).</li>
+            <li>Запрос к базе выполняется только при обращении к полям объекта.</li>
+            <li>Если объекта нет вернет ObjectNotFoundException. Вернет proxy объект (lazy load)по быстрее чем Get().
+                Если вы уверенны что объект есть - используйте Load().
             </li>
         </ul>
+    </section>
+
+    <section>
+        <h2>Caches levels</h2>
+        <h3>First-level cache(L1 cache)</h3>
+        <ul>
+            <li>Описание: встроенный кеш, работающий на уровне сессии (Session).</li>
+            <li>Работает по умолчанию — вы не можете его отключить.</li>
+            <li>Все объекты, загруженные в течение одной сессии, сохраняются в этом кеше.</li>
+            <li>Если вы повторно запросите тот же объект в одной сессии, Hibernate вернёт его из кеша, а не из базы данных.</li>
+        </ul>
+        <pre>
+Session session = sessionFactory.openSession();
+
+User user1 = session.get(User.class, 1); // первый запрос — из БД
+User user2 = session.get(User.class, 1); // второй запрос — из кеша (не из БД)
+        </pre>
+        <p>Очищается при закрытии сессии или при вызове session.clear() / session.evict().</p>
+
+        <h3>Second-Level Cache</h3>
+        <ul>
+            <li>Описание: кеш, общий для всех сессий (глобальный).</li>
+            <li>Не активен по умолчанию, его нужно настраивать.</li>
+            <li>Используется между разными Session и даже разными пользователями.</li>
+            <li>Поддерживается через сторонние кеш-провайдеры:<br>
+                1.Ehcache<br>
+                2.Infinispan<br>
+                3.Hazelcast<br>
+                4.Caffeine
+            </li>
+        </ul>
+        <p>Пример настройки:</p>
+        <pre>
+&lt;property name="hibernate.cache.use_second_level_cache"&gt;true&lt;/property&gt;
+&lt;property name="hibernate.cache.region.factory_class"&gt;org.hibernate.cache.ehcache.EhCacheRegionFactory&lt;/property&gt;
+        </pre>
+        <p>Аннотация в сущности:</p>
+        <pre>
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Entity
+public class User { ... }
+        </pre>
+
+        <h3>Кеш запросов (Query Cache)</h3>
+        <ul>
+            <li>Дополнительный уровень поверх второго.</li>
+            <li>Кеширует результаты HQL/JPQL/Criteria-запросов.</li>
+            <li>Требует включённого второго уровня кеша.</li>
+        </ul>
+        <p>Включается отдельно:</p>
+        <pre>
+&lt;property name="hibernate.cache.use_query_cache"&gt;true&lt;/property&gt;
+        </pre>
+        <img src="caches.png" width="90%" height="20%">
     </section>
 
 </div>

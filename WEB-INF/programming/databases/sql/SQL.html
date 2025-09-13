@@ -45,7 +45,6 @@
             <li><a class="anchor" href="#restrictions">Ограничения в SQL</a></li>
             <li><a class="anchor" href="#planning">Планирование схемы таблицы</a></li>
             <li><a class="anchor" href="#basic_concepts">Основные понятия</a></li>
-            <li><a class="anchor" href="#requests">Виды запросов</a></li>
             <li><a class="anchor" href="#commands">Команды</a></li>
             <li><a class="anchor" href="#optimization">Оптимизация запросов</a></li>
             <li><a class="anchor" href="#injection">SQL-инъекции</a></li>
@@ -265,17 +264,6 @@ INNER JOIN C c ON b.d = c.d --10000 записей
     </section>
 
     <section>
-        <h2 id="questions">Вопросы на собеседование</h2>
-        <h3>DELETE vs TRUNCATE:</h3>
-        <ul>
-            <li>TRUNCATE не может использовать WHERE.</li>
-            <li>TRUNCATE быстрее и использует меньше системных ресурсов и практически не пишет лог транзакции.</li>
-            <li>TRUNCATE после использования, откат (rollback) невозможен.</li>
-            <li>TRUNCATE обнуляет счетчик, уникальности новых записей.</li>
-        </ul>
-    </section>
-
-    <section>
         <h2 id="data_types">Рекомендуемые типы данных</h2>
         <h3>CHAR()</h3>
         <p>CHAR() - символьная переменная ТОЛЬКО(не больше, не меньше) заданного размера.</p>
@@ -294,6 +282,50 @@ INNER JOIN C c ON b.d = c.d --10000 записей
 
         <h3>Bcrypt hashed</h3>
         <p>VARCHAR(60)</p>
+    </section>
+
+    <section>
+        <h2>Переименование колонки в рабочем сервисе</h2>
+
+        <h3>1. Убедись, что колонку не используют:</h3>
+        <ul>
+            <li>В представлениях (VIEW)</li>
+            <li>В процедурах/триггерах</li>
+            <li>В SQL-запросах на бэкенде</li>
+            <li>В внешнем коде(Java, Python, Node.js)</li>
+            <li>В BI-отчётах(Power BI, Tableau и др.)</li>
+        </ul>
+
+        <h3>2. Создай новую колонку с нужным именем:</h3>
+        <pre>
+ALTER TABLE users ADD COLUMN full_name VARCHAR(255);
+UPDATE users SET full_name = fullname;
+        </pre>
+
+        <h3>3. Плавно переведи код на новую колонку</h3>
+        <ul>
+            <li>SQL-запросы</li>
+            <li>Приложение</li>
+            <li>Тесты</li>
+        </ul>
+
+        <h3>4. Удаление старой колонки (по желанию)</h3>
+        <p>Когда точно убедишься, что fullname больше нигде не используется:</p>
+        <pre>
+ALTER TABLE users DROP COLUMN fullname;
+        </pre>
+
+
+    </section>
+
+    <section>
+        <h3>DELETE vs TRUNCATE:</h3>
+        <ul>
+            <li>TRUNCATE не может использовать WHERE.</li>
+            <li>TRUNCATE быстрее и использует меньше системных ресурсов и практически не пишет лог транзакции.</li>
+            <li>TRUNCATE после использования, откат (rollback) невозможен.</li>
+            <li>TRUNCATE обнуляет счетчик, уникальности новых записей.</li>
+        </ul>
     </section>
 
     <section>

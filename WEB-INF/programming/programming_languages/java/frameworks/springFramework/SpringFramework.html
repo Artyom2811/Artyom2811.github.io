@@ -196,7 +196,7 @@
     </section>
 
     <section>
-        <h2>Bean scope:</h2>
+        <h2>Bean scope(Spring stereotypes):</h2>
         <ol>
             <li>singleton(by default) - определяет один единственный бин для каждого контейнера Spring IoC.</li>
             <li>prototype - любое количество экземпляров bean. Не храниться в Spring context, значит preDestroy и etc
@@ -415,6 +415,33 @@ private List&lt;String&gt; myList;
             вынести в отдельный модуль (изолировать сложность). Если реализация отделена от основного кода, то
             становится легко подменить её в тестах, например, подсунуть in memory реализацию, вместо БД.
         </p>
+    </section>
+
+    <section>
+        <h2>Метрики</h2>
+        <p>Java metrics + Grafana - это обычно связка инструментов для сбора, хранения и визуализации метрик работы Java-приложения.</p>
+        <p>Метрики — это числовые показатели состояния приложения и JVM (например, использование памяти, загрузка CPU,
+            количество потоков, задержки запросов).
+        </p>
+        <p>В Java их часто собирают с помощью библиотек:</p>
+        <ul>
+            <li>Micrometer (де-факто стандарт в Spring Boot)</li>
+            <li>Dropwizard Metrics</li>
+            <li>JMX (встроенные метрики JVM)</li>
+        </ul>
+
+        <h3>Примеры метрик:</h3>
+        <ul>
+            <li>Heap / non-heap memory usage</li>
+            <li>GC count / GC time</li>
+            <li>Количество HTTP-запросов и их средняя латентность</li>
+            <li>Количество открытых соединений в пуле</li>
+            <li>Ошибки (exceptions, 5xx ответы)</li>
+        </ul>
+
+        <h3>Как Grafana вписывается</h3>
+        <p>Grafana сама по себе данные не собирает, а только строит дашборды и графики.</p>
+        <p>Java приложение → Micrometer / JMX → Prometheus (или InfluxDB) → Grafana</p>
     </section>
 </div>
 
