@@ -21,6 +21,7 @@
             <li><a href="https://www.youtube.com/watch?v=IpD8SCjHkyA">REDIS за 2 минуты</a></li>
             <li><a href="https://www.youtube.com/watch?v=QpBaA6B1U90">Redis за 20 минут</a></li>
             <li><a href="https://www.youtube.com/watch?v=HQCX2FHpnK0">Redis СУБД | Кеширование методов | Spring Boot</a></li>
+            <li><a href="https://habr.com/ru/companies/otus/articles/463365/">Введение в Redis с использованием Spring Boot</a></li>
         </ol>
     </div>
 
@@ -82,6 +83,23 @@
             <li>Консоль - с помощью Redis команд.</li>
             <li>RedisInsight</li>
         </ul>
+    </section>
+
+    <section>
+        <h2>Ключ - строка, по которой Redis находит значение.</h2>
+        <p>Она может содержать любые символы, но обычно делают читаемую и структурированную.</p>
+        <p>namespace:тип:идентификатор:атрибут</p>
+        <p>namespace(Префикс) - app:, service:</p>
+        <p>Тип данных/сущность - user, order, product</p>
+        <p>Идентификатор(ID) - уникальный номер, UUID и т.д. user:123, session:ab12cd</p>
+        <p>Поле/атрибут - конкретное свойство (если храним в виде отдельных ключей). user:123:name, user:123:email</p>
+    </section>
+
+    <section>
+        <h2>Синтаксис</h2>
+        <p>Исторический стандарт - для разделения "логических групп ключей" через двоеточие":". Но можно использовать
+            точку"." или нижнее подчеркивание"_".
+        </p>
     </section>
 
 </div>

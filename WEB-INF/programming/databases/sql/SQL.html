@@ -48,7 +48,6 @@
             <li><a class="anchor" href="#commands">Команды</a></li>
             <li><a class="anchor" href="#optimization">Оптимизация запросов</a></li>
             <li><a class="anchor" href="#injection">SQL-инъекции</a></li>
-            <li><a class="anchor" href="#questions">Вопросы на собеседование</a></li>
         </ul>
     </section>
 
@@ -114,7 +113,7 @@
         <h2 id="basic_concepts">Основные понятия</h2>
         <h3>Дамп</h3>
         <p>Дамп(Dump) - файл, включающий в себя содержимое памяти базы данных.</p>
-        <p>Используется для</p>
+        <p>Используется для:</p>
         <ol>
             <li>Перенос данных на другой хостинг.</li>
             <li>Резервное копирование.</li>
@@ -192,15 +191,10 @@ GROUP BY country
             </pre>
             <li>HAVING - фильтрующее выражение. Работает с командой GROUP BY(для результатов агрегированных функций).</li>
             <pre>
-SELECT
-    product_line,
-    AVG(unit_price) AS avg_price,
-    SUM(quantity) AS tot_pieces,
-    SUM(total) AS total_gain
-FROM sales
-WHERE SUM(total) > 40000
-GROUP BY product_line
-ORDER BY total_gain DESC
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
+HAVING COUNT(CustomerID) > 5;
             </pre>
 
             <li>Виды Joins:
@@ -225,6 +219,16 @@ ORDER BY total_gain DESC
             <li>Проверить план запроса</li>
             <li>Можно отключить планировщик запросов</li>
             <li>Использовать индексы</li>
+            <li>Кэширование</li>
+            <li>Шардинг</li>
+            <li>Партиционирование</li>
+            <li>Репликация</li>
+            <li>Batch-запросы - вместо тысяч отдельных INSERT.</li>
+            <li>Нормализация/Денормализация - для чтения часто денормализуют таблицы или используют материализованные
+                представления. Для записи — наоборот, нормализуют.</li>
+            <li>Типы данных - использовать точные типы (INT вместо BIGINT, CHAR(2) вместо VARCHAR(255)), это экономит
+                память и ускоряет сравнения.
+            </li>
             <li>Скрипт должен идти по мере увеличения размера таблиц.</li>
             <pre>
 Select *

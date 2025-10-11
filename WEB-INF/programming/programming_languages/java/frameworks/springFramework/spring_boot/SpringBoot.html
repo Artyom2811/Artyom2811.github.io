@@ -71,11 +71,19 @@
 
         <h3>Версионирование(BOM)</h3>
         <p>Совместимость по версиям. Указываем одну версию, остальное подберет Spring Boot.</p>
+
+        <h3>Spring Boot Actuator</h3>
+        <p>Spring Boot Actuator - это модуль (библиотека) добавляет к вашему приложению готовые инструменты для
+            мониторинга и управления.
+        </p>
     </section>
 
     <section>
         <h3>Преимущества Spring Boot</h3>
         <ol>
+            <li>@SpringBootApplication - аннотация для упрощенной конфигурации Spring Application. Включает в себя:
+            @Configuration, @ComponentScan, @EnableAutoConfiguration, @EnableTransactionManagement.
+            </li>
             <li>Быстрая и легкая разработка приложений на основе Spring.</li>
             <li>Автоконфигурация всех компонентов для приложения Spring производственного уровня.</li>
             <li>Готовые встроенные серверы (Tomcat, Jetty и Undertow), обеспечивающие ускоренное и более продуктивное
@@ -228,6 +236,52 @@ com/company/demo/application-prod.properties
         <p>Testcontainers - фреймворк интегрированный в Spring boot, который используется для запуска окружения
             интеграционных тестов в контейнерах Docker.
         </p>
+    </section>
+
+    <section>
+        <h2>Spring Boot Actuator</h2>
+        <p>Можно связать с мониторингом например Prometheus + Grafana.</p>
+
+        <h3>Основные возможности</h3>
+        <ul>
+            <li>Health checks - проверка "здоровья" приложения (база данных доступна или нет, есть ли соединение с
+                внешними сервисами и пр.) через эндпоинт/actuator/health.
+            </li>
+            <li>Метрики (Metrics) - автоматически собирает и предоставляет данные: загрузка CPU, память, количество
+                HTTP-запросов, время их обработки, активные потоки и т. д. Доступ через /actuator/metrics.
+            </li>
+            <li>Информация о приложении - версия, билд-инфо, git-commit, окружение. Доступ через /actuator/info.</li>
+            <li>Управление - можно включить эндпоинты для управления приложением: graceful shutdown, управление
+                логгерами, просмотр и изменение уровня логирования на лету.
+            </li>
+            <li>Интеграция с системами мониторинга - например, Prometheus, Grafana, New Relic и др. — Actuator
+                легко подключается к этим инструментам.
+            </li>
+        </ul>
+
+        <h3>Примеры популярных эндпоинтов:</h3>
+        <ul>
+            <li>/actuator/health — состояние приложения.</li>
+            <li>/actuator/info — информация о приложении.</li>
+            <li>/actuator/metrics — метрики (CPU, память, запросы).</li>
+            <li>/actuator/loggers — просмотр и изменение уровней логирования.</li>
+            <li>/actuator/env — параметры окружения.</li>
+        </ul>
+
+        <h3>Пример использования:</h3>
+        <p>Добавить зависимость:</p>
+        <pre>
+implementation("org.springframework.boot:spring-boot-starter-actuator:4.0.0-M2")
+        </pre>
+        <p>В application.properties включить нужные эндпоинты:</p>
+        <pre>
+management.endpoints.web.exposure.include=health,info,metrics
+        </pre>
+        <p>После запуска приложение будет доступно по:</p>
+        <pre>
+http://localhost:8080/actuator/health
+http://localhost:8080/actuator/metrics
+        </pre>
     </section>
 
 </div>

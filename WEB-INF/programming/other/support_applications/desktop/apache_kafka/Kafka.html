@@ -11,7 +11,7 @@
 <body>
 <div><a href="../../SupportApplications.html" class="backButton"></a></div>
 <div class="bodyStyle">
-    <h1>Kafka</h1>
+    <h1>Apache Kafka</h1>
 
     <div class="todo">
         <h2>Проработать:</h2>
@@ -46,7 +46,7 @@
 
     <section>
         <h2 id="whatIs">Что это</h2>
-        <p>Kafka - это высокопроизводительная система обмена сообщениями для публикации-подписки, реализованная как
+        <p>Apache Kafka - это высокопроизводительная система обмена сообщениями для публикации-подписки, реализованная как
             распределенная, разделенная, реплицированная служба журнала фиксации. ZooKeeper - для работы с Kafka необходим
             координатор. Поэтому вначале стартуем ZooKeeper, затем сервер Kafka.
         </p>
@@ -81,6 +81,7 @@
             <li>Распространяется по дизайну - kafka имеет современную кластер-ориентированную конструкцию, которая
                 обеспечивает надежную прочность и отказоустойчивость.
             </li>
+            <li>Подходит для stream processing и event-driven архитектуры.</li>
         </ul>
     </section>
 
@@ -98,7 +99,7 @@
             </li>
             <li>log.retention.bytes - объем данный после которого будут удаленны данные добавленные в kafka.
                 По умолчанию 1 Gb. Значение -1 отключает ограничения.</li>
-            <li>offsets.retention.minutes - время через которое kafka забудет какой офсет был брокером</li>
+            <li>offsets.retention.minutes - время через которое kafka забудет какой офсет был брокером.</li>
         </ul>
     </section>
 
@@ -106,21 +107,36 @@
         <h2 id="common_kafka_entities">Common kafka entities</h2>
         <ul>
             <li>Kafka cluster - несколько Brokers Kafka под управлением ZooKeeper.</li>
-            <li>Broker - одна единица Kafka.</li>
-            <li>Producer - продюсер загружающий данные в kafka.</li>
-            <li>Consumer - потребитель забирающий данные из kafka.</li>
-            <li>Topic - раздел в Broker.</li>
-            <li>Partition - раздел в Topic. Нет ограничение на количество, но он требует ресурсы и рекомендуется э
-                не больше 5000. Желательно иметь столько же consumers.
+            <li>Broker - сервер kafka который сохраняет данные и обрабатывает записи. Одна единица Kafka.</li>
+            <li>Producer - продюсер загружающий данные в kafka топик.</li>
+            <li>Consumer - потребитель забирающий данные из kafka топика.</li>
+            <li>Topic - раздел в Broker. Аналог очереди.</li>
+            <li>Partition - раздел в Topic для параллельной обработки. Нет ограничение на количество, но он требует
+                ресурсы и рекомендуется э не больше 5000. Желательно иметь столько же consumers. Один Partition может
+                обслуживать только одного Consumer.
             </li>
-            <li>Key - ключ по которому добавляются записи в Partition. Можно использовать его hash для выбора Partition или
-                в случае ошибки по ключу определить в каком offset ошибка.
+            <li>Key - опциональная часть данных задающаяся producer, по которому определяется Partition(если задана
+                функция партиционирования). Можно использовать его hash для выбора Partition или в случае ошибки по
+                ключу определить в каком offset ошибка.
             </li>
             <li>Value - значение, которое храниться по ключу.</li>
-            <li>Consumer group - группы для нескольких consumers, которые будут отслеживаться kafka как один consumer.</li>
-            <li>offset - ?</li>
+            <li>Consumer group - группы для нескольких consumers(для разделение нагрузки), которые будут отслеживаться
+                kafka как один consumer.
+            </li>
+            <li>offset - уникальный порядковый номер(long) в partition для каждого сообщения. Присваивается kafka
+                автоматически. Для consumer это “прогресс чтения”.
+            </li>
             <li>Zookeeper - ?</li>
         </ul>
+    </section>
+
+    <section>
+        <h2>Partition и Consumer</h2>
+        <h3>Если 5 Partitions и 10 Consumers</h3>
+        <p>Один Partition может обслуживать только одного Consumer. Если больше Consumers они будут простаивать.</p>
+
+        <h3>Если 10 Partitions и 5 Consumers</h3>
+        <p>Каждый Consumer обрабатывает 2 Partitions</p>
     </section>
 
     <section>
@@ -136,6 +152,12 @@
             <li>Kafka Tool</li>
             <li><a href="kafkacat/Kafkacat.html">KafkaCat</a></li>
         </ol>
+    </section>
+
+    <section>
+        <h2>Ключ</h2>
+        <p>Если 2 сообщения с одним ключем - будет добавлено 2 записи в один partition.</p>
+        <p>Kafka использует hash(key) % number_of_partitions для определения Partition.</p>
     </section>
 </div>
 </body>

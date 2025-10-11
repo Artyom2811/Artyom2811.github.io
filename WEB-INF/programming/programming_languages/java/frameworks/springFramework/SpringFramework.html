@@ -57,6 +57,7 @@
             <li><a href="https://javarush.com/groups/posts/1676-spring-framework-vvedenie">Spring Framework. Введение</a></li>
             <li><a href="https://www.youtube.com/watch?v=hp5H-ZDMTJk">Spring БАЗА 3 часа | Полный гайд</a></li>
             <li><a href="https://bootcamptoprod.com/spring-bean-life-cycle-explained/">Spring bean life cycle</a></li>
+            <li><a href="https://habr.com/ru/companies/otus/articles/921030/">Как работает @Lazy в Spring — и когда он полезен</a></li>
             <li>Spring vs Spring Boot - разница</li>
 
             <li>Вопросы</li>
@@ -136,6 +137,7 @@
 
             <li>Throttling - процесс лимитирования обработки запросов за определенное время Разобрать возможности тротлинга на spring.</li>
             <li><a href="https://medium.com/teamarimac/implementing-throttling-in-java-spring-boot-ec4723cfce9f">Implementing Throttling in Java (Spring Boot)</a></li>
+            <li><a href="https://medium.com/@AlexanderObregon/how-to-implement-request-throttling-for-high-traffic-apis-in-spring-boot-997ba6d236d3">How to Implement Request Throttling for High-Traffic APIs in Spring Boot</a></li>
         </ol>
     </div>
 
@@ -260,7 +262,9 @@
             <li>@RestController - @Controller + @ResponseBody. Нужен для ответа телом(JSON, XML и
                 тд.).
             </li>
-            <li>@Service - подтип класса @Component для сервис-слоя.</li>
+            <li>@Service - подтип класса @Component для сервис-слоя. Дополнительно может использоваться в AOP (например,
+                для логирования, метрик, транзакций).
+            </li>
             <li>@Repository - подтип класса @Component для DAO слоя. Перехватывает исключения из базы и меняет их под
                 стандарты Spring.
             </li>

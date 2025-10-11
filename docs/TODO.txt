@@ -2,7 +2,6 @@ leetcode.com - сайт с практикой
 
 Создать тестовы проект Spring Boot
 	Для проверки работы Swager iu
-	Для проверки работы spring boot actuator
 	Для проверки docker compose
 	Для проверки Hibernate
 	Для проверки Mapstruct

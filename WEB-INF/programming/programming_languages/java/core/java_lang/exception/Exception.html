@@ -112,9 +112,7 @@
         </p>
 
         <h3>try - catch - finally</h3>
-        <p>Если используются несколько catch нужно писать их отлавливаемые исключения в порядке возвышения по
-            иерархии.
-        </p>
+        <p>Если используются несколько catch нужно писать их отлавливаемые исключения в порядке возвышения по иерархии.</p>
         <p>Можно написать try - finally без блока catch. Но try не может быть без finally и catch.</p>
         <pre>
 try(try-with-resources){}
@@ -125,7 +123,7 @@ finally {}
 
         <p>try-with-resources(since v.9) - дает возможность объявлять один или несколько ресурсов в блоке try,
             которые будут закрыты автоматически без использования finally блока. Проверяет наличие интерфейса
-            AutoCloseable или Closeable. И выполняет метод close. Может быть без finally и catch.
+            AutoCloseable или Closeable. И всегда выполняет метод close. Может быть без finally и catch.
         </p>
         <pre>
 try (BufferedReader br = new BufferedReader(new FileReader(path))) {
