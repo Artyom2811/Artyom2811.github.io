@@ -56,7 +56,7 @@
             </li>
             <li>@Cleanup - замена try with resources.</li>
             <li>@Singular - поможет по отдельности добавлять в коллекции.</li>
-            <li>@With - для создания неизменяемых (immutable) копий объектов с изменённым значением одного из полей.
+            <li>@With - для создания неизменяемых(immutable) копий объектов с изменённым значением одного из полей.
                 Она автоматически генерирует метод withFieldName(value), который создаёт копию объекта с новым
                 значением указанного поля, оставляя остальные поля без изменений. Полезно для работы с immutable объектами.
                 <ul>
@@ -180,6 +180,23 @@ annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
         <h3>Установить Idea Plugin</h3>
         <p>Lombok</p>
+    </section>
+
+    <section>
+        <h2>@With</h2>
+        <pre>
+@Value
+@With
+public class User {
+    String name;
+    int age;
+}
+        </pre>
+
+        <pre>
+User user1 = new User("Alice", 25);
+User user2 = user1.withAge(30); // создаётся новый объект с новым age
+        </pre>
     </section>
 
 </div>

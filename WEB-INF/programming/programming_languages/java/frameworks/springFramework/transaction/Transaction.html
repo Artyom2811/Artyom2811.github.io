@@ -16,7 +16,6 @@
     <div class="todo">
         <h2>Проработать</h2>
         <ol>
-            <li><a href="http://akorsa.ru/2016/08/kak-na-samom-dele-rabotaet-transactional-spring/">Как на самом деле работает @Transactional Spring?</a></li>
             <li><a href="https://habr.com/ru/articles/532000/">@Transactional в Spring под капотом</a></li>
             <li><a href="https://proselyte.net/tutorials/spring-tutorial-full-version/transatcion-management/">Руководство по Spring. Управление транзакциями.</a></li>
             <li><a href="http://akorsa.ru/2017/01/sovety-i-oshibki-v-spring-transactions/">Советы и ошибки в Spring Transactional</a></li>
@@ -55,20 +54,20 @@
 
         <h3>Ошибки использования</h3>
         <ol>
-            <li>Аннотацию @Transactional можно вызывать только из другого класс, если вызвать через метод из того же класса,
-                аннотация не отработает.
+            <li>Аннотация должна быть только на public и не final методе.</li>
+            <li>@Transactional можно вызывать только из другого класс, если вызвать через метод из того же класса(через
+                метод без @Transactional), аннотация не отработает.
             </li>
             <li>@Transactional - откатиться только с RuntimeException и его наследниками. Для примера с Exception class
                 она не откатиться. Но можно указать ожидаемое исключение в параметре rollbackFor. Пример:
                 @Transactional(rollbackFor = Exception.class)
             </li>
-            <li>Аннотация должна быть только на public методе.</li>
             <li>Транзакция занимает соединения с БД. По этому нужно выносить долгую логику за пределы транзакции.</li>
         </ol>
     </section>
 
     <section>
-        <h2 id="quick_start">Быстрый старт в Spring boot</h2>
+        <h2 id="quick_start">Быстрый старт в SpringBoot</h2>
         <p>Указать аннотацию @Transaction над необходимым методом(в слое controller или service).</p>
     </section>
 
@@ -95,7 +94,7 @@
     <section>
         <h2 id="isolation">Transaction Isolation</h2>
         <ol>
-            <li>DEFAULT</li>
+            <li>DEFAULT - использовать уровень изоляции, заданный в СУБД. Например в PostgreSQL → READ COMMITTED.</li>
             <li>READ_UNCOMMITTED</li>
             <li>READ_COMMITTED</li>
             <li>REPEATABLE_READ</li>

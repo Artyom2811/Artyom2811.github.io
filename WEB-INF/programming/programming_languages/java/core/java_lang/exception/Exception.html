@@ -62,8 +62,10 @@
                 <ul>
                     <li>UnknownError - неизвестная ошибка от JVM.</li>
                     <li>InternalError - неизвестная внутренняя ошибка от JVM.</li>
-                    <li>OutOfMemoryError - недостаток Heap памяти.</li>
-                    <li>StackOverflowError - недостаток Stack памяти.</li>
+                    <li>OutOfMemoryError - недостаток Heap памяти. Это проблема всего приложения, а не отдельного потока.</li>
+                    <li>StackOverflowError - недостаток Stack памяти конкретного потока. Обычно из-за бесконечной или
+                        слишком глубокой рекурсии.
+                    </li>
                 </ul>
             </li>
             <li>ThreadDeath - создается потоком жертвой при вызове метода Thread.stop().</li>

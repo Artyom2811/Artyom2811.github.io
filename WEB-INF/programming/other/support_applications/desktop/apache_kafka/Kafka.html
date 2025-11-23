@@ -28,6 +28,7 @@
             <li><a href="https://www.youtube.com/watch?v=lxTDkejd6xo">Общение микросервисов между собой | Java | Kafka на практике</a></li>
             <li><a href="https://www.youtube.com/watch?v=-AZOi3kP9Js">Про Kafka (основы)</a></li>
             <li><a href="https://habr.com/ru/articles/440400/">Apache Kafka + Spring Boot: Hello, microservices</a></li>
+            <li><a href="https://habr.com/ru/articles/968844/">Kafka без боли: моя шпаргалка для собесов в Java. Часть 5</a></li>
         </ol>
     </div>
 
@@ -106,7 +107,9 @@
     <section>
         <h2 id="common_kafka_entities">Common kafka entities</h2>
         <ul>
-            <li>Kafka cluster - несколько Brokers Kafka под управлением ZooKeeper.</li>
+            <li>Kafka cluster - логическое объединение Kafka Brokers под управлением ZooKeeper.</li>
+            <li>Zookeeper - менеджер для управления Kafka cluster. Хранения информации о Brokers, Topics, Users etc.</li>
+            <li>Kraft - новая замена Zookeeper.</li>
             <li>Broker - сервер kafka который сохраняет данные и обрабатывает записи. Одна единица Kafka.</li>
             <li>Producer - продюсер загружающий данные в kafka топик.</li>
             <li>Consumer - потребитель забирающий данные из kafka топика.</li>
@@ -126,7 +129,6 @@
             <li>offset - уникальный порядковый номер(long) в partition для каждого сообщения. Присваивается kafka
                 автоматически. Для consumer это “прогресс чтения”.
             </li>
-            <li>Zookeeper - ?</li>
         </ul>
     </section>
 

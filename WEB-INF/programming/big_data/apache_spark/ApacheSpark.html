@@ -85,6 +85,10 @@ JavaSparkContext sc = new JavaSparkContext(conf);
 
     <section>
         <h2>RDD Operations:</h2>
+        <p>Имеет методы, которые работают аналогично с Stream API(Transformations - Intermediate, Actions - Terminal).
+            Также как в JAVA Stream API если метод возвращает RDD то это Transformations иначе это Actions.
+        </p>
+
         <h3>Transformations:</h3>
         <ol>
             <li>map</li>
@@ -109,6 +113,12 @@ JavaSparkContext sc = new JavaSparkContext(conf);
             <li>saveAsTextFile, saveAsSequenceFile, saveAsObjectFile</li>
             <li>foreach</li>
         </ol>
+
+        <p>На Spark все Transformations методы выполняются на кластере и Actions на драйвере(тот кто отвечает за
+            таксу и распределяет ее по кластеру).
+        </p>
+
+        <p>Мы можем сохранять промежуточные операции методом Transformations persist(StorageLevel).</p>
     </section>
 
     <section>

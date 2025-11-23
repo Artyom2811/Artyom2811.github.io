@@ -221,6 +221,36 @@ mvn dependency:resolve
         <p>Плагин аналогичен с "jar" плагином, но также добавляет все необходимые зависимости.</p>
     </section>
 
+    <section>
+        <h2>Создание JAR</h2>
+        <p>Для того чтобы запустить jar файл, нужно в pom.xml добавить плагин</p>
+        <pre>
+&lt;plugin&gt;
+    &lt;!-- Build an executable JAR --&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+    &lt;version&gt;3.1.0&lt;/version&gt;
+    &lt;configuration&gt;
+        &lt;archive&gt;
+            &lt;manifest&gt;
+                &lt;addClasspath&gt;true&lt;/addClasspath&gt;
+                &lt;classpathPrefix&gt;lib/&lt;/classpathPrefix&gt;
+                &lt;mainClass&gt;Main&lt;/mainClass&gt;
+            &lt;/manifest&gt;
+        &lt;/archive&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;
+        </pre>
+
+        <p>И указать на месте &lt;mainClass&lt; - Название класса с Main методом.(Указывается путь с папки java)</p>
+        <p>После создаем файл в формате .bat, заменяем имя.</p>
+        <pre>
+@ECHO OFF
+java -jar name.jar
+PAUSE
+        </pre>
+    </section>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>

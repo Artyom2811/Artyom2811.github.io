@@ -30,6 +30,7 @@
             <li><a href="https://medium.com/https://bool.dev/blog/detail/migratsiya-monolita-na-mikroservisy">Шпаргалка по миграции монолита на микросервисы</a></li>
             <li><a href="https://bool.dev/blog/detail/database-per-microservice">Database per Microservice паттерн</a></li>
             <li><a href="https://www.youtube.com/watch?v=zvWKqUiovAM">Top 7 Ways to 10x Your API Performance</a></li>
+            <li><a href="https://www.youtube.com/watch?v=7-6F3b14baA">API Gateways in System Design Interviews w/ Ex-Meta Staff Engineer</a></li>
         </ol>
     </div>
 
@@ -306,6 +307,46 @@
             <li>RabbitMQ (очереди + pub/sub)</li>
             <li>Redis Pub/Sub (простая реализация)</li>
             <li>Google Pub/Sub, AWS SNS, Azure Event Grid (облачные решения)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Features flag</h2>
+        <p>Feature flag - это приём в разработке, который позволяет включать или выключать определённые функции
+            приложения без деплоя новой версии.
+        </p>
+
+        <h3>Зачем они нужны?</h3>
+        <ul>
+            <li>Постепенное выкатывание фич (progressive rollout) - можно включить новую фичу сначала 1% пользователей,
+                потом 10%, потом всем.
+            </li>
+            <li>A/B-тестирование - показываем разным группам разные варианты интерфейса/логики.</li>
+            <li>Возможность быстро выключить фичу - если что-то сломалось → просто выключаем флажок, не делая откат деплоя.</li>
+            <li>Раздельное развитие - несколько команд могут работать над функциями, которые ещё не готовы, но уже
+                находятся в кодовой базе.
+            </li>
+            <li>Безопасный деплой - код уже в проде, но скрыт до момента включения флага.</li>
+        </ul>
+
+         <h3>Виды feature flags</h3>
+        <ul>
+            <li>Release flags - для постепенного и безопасного релиза новой фичи.</li>
+            <li>Experiment flags - для экспериментов и A/B тестов.</li>
+            <li>Ops flags - для аварийного отключения компонентов (например, дорогих по ресурсам задач).</li>
+            <li>Permission flags - включают функции только определённым пользователям, ролям или тарифам.</li>
+        </ul>
+
+        <h3>Где хранятся флаги?</h3>
+        <ul>
+            <li>В конфиге на сервере</li>
+            <li>В базе данных</li>
+        </ul>
+
+        <h3>Минусы</h3>
+        <ul>
+            <li>Фич-флаги надо чистить после использования, иначе код превращается в хаос.</li>
+            <li>Много флагов → много ветвлений → сложнее тестировать.</li>
         </ul>
     </section>
 

@@ -38,6 +38,7 @@
             <li><a href="https://www.youtube.com/watch?v=J0NuOlA2xDc">Never install locally</a></li>
             <li><a href="https://habr.com/ru/companies/tensor/articles/845610/">Знакомство с Docker или зачем это всё нужно</a></li>
             <li><a href="https://habr.com/ru/articles/776188/">Docker: как создавать образы контейнеров и развертывать приложения</a></li>
+            <li><a href="https://habr.com/ru/companies/timeweb/articles/965454/">Типичные проблемы с Docker и как их решать</a></li>
 
             <h3>System Design</h3>
             <li><a href="https://www.youtube.com/watch?v=QEzbZKtLi-g">System Design: Why Is Docker Important?</a></li>
@@ -66,7 +67,7 @@
 
     <section>
         <h2 id="howItWorks">Как работает</h2>
-        <p>DockerFile (build)-> Image (run)-> Container</p>
+        <p>DockerFile(build)-> Image(run)-> Container</p>
 
         <h3>Преимущество</h3>
         <ul>
@@ -86,7 +87,9 @@
             <li>container - создается с образа командой "run".</li>
             <li>DockerFile - txt файл с последовательными шагами для создания образа докера.</li>
             <li>Docker Compose - используется для одновременного управления несколькими контейнерами, входящими
-                в состав приложения.
+                в состав приложения. Начиная с версии 1.28.6, Docker Compose по умолчанию ищет compose.yaml или
+                compose.yml, но сохраняет обратную совместимость с docker-compose.yaml/yml. Если в проекте есть
+                оба варианта, приоритет у compose.yaml.
             </li>
         </ul>
         <p>Есть образы и контейнеры. Образ скачивается или создаётся. А после команды "run" с параметрами, будет
@@ -136,6 +139,12 @@
             <li>docker-compose up -d - запуск docker-compose.</li>
         </ul>
     </section>
+
+    <section>
+        <h2>Советы:</h2>
+        <p>Dockerfile - это сортировка многострочных списков пакетов по алфавиту.</p>
+    </section>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>

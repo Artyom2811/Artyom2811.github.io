@@ -82,7 +82,9 @@
         <h3>Преимущества Spring Boot</h3>
         <ol>
             <li>@SpringBootApplication - аннотация для упрощенной конфигурации Spring Application. Включает в себя:
-            @Configuration, @ComponentScan, @EnableAutoConfiguration, @EnableTransactionManagement.
+                @Configuration, @ComponentScan, @EnableAutoConfiguration, @EnableTransactionManagement. Имеет метод
+                exclude - чтобы отключить определённые классы автоконфигурации, если есть своя конфигурация, которая
+                конфликтует со стандартной.
             </li>
             <li>Быстрая и легкая разработка приложений на основе Spring.</li>
             <li>Автоконфигурация всех компонентов для приложения Spring производственного уровня.</li>
