@@ -17,21 +17,33 @@
         <ol>
             <li><a href="https://www.baeldung.com/java-instant-vs-localdatetime">Difference Between Instant and LocalDateTime</a></li>
             <li><a href="https://www.baeldung.com/java-8-date-time-intro">Introduction to the Java 8 Date/Time API</a></li>
-            <li>Отличие java.time и jodatime</li>
         </ol>
     </div>
 
     <section>
         <h2>Основные классы</h2>
         <ul>
-            <li>ZonedDateTime - Дата + Время + Часовой пояс. Рекомендуется для маппинга с базами данных.</li>
-            <li>Instant - как ZonedDateTime но без ZoneId.</li>
+            <li>ZonedDateTime - Дата + Время + Часовой пояс(2026-01-07T14:30:45.123+02:00[Europe/Kyiv]).</li>
+            <li>Instant - представляет конкретный момент времени в UTC(количество секунд и наносекунд от 1 января 1970)
+                В отличие от ZonedDateTime не имеет ZoneId(2026-01-07T14:30:45.123456Z). Идеальный для программных
+                вычислений. Использовать в: Логи, Timestamp в DB, сравнения времени.
+            </li>
             <li>LocalDate</li>
             <li>LocalTime</li>
             <li>LocalDateTime</li>
             <li>Period</li>
-            <li>Duration</li>
+            <li><a href="#duration">Duration</a> - продолжительность времени.</li>
         </ul>
+    </section>
+
+    <section>
+        <h2 id="duration">Duration</h2>
+        <p>Получение Duration из двух Instant.</p>
+        <pre>
+Instant a = Instant.now();
+Instant b = Instant.now().plus(1, ChronoUnit.MINUTES);
+Duration diff = Duration.between(a, b);
+        </pre>
     </section>
 
 </div>

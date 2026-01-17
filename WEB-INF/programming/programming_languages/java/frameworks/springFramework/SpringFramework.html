@@ -201,9 +201,12 @@
     <section>
         <h2>Bean scope(Spring stereotypes):</h2>
         <ol>
-            <li>singleton(by default) - определяет один единственный бин для каждого контейнера Spring IoC.</li>
+            <li>singleton(by default) - определяет один единственный бин для каждого контейнера Spring IoC. Создаётся
+                при старте приложения и удаляется в конце.
+            </li>
             <li>prototype - любое количество экземпляров bean. Не храниться в Spring context, значит preDestroy и etc
-                - не будут выполняться. Если он создается в singleton бине, то создан будет только 1 такой бин.
+                - не будут выполняться. Если он создается в singleton бине, то создан будет только 1 такой бин. Создаётся
+                при вызове и удаляется GC.
             </li>
             <li>request - один экземпляр bean на каждый HTTP запрос. Касается исключительно ApplicationContext.</li>
             <li>session - один экземпляр bean на каждую HTTP сессию. Касается исключительно ApplicationContext.</li>
@@ -358,9 +361,8 @@ public class FeatureService {
     <section>
         <h2>АОП(AOP)</h2>
         <p>АОП(AOP) - Аспектно-ориентированное программирование. Идея АОП заключается в выделении так называемой
-            сквозной
-            функциональности. Помогает разделить бизнес логику примеры: логгирование, обработка исключений, трассировка,
-            аутентификация и проверка прав доступа.
+            сквозной функциональности. Помогает разделить бизнес логику примеры: логгирование, обработка исключений,
+            трассировка, аутентификация и проверка прав доступа.
         </p>
     </section>
 
@@ -368,17 +370,27 @@ public class FeatureService {
         <h2>Spring bean lifecycle:</h2>
         <ol>
             <li>Container started</li>
-            <li>Bean instantiated</li>
-            <li>Dependencies Injected</li>
-            <li>Custom init() method</li>
-            <li>Custom utility method</li>
-            <li>Custom destroy() method</li>
+            <li>Bean Definition - создание описание параметров Bean для Spring, через @Configuration, @ComponentScan,
+                XML и т.д. - читая описания Bean. Scope, Lazy or not, Dependencies, init/destroy, methods.
+            </li>
+            <li>Bean instantiated - создание экземпляра Bean через Constructor. Singleton(во время старта контекста(eager)),
+                prototype(при каждом getBean()), @Lazy(при первом использовании).
+            </li>
+            <li>Dependencies Injected - внедрение зависимостей. @Autowired, @Value, @Inject.</li>
+            <li>Aware interfaces - если бин реализует: BeanNameAware, BeanFactoryAware, ApplicationContextAware.
+                Spring передаёт Bean контекстную информацию.
+            </li>
+            <li>BeanPostProcessor(before) - postProcessBeforeInitialization(). Используется для: прокси, AOP, кастомной
+                логики.
+            </li>
+            <li>@PostConstruct/afterPropertiesSet - выполняется один раз.
+                @PostConstruct/InitializingBean.afterPropertiesSet()/init-method.
+            </li>
+            <li>BeanPostProcessor(after) - postProcessAfterInitialization(). Здесь часто создаются AOP-прокси.</li>
+            <li>Bean ready - Spring отдаёт бин в приложение.</li>
+            <li>@PreDestroy - уничтожение Bean. @PreDestroy, DisposableBean.destroy(), destroy-method.</li>
         </ol>
 
-        <ol>
-            <li>Singleton - создаётся при старте приложения и удаляется в конце.</li>
-            <li>Prototype - создаётся при вызове и удаляется GC.</li>
-        </ol>
         <h3>Для управления созданием и уничтожением bean у нас есть методы:</h3>
         <ol>
             <li>init-method</li>
