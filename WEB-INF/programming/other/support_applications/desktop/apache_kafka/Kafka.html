@@ -16,7 +16,6 @@
     <div class="todo">
         <h2>Проработать:</h2>
         <ol>
-            <li>kafka oldsols</li>
             <li><a href="https://habr.com/ru/articles/354486/">Apache Kafka – мой конспект</a></li>
             <li><a href="https://www.youtube.com/watch?v=Ch5VhJzaoaI">Apache Kafka in 6 minutes</a></li>
             <li><a href="https://www.youtube.com/watch?v=7gMm0iQNZGA">Apache Kafka vs message queue explained</a></li>
@@ -29,6 +28,7 @@
             <li><a href="https://www.youtube.com/watch?v=-AZOi3kP9Js">Про Kafka (основы)</a></li>
             <li><a href="https://habr.com/ru/articles/440400/">Apache Kafka + Spring Boot: Hello, microservices</a></li>
             <li><a href="https://habr.com/ru/articles/968844/">Kafka без боли: моя шпаргалка для собесов в Java. Часть 5</a></li>
+            <li>Consumer Lag</li>
         </ol>
     </div>
 
@@ -56,12 +56,14 @@
     <section>
         <h2 id="forWhat">Для чего</h2>
         <ul>
-            <li>Проверка сообщения на ошибки</li>
-            <li>Маршрутизация конкретному приемнику(ам)</li>
-            <li>Разбиение сообщения на несколько маленьких, а затем агрегирование ответов приёмников и отправка результата источнику</li>
-            <li>Сохранение сообщений в базе данных</li>
-            <li>Вызов веб-сервисов</li>
-            <li>Распространение сообщений подписчикам, если используются шаблоны типа издатель-подписчик</li>
+            <li>Проверка сообщения на ошибки.</li>
+            <li>Маршрутизация конкретному приемнику(ам).</li>
+            <li>Разбиение сообщения на несколько маленьких, а затем агрегирование ответов приёмников и отправка
+                результата источнику.
+            </li>
+            <li>Сохранение сообщений в базе данных.</li>
+            <li>Вызов веб-сервисов.</li>
+            <li>Распространение сообщений подписчикам, если используются шаблоны типа издатель-подписчик.</li>
         </ul>
     </section>
 
@@ -110,12 +112,12 @@
             <li>Kafka cluster - логическое объединение Kafka Brokers под управлением ZooKeeper.</li>
             <li>Zookeeper - менеджер для управления Kafka cluster. Хранения информации о Brokers, Topics, Users etc.</li>
             <li>Kraft - новая замена Zookeeper.</li>
-            <li>Broker - сервер kafka который сохраняет данные и обрабатывает записи. Одна единица Kafka.</li>
             <li>Producer - продюсер загружающий данные в kafka топик.</li>
             <li>Consumer - потребитель забирающий данные из kafka топика.</li>
+            <li>Broker - сервер kafka который сохраняет данные и обрабатывает записи. Одна единица Kafka.</li>
             <li>Topic - раздел в Broker. Аналог очереди.</li>
             <li>Partition - раздел в Topic для параллельной обработки. Нет ограничение на количество, но он требует
-                ресурсы и рекомендуется э не больше 5000. Желательно иметь столько же consumers. Один Partition может
+                ресурсы и рекомендуется не больше 5000. Желательно иметь столько же consumers. Один Partition может
                 обслуживать только одного Consumer.
             </li>
             <li>Key - опциональная часть данных задающаяся producer, по которому определяется Partition(если задана

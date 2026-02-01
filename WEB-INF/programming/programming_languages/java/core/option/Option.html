@@ -16,31 +16,35 @@
         <h2>Проработать</h2>
         <ol>
             <li><a href="https://habr.com/ru/post/347576/">Объект в футляре или Optional в Java 8 и Java 9. Часть 2: «Как это делается в Java 8»</a></li>
-            <li><a href="https://habr.com/ru/post/346782/">Optional: Кот Шрёдингера в Java 8</a></li>
             <li><a href="https://www.youtube.com/watch?v=k7PlG32BzI8">Урок 330: Java 8 p6: Optional</a></li>
             <li><a href="https://habr.com/post/346782/">Optional: Кот Шрёдингера в Java 8</a></li>
         </ol>
     </div>
 
     <section>
-        <h2>Зачем нужен</h2>
+        <h2 id="why">Зачем нужен</h2>
         <p>Используется для избежания проверок на Null.</p>
         <p>В местах где мы возвращали null нужно возвращать Option.empty().</p>
     </section>
 
     <section>
-        <h2>Методы</h2>
+        <h2 id="methods">Методы</h2>
+
+        <h3>Создание</h3>
         <p>Optional.of(name) - создание Optional, если объект будет null получим NullPointerException.</p>
         <p>Optional.ofNullable(name) - создание Optional, если объект будет null получим пустой Option.</p>
         <p>Optional.Optional.empty() - создание пустого Optional.</p>
 
-        <p>orElse(value) – если значение присутствует, оно возвращается, иначе возвращается указанное значение.</p>
+         <h3>Получение</h3>
+        <p>.orElse(value) – возвращает текущее значение, иначе возвращается указанное значение.</p>
         <pre>
 String text = null;
 String result = Optional.ofNullable(text).orElse("default");
         </pre>
 
-        <p>orElseGet(Supplier) – если значение присутствует, оно возвращается, иначе вызывается переданный метод (лямбда-функция).</p>
+        <p>orElseGet(Supplier&lt;? extends T&gt;) – если значение присутствует, оно возвращается, иначе вызывается переданный
+            метод (лямбда-функция).
+        </p>
         <pre>
 String text = null;
 String result = Optional.ofNullable(text).orElseGet(() -> "default");
@@ -51,6 +55,9 @@ String result = Optional.ofNullable(text).orElseGet(() -> "default");
 String text = null;
 String result = Optional.ofNullable(text).orElseThrow(() -> new Exception("error"));
         </pre>
+
+        <p>.isPresent() - получение boolean присутствует ли значение.</p>
+        <p>.isEmpty() - получение boolean отсутствует ли значение.</p>
     </section>
 
 </div>
