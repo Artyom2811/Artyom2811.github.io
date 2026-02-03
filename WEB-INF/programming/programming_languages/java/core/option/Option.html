@@ -12,14 +12,14 @@
 <div class="bodyStyle">
     <h1>Option</h1>
 
-    <div class="todo">
-        <h2>Проработать</h2>
-        <ol>
-            <li><a href="https://habr.com/ru/post/347576/">Объект в футляре или Optional в Java 8 и Java 9. Часть 2: «Как это делается в Java 8»</a></li>
-            <li><a href="https://www.youtube.com/watch?v=k7PlG32BzI8">Урок 330: Java 8 p6: Optional</a></li>
-            <li><a href="https://habr.com/post/346782/">Optional: Кот Шрёдингера в Java 8</a></li>
-        </ol>
-    </div>
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#why">Зачем нужен</a></li>
+            <li><a class="anchor" href="#methods">Методы</a></li>
+            <li><a class="anchor" href="#when_use">Когда использовать</a></li>
+        </ul>
+    </section>
 
     <section>
         <h2 id="why">Зачем нужен</h2>
@@ -31,19 +31,32 @@
         <h2 id="methods">Методы</h2>
 
         <h3>Создание</h3>
-        <p>Optional.of(name) - создание Optional, если объект будет null получим NullPointerException.</p>
-        <p>Optional.ofNullable(name) - создание Optional, если объект будет null получим пустой Option.</p>
-        <p>Optional.Optional.empty() - создание пустого Optional.</p>
+        <p>Optional.of(name) - если объект будет null получим NullPointerException.</p>
+        <p>Optional.ofNullable(name) - если объект будет null получим пустой Option.</p>
+        <p>Optional.empty() - пустой Optional.</p>
 
          <h3>Получение</h3>
-        <p>.orElse(value) – возвращает текущее значение, иначе возвращается указанное значение.</p>
+        <p>.or(Supplier&lt;? extends Optional&lt;? extends T&gt;&gt; supplier) - это метод для подстановки другого Optional,
+            если текущий пустой. Ленивый - выполниться только если Optional пустой.
+        </p>
+        <pre>
+Optional&lt;String&gt; a = Optional.empty();
+Optional&lt;String&gt; b = Optional.of("fallback");
+
+Optional&lt;String&gt; result = a.or(() -> b);
+// result = Optional["fallback"]
+        </pre>
+
+        <p>.orElse(value) – возвращает текущее значение, иначе возвращается указанное значение. Значение вычисляется
+            всегда, даже если Optional не пуст.
+        </p>
         <pre>
 String text = null;
 String result = Optional.ofNullable(text).orElse("default");
         </pre>
 
         <p>orElseGet(Supplier&lt;? extends T&gt;) – если значение присутствует, оно возвращается, иначе вызывается переданный
-            метод (лямбда-функция).
+            метод(лямбда-функция).
         </p>
         <pre>
 String text = null;
@@ -56,8 +69,39 @@ String text = null;
 String result = Optional.ofNullable(text).orElseThrow(() -> new Exception("error"));
         </pre>
 
+        <h3>Проверка</h3>
         <p>.isPresent() - получение boolean присутствует ли значение.</p>
         <p>.isEmpty() - получение boolean отсутствует ли значение.</p>
+
+        <p>ifPresent() - позволяет выполнить действие (Consumer) над значением, если оно существует, избегая явных
+            проверок на null.
+        </p>
+        <p>.ifPresentOrElse(Consumer&lt;? super T&gt; action, Runnable emptyAction) - заменяет комбинацию ifPresent()
+            и orElse()(...).
+        </p>
+    </section>
+
+    <section>
+        <h2 id="when_use">Когда использовать</h2>
+        <ul>
+            <li>Возвращаемое значение метода (главный кейс)</li>
+            <li>В Stream API (по стандарту JDK)</li>
+            <li>Для замены if (x != null) в цепочках</li>
+            <pre>
+Optional.ofNullable(user)
+        .map(User::getProfile)
+        .map(Profile::getEmail)
+        .orElse("unknown@mail.com");
+            </pre>
+        </ul>
+
+        <h3>Когда не нужно</h3>
+        <ul>
+            <li>Поля класса(entity / DTO / model) - Optional не реализует интерфейс Serializeble.</li>
+            <li>В параметрах методов - не даёт реальной пользы.</li>
+            <li>Setters класса - усложняет API.</li>
+            <li>Для коллекций - приводит к двойным проверкам.</li>
+        </ul>
     </section>
 
 </div>

@@ -80,3 +80,9 @@ www.apofig.com/2011/07/dependency-injection-inversion-of_13.html
 www.deadcoderising.com/java-9-create-lists-maps-and-sets-easier-than-ever-using-the-new-factory-methods-for-immutable-collections/
 www.pagerduty.com/resources/learn/what-is-slo-sla-sli/
 https://habr.com/ru/articles/983344/
+https://habr.com/ru/articles/347480/
+https://habr.com/ru/articles/347576/
+https://habr.com/ru/articles/347748/
+https://habr.com/ru/articles/347836/
+https://habr.com/ru/articles/350904/
+https://habr.com/ru/articles/346782/
