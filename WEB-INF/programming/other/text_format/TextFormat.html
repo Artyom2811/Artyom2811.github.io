@@ -34,7 +34,7 @@
 
     <section>
         <h2>YAML(YAML Ain't Markup Language)(.yml, .yaml)</h2>
-        <p>YAML - формат сериализации данных, которая использует пробелы(табуляция запрещена).</p>
+        <p>YAML - формат сериализации данных, которая использует пробелы, обычно 2 пробела(табуляция запрещена).</p>
 
         <h3>Комментарии</h3>
         <p># - символ комментариев.</p>
@@ -70,11 +70,15 @@ other_thing: *VAR_NAME
         <h3>List</h3>
         <pre>
 shopping:
-- milk
-- eggs
-- juice
+  - milk
+  - eggs
+  - juice
 
 # or
+shopping: [milk, eggs, juice]
+        </pre>
+        <p>Короткий вариант</p>
+        <pre>
 shopping: [milk, eggs, juice]
         </pre>
 
@@ -82,13 +86,17 @@ shopping: [milk, eggs, juice]
         <pre>
 Employees:
 - dan:
-    name: Dan D. Veloper
-    job: Developer
-    team: DevOps
+  name: Dan D. Veloper
+  job: Developer
+  team: DevOps
 - dora:
-   name: Dora D. Veloper
-   job: Project Manager
-   team: Web Subscriptions
+  name: Dora D. Veloper
+  job: Project Manager
+  team: Web Subscriptions
+        </pre>
+        <p>Короткий вариант</p>
+        <pre>
+            dan: {name: Dan D. Veloper, job: Developer, team: DevOps}
         </pre>
 
     </section>

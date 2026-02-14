@@ -31,6 +31,7 @@
             <li><a href="https://mode.com/sql-tutorial">Mode Analytics SQL Tutorial</a></li>
             <li><a href="https://sqlbolt.com/">SQLBolt</a></li>
             <li><a href="https://leetcode.com/studyplan/top-sql-50/">LeetCode (раздел SQL)</a></li>
+            <li><a href="https://habr.com/ru/companies/otus/articles/949468/">SQL против NoSQL: мифы и реальность</a></li>
         </ol>
     </div>
 
@@ -183,6 +184,9 @@ UPDATE table2 SET user_id='2', phone_number='200' WHERE phone_id='1';
         <ol>
             <li>WHERE - ограничивающее команда для SELECT, UPDATE, DELETE. Оно выполняется до того, как будет получен
                 результат операции.
+            </li>
+            <li>LIKE - оператор для поиска по шаблону в строковых полях. Используется в WHERE. Операция like тяжелая тк
+                предполагает чтение всей колонки в таблице. Желательна только в небольших таблицах.
             </li>
             <li>GROUP BY - используется для группировки данных.</li>
             <pre>

@@ -102,6 +102,14 @@
         </ol>
     </section>
 
+    <section>
+        <h2>readOnly = true</h2>
+        <p>readOnly = true - это подсказка для оптимизации, а не строгое ограничение.</p>
+        <p>Hibernate может пропустить flush (не синхронизировать изменения с БД)</p>
+        <p>БД может оптимизировать запрос, не создавая блокировки</p>
+        <p>некоторые драйверы могут использовать read-only соединения</p>
+    </section>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>
