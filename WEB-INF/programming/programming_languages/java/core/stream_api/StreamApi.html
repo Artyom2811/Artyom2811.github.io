@@ -12,48 +12,53 @@
 <div class="bodyStyle">
     <h1>Stream Api</h1>
 
-    <div class="todo">
-        <h2>Проработать</h2>
-        <ol>
-            <li><a href="https://habr.com/ru/company/luxoft/blog/270383/">Шпаргалка Java программиста 4. Java Stream API</a></li>
-            <li><a href="https://habr.com/ru/post/256057/">Немного о Stream API(Java 8)</a></li>
-            <li><a href="https://habr.com/ru/post/337350/">Используйте Stream API проще (или не используйте вообще)</a></li>
-            <li><a href="https://annimon.com/article/2778">Полное руководство по Java 8 Stream API в картинках и примерах</a></li>
-            <li><a href="https://www.youtube.com/watch?v=nNEMhUQCysA">Урок 328: Java 8 p4: Streams</a></li>
-            <li><a href="https://habr.com/ru/post/302628/">Немного о Stream API(Java 8)</a></li>
-            <li><a href="https://www.baeldung.com/java-8-streams">The Java 8 Stream API Tutorial</a></li>
-            <li><a href="https://www.youtube.com/watch?v=gTdXjRif_yo&t=1096s">Java 8 Stream API или краткость - сестра таланта [GeekBrains]</a></li>
-            <li><a href="https://habr.com/ru/post/437038/">Перевод руководства по Stream API от Benjamin Winterberg</a></li>
-            <li><a href="https://www.youtube.com/watch?v=C6yYDfDqSJg/">Streams. Метод reduce (прокачанная Java)</a></li>
-            <li><a href="https://metanit.com/java/tutorial/10.5.php">Метод reduce</a></li>
-            <li><a href="https://vertex-academy.com/tutorials/ru/java-8-stream-flatmap/">Java 8 Stream flatMap()</a></li>
-            <li><a href="https://habr.com/ru/articles/745332/">Parallel Stream — не панацея или используй с умом (tutorial для начинающих)</a></li>
-            <li><a href="https://javarush.com/quests/lectures/questsyntaxpro.level18.lecture05">Работа с потоками, часть 3</a></li>
-            <li><a href="https://habr.com/ru/articles/807647/">Еще раз о перформансе стримов в Java</a></li>
-            <li><a href="https://www.youtube.com/watch?v=Zq--4Vh5RLI">Сергей Куксенко — JDK8: Stream style</a></li>
-            <li><a href="https://www.youtube.com/watch?v=t0dGLFtRR9c">Алексей Шипилёв — ForkJoinPool в Java 8</a></li>
-            <li>Как вызвать(переиспользовать) stream несколько раз?</li>
-        </ol>
-    </div>
+    <section>
+        <p>Stream Api - способ работать со структурами данных в функциональном стиле. Уменьшает объем кода. Чаще всего
+            с помощью stream в Java 8 работают с коллекциями, но на самом деле этот механизм может использоваться и
+            для других задач. Не работает с примитивами за исключением int, long, double для которых есть отдельные Stream.
+        </p>
+        <p>Каждый элемент в коллекции будет проходить по всей коллекции по очереди. Только после прохождения 1-го
+            элемента через terminal оператор начнется обработка второго. Такой подход зовётся pull iteration. По этому
+            skip(), filter(), и distinct() лучше ставить вначале.
+        </p>
+        <p>Поток нельзя вызывать повторно. IllegalStateException.</p>
+        <p>Стримы бывают последовательными(sequential) и параллельными(parallel).</p>
+    </section>
 
     <section>
-        <p>Stream Api - способ работать со структурами данных в функциональном стиле. Чаще всего с помощью stream в Java 8
-            работают с коллекциями, но на самом деле этот механизм может использоваться и для других задач. Не работает
-            с примитивами за исключением int, long, double для которых есть отдельные Stream.
-        </p>
+        <h2>Примеры создания Stream</h2>
+        <ul>
+            <li>collection.stream()</li>
+            <li>Stream.of("1", "2", "3")</li>
+            <li>Arrays.stream(array)</li>
+            <li>map.entrySet().stream()</li>
+            <li>Files.lines(путь_к_файлу)</li>
+            <li>Stream.builder().add(…)….build()</li>
+            <li>IntStream.range(1, 4); - создание Int потока от 1 до 4.</li>
+            <li>IntStream randomStream = random.ints(20); - создание потока с 20-ю числами.</li>
+            <li>Stream.generate(() -> 6) .limit(6); - возвращает стрим с бесконечной последовательностью элементов,
+                генерируемых функцией Supplier s.
+            </li>
+            <li>concat(Stream a, Stream b) - объединяет два стрима так, что вначале идут элементы стрима A, а по его
+                окончанию последуют элементы стрима B.
+            </li>
+        </ul>
     </section>
 
     <section>
         <h2>Виды операторов:</h2>
         <h3>Intermediate(конвейерные, промежуточные) операторы</h3>
-        <p>Конвейерные операторы - возвращают новый Stream и не выполняются без терминального оператора.</p>
+        <p>Конвейерные операторы - возвращают новый Stream и не выполняются(lazy) без терминального оператора.</p>
         <ol>
             <li>map(Function mapper) - преобразует каждый элемент стрима. Одно выходное значение из каждого входного.</li>
-            <li>flatMap(Function&lt;T, Stream &lt;R&gt;&gt; mapper) - создаёт произвольное количество выходных
-                значений(0 или больше) для каждого входного. Под капотом из каждого элемента создается новый поток и в
-                конце все потоки создают исходный поток.
+            <li>flatMap(Function&lt;T, Stream &lt;R&gt;&gt; mapper) - создаёт произвольное количество выходных значений(0 или больше)
+                для каждого входного. Под капотом из каждого элемента создается новый поток и в конце все потоки
+                создают исходный поток.
             </li>
-            <li>filter(Predicate predicate) - фильтрует стрим, пропуская только те элементы, что проходят по условию.</li>
+            <li>peek(Consumer&lt;T&gt;) - Возвращает тот же стрим, но применяет функцию к каждому элементу стрима.</li>
+            <li>filter(Predicate predicate) - фильтрует стрим, пропуская только те элементы, что проходят по условию.
+                collection.stream().filter(«a1»::equals).count()
+            </li>
             <li>dropWhile(Predicate predicate) — фильтрует стрим, пропуская только те элементы, что не проходят по условию.</li>
             <li>takeWhile(Predicate<? super T> predicate) — пропускает далее элементы пока условие выполняется
                 и при первом не выполнении, больше никого не пропускает.
@@ -62,11 +67,31 @@
             <li>skip(long n) – пропускаем n элементов.</li>
             <li>sorted() – сортировка.</li>
             <li>sorted(Comparator comparator) – сортирует стрим (сортировка как у TreeMap).</li>
-            <li>distinct() - убирает повторы элементов.</li>
+            <li>distinct() - убирает повторы элементов для метода equals.</li>
         </ol>
+        <h3>Изменение потока в поток примитивных типов</h3>
+        <ul>
+            <li>mapToInt()</li>
+            <li>mapToLong()</li>
+            <li>mapToDouble()</li>
+        </ul>
+        <p>Потоки примитивов используют специальные лямбда-выражения. Например, IntFunction вместо Function, или IntPredicate вместо Predicate.</p>
+        <p>Потоки примитивов поддерживают дополнительные терминальные методы: sum() и average()</p>
+
+        <h3>Параллельность</h3>
+        <ul>
+            <li>parallel() - изменить sequential стрим на parallel.</li>
+            <li>sequential() - изменить parallel стрим на sequential.</li>
+        </ul>
+        <p>При добавлении parallel или sequential будет изменен тип стрима, но єтот тип будет использован только после
+            запуска терминальной операции. Можно несколько раз менять тип в одном stream, но будет выполнен только
+            последний указанный.
+        </p>
 
         <h3>Terminal операторы</h3>
-        <p>После вызова терминального метода, поток завершиться и повторный вызов вернет ошибку IllegalStateException.</p>
+        <p>Поток завершиться и возвращают другой объект, такой как коллекция, примитивы, объекты, Optional и т.д.
+            Повторный вызов вернет ошибку IllegalStateException.
+        </p>
         <ol>
             <li>forEach(Consumer<? super T> action) - аналог for each.</li>
             <li>count() – возвращает количество элементов стрима.</li>
@@ -74,22 +99,21 @@
             <li>collect(Collector collector) – метод собирает все элементы в список, множество или другую коллекцию,
                 сгруппировывает элементы по какому-нибудь критерию, объединяет всё в строку и т.д.
             </li>
+            <li>toArray - возвращает массив значений стрима.</li>
             <li>min(Comparator comparator)</li>
             <li>max(Comparator comparator)</li>
             <li>findFirst() - получить первый элемент стрима.</li>
+            <li>findAny() - Возвращает любой подходящий элемент из стрима (возвращает Optional). collection.stream().findAny().orElse(«1»)</li>
             <li>allMatch(Predicate predicate) - возвращает true, если все элементы стрима удовлетворяют условию или false.</li>
             <li>anyMatch(Predicate predicate) - вернет true, если хотя бы один элемент стрима удовлетворяет условию predicate.</li>
             <li>noneMatch(Predicate predicate) - вернёт true, если, пройдя все элементы стрима, ни один не удовлетворил условию.</li>
         </ol>
-    </section>
 
-    <section>
-        <h2>Примеры создания Stream</h2>
+        <h3>Дополнительные методы у числовых стримов:</h3>
         <ul>
-            <li>list.stream()</li>
-            <li>map.entrySet().stream()</li>
-            <li>Arrays.stream(array)</li>
-            <li>Stream.of("1", "2", "3")</li>
+            <li>sum - возвращает сумму всех чисел.</li>
+            <li>average - возвращает среднее арифметическое всех чисел.</li>
+            <li>mapToObj - преобразует числовой(примитивный) стрим обратно в объектный.</li>
         </ul>
     </section>
 
@@ -157,8 +181,55 @@ var map = list.stream().collect(Collectors.toMap(i -> i, i -> "sample"));
 
     <section>
         <h2>Parallel stream</h2>
-        <p>Parallel stream - потоки данных которые обрабатываются параллельно на нескольких потоках, чтобы ускорить выполнение коллекций.</p>
-        <p>Выполняется в ForkJoinPool потоках.</p>
+        <p>Parallel stream - потоки данных которые обрабатываются параллельно на нескольких потоках, чтобы ускорить
+            выполнение коллекций. Добавление parallelStream() бездумно — это не "оптимизация", а лотерея с шансом
+            на баги и падение.
+        </p>
+        <p>Выполняется в ForkJoinPool.commonPool() потоках. Если есть другие задачи, использующие этот же пул, они
+            могут начать конкурировать за потоки, замедляя всё приложение.
+        </p>
+        <p>Размер основного пула потоков может достигать 5 потоков выполнения — точное число зависит от количества
+            доступных физических ядер процессора.
+        </p>
+        <pre>
+ForkJoinPool commonPool = ForkJoinPool.commonPool();
+System.out.println(commonPool.getParallelism());    // получить число потоков
+        </pre>
+        <p>Настройка</p>
+        <pre>
+-Djava.util.concurrent.ForkJoinPool.common.parallelism=5
+        </pre>
+
+        <h3>Когда не использовать</h3>
+        <ul>
+            <li>Если работаешь не с потокобезопасными данными.</li>
+            <li>Не используйте если порядок обработки важен.</li>
+            <li>Нельзя безопасно обновлять переменные вне потоков без атомарных структур или синхронизации.</li>
+            <li>При небольшом наборе данных(<10 000 элементов) затраты на управление потоками могут превышать прирост
+                скорости.
+            </li>
+            <li>Операции sorted(), distinct() или limit() требуют полного знания данных, что снижает эффективность
+                параллельного выполнения.
+            </li>
+            <li>Вложенные parallelStream() в CompletableFuture или ExecutorService могут привести к конкуренции за
+                ресурсы и неожиданному падению производительности.
+            </li>
+        </ul>
+
+        <h3>Преимущество</h3>
+        <ul>
+            <li>Ускоряет обработку больших коллекций на многоядерных CPU.</li>
+            <li>Легко применяется к обычным операциям Stream API(map, filter, reduce).</li>
+        </ul>
+
+        <h3>Как это работает:</h3>
+        <ol>
+            <li>Коллекция разбивается на подзадачи.</li>
+            <li>Каждая подзадача исполняется в потоках ForkJoinPool.commonPool() - по умолчанию количество потоков
+                равное, количеству ядер процессора.
+            </li>
+            <li>Результаты собираются и объединяются.</li>
+        </ol>
 
         <h3>Как создать</h3>
         <pre>
@@ -170,28 +241,6 @@ int sum1 = numbers.stream().mapToInt(Integer::intValue).sum();
 // Параллельный поток
 int sum2 = numbers.parallelStream().mapToInt(Integer::intValue).sum();
         </pre>
-
-        <h3>Как это работает:</h3>
-        <ol>
-            <li>Коллекция разбивается на подзадачи.</li>
-            <li>Каждая подзадача исполняется в потоках ForkJoinPool.commonPool() - по умолчанию количество потоков
-                равное, количеству ядер процессора.
-            </li>
-            <li>Результаты собираются и объединяются.</li>
-        </ol>
-
-        <h3>Преимущество</h3>
-        <ul>
-            <li>Ускоряет обработку больших коллекций на многоядерных CPU.</li>
-            <li>Легко применяется к обычным операциям Stream API(map, filter, reduce).</li>
-        </ul>
-
-        <h3>Ограничения и риски:</h3>
-        <ul>
-            <li>Не всегда быстро - маленькие коллекции могут выполняться быстрее не параллельно, из-за затрат на парализацию.</li>
-            <li>Не используйте если порядок обработки важен.</li>
-            <li>Нельзя безопасно обновлять переменные вне потоков без атомарных структур или синхронизации.</li>
-        </ul>
     </section>
 
 </div>

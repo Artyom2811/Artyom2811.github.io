@@ -22,6 +22,8 @@
             <li><a href="https://www.youtube.com/watch?v=Geq60OVyBPg">Software Testing Tutorial - Learn Unit Testing and Integration Testing</a></li>
             <li><a href="https://www.youtube.com/watch?v=uc-cfX-5wQA">Кирилл Толкачёв — Тестируем и плачем вместе со Spring Boot Test</a></li>
             <li><a href="https://www.youtube.com/watch?v=7mZqJShu_3c">Евгений Борисов, Кирилл Толкачев — Проклятие Spring Test</a></li>
+            <li><a href="https://habr.com/ru/companies/otus/articles/746414/">Тестирование Spring Boot через MockMVC</a></li>
+            <li><a href="https://habr.com/ru/companies/otus/articles/747852/">Функциональное тестирование в SpringBoot</a></li>
 
             <h3>HTTP testing</h3>
             <li><a href="https://habr.com/ru/articles/781812/">Разносим по полочкам этапы тестирования http запросов в Spring</a></li>
@@ -77,6 +79,21 @@ testImplementation 'org.mockito:mockito-core:5.10.0'
         <h3>Тестирование repository</h3>
         <p>Аннотация на тест класс</p>
         <pre>@DataJpaTest</pre>
+
+        <p>Подключает</p>
+        <ul>
+            <li>Caching</li>
+            <li>Spring Data JPA repositories</li>
+            <li>Flyway database migration tool</li>
+            <li>Liquibase database migration tool</li>
+            <li>A DataSource - The data-source will, as default, use an embedded in-memory database (test database).</li>
+            <li>Data source transaction manager - A transaction manager for a single DataSource.</li>
+            <li>A JdbcTemplate</li>
+            <li>JPA based configuration for Hibernate</li>
+            <li>Spring transaction</li>
+            <li>A test database</li>
+            <li>A JPA entity manager for tests</li>
+        </ul>
     </section>
 
     <section>

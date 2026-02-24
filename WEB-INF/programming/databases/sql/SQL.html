@@ -16,22 +16,22 @@
     <div class="todo">
         <h2>Проработать</h2>
         <ol>
-            <li><a href="https://www.youtube.com/watch?v=rz6R9r-3V74">Внешний ключ и виды связей</a></li>
-            <li><a href="http://www.yaklass.ru/materiali?chtid=511&mode=cht">Реляционная база данных и ее особенности.</a></li>
-            <li><a href="https://habr.com/ru/company/otus/blog/461067/">Топ-65 вопросов по SQL</a></li>
-            <li><a href="http://www.skillz.ru/dev/php/article-Obyasnenie_SQL_obedinenii_JOIN_INNER_OUTER.html">Объяснение SQL объединений JOIN: LEFT/RIGHT/INNER/OUTER</a></li>
-            <li><a href="https://habr.com/ru/companies/tensor/articles/676784/">SQL HowTo: наперегонки со временем</a></li>
-            <li><a href="https://habr.com/ru/companies/ozontech/articles/705912/">База по шардированию базы</a></li>
-            <li><a href="https://habr.com/ru/articles/779598/">Рекомендации по ведению SQL-кода</a></li>
-            <li><a href="https://habr.com/ru/companies/piter/articles/819423/">Книга: «Антипаттерны SQL. Как избежать ловушек при работе с базами данных»</a></li>
-            <li><a href="https://habr.com/ru/articles/968532/">БД без боли: моя шпаргалка для собесов в Java. Часть 4</a></li>
+            <li><a href="youtube.com/watch?v=rz6R9r-3V74">Внешний ключ и виды связей</a></li>
+            <li><a href="yaklass.ru/materiali?chtid=511&mode=cht">Реляционная база данных и ее особенности.</a></li>
+            <li><a href="habr.com/ru/company/otus/blog/461067/">Топ-65 вопросов по SQL</a></li>
+            <li><a href="skillz.ru/dev/php/article-Obyasnenie_SQL_obedinenii_JOIN_INNER_OUTER.html">Объяснение SQL объединений JOIN: LEFT/RIGHT/INNER/OUTER</a></li>
+            <li><a href="habr.com/ru/companies/tensor/articles/676784/">SQL HowTo: наперегонки со временем</a></li>
+            <li><a href="habr.com/ru/companies/ozontech/articles/705912/">База по шардированию базы</a></li>
+            <li><a href="habr.com/ru/articles/779598/">Рекомендации по ведению SQL-кода</a></li>
+            <li><a href="habr.com/ru/companies/piter/articles/819423/">Книга: «Антипаттерны SQL. Как избежать ловушек при работе с базами данных»</a></li>
+            <li><a href="habr.com/ru/articles/968532/">БД без боли: моя шпаргалка для собесов в Java. Часть 4</a></li>
 
-            <li><a href="https://www.sqlzoo.net/wiki/SQL_Tutorial">SQLZoo</a></li>
-            <li><a href="https://www.w3schools.com/sql/default.asp">W3Schools</a></li>
-            <li><a href="https://mode.com/sql-tutorial">Mode Analytics SQL Tutorial</a></li>
-            <li><a href="https://sqlbolt.com/">SQLBolt</a></li>
-            <li><a href="https://leetcode.com/studyplan/top-sql-50/">LeetCode (раздел SQL)</a></li>
-            <li><a href="https://habr.com/ru/companies/otus/articles/949468/">SQL против NoSQL: мифы и реальность</a></li>
+            <li><a href="sqlzoo.net/wiki/SQL_Tutorial">SQLZoo</a></li>
+            <li><a href="w3schools.com/sql/default.asp">W3Schools</a></li>
+            <li><a href="mode.com/sql-tutorial">Mode Analytics SQL Tutorial</a></li>
+            <li><a href="sqlbolt.com/">SQLBolt</a></li>
+            <li><a href="leetcode.com/studyplan/top-sql-50/">LeetCode (раздел SQL)</a></li>
+            <li><a href="habr.com/ru/companies/otus/articles/949468/">SQL против NoSQL: мифы и реальность</a></li>
         </ol>
     </div>
 
@@ -224,12 +224,19 @@ HAVING COUNT(CustomerID) > 5;
             <li>Проверить план запроса</li>
             <li>Можно отключить планировщик запросов</li>
             <li>Использовать индексы</li>
-            <li>Кэширование</li>
+            <li>Кэширование - храните часто запрашиваемые данные в быстром хранилище, чтобы снизить нагрузку на базу данных.</li>
             <li>Партиционирование - разбивает таблицу на логические части внутри одно базы или сервера(пример: по месяцам).</li>
             <li>Шардирование - распределяет данные между разными независимыми серверами(шардами). Это сложнее по мощнее
                 партиций.
             </li>
-            <li>Репликация</li>
+            <li>Материализованные представления - предварительно вычисляйте результаты сложных запросов и сохраняйте их
+                для быстрого доступа.
+            </li>
+            <li>Денормализация</li>
+            <li>Репликация - создавайте копии основной базы данных на разных серверах для увеличения объема операций чтения.</li>
+            <li>Вертикальное масштабирование - увеличивайте ресурсы сервера (процессоры, оперативную память, хранилище)
+                для улучшения производительности.
+            </li>
             <li>Batch-запросы - вместо тысяч отдельных INSERT.</li>
             <li>Нормализация/Денормализация - для чтения часто денормализуют таблицы или используют материализованные
                 представления. Для записи — наоборот, нормализуют.</li>

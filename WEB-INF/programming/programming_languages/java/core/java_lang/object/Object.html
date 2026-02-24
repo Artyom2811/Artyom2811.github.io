@@ -11,33 +11,26 @@
 <div class="bodyStyle">
     <h1>Object</h1>
 
-    <div class="todo">
-        <h2>Проработать:</h2>
-        <ol>
-            <li><a href="https://howtodoinjava.com/java/basics/java-hashcode-equals-methods/">Java hashCode() and equals() Methods</a></li>
-            <li><a href="https://habr.com/ru/post/168195/">Разбираемся с hashCode() и equals()</a></li>
-            <li><a href="https://javadevblog.com/klonirovanie-ob-ektov-v-java-primer-ispol-zovaniya-metoda-clone.html">Клонирование объектов в Java. Пример использования метода clone()</a></li>
-            <li><a href="https://javarush.ru/groups/posts/1989-kontraktih-equals-i-hashcode-ili-kak-ono-vsje-tam">EqualsAndHashcode</a></li>
-            <li><a href="https://habr.com/ru/post/246993/">Как правильно клонировать объект?</a></li>
-        </ol>
-    </div>
-
     <section>
         <h2>Что это</h2>
-        <p>Object - суперкласс для всех классов в JAVA, кроме примитивов. Необходим для предоставления основных
+        <p>Object - superclass для всех классов в JAVA, кроме примитивов. Необходим для предоставления основных
             методов в каждый java класс.
         </p>
     </section>
 
     <section>
-        <h2>Методы:</h2>
+        <h2 id="methods">Методы:</h2>
         <ul>
             <h3>Часто используемые</h3>
-            <li>int <a href="hashcode/HashCode.html">hashCode()</a> - возвращает хеш-код, связанный с вызывающим объектом.</li>
-            <li>boolean equals(Object obj) - равен ли один объект другому. По умолчанию сравнивает только ссылки.</li>
+            <li>int <a href="hashcode/HashCode.html">hashCode()</a> - возвращает хеш-код(численно значение), связанный
+                с вызывающим объектом. По умолчанию для int возвращает его значение, для ссылочного объекта - адрес в памяти.
+            </li>
+            <li>boolean equals(Object obj) - равен ли один объект другому. Нужно переопределить. По умолчанию сравнивает
+                только ссылки(место в памяти) как "==".
+            </li>
             <li>String toString() - возвращает строку, описывающий объект.</li>
 
-            <h3>Синхронизация потоков</h3>
+            <h3>Синхронизация потоков, работает в связке с synchronized.</h3>
             <li>void wait() - поток засыпает, освобождает монитор и ожидает когда его разбудят. Может быть вызван
                 только из синхронизированного блока или метода. Поток переходит в состояние WAITING.
             </li>
@@ -71,12 +64,23 @@ class Color{
             </li>
 
             <h3>Опасный(устарелый)</h3>
-            <li>void finalize() - вызывается перед удалением неиспользуемого объекта.</li>
+            <li>void finalize() - c JAVA 9 он 'Deprecated'. Вызывается перед удалением неиспользуемого объекта.</li>
+        </ul>
+    </section>
+
+    <section >
+        <h2 id="contract">Договор(контракт) между equals() и hashcode():</h2>
+        <ul>
+            <li>Если переопределен один из этих методов - нужно переопределить второй.</li>
+            <li>В обоих метода использовать одинаковые поля.</li>
+            <li>Если два объекта имеют разный hashcode, то они не равны.</li>
+            <li>Если два объекта равны, то они должны иметь один и тот же hashcode.</li>
+            <li>Если два объекта не равны, то они могут иметь или не иметь один и тот же hashcode(коллизия).</li>
         </ul>
     </section>
 
     <section>
-        <h2>Правила переопределения equals():</h2>
+        <h2 id="equal_rule">Правила переопределения equals():</h2>
         <ol>
             <li>Рефлексивность - a.equals(a).</li>
             <li>Симетричность - a=b, b=a.</li>
@@ -85,38 +89,27 @@ class Color{
             <li>Проверка на NULL - если NULL вернуть false.</li>
         </ol>
 
-        <h3>Пример equals(Object obj):</h3>
-        <div>
-            public boolean equals(Object obj) {<br>
-            if (obj == this) {<br>
-            return true;<br>
-            }<br>
-            if (obj == null || obj.getClass() != this.getClass()) {<br>
-            return false;<br>
-            }<br>
-            <br>
-            Person guest = (Person) obj;<br>
-            return a == guest.a && b.equals(guest.b) && c.equals(guest.c) //Если ссылочная переменная то equals()<br>
-            }
-        </div>
-    </section>
+        <h3 id="equal_example">Пример equals(Object obj):</h3>
+        <pre>
+public boolean equals(Object obj) {
+if (obj == this) {
+return true;
+}
+if (obj == null || obj.getClass() != this.getClass()) {
+return false;
+}
 
-    <section>
-        <h2>Пример hashcode():</h2>
-        public int hashCode() {<br>
-        return Objects.hash(a, b, c);<br>
-        }
-    </section>
+Person guest = (Person) obj;
+return a == guest.a && b.equals(guest.b) && c.equals(guest.c) //Если ссылочная переменная то equals()
+}
+        </pre>
 
-    <section>
-        <h2>Договор(контракт) между equals() и hashcode():</h2>
-        <ul>
-            <li>Если переопределен один из этих методов - нужно переопределить второй.</li>
-            <li>В обоих метода использовать одинаковые поля.</li>
-            <li>Если два объекта имеют разный hashcode, то они не равны.</li>
-            <li>Если два объекта равны, то они должны иметь один и тот же hashcode.</li>
-            <li>Если два объекта не равны, то они могут иметь или не иметь один и тот же hashcode(коллизия).</li>
-        </ul>
+        <h3>Пример hashcode():</h3>
+        <pre>
+public int hashCode() {
+return Objects.hash(a, b, c);
+}
+        </pre>
     </section>
 
 </div>

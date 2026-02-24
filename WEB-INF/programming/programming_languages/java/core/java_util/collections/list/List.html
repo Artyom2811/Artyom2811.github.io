@@ -12,14 +12,6 @@
 <div class="bodyStyle">
     <h1>List</h1>
 
-    <div class="todo">
-        <h2>Проработать</h2>
-        <ol>
-            <li><a href="https://vertex-academy.com/tutorials/ru/list-java-primer/">List в Java</a></li>
-            <li><a href="https://javarush.ru/groups/posts/1936-rabota-arraylist-v-kartinkakh--">Работа ArrayList в картинках</a></li>
-        </ol>
-    </div>
-
     <section>
         <h2>Особенности List(список)</h2>
         <ul>
@@ -32,23 +24,21 @@
     <section>
         <h2>Основные реализации</h2>
         <ol>
-            <li><a class="anchor" href="#arrayList">ArrayList</a></li>
-            <li><a class="anchor" href="#linkedList">LinkedList</a></li>
+            <li><a class="anchor" href="#array_list">ArrayList</a></li>
+            <li><a class="anchor" href="#linked_list">LinkedList</a></li>
             <li>Vector</li>
-            <li>CopyOnWriteArrayList - это потокобезопасный вариант of ArrayList. Разница в том, что все мутативные
-                операции, такие как add, set, remove, clear, создают новую копию массива - работает с ней,
-                при окончании работы выкидывается и при следующем обращении.
-            </li>
+            <li><a class="anchor" href="#copy_on_write_array_list">CopyOnWriteArrayList</a></li></li>
             <li>ConcurrentLinkedQueue - потокобезопасная очередь.</li>
         </ol>
     </section>
 
     <section>
-        <h2 id="arrayList">ArrayList</h2>
+        <h2 id="array_list">ArrayList</h2>
         <p>ArrayList - работает медленнее чем массив, облегчая работу с размером массива.</p>
         <p>При добавлении в середину списка создаётся новый массив в него помещается:
             первая часть -> новый элемент -> вторая часть.
         </p>
+        <p>Если не хватает места - массив увеличивается на 1.5, но назад размер массива астоматически не уменьшается.</p>
         <p>Сложность алгоритмов ArrayList</p>
         <ol>
             <li>Получение по индексу - O(1)</li>
@@ -60,7 +50,7 @@
     </section>
 
     <section>
-        <h2 id="linkedList">LinkedList</h2>
+        <h2 id="linked_list">LinkedList</h2>
         <p>Элементы хранятся в объекте Node. Которые имеют ссылки на предыдущий и следующий элементы.</p>
         <p>LinkedList - используется если необходим функционал Queue, Dequeue или Stack.</p>
         <p>Рекомендуется использовать, если нужно вставлять элементы в начало или конец списка.</p>
@@ -77,7 +67,37 @@
     </section>
 
     <section>
-        <h2>Быстрый способ создания immutable collections(since v.9).</h2>
+        <h2 id="copy_on_write_array_list">CopyOnWriteArrayList</h2>
+        <p>CopyOnWriteArrayList - потокобезопасная реализация List из пакета java.util.concurrent.</p>
+        <p>Все мутативные операции, такие как add, set, remove, clear, создают новую копию массива - работает с ней, при
+            окончании работы выкидывается и при следующем обращении.
+        </p>
+
+        <h3>Что происходит при добавлении элемента(вызове add())?</h3>
+        <ul>
+            <li>Создаётся новая копия внутреннего массива.</li>
+            <li>В копию добавляется новый элемент.</li>
+            <li>Ссылка на внутренний массив атомарно заменяется на новый.</li>
+        </ul>
+        <p>Чтение очень быстрое (без блокировок).</p>
+        <p>Добавление — дорогое по памяти и CPU, потому что каждый раз копируется весь массив.</p>
+
+        <h3>Когда использовать?</h3>
+        <ul>
+            <li>Чтений намного больше, чем записей</li>
+            <li>Список маленький или изменения редкие</li>
+            <li>Нужно безопасно итерироваться без блокировок</li>
+        </ul>
+
+        <h3>Не подходит:</h3>
+        <ul>
+            <li>Если много добавлений/удалений</li>
+            <li>Если список большой</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="quick_create">Быстрый способ создания immutable collections(since v.9).</h2>
         <p>После создания никак нельзя изменить(add, remove, put). Но элементы в коллекции могут быть изменены.
             Нельзя добавлять null(NullPointerException).</p>
         <ol>

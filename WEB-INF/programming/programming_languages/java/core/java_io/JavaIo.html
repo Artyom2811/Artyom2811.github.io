@@ -15,17 +15,14 @@
     <div class="todo">
         <h2>Проработать:</h2>
         <ol>
-            <li><a href="https://javarush.ru/groups/posts/2020-vvod-vihvod-v-java-klassih-fileinputstream-fileoutputstream-bufferedinputstream">Ввод-вывод в Java. Классы FileInputStream, FileOutputStream, BufferedInputStream</a></li>
-            <li><a href="https://metanit.com/java/tutorial/6.1.php">Потоки ввода-вывода. Работа с файлами</a></li>
-            <li><a href="http://java-online.ru/java-outputstream.xhtml">Потоки вывода, OutputStream</a></li>
-            <li><a href="http://developer.alexanderklimov.ru/android/java/file.php">Класс File</a></li>
-            <li><a href="https://metanit.com/java/tutorial/6.9.php">Буферизация символьных потоков. BufferedReader и BufferedWriter</a></li>
-            <li><a href="https://javarush.ru/quests/lectures/questcore.level08.lecture04">InputStream/OutputStream</a></li>
-            <li><a href="https://habr.com/ru/post/235585/">Основные отличия Java IO и Java NIO</a></li>
-            <li><a href="https://javarush.com/groups/posts/1919-schitihvanie-s-klaviaturih--riderih">Считывание с клавиатуры — «ридеры»</a></li>
-            <li><a href="https://developer.alexanderklimov.ru/android/java/inputstream.php">Класс InputStream</a></li>
-            <li><a href="https://mkyong.com/java/jexcel-api-reading-and-writing-excel-file-in-java/">JExcel API – Reading and Writing Excel file in Java</a></li>
-            <li><a href="https://metanit.com/java/tutorial/6.12.php">Работа с ZIP-архивами</a></li>
+            <li><a href="javarush.ru/groups/posts/2020-vvod-vihvod-v-java-klassih-fileinputstream-fileoutputstream-bufferedinputstream">Ввод-вывод в Java. Классы FileInputStream, FileOutputStream, BufferedInputStream</a></li>
+            <li><a href="java-online.ru/java-outputstream.xhtml">Потоки вывода, OutputStream</a></li>
+            <li><a href="developer.alexanderklimov.ru/android/java/file.php">Класс File</a></li>
+            <li><a href="javarush.ru/quests/lectures/questcore.level08.lecture04">InputStream/OutputStream</a></li>
+            <li><a href="habr.com/ru/post/235585/">Основные отличия Java IO и Java NIO</a></li>
+            <li><a href="javarush.com/groups/posts/1919-schitihvanie-s-klaviaturih--riderih">Считывание с клавиатуры — «ридеры»</a></li>
+            <li><a href="developer.alexanderklimov.ru/android/java/inputstream.php">Класс InputStream</a></li>
+            <li><a href="mkyong.com/java/jexcel-api-reading-and-writing-excel-file-in-java/">JExcel API – Reading and Writing Excel file in Java</a></li>
             <li>InputStream</li>
             <li>OutputStream</li>
         </ol>
@@ -138,6 +135,23 @@
     <section>
         <h2 id="file">File(deprecated)</h2>
         <p>File - для работы с файлами и каталогами. Создание, редактирование, получение свойств, переименование.</p>
+        <ul>
+            <li>boolean createNewFile(): делает попытку создать новый файл.</li>
+            <li>boolean delete(): делает попытку удалить каталог или файл.</li>
+            <li>boolean mkdir(): делает попытку создать новый каталог.</li>
+            <li>boolean renameTo(File dest): делает попытку переименовать файл или каталог.</li>
+            <li>boolean exists(): проверяет, существует ли файл или каталог.</li>
+            <li>String getAbsolutePath(): возвращает абсолютный путь для пути, переданного в конструктор объекта.</li>
+            <li>String getName(): возвращает краткое имя файла или каталога.</li>
+            <li>String getParent(): возвращает имя родительского каталога.</li>
+            <li>boolean isDirectory(): возвращает значение true, если по указанному пути располагается каталог.</li>
+            <li>boolean isFile(): возвращает значение true, если по указанному пути находится файл.</li>
+            <li>boolean isHidden(): возвращает значение true, если каталог или файл являются скрытыми.</li>
+            <li>long length(): возвращает размер файла в байтах.</li>
+            <li>long lastModified(): возвращает время последнего изменения файла или каталога.</li>
+            <li>String[] list(): возвращает массив файлов и подкаталогов, которые находятся в определенном каталоге.</li>
+            <li>File[] listFiles(): возвращает массив файлов и подкаталогов, которые находятся в определенном каталоге.</li>
+        </ul>
     </section>
 
     <section>

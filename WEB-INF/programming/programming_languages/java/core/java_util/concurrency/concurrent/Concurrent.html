@@ -15,11 +15,11 @@
     <div class="todo">
         <h2>Проработать</h2>
         <ol>
-            <li><a href="https://www.youtube.com/playlist?list=PL6jg6AGdCNaXo06LjCBmRao-qJdf38oKp">Advanced Java - Concurrency</a></li>
-            <li><a href="https://habr.com/ru/company/luxoft/blog/157273/">Обзор java.util.concurrent.*</a></li>
-            <li><a href="https://javarush.com/quests/lectures/questservlets.level19.lecture07">Locks: блокировка доступа к ресурсам</a></li>
-            <li><a href="https://www.youtube.com/watch?v=gAX5lHRzl7Q">Atomic, Java Memory Model, Happens-Before, JCStress ~/ Многопоточность в Java☕</a></li>
-            <li><a href="https://javarush.com/groups/posts/1994-sinkhronizacija-potokov-operator-synchronized">Синхронизация потоков. Оператор synchronized в Java</a></li>
+            <li><a href="youtube.com/playlist?list=PL6jg6AGdCNaXo06LjCBmRao-qJdf38oKp">Advanced Java - Concurrency</a></li>
+            <li><a href="habr.com/ru/company/luxoft/blog/157273/">Обзор java.util.concurrent.*</a></li>
+            <li><a href="javarush.com/quests/lectures/questservlets.level19.lecture07">Locks: блокировка доступа к ресурсам</a></li>
+            <li><a href="youtube.com/watch?v=gAX5lHRzl7Q">Atomic, Java Memory Model, Happens-Before, JCStress ~/ Многопоточность в Java☕</a></li>
+            <li><a href="javarush.com/groups/posts/1994-sinkhronizacija-potokov-operator-synchronized">Синхронизация потоков. Оператор synchronized в Java</a></li>
         </ol>
     </div>
 
@@ -46,7 +46,7 @@
             <li><a href="lock/Lock.html">Locks</a> - представляет собой альтернативные и более гибкие механизмы
                 синхронизации потоков по сравнению с базовыми synchronized, wait, notify, notifyAll.
             </li>
-            <li>Atomics - классы с поддержкой атомарных операций над примитивами и ссылками.</li>
+            <li><a href="#atomic">Atomics</a> - классы с поддержкой атомарных операций над примитивами и ссылками.</li>
         </ul>
     </section>
 
@@ -167,20 +167,21 @@ public class VolatileExample {
     </section>
 
     <section>
-        <h2>Atomic</h2>
-        <p>Это пакет для атомарных изменений и операций, которые выполняются независимо и безопасно для многопоточности,
-            без использования synchronized или Lock, что уменьшает риск Deadlock.
+        <h2 id="atomic">Atomic</h2>
+        <p>Пакет для атомарных(неделимые) изменений и операций, которые выполняются независимо и безопасно для
+            многопоточности, без использования synchronized или Lock, что уменьшает риск Deadlock или Race conditions.
         </p>
-        <p>Часто используется как счетчик/генератор уникальных ID. Предотвращает Race conditions</p>
-        <p>Compare and Swap(CAS) - паттерн который используют Atomic классы. Часто быстрее чем синхронизация или блокировка(lock-free).
-            Оптимистическая блокировка. Работает на уровне CPU.
-        </p>
+        <p>Часто используется как счетчик/генератор уникальных ID.</p>
+        <p>Compare and Swap(CAS) - механизм который используют Atomic классы. который поддерживается на уровне процессора.</p>
+        <p>Часто быстрее чем синхронизация или блокировка(lock-free). Оптимистическая блокировка.</p>
+
+        <h3>Как работает</h3>
         <ul>
-            <li>Берется значение.</li>
+            <li>Читаем текущее значение.</li>
             <li>Инкриминируется значение.</li>
-            <li>Перед комитом изменения, снова Берется значение.</li>
+            <li>Перед commit, снова Берется значение.</li>
             <li>Сравнивается с полученным в начале.</li>
-            <li>Если оно не было - изменение комитится. Если оно было - изменение операция повторяется.</li>
+            <li>Если оно не было - изменение комитится. Если оно было - изменение операция повторяется(spin loop).</li>
         </ul>
 
         <h3>Виды:</h3>
@@ -206,6 +207,38 @@ public class VolatileExample {
             <li>getAndIncrement() / getAndDecrement() - атомарное увеличение/уменьшение с возращением старого значения.</li>
             <li>increment()</li>
             <li>getCounter()</li>
+        </ul>
+
+        <pre>
+public class Counter {
+    private final AtomicInteger count = new AtomicInteger(0);
+
+    public void increment() {
+        count.incrementAndGet(); // атомарное ++
+    }
+
+    public int get() {
+        return count.get();
+    }
+}
+        </pre>
+
+        <h3>ABA-проблема</h3>
+        <p>Значение могло измениться на «A → B → A». Для простых счётчиков это не критично, но в сложных структурах
+            данных используют AtomicStampedReference. Необходимо только если значение может отниматься.
+        </p>
+
+        <h3>AtomicInteger когда использовать</h3>
+        <ul>
+            <li>Для простых счётчиков, метрик.</li>
+            <li>В неблокирующих алгоритмах (lock-free).</li>
+            <li>В высоконагруженных сценариях, где synchronized слишком дорог.</li>
+        </ul>
+
+        <h3>Не подходит:</h3>
+        <ul>
+            <li>Для сложных бизнес-операций над несколькими переменными (лучше использовать мьютексы или транзакции).</li>
+            <li>При очень высокой конкуренции, может быть лучше взять LongAdder.</li>
         </ul>
     </section>
 

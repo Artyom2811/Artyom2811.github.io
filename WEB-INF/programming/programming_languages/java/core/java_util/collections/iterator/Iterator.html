@@ -71,12 +71,12 @@ for (String s : list) {
         }
         </pre>
 
-        <h3>fail-fast</h3>
+        <h3>Fail-fast</h3>
         <p>Fail-fast - итераторы немедленно вызывают ConcurrentModificationException, если есть структурная модификация
             коллекции. Пример: ArrayList, HashMap.
         </p>
 
-        <h3>fail-safe</h3>
+        <h3>Fail-safe</h3>
         <p>Fail-safe - итераторы не генерируют никаких исключений, если коллекция структурно изменена во время итерации
             по ней. Они работают с клоном коллекции, а не с исходной коллекцией. Пример: CopyOnWriteArrayList,
             ConcurrentHashMap. При удалении из коллекции без итератора - ошибки не будет.

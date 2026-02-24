@@ -11,41 +11,38 @@
 <div class="bodyStyle">
     <h1>Lambda Function</h1>
 
-    <div class="todo">
-        <h2>Проработать</h2>
-        <ol>
-            <li><a href="https://metanit.com/java/tutorial/9.3.php">Встроенные функциональные интерфейсы</a></li>
-            <li><a href="https://metanit.com/java/tutorial/9.1.php">Введение в лямбда-выражения</a></li>
-            <li><a href="https://www.youtube.com/watch?v=jHStUYP1NEg">Урок 326: Java 8 p2: Лямбда</a></li>
-            <li><a href="https://www.youtube.com/watch?v=KSSW1YaW_vQ">#2 Функциональные интерфейсы / Java Lambdas / Source Code</a></li>
-            <li><a href="https://www.baeldung.com/java-8-functional-interfaces">Functional Interfaces in Java 8</a></li>
-            <li><a href="https://javarush.ru/groups/posts/845-lambda-vihrazhenija-na-primerakh">Lambda-выражения на примерах</a></li>
-            <li><a href="https://coderoad.ru/51227041/Scala-lambda-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F-%D1%81-%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B5%D0%B9-%D0%BA%D0%B0%D1%80%D1%82%D1%8B">Scala lambda функция с функцией карты</a></li>
-            <li><a href="https://www.youtube.com/watch?v=Wc4CIUlfpWg">Урок 1. Что такое лямбда-выражения в Java?</a></li>
-            <li><a href="https://winterbe.com/posts/2014/03/16/java-8-tutorial/">Java 8 Tutorial</a></li>
-            <li><a href="https://habr.com/ru/companies/haulmont/articles/432418/">Разбираем лямбда-выражения в Java</a></li>
-            <li><a href="https://habr.com/ru/articles/677610/">Функциональные интерфейсы в Java 8 → Consumer, Supplier, Predicate и Function. Что к чему и зачем нужны</a></li>
-            <li><a href="https://www.youtube.com/watch?v=x01mMwNq98w">Лямбда-выражения в Java: от простого к сложному + 4 Правила Использования! 📚</a></li>
-            <li><a href="https://www.youtube.com/watch?v=tj5sLSFjVj4">Lambda Expressions in Java - Full Simple Tutorial</a></li>
-            <li><a href="https://javarush.com/groups/posts/845-lambda-vihrazhenija-na-primerakh">Lambda-выражения на примерах</a></li>
-            <li><a href="https://www.youtube.com/watch?v=33pi0sIZNEU">Lambda выражения. Часть 1 (прокачанная Java)</a></li>
-        </ol>
-    </div>
-
     <section>
         <h2>Что это</h2>
-        <p>Лямбда выражения(анонимные методы) - пришли в JAVA из функционального программирования, с помощью которого можем
-            быстро без помощи анонимных классов реализовать интерфейс с одним методом(также может содержать default и static
-            методы). Есть преимущество перед анонимными классами, так как после компиляции лямбда становиться методом
-            класса. Также есть преимущества у многоядерных процессоров путем параллельной обработки коллекций.
-            Лямбда позволяет хранить и передавать код как переменную.
+        <p>Лямбда выражения(анонимные методы) - возможность быстро без помощи анонимных классов реализовать интерфейс
+            с одним методом(также может содержать default и static методы). Есть преимущество перед анонимными классами,
+            так как после компиляции лямбда становиться методом класса. Также есть преимущества у многоядерных процессоров
+            путем параллельной обработки коллекций. Лямбда позволяет хранить и передавать код как переменную.
         </p>
+        <ul>
+            <li>Lambda-выражения могут иметь от 0 и более входных параметров.</li>
+            <li>Тип параметров можно указывать явно либо может быть получен из контекста. Например (int a) можно
+                записать и так (a).
+            </li>
+            <li>Параметры заключаются в круглые скобки и разделяются запятыми. Например (a, b) или (int a, int b) или
+                (String a, int b, float c).
+            </li>
+            <li>Если параметров нет, то нужно использовать пустые круглые скобки. Например () -> 42.</li>
+            <li>Когда параметр один, если тип не указывается явно, скобки можно опустить. Пример: a -> return a*a.</li>
+            <li>Тело Lambda-выражения может содержать от 0 и более выражений.</li>
+            <li>Если тело состоит из одного оператора, его можно не заключать в фигурные скобки, а возвращаемое значение
+                можно указывать без ключевого слова return.
+            </li>
+            <li>В противном случае фигурные скобки обязательны (блок кода), а в конце надо указывать возвращаемое
+                значение с использованием ключевого слова return (в противном случае типом возвращаемого значения будет
+                void).
+            </li>
+        </ul>
     </section>
 
     <section>
-        <h2>@FunctionalInterface</h2>
+        <h2 id="functional_interface">@FunctionalInterface</h2>
         <p>@FunctionalInterface - аннотация метка которая при компиляции следит, чтобы интерфейс соответствовал
-            условиям функционального интерфейса - только 1 абстрактный метод и позволяет другие default и static методы.
+            условиям functional interface - только 1 абстрактный метод. Позволяет другие default и static методы.
         </p>
     </section>
 
@@ -63,7 +60,7 @@
     </section>
 
     <section>
-        <h2>Формат</h2>
+        <h2 id="format">Формат</h2>
         <p>parameter -> {expression}</p>
         <p>или</p>
         <p>(parameter1, parameter2) -> {expression}</p>
@@ -81,7 +78,7 @@ thread.start();
     </section>
 
     <section>
-        <h2>Важные @FunctionalInterface в Java</h2>
+        <h2 id="common_methods">Важные @FunctionalInterface в Java</h2>
         <ol>
             <li>Predicate&lt;T&gt; - "boolean test(T t)" - фильтрация.</li>
             <li>Consumer&lt;T&gt; - "void accept(T t);" - выполняет некоторое действие над объектом типа T, при этом

@@ -12,15 +12,6 @@
 <div class="bodyStyle">
     <h1>Class</h1>
 
-    <div class="todo">
-        <h2>Проработать:</h2>
-        <ol>
-            <li><a href="https://javarush.ru/groups/posts/vidy-vlozhennyh-klassov">Классы, виды вложенных классов с примерами</a></li>
-            <li><a href="https://javarush.com/groups/posts/2181-vlozhennihe-vnutrennie-klassih">Вложенные внутренние классы или Inner Class в Java</a></li>
-            <li><a href="https://www.youtube.com/watch?v=10R_2-2HIX0">Анонимный класс (прокачанная Java)</a></li>
-        </ol>
-    </div>
-
     <section>
         <h2>Основные разделы</h2>
         <h3>Виды классов</h3>
@@ -43,7 +34,10 @@
 
     <section>
         <h2 id="class">Class</h2>
-        <p>Class - обычный класс для создания объектов.</p>
+        <p>Class - логическое описание чего-либо, шаблон, с помощью которого можно создавать реальные экземпляры этого
+            самого чего-либо. Другими словами, это просто описание того, какими должны быть созданные сущности: какими
+            свойствами и методами должны обладать.
+        </p>
     </section>
 
     <section>
@@ -57,11 +51,17 @@
         <h2 id="record">Record(since v.14)</h2>
         <p>Record - immutable класс для хранения записей.</p>
         <p>Не может использовать extends, но может имплементировать implements.</p>
+        <p>Ограниченная настройка — не поддерживают аннотации вроде @JsonIgnore для полей.</p>
         <pre>
 record Point(int x, int y) { }
         </pre>
 
         <h3>Описание</h3>
+        <ul>
+            <li>Все поля final.</li>
+            <li>Эффективны по памяти - JVM оптимизирует выделение памяти.</li>
+        </ul>
+
         <ul>
             <li>Авто создание конструктора для всех полей.</li>
             <li>Авто создание getters для всех полей, но без префикса get.</li>
@@ -81,16 +81,17 @@ public Person(String name) {
 
     <section>
         <h2 id="inner">Внутренние классы</h2>
-        <p>Примечание - при создании нескольких классов в одном файле. С доступом public может быть
-            только один. Тот который соответствует имени файла. Или ошибка компиляции.
+        <p>Примечание - при создании нескольких классов в одном файле. С доступом public может быть только один. Тот
+            который соответствует имени файла. Или ошибка компиляции.
         </p>
 
         <h3>Nested Inner classes(вложенные внутренние классы)</h3>
         <p>Создание объекта: Outer.Inner inner = new Outer().new Inner();</p>
 
-        <h3>Static Nested classes or Member of outer class (статические вложенные классы)</h3>
+        <h3>Static Nested classes or Member of outer class(статические вложенные классы)</h3>
 
-        <h3>Anonymous Inner classes (анонимные классы)</h3>
+        <h3>Anonymous Inner classes(анонимные классы)</h3>
+        <p>Создаются на ходу.</p>
         <pre>
 interface AnimalActions {
     void eat();
@@ -106,24 +107,29 @@ AnimalActions animal = new AnimalActions() {
 animal.eat();
         </pre>
 
-        <h3>Method Local Inner classes (внутренние классы в локальном методе)</h3>
+        <h3>Method Local Inner classes(внутренние классы в локальном методе)</h3>
     </section>
 
     <section>
         <h2 id="interface">Интерфейс(Interface)</h2>
         <p>Интерфейс(Interface) - специальный класс-контракт для добавления функционала в другие классы.</p>
         <ul>
-            <li>Может иметь default methods(since v.8).</li>
-            <li>Может иметь private methods(since v.9).</li>
             <li>Поля только public static final.</li>
+            <li>Может иметь default methods(since v.8).</li>
+            <li>Может иметь static methods(since v.8).</li>
+            <li>Может иметь private methods(since v.9).</li>
             <li>Возможно имплементировать несколько интерфейсов.</li>
         </ul>
     </section>
 
     <section>
-        <h2 id="enum">Enum(Перечисления)</h2>
+        <h2 id="enum">Enum(Перечисления) - enumeration</h2>
         <p>Enum(перечисление) - это набор логически связанных констант именованных констант. Все константы пишутся
-            большими буквами.</p>
+            большими буквами.
+        </p>
+        <pre>
+enum Status { PENDING, APPROVED, REJECTED }
+        </pre>
 
         <h3>Возможности:</h3>
         <ol>
@@ -137,8 +143,12 @@ animal.eat();
         <h3>Методы</h3>
         <ol>
             <li>values() - возвращает массив, содержащий список всех констант перечисления.</li>
-            <li>valueOf() - возвращает константу перечисления, значение которой передается строкой при вызове.</li>
+            <li>valueOf() - возвращает константу перечисления, из String. Бросает исключение, если строка некорректна.
+                Используется при маппинге из БД, пользовательского ввода или JSON (например, парсинг статуса из запроса).
+            </li>
             <li>equals() - сравнивает эквивалентность.</li>
+            <li>name() - получить имя как String.</li>
+            <li>ordinal() - получить индекс Enum. Возвращает позицию (начиная с 0), например, для ранжирования уровней.</li>
         </ol>
 
         <h3>Примеры</h3>

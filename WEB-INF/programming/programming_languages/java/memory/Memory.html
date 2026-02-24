@@ -26,8 +26,9 @@
             <li><a href="https://www.youtube.com/watch?v=R4UHOLZ-bEk">Задача из Собеседования в Microsoft (Бинарные Деревья)</a></li>
             <li><a href="https://blog.stackademic.com/how-java-memory-works-c751460e3cbd">How Java Memory Works?</a></li>
             <li><a href="https://habr.com/ru/articles/685518/">Глубокое погружение в Java Memory Model</a></li>
-            <li><a href="https://habr.com/ru/sandbox/187576/">Как JIT-компиляция изменила мир</a></li>
             <li><a href="https://habr.com/ru/articles/967190/">JVM + Память + GC без боли: моя шпаргалка для собесов в Java. Часть 2</a></li>
+            <li><a href="https://habr.com/ru/companies/lsfusion/articles/741978/">Настройка и мониторинг Java приложений</a></li>
+            <li><a href="https://habr.com/ru/articles/744834/">Введение в Java Process Memory Model</a></li>
             <li>happens before java - модель памяти</li>
             <li>Разобраться как смотреть логи GC - https://www.baeldung.com/java-verbose-gc</li>
 
@@ -77,7 +78,7 @@
         <h3>CodeCache(кэш кода)</h3>
         <h4>Описание</h4>
         <ol>
-            <li>JIT-компилятор компилирует часто исполняемый код, преобразует его в нативный машинный код и кеширует
+            <li>JIT - компилятор компилирует часто исполняемый код, преобразует его в нативный машинный код и кеширует
                 для более быстрого выполнения.
             </li>
         </ol>
@@ -102,10 +103,10 @@
         <h4>Здесь хранятся</h4>
         <ol>
             <li>При запуске программы сюда загружаются все классы среды выполнения</li>
+            <li>Objects</li>
+            <li>Object fields(включая примитивные)</li>
+            <li>Static fields</li>
             <li>Pool String</li>
-            <li>objects</li>
-            <li>object fields</li>
-            <li>static fields</li>
         </ol>
 
         <h3>Stack</h3>
