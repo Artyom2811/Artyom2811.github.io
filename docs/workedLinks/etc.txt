@@ -6,9 +6,11 @@ baeldung.com/java-8-functional-interfaces
 baeldung.com/java-8-streams
 baeldung.com/java-text-blocks
 baeldung.com/spring-scheduled-tasks
+blog.gceasy.io/java-hashtable-hashmap-concurrenthashmap-performance-impact/
 codechick.io/tutorials/sql/sql-constraints
 deadcoderising.com/java-9-create-lists-maps-and-sets-easier-than-ever-using-the-new-factory-methods-for-immutable-collections/
 dev.to/fialhorenato/learn-solid-design-principles-using-java-m68
+developer.alexanderklimov.ru/android/java/hashmap.php
 dou.ua/forums/topic/27885/
 engineering.klarna.com/why-you-should-follow-the-robustness-principle-in-your-apis-b77bd9393e4b
 fkn.ktu10.com/?q=node/6032

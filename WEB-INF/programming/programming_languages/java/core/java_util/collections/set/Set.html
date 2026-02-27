@@ -45,16 +45,16 @@
     <section>
         <h2 id="hashSet">HashSet</h2>
 
-        <p>HashSet - реализация Set, которая не хранит дубликатов.</p>
+        <p>HashSet - реализация интерфейса Set на основе HashMap.</p>
 
-        <h3>Особенности</h3>
         <p>Внутри использует HashMap(значение помещается в Key а в Value объект пустышка(new Object())).</p>
         <p>Элементы хранятся в односвязном списке.</p>
+        <p>Не гарантирует порядок элементов.</p>
         <p>Метод add() возвращает true - был ли заменён объект.</p>
         <p>Позволяет добавить (null).</p>
 
         <h3>Set</h3>
-        <li>Как получить значение из Hashset? Вызвать его Iterator или использовать метод toArray()</li>
+        <p>Как получить значение из Hashset? Вызвать его Iterator или использовать метод toArray()</p>
 
         <h3>Сложность алгоритмов</h3>
         <ol>
@@ -82,14 +82,22 @@
 
     <section>
         <h2 id="linkedHashSet">LinkedHashSet</h2>
-        <p>LinkedHashSet - HashSet в порядке добавления. В основе лежит LinkedHashMap вместо HashMap.</p>
-        <li>Разница HashSet и LinkedHashSet? - LinkedHashSet хранит записи в порядке добавления, двухсвязный список.
+        <p>LinkedHashSet - как HashSet но в порядке добавления(двухсвязный список). В основе лежит LinkedHashMap.</p>
     </section>
 
     <section>
         <h2>EnumSet</h2>
         <p>Высокопроизводительное множество для enum.</p>
         <p>Используйте вместо HashSet &lt;Enum&gt; (например, для фильтрации флагов или ролей).</p>
+    </section>
+
+    <section>
+        <h2>Для concurrent доступа</h2>
+        <ul>
+            <li>Collections.synchronizedSet(new HashSet<>())</li>
+            <li>ConcurrentHashMap.newKeySet()</li>
+            <li>CopyOnWriteArraySet (для read-heavy нагрузки)</li>
+        </ul>
     </section>
 </div>
 </body>

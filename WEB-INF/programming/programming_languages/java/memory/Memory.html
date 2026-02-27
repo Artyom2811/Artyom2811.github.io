@@ -15,20 +15,20 @@
     <div class="todo">
         <h2>Проработать</h2>
         <ol>
-            <li><a href="https://habr.com/ru/post/133981/">Модель памяти в примерах и не только</a></li>
-            <li><a href="https://habr.com/ru/post/510454/">Java-модель памяти (часть 1)</a></li>
-            <li><a href="https://javadevblog.com/chto-takoe-heap-i-stack-pamyat-v-java.html">Что такое Heap и Stack память в Java?</a></li>
-            <li><a href="https://habr.com/ru/post/269621/">Дюк, вынеси мусор! — Часть 1</a></li>
-            <li><a href="https://habr.com/ru/post/112676/">Garbage Collection наглядно</a></li>
-            <li><a href="https://habr.com/ru/post/169869/">Java 8: от PermGen к MetaSpace</a></li>
-            <li><a href="https://www.youtube.com/watch?v=iqatGX1HmPo">JAVA. Memory Model</a></li>
-            <li><a href="https://www.youtube.com/watch?v=UNknX2TRsQQ">Что Каждый Программист Должен Знать О Памяти. (с)</a></li>
-            <li><a href="https://www.youtube.com/watch?v=R4UHOLZ-bEk">Задача из Собеседования в Microsoft (Бинарные Деревья)</a></li>
-            <li><a href="https://blog.stackademic.com/how-java-memory-works-c751460e3cbd">How Java Memory Works?</a></li>
-            <li><a href="https://habr.com/ru/articles/685518/">Глубокое погружение в Java Memory Model</a></li>
-            <li><a href="https://habr.com/ru/articles/967190/">JVM + Память + GC без боли: моя шпаргалка для собесов в Java. Часть 2</a></li>
-            <li><a href="https://habr.com/ru/companies/lsfusion/articles/741978/">Настройка и мониторинг Java приложений</a></li>
-            <li><a href="https://habr.com/ru/articles/744834/">Введение в Java Process Memory Model</a></li>
+            <li><a href="youtube.com/watch?v=iqatGX1HmPo">JAVA. Memory Model</a></li>
+            <li><a href="habr.com/ru/post/133981/">Модель памяти в примерах и не только</a></li>
+            <li><a href="habr.com/ru/post/510454/">Java-модель памяти (часть 1)</a></li>
+            <li><a href="javadevblog.com/chto-takoe-heap-i-stack-pamyat-v-java.html">Что такое Heap и Stack память в Java?</a></li>
+            <li><a href="habr.com/ru/post/269621/">Дюк, вынеси мусор! — Часть 1</a></li>
+            <li><a href="habr.com/ru/post/112676/">Garbage Collection наглядно</a></li>
+            <li><a href="habr.com/ru/post/169869/">Java 8: от PermGen к MetaSpace</a></li>
+            <li><a href="youtube.com/watch?v=UNknX2TRsQQ">Что Каждый Программист Должен Знать О Памяти. (с)</a></li>
+            <li><a href="youtube.com/watch?v=R4UHOLZ-bEk">Задача из Собеседования в Microsoft (Бинарные Деревья)</a></li>
+            <li><a href="blog.stackademic.com/how-java-memory-works-c751460e3cbd">How Java Memory Works?</a></li>
+            <li><a href="habr.com/ru/articles/685518/">Глубокое погружение в Java Memory Model</a></li>
+            <li><a href="habr.com/ru/articles/967190/">JVM + Память + GC без боли: моя шпаргалка для собесов в Java. Часть 2</a></li>
+            <li><a href="habr.com/ru/companies/lsfusion/articles/741978/">Настройка и мониторинг Java приложений</a></li>
+            <li><a href="habr.com/ru/articles/744834/">Введение в Java Process Memory Model</a></li>
             <li>happens before java - модель памяти</li>
             <li>Разобраться как смотреть логи GC - https://www.baeldung.com/java-verbose-gc</li>
 
@@ -50,8 +50,8 @@
 
     <section>
         <h2 id="memoryTypes">Типы памяти</h2>
-        <img src="memorySchema.png" width="90%" height="20%">
         <p>Вся область памяти называется Native Memory</p>
+        <img src="memorySchema.png" width="90%" height="20%">
 
         <h3>PermGen (Permanent Generation)</h3>
         <h4>Описание</h4>
@@ -84,6 +84,15 @@
         </ol>
 
         <h3>Heap(куча)</h3>
+        <img src="objectGeneration.png" width="90%" height="20%">
+        <pre>
+Heap
+├── Young Generation
+│   ├── Eden Space - вновь созданные объекты.
+│   └── Survivor Spaces (S0, S1) - те, кто “выжил” после первой сборки.
+└── Old Generation (Tenured) - объекты, пережившие несколько сборок, считаются “долгоживущими”.
+        </pre>
+
         <h4>Описание</h4>
         <ol>
             <li>Используется Java Runtime для выделения памяти и хранения объектов и JRE классов.</li>
@@ -131,30 +140,22 @@
 
     <section>
         <h2 id="garbageCollector">Garbage Collector</h2>
-        <p>Мусор - объект в Heap на которого никто не ссылается.</p>
+        <p>Мусор - object в Heap на которого никто не ссылается.</p>
 
-        <h3>Работа Garbage Collector</h3>
-        <ol>
-            <li>Mark(маркировка) - на первом этапе GC сканирует все объекты и помечает живые. Выполнение программы
-                приостанавливается. Поэтому этот шаг также называется "Stop the World".
+        <h4>Алгоритм работы GC: по фазам</h4>
+        <ul>
+            <li>Mark - сканирует все объекты и помечает живые. Выполнение программы приостанавливается("Stop the World").</li>
+            <li>Sweep - удаляются все немаркированные объекты.</li>
+            <li>Compact(в некоторых GC) - оставшиеся объекты подвигаются друг к другу для удобства. Чтобы избежать фрагментации.</li>
+        </ul>
+
+        <h4>Типы сборок:</h4>
+        <ul>
+            <li>Minor GC - запускается при заполнении Eden. Очищаются только молодые поколения. Быстро, но может происходить часто.</li>
+            <li>Major GC/Full GC - включает Old Gen и Metaspace. Дорогая операция, может “заморозить” все потоки
+                (stop-the-world pause).
             </li>
-            <li>Sweep(очистка) - очистка объектов без отметок.</li>
-            <li>Compact(уплотнение) - оставшиеся объекты подвигаются друг к другу для удобства.</li>
-        </ol>
-
-        <h3>Поколения объектов</h3>
-        <img src="objectGeneration.png" width="90%" height="20%">
-        <p>Для оптимизации сборки мусора память кучи дополнительно разделена на четыре области. В эти области, объекты
-            помещаются в зависимости от их возраста(как долго они используются в приложении).
-        </p>
-        <ol>
-            <h4>Young Generation</h4>
-            <li>EDEN - новые объекты.</li>
-            <li>S0, S1(Survivor space) - выжившие.</li>
-
-            <h4>Old generation</h4>
-            <li>OLD - для старых объектов.</li>
-        </ol>
+        </ul>
 
         <h4>Алгоритм сборки мусора, использующий поколения</h4>
         <ol>
@@ -174,6 +175,14 @@
                 с Minor GC, поскольку старое поколение в основном состоит из живых объектов.
             </li>
         </ol>
+
+        <h3>Как GC определяет, что объект мёртв?</h3>
+        <p>GC не использует reference count. Он строит граф достижимости:</p>
+        <ul>
+            <li>Начинает с “корней” (GC roots)</li>
+            <li>Если оттуда нельзя добраться до объекта — он считается мусором</li>
+            <li>Это позволяет избежать утечек при циклических ссылках</li>
+        </ul>
 
         <h4>Сборка мусора: флаги</h4>
         <ul>
@@ -197,27 +206,29 @@ XX:GCLogFileSize=100M
     <section>
         <h2 id="garbageCollectorTypes">Виды Garbage Collector(сборщик мусора)</h2>
         <ol>
-            <li>Serial Garbage Collector - S GC
-                <p>Один поток.</p>
+            <li>Serial GC - S GC
+                <p>Один поток. Просто и медленно.</p>
                 <p>-XX:+UseSerialGC</p>
             </li>
 
-            <li>Parallel Garbage Collector - P GC
+            <li>Parallel GC - P GC
                 <p>Несколько потоков.</p>
                 <p>Многопоточность ускоряет сборку мусора.</p>
+                <p>Высокая пропускная способность.</p>
                 <p>-XX:+UseParallelGC</p>
             </li>
 
             <li>CMS Garbage Collector - CMS GC</li>
 
-            <li>G1 Garbage Collector - G1 GC
+            <li>G1 GC - G1 GC
                 <p>Выполняет некоторую тяжелую работу параллельно с работой приложения.</p>
                 <p>-XX:+UseG1GC</p>
             </li>
 
-            <li>The Z Garbage Collector - ZGC
+            <li>The Z GC - ZGC
                 <p>Выполняет всю тяжелую работу параллельно с работой приложения.</p>
                 <p>В приоритете время отклика.</p>
+                <p>Работает с огромными кучами(до терабайта).</p>
                 <p>Низкая задержка.</p>
                 <p>-XX:+UseZGC</p>
             </li>
@@ -225,7 +236,17 @@ XX:GCLogFileSize=100M
     </section>
 
     <section>
-        <h2 id="garbageCollectorDefault">Garbage Collector по умолчанию</h2>
+        <h2>Советы по оптимизации</h2>
+        <ul>
+            <li>Избегайте долгоживущих ссылок (static, ThreadLocal) без необходимости.</li>
+            <li>Используйте WeakReference, если хотите избежать удержания объекта GC.</li>
+            <li>Кэшируйте объекты осознанно — утечка через Map может быть незаметной.</li>
+            <li>Задавайте лимиты памяти (-Xms512m -Xmx1024m).</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="garbageCollectorDefault">Garbage Collector by default.</h2>
         <ol>
             <li>Java 7 - Parallel GC</li>
             <li>Java 8 - Parallel GC</li>
