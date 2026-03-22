@@ -1,0 +1,52 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Synchronizers</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="Multithreading.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Synchronizers(Синхронайзеры)</h1>
+
+    <section>
+        <h2>Что это</h2>
+        <p>Synchronizers - объекты, которые координируют выполнение потоков, основываясь на
+            своем состоянии.
+        </p>
+    </section>
+
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#implementation">Реализации</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="implementation">Реализации</h2>
+        <ul>
+            <li>FutureTask - класс конструктор которого принимает Callable или Runnable. Можно передать в Thread или
+                ExecutorService. get() - блокирует візівающий поток, пока задача не выполниться/прервется.
+            </li>
+            <li>Semaphore - имеется заданное количество пермитов, которые выдает по запросу.</li>
+            <li>CountDownLatch - нужен для одновременного запуска нескольких(указанное число) потоков. Все потоки
+                попавшие в него засыпают, но при наборе указанного количества потоков одновременно все запускаются.
+                Но его нельзя повторно использовать.
+            </li>
+            <li>CyclicBarrier - добавленные потоки дойдя до указанного участка(барьере) будут ждать указанного
+                количество потоков, чтобы продолжить выполнение. Есть несколько потоков → каждый выполняет свою часть
+                работы → все доходят до одной точки → ждут, пока придут остальные → и только после этого все продолжают
+                дальше одновременно. Повторное использование.
+            </li>
+        </ul>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<div><a href="../Concurrency.html" class="backButton"></a></div>
+<div><a href="../Multithreading.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>Future</h1>
 
@@ -21,9 +21,9 @@
     <section>
         <h2>Методы:</h2>
         <ul>
-            <li>boolean isDone()</li>
+            <li>boolean isDone() - проверить, закончилась ли задача</li>
             <li>boolean isCancelled()</li>
-            <li>boolean cancel(boolean mayInterruptIfRunning)</li>
+            <li>boolean cancel(boolean mayInterruptIfRunning) - попытаться отменить выполнение</li>
             <li>V get() - блокирует поток до тех пор, пока результат не станет доступным.</li>
             <li>V get(long timeout, TimeUnit unit)</li>
         </ul>

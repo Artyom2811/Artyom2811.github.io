@@ -15,10 +15,10 @@
     <div class="todo">
         <h2>Проработать:</h2>
         <ol>
-            <li><a href="javarush.ru/groups/posts/2020-vvod-vihvod-v-java-klassih-fileinputstream-fileoutputstream-bufferedinputstream">Ввод-вывод в Java. Классы FileInputStream, FileOutputStream, BufferedInputStream</a></li>
+            <li><a href="javarush.com/groups/posts/2020-vvod-vihvod-v-java-klassih-fileinputstream-fileoutputstream-bufferedinputstream">Ввод-вывод в Java. Классы FileInputStream, FileOutputStream, BufferedInputStream</a></li>
             <li><a href="java-online.ru/java-outputstream.xhtml">Потоки вывода, OutputStream</a></li>
             <li><a href="developer.alexanderklimov.ru/android/java/file.php">Класс File</a></li>
-            <li><a href="javarush.ru/quests/lectures/questcore.level08.lecture04">InputStream/OutputStream</a></li>
+            <li><a href="javarush.com/quests/lectures/questcore.level08.lecture04">InputStream/OutputStream</a></li>
             <li><a href="habr.com/ru/post/235585/">Основные отличия Java IO и Java NIO</a></li>
             <li><a href="javarush.com/groups/posts/1919-schitihvanie-s-klaviaturih--riderih">Считывание с клавиатуры — «ридеры»</a></li>
             <li><a href="developer.alexanderklimov.ru/android/java/inputstream.php">Класс InputStream</a></li>
@@ -159,6 +159,32 @@
         <p>File(since v.7) - новый класс Files, который упрощает создание, удаление и копирование файлов. В отличие от
             класса File, Files создает или удаляет реальные файлы на диске, а не в памяти.
         </p>
+
+        <h3>Read file</h3>
+        <ul>
+            <li>String contents = Files.readString(path);</li>
+            <li>List&lt;String&gt; lines = Files.readAllLines(path);</li>
+            <li>Stream&lt;String&gt; lineStream = Files.lines(path);</li>
+        </ul>
+
+        <h3>Read из console</h3>
+        <pre>
+var in = new Scanner(path);
+in.useDelimiter("\\PL+");
+Stream&lt;String&gt; words = in.tokens();
+        </pre>
+
+        <h3>Save in file</h3>
+        <ul>
+            <li>Files.writeString(path, contents);</li>
+            <li>Files.write(path, lines); // lines is any Iterable<String></li>
+        </ul>
+
+        <h3>With binary data</h3>
+        <pre>
+byte[] bytes = Files.readAllBytes(path);
+Files.write(path, bytes);
+        </pre>
     </section>
 
     <section>

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<div><a href="../Concurrency.html" class="backButton"></a></div>
+<div><a href="../Multithreading.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>CompletableFuture</h1>
 
@@ -23,28 +23,116 @@
 
     <section>
         <h2>Что это</h2>
-        <p>CompletableFuture класс для асинхронного программирования. CompletableFuture это расширение Future.</p>
-        <p>Future был хорошим шагом на пути к асинхронному программированию, но ему не хватало некоторых важных и
-            полезных функций.
-        </p>
+        <ul>
+            <li>Класс для асинхронного программирования.</li>
+            <li>Это расширение Future</li>
+            <li>Комбинировать несколько задач</li>
+            <li>Обрабатывать ошибки без try-catch</li>
+            <li>Строить цепочки зависимостей без использования блокирующих операций</li>
+        </ul>
     </section>
 
     <section>
         <h2>Ограничения Future</h2>
         <ul>
             <li>Его нельзя завершить вручную.</li>
-            <li>Нельзя выполнять дальнейшие действия над результатом Future без блокирования. Также в Future нельзя
-                повесить функцию-колбэк, чтобы она срабатывала автоматически, как только станет доступен результат.
-            </li>
+            <li>Нельзя выполнять дальнейшие действия над результатом Future без блокирования.</li>
+            <il>Нельзя повесить функцию-колбэк, чтобы она срабатывала автоматически, как только станет доступен результат.</il>
             <li>Невозможно выполнить множество Future один за другим.</li>
             <li>Невозможно объединить несколько Future.</li>
             <li>Нет обработки исключений.</li>
+            <li>С Future ты просто ждешь результат. С CompletableFuture ты описываешь, что должно произойти, когда результат появится.</li>
         </ul>
     </section>
 
     <section>
         <h2>Методы</h2>
         <p>.allOf(...) - можно дождаться завершения сразу нескольких асинхронных задач, без ручной возни с join() по каждой.</p>
+    </section>
+
+    <section>
+        <h2>Пример создания асинхронной задачи</h2>
+        <pre>
+CompletableFuture&lt;String&gt; future = CompletableFuture.supplyAsync(() -> {
+    // Эмуляция долгой задачи
+    try {
+        Thread.sleep(1000);
+    } catch (InterruptedException e) {
+        throw new IllegalStateException(e);
+    }
+    return "Задача завершена!";
+});
+
+System.out.println(future.join()); // Ожидание завершения и получение результата
+        </pre>
+    </section>
+
+    <section>
+        <h2>Комбинирование нескольких задач</h2>
+        <p>Часто нужно дождаться завершения нескольких задач и собрать их результаты.</p>
+        <p>С помощью thenCombine() можно комбинировать результаты нескольких асинхронных вычислений</p>
+        <pre>
+CompletableFuture&lt;Integer&gt; future1 = CompletableFuture.supplyAsync(() -> 50);
+CompletableFuture&lt;Integer&gt; future2 = CompletableFuture.supplyAsync(() -> 20);
+
+CompletableFuture&lt;Integer&gt; result = future1.thenCombine(future2, Integer::sum);
+
+System.out.println(result.join()); // 70
+        </pre>
+    </section>
+
+    <section>
+        <h2>Обработка ошибок</h2>
+        <p>Через метод exceptionally()</p>
+        <pre>
+CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -> {
+    if (true) throw new RuntimeException("Ошибка!");
+    return 42;
+}).exceptionally(ex -> {
+    System.out.println("Произошла ошибка: " + ex.getMessage());
+    return 0; // Возвращаем дефолтное значение в случае ошибки
+});
+
+System.out.println(future.join()); // 0
+        </pre>
+    </section>
+
+    <section>
+        <h2>Композиция цепочек</h2>
+        <p>Строить целые цепочки задач с помощью методов thenApply(), thenAccept() и т.д.</p>
+        <p>Каждая следующая задача запускается после завершения предыдущей, что позволяет гибко управлять зависимостями.</p>
+        <pre>
+CompletableFuture.supplyAsync(() -> "Hello")
+    .thenApply(result -> result + " World")
+    .thenAccept(finalResult -> System.out.println(finalResult)); // Hello World
+        </pre>
+    </section>
+
+    <section>
+        <h2>Применение на практике</h2>
+        <p>Идеально подходит для задач, требующих асинхронности: запросы к API, обработка данных в фоне и т.д.</p>
+        <p>Пример с вызовом нескольких API параллельно:</p>
+        <pre>
+CompletableFuture&lt;String&gt;  api1 = CompletableFuture.supplyAsync(() -> {
+    // Эмуляция запроса к первому API
+    return "Response from API 1";
+});
+
+CompletableFuture&lt;String&gt;  api2 = CompletableFuture.supplyAsync(() -> {
+    // Эмуляция запроса ко второму API
+    return "Response from API 2";
+});
+
+CompletableFuture&lt;Void&gt;  allOf = CompletableFuture.allOf(api1, api2);
+
+allOf.thenRun(() -> {
+    try {
+        System.out.println(api1.get() + " & " + api2.get());
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+});
+        </pre>
     </section>
 
 </div>

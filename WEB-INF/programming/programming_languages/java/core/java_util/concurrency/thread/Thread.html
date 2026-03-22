@@ -7,22 +7,23 @@
     <script src="/script.js" defer></script>
 </head>
 <body>
-<div><a href="../Concurrency.html" class="backButton"></a></div>
+<div><a href="../Multithreading.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>Thread(Поток)</h1>
 
     <div class="todo">
         <h2>Проработать</h2>
         <ol>
-            <li><a href="javarush.com/groups/posts/2065-threadom-java-ne-isportishjh--chastjh-iv---callable-future-i-druzjhja">Thread'ом Java не испортишь: Часть IV — Callable, Future и друзья</a></li>
             <li><a href="youtube.com/watch?v=sjMe9aecW_A">ThreadLocal in Java</a></li>
-            <li><a href="youtube.com/watch?v=0Aiw97_Y300">Threads - Java для тестировщиков</a></li>
+            <li><a href="javarush.com/groups/posts/2065-threadom-java-ne-isportishjh--chastjh-iv---callable-future-i-druzjhja">Thread'ом Java не испортишь: Часть IV — Callable, Future и друзья</a></li>
         </ol>
     </div>
 
     <section>
         <h2>Что это</h2>
-        <p>Thread - класс для создания многопоточной работы в JAVA.</p>
+        <p>Thread - создание потоков вручную с использованием конструктора Thread позволяет получить максимальный
+            контроль, но снижает гибкость. Рекомендуется использовать ExecutorService для более управляемого подхода.
+        </p>
     </section>
 
     <section>
@@ -41,7 +42,10 @@
         <h2 id="static_methods">Thread static методы:</h2>
         <ul>
             <li>currentThread() - возвращает текущий поток. Можно получить id/имя потока, сделать join() и тд.</li>
-            <li>sleep() - останавливает поток на количество переданных миллисекунд. Поток переходит в состояние TIMED_WAITING.</li>
+            <li>sleep() - останавливает поток на количество переданных миллисекунд. Поток переходит в состояние
+                TIMED_WAITING. Не стоит использовать ее для ожидания условий, используйте wait() и notify() для работы
+                с мониторами.
+            </li>
             <li>interrupted() - прервать поток. Если он вызван во время сна, бросится исключение.</li>
         </ul>
     </section>
@@ -53,10 +57,11 @@
             <li>start() - запускает выполнение метода run, в отдельном потоке.</li>
             <li>long getId()</li>
             <li>String getName()</li>
-            <li>join() - приостанавливает поток до завершения другого(переданного) потока.</li>
+            <li>join() - блокирует вызывающий поток до завершения другого(переданного) потока.</li>
             <li>join(final long millis) - join() с указание времени, по завершению которого проток продолжиться без ожидания.</li>
-            <li>void setPriority(int priority) - задать приоритет потока.</li>
+            <li>void setPriority(int priority) - задать приоритет потока от 1 до 10.</li>
             <li>int getPriority() - получить приоритет потока.</li>
+            <li>isAlive() - true, если поток "жив", то есть после старта и до завершения.</li>
         </ul>
         <p>Exception который появился в отдельном потоке не вернется в main поток. По этому должен быть обработан
             в своём потоке.
@@ -106,10 +111,10 @@
     </section>
 
     <section>
-        <h2 id="state">Состояние потока</h2>
+        <h2 id="state">Стадии жизненного цикла потока(Состояние потока)</h2>
         <ol>
-            <li>new - поток создан, но не запущен.</li>
-            <li>runnable - поток выполняется JVM.</li>
+            <li>new - поток создан, но не запущен. new Thread().</li>
+            <li>runnable - поток выполняется JVM. start().</li>
             <li>blocked - потом заблокирован, и ждет освобождения монитора.</li>
             <li>waiting - в этом состоянии находится поток, который бесконечно ожидает выполнения другим потоком
                 определенного действия.
@@ -128,6 +133,14 @@
         <p>Может создавать только потоки-демоны. Даже если явно не указывать setDaemon().</p>
         <p>Завершают run() без выполнение finally{}.</p>
         <p>Завершаются немедленно(не ждет конца выполнения) - при завершении всех потоков не демонов.</p>
+    </section>
+
+    <section>
+        <ul>
+            <li>MIN_PRIORITY(константа 1)</li>
+            <li>NORM_PRIORITY(константа 5) (приоритет по умолчанию)</li>
+            <li>MAX_PRIORITY(константа 10)</li>
+        </ul>
     </section>
 
     <section>

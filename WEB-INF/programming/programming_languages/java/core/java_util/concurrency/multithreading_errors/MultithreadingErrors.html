@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<div><a href="../Concurrency.html" class="backButton"></a></div>
+<div><a href="../Multithreading.html" class="backButton"></a></div>
 <div class="bodyStyle">
     <h1>Multithreading Errors</h1>
 
@@ -21,13 +21,13 @@
 
     <section>
         <h2>Race condition(состояние гонки)</h2>
-        <p>Race condition - ошибка проектирования многопоточной системы или приложения, при которой работа системы или
-            приложения зависит от того, в каком порядке выполняются части кода. Гонки между потоками.
+        <p>Race condition - когда несколько потоков пытаются одновременно читать и записывать общие данные, что приводит
+			к непредсказуемым результатам.
         </p>
 
 		<h3>Виды Race Conditions</h3>
 
-		<h4>Write-Write (WW) Race Condition</h4>
+		<h4>Write-Write(WW) Race Condition</h4>
 		<p>Оба потока записывают в одну и ту же переменную. Проблема: Последнее записанное значение "побеждает",
 			и результат зависит от порядка выполнения.
 		</p>
@@ -38,18 +38,18 @@
 			<li>Разделение данных (каждый поток пишет в свой буфер, потом объединение).</li>
 		</ul>
 
-		<h4>Read-Write (RW) Race Condition</h4>
+		<h4>Read-Write(RW) Race Condition</h4>
 		<p>Один поток читает значение, другой записывает в ту же переменную. Проблема: Чтение может вернуть
 			непоследовательное или устаревшее значение.
 		</p>
 		<p>Решение:</p>
 		<ul>
-			<li>RWLock (read-write lock) → позволяет множественное чтение, но блокирует запись.</li>
+			<li>RWLock(read-write lock) → позволяет множественное чтение, но блокирует запись.</li>
 			<li>Volatile/atomic переменные (в Java/C++ гарантируют актуальное значение).</li>
 			<li>Copy-on-write структуры (чтение всегда консистентное).</li>
 		</ul>
 
-		<h4>Write-Read (WR) Race Condition</h4>
+		<h4>Write-Read(WR) Race Condition</h4>
 		<p>Один поток пишет, другой сразу читает, но чтение происходит до завершения записи. Проблема: Поток может
 			прочитать частично записанное значение.
 		</p>
@@ -60,7 +60,7 @@
 			<li>Мьютекс при доступе к переменной.</li>
 		</ul>
 
-		<h4>Check-Then-Act (Time-of-Check to Time-of-Use / TOCTOU)</h4>
+		<h4>Check-Then-Act(Time-of-Check to Time-of-Use/TOCTOU)</h4>
 		<p>Сначала проверяется условие, затем оно используется — но между этими действиями состояние может измениться.</p>
 		<p>Решение:</p>
 		<ul>
@@ -73,7 +73,7 @@
 		<p>Два потока одновременно пытаются инициализировать ресурс. Проблема: ресурс может быть инициализирован дважды.</p>
 		<p>Решение:</p>
 		<ul>
-			<li>Double-checked locking (с volatile/atomic).</li>
+			<li>Double-checked locking(с volatile/atomic).</li>
 			<li>Статическая инициализация (гарантирована компилятором/языком).</li>
 			<li>Мьютекс при создании объекта.</li>
 		</ul>
@@ -82,13 +82,13 @@
 		<p>Оба потока читают значение, обновляют его и записывают обратно, теряя изменения друг друга.</p>
 		<p>Решение:</p>
 		<ul>
-			<li>Атомарные операции (atomic.incrementAndGet() / InterlockedIncrement).</li>
+			<li>Атомарные операции (atomic.incrementAndGet()/InterlockedIncrement).</li>
 			<li>CAS (Compare-And-Swap) цикл для lock-free обновлений.</li>
 			<li>Мьютекс вокруг обновления.</li>
 		</ul>
 
 		<h4>ABA Problem</h4>
-		<p>Поток видит, что значение не изменилось (A → B → A), но на самом деле оно менялось. Особенно важно при
+		<p>Поток видит, что значение не изменилось(A → B → A), но на самом деле оно менялось. Особенно важно при
 			использовании CAS (Compare-And-Swap). Пример: стек без блокировок может быть нарушен из-за ABA, если другой
 			поток удаляет и добавляет элемент обратно.
 		</p>
@@ -183,7 +183,7 @@ class Dispatcher {
 	private final Set&lt;Plane&gt; planesPendingLanding;
 
 	public Dispatcher() {
-		planes = new HashSet&lt;Plane>();
+		planes = new HashSet&lt;Plane&gt;();
 		planesPendingLanding = new HashSet&lt;Plane&gt;();
 	}
 	public synchronized void requestLanding(Plane plane) {
@@ -230,6 +230,12 @@ public Image getMap() {
 }
     	</pre>
     </section>
+
+	<section>
+		<h2>Concurrency Bugs(Ошибки конкуренции)</h2>
+		<p>Ошибки, возникающие из-за неправильной обработки взаимодействия потоков, часто проявляющиеся как случайные проблемы.</p>
+		<p>Пример: Если два работника пишут в один и тот же файл без координации, их работа может перемешаться.</p>
+	</section>
 
 	<section>
 		<h2>Livelock</h2>

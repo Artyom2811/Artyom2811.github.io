@@ -13,25 +13,109 @@
 <div class="bodyStyle">
     <h1>Lock</h1>
 
-<!--    <section>-->
-<!--        <h2>Что это</h2>-->
-<!--    </section>-->
-
-<!--    <section>-->
-<!--        <h2>Основные разделы</h2>-->
-<!--        <ul>-->
-<!--            <li><a class="anchor" href="#howItWorks">Как она работает</a></li>-->
-<!--            <li><a class="anchor" href="#entities">Basic entities</a></li>-->
-<!--            <li><a href="architecture/Architecture.html">Ссылки на другие страницы</a></li>-->
-<!--        </ul>-->
-<!--    </section>-->
-
-<!--    <section>-->
-<!--        <h2 id="howItWorks">Как она работает(since v.15)</h2>-->
-<!--    </section>-->
+    <section>
+        <h2>Что это</h2>
+        <ul>
+            <li>В отличие от блока синхронизации, ReentrantLock дает расширенный интерфейс для получения информации
+                о состоянии блокировки.
+            </li>
+            <li>Кроме обычного ожидающего lock(), вариант tryLock() с параметром ожидает своей очереди только
+                заданное время, а без параметра — вообще не ждет, а только захватывает свободный лок.
+            </li>
+            <li>Cвойство fair - обеспечивает «справедливость» очереди: пришедший раньше поток захватывает объект раньше.
+                Блок synchronized не дает никаких гарантий порядка.
+            </li>
+        </ul>
+    </section>
 
     <section>
-        <h2>Отличие от Synchronized Block</h2>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#reentrant_lock">ReentrantLock</a></li>
+            <li><a class="anchor" href="#read_write_lock">ReadWriteLock</a></li>
+            <li><a class="anchor" href="#stamped_lock">StampedLock</a></li>
+            <li><a class="anchor" href="#diff_sync">Отличие от Synchronized Block</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="reentrant_lock">ReentrantLock</h2>
+        <p>Reentrant(повторный вход) - один и тот же поток может захватить lock несколько раз.</p>
+        <pre>
+lock.lock();
+lock.lock();
+//Но тогда нужно дважды unlock
+        </pre>
+
+        <p>Пример:</p>
+        <pre>
+Lock lock = new ReentrantLock();
+
+lock.lock();
+try {
+    counter++;
+} finally {
+    lock.unlock();
+}
+        </pre>
+
+        <ul>
+            <li>Можно попытаться получить lock (tryLock).</li>
+            <li>Можно задать timeout.</li>
+            <li>Можно прерывать ожидание lock.</li>
+            <li>Более гибкое управление.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="read_write_lock">ReadWriteLock</h2>
+        <p>Интерфейс, который позволяет разделять доступ к ресурсу между потоками для чтения и записи.</p>
+        <ul>
+            <li>read lock — несколько потоков могут читать одновременно, пока ни один поток не пишет.</li>
+            <li>write lock — только один поток может писать, блокирует всех остальных читателей и писателей.</li>
+        </ul>
+        <p>Много потоков могут читать одновременно</p>
+        <p>Писать может только один поток, и при этом чтение блокируется</p>
+
+        <h3>ReentrantReadWriteLock - самая популярная реализация.</h3>
+        <ul>
+            <li>Множественные читатели(несколько потоков с блокировкой на чтение, не мешаю друг другу). Во время
+                чтения изменять нельзя.
+            </li>
+            <li>Один писатель</li>
+            <li>Реентерабельность(поток может взять lock повторно)</li>
+        </ul>
+
+        <p>Когда использовать</p>
+        <ul>
+            <li>Твой код часто читает разделяемые данные.</li>
+            <li>Записи происходят редко.</li>
+            <li>Ты хочешь выжать максимум параллелизма: разрешить нескольким читателям работать одновременно,
+                но гарантировать, что запись идет строго эксклюзивно.
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="stamped_lock">StampedLock</h2>
+        <p>Главная идея - optimistic read.</p>
+        <p>В отличии от ReadWriteLock имеет дополнительный "long stamp = lock.tryOptimisticRead();"</p>
+        <p>При optimistic read lock вообще не ставится.</p>
+        <p>Нет reentrancy</p>
+        <pre>
+StampedLock lock = new StampedLock();
+
+long stamp = lock.readLock();
+try {
+    readData();
+} finally {
+    lock.unlockRead(stamp);
+}
+        </pre>
+    </section>
+
+    <section>
+        <h2 id="diff_sync">Отличие от Synchronized Block</h2>
         <ul>
             <li>Synchronized Block полностью содержится внутри метода. Lock использует операции lock() и
                 unlock() API блокировки в отдельных методах.

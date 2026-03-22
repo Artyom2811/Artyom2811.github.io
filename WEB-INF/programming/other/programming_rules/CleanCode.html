@@ -47,10 +47,11 @@
     <section>
         <h2 id="general_rules">General rules</h2>
         <ul>
-            <li>Follow standard conventions.</li>
-            <li>Keep it simple stupid. Simpler is always better. Reduce complexity as much as possible.</li>
-            <li>Boy scout rule. Leave the campground cleaner than you found it.</li>
-            <li>Always find root cause. Always look for the root cause of a problem.</li>
+            <li>Придерживайтесь конвенциям.</li>
+            <li>KISS(Keep it simple stupid).</li>
+            <li>DRY(Don’t Repeat Yourself).</li>
+            <li>Правило бойскаута. Оставляйте код чище, чем он был до вас.</li>
+            <li>Всегда ищите первопричину проблемы.</li>
         </ul>
     </section>
 
@@ -71,9 +72,13 @@
         <ul>
             <li>Be consistent. If you do something a certain way, do all similar things in the same way.</li>
             <li>Use explanatory variables.</li>
-            <li>Encapsulate boundary conditions. Boundary conditions are hard to keep track of. Put the processing for them in one place.</li>
+            <li>Encapsulate boundary conditions. Boundary conditions are hard to keep track of. Put the processing
+                for them in one place.
+            </li>
             <li>Prefer dedicated value objects to primitive type.</li>
-            <li>Avoid logical dependency. Don't write methods which works correctly depending on something else in the same class.</li>
+            <li>Avoid logical dependency. Don't write methods which works correctly depending on something else in
+                the same class.
+            </li>
             <li>Avoid negative conditionals.</li>
         </ul>
     </section>
@@ -81,22 +86,26 @@
     <section>
         <h2 id="names_rules">Names rules</h2>
         <ul>
-            <li>Choose descriptive and unambiguous names.</li>
-            <li>Make meaningful distinction.</li>
-            <li>Use pronounceable names.</li>
-            <li>Use searchable names.</li>
-            <li>Replace magic numbers with named constants.</li>
-            <li>Avoid encodings. Don't append prefixes or type information.</li>
+            <li>Используй осмысленные, говорящие имена.</li>
+            <li>Используйте произносимые имена.</li>
+            <li>Используйте имена, доступные для поиска.</li>
+            <li>Избегай магических чисел и строк.</li>
         </ul>
     </section>
 
     <section>
         <h2 id="functions_rules">Functions rules</h2>
         <ul>
-            <li>Small.</li>
+            <li>Предпочитай ранние return вместо глубокой вложенности.</li>
+            <pre>
+if (user == null) return;
+if (!user.isActive()) return;
+process(user);
+            </pre>
+            <li>Делай функции маленькими и сфокусированными.</li>
             <li>Do one thing.</li>
             <li>Use descriptive names.</li>
-            <li>Prefer fewer arguments.</li>
+            <li>Избегай длинных списков параметров. Лучше объекты содержащие эти параметры.</li>
             <li>Have no side effects.</li>
             <li>Don't use flag arguments. Split method into several independent methods that can be called from the
                 client without the flag.
@@ -107,14 +116,16 @@
     <section>
         <h2 id="comments_rules">Comments rules</h2>
         <ul>
+            <li>Комментарии должны ответать на вопрос Почему?, а не Что?</li>
             <li>Always try to explain yourself in code.</li>
             <li>Don't be redundant.</li>
-            <li>Don't add obvious noise.</li>
+            <li>Комментируй только там, где это действительно необходимо.</li>
             <li>Don't use closing brace comments.</li>
             <li>Don't comment out code. Just remove.</li>
             <li>Use as explanation of intent.</li>
             <li>Use as clarification of code.</li>
             <li>Use as warning of consequences.</li>
+            <li>Пиши хорошие сообщения к коммитам.</li>
         </ul>
     </section>
 
@@ -137,7 +148,7 @@
     <section>
         <h2 id="objects_and_data_structures">Objects and data structures</h2>
         <ul>
-            <li>Hide internal structure.</li>
+            <li>Прячь внутренние структуры.</li>
             <li>Prefer data structures.</li>
             <li>Avoid hybrids structures (half object and half data).</li>
             <li>Should be small.</li>

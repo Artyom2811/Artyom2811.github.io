@@ -17,65 +17,129 @@
         <ol>
             <li><a href="oreilly.com/videos/amazon-web-services/9780137928521/">Amazon Web Services (AWS), 3rd Edition</a></li>
             <li><a href="habr.com/ru/companies/slurm/articles/714000/">Ansible для начинающих</a></li>
-            <li><a href="youtube.com/watch?v=JIbIYCM48to">Top 50+ AWS Services Explained in 10 Minutes</a></li>
-            <li>Amazon EC2</li>
         </ol>
     </div>
 
-    <h2>Что это</h2>
-    <p>AWS - предоставляет услуги как по инфраструктурной модели (виртуальные серверы, ресурсы хранения).
-    В данный момент есть более 100 сервисов.
-    </p>
+    <section>
+        <h2>Что это</h2>
+        <p>AWS - предоставляет услуги как по инфраструктурной модели (виртуальные серверы, ресурсы хранения).
+            В данный момент есть более 100 сервисов.
+        </p>
+    </section>
 
-    <h2>Основные разделы</h2>
-    <ul>
-        <li><a class="anchor" href="#mostPopular">Самые популярные сервисы Amazon</a></li>
-        <li><a class="anchor" href="#basicEntities">Основные сущности</a></li>
-        <li><a class="anchor" href="#serverLocations">Расположение серверов</a></li>
-    </ul>
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#mostPopular">Самые популярные сервисы Amazon</a></li>
+            <li><a class="anchor" href="#basicEntities">Основные сущности</a></li>
+            <li><a class="anchor" href="#serverLocations">Расположение серверов</a></li>
+        </ul>
+    </section>
 
-    <h2 id="mostPopular">Самые популярные сервисы Amazon</h2>
-    <ul>
-        <li>EC2(Elastic Compute Cloud) - Virtual Servers</li>
-        <li>Elastic Load Balancing - для распределения нагрузки между сервисами.</li>
-        <li>Elastic Beanstalk - для автоматизации deploy. DevOps Automation</li>
-        <li>CloudFront - отдельные от основных(Availability Zone) сервера, необходимые для кеширования, которое
-             ускоряет получения информации.</li>
-        <li>CloudWatch - для мониторинга серверов.</li>
-        <li>VPC(Virtual Private Cloud) - Virtual Network</li>
-        <li><a href="s3/S3.html">Amazon S3</a> - simple storage service. Для обмена информацией. Share service. Можно превратить в статический
-            сайт. Работает по схеме Object based storage. Ограничение на 1 file 5 terabyte.
-        </li>
-        <li>S3 Bucket - Unlimited Web Space</li>
-        <li>S3 Web Hosting - Web Sites Hosting</li>
-        <li>Glacier - архивирование данных. Очень дешевый, но не быстрый.</li>
-        <li>EFS(elastic file system) - объединения нескольких серверов к одному жесткому диску.</li>
-        <li>CloudFormation - Infrastructure as Code. Используется для описания инструкций работы всех облачных
-            сервисов.
-        </li>
-        <li>OpsWorks - для автоматизации инфраструктуры. Загружает recipes для Chef(система управления
-            конфигурациями).
-        </li>
-        <li>RDS(Relational Database Service) - база данных SQL.</li>
-        <li>DynamoDB - база данных NoSQL.</li>
-        <li>Redshift - анализ больших данных.</li>
-        <li>EMR(Elastic MapReduce) - bigdata.</li>
-        <li>IAM(Identity and Access Management) - пользователи и доступы</li>
-        <li>Route 53 - Domain Registration, DNS. Отдельные сервера. Работает через порт 53.</li>
-        <li>SES(Simple Email Service) - сервер email.</li>
-        <li>SNS(Simple Notification Service) - посылаем email, sms и тд.</li>
-        <li>SQS(Simple Queue Service).</li>
-    </ul>
+    <section>
+        <h2 id="mostPopular">Самые популярные сервисы Amazon</h2>
+        <h3>Compute(вычисления)</h3>
+        <p>Сервисы для запуска кода и приложений.</p>
+        <ul>
+            <li>EC2(Elastic Compute Cloud) - Virtual Servers. Подходит для долговременных приложений с сохранением
+                состояния. Крупный backend электронной коммерции, требующий постоянного подключения.
+            </li>
+            <li>Elastic Load Balancing - для распределения нагрузки между сервисами.</li>
+            <li>Lambda - позволяет выполнять код без управления серверами. Подходит для краткосрочных задач, управляемых
+                событиями, таких как обработка файлов, потоковая обработка и отправка уведомлений.
+            </li>
+            <li>Elastic Beanstalk - для автоматизации deploy. DevOps Automation.</li>
+            <li>Fargate - запуск контейнеров без серверов.</li>
+        </ul>
 
-    <h2 id="basicEntities">Основные сущности</h2>
-    <ol>
-        <li>Instance - сервер Amazon</li>
-    </ol>
+        <h3>Storage(хранение данных)</h3>
+        <ul>
+            <li><a href="s3/S3.html">Amazon S3(simple storage service)</a> - хранение объектов. Можно превратить
+                в статический сайт. Работает по схеме Object based storage. Ограничение на 1 file 5 terabyte.
+            </li>
+            <li>EBS - блочное хранилище для EC2.</li>
+            <li>EFS(elastic file system) - файловая система, объединения нескольких серверов к одному жесткому диску.</li>
+        </ul>
 
-    <h2 id="serverLocations">Расположение серверов</h2>
-    <p>Region - географическое место расположение.</p>
-    <p>Availability Zone - изолированный дата центр.</p>
-    <p>Пример: region(us-west-1), availability zone(us-west-1a, us-west-1b, us-west-2c)</p>
+        <h3>Databases(базы данных)</h3>
+        <ul>
+            <li>RDS(Relational Database Service) - база данных SQL.</li>
+            <li>DynamoDB - база данных NoSQL.</li>
+            <li>Aurora - высокопроизводительная SQL-БД.</li>
+        </ul>
+
+        <h3>Networking & Content Delivery</h3>
+        <ul>
+            <li>VPC(Virtual Private Cloud) - Virtual Network</li>
+            <li>Route 53 - DNS сервис. Отдельные сервера. Работает через порт 53.</li>
+            <li>CloudFront - отдельные от основных(Availability Zone) сервера, необходимые для кеширования, которое
+                ускоряет получения информации.
+            </li>
+        </ul>
+
+        <h3>Security & Identity</h3>
+        <ul>
+            <li>IAM(Identity and Access Management) - обеспечения безопасности, пользователи и доступы.</li>
+            <li>Shield - защита от DDoS.</li>
+            <li>Key Management Service - управление ключами</li>
+        </ul>
+
+        <h3>Developer Tools</h3>
+        <ul>
+            <li>CodeCommit</li>
+            <li>CodeBuild</li>
+            <li>CodePipeline</li>
+        </ul>
+
+        <h3>Management & Monitoring</h3>
+        <ul>
+            <li>CloudWatch - мониторинг</li>
+            <li>CloudFormation - IaC. Для описания инструкций работы всех облачных сервисов.</li>
+            <li>Systems Manager - управление инфраструктурой.</li>
+        </ul>
+
+        <h3>Analytics & Big Data</h3>
+        <ul>
+            <li>Redshift - анализ больших данных.</li>
+            <li>Athena</li>
+            <li>Glue</li>
+            <li>EMR(Elastic MapReduce) - bigdata.</li>
+        </ul>
+
+        <h3>Machine Learning/AI</h3>
+        <ul>
+            <li>SageMaker - обучение и деплой ML моделей</li>
+            <li>Rekognition</li>
+            <li>Comprehend</li>
+        </ul>
+
+        <h3>Application Integration</h3>
+        <ul>
+            <li>SQS - очередь сообщений.</li>
+            <li>SNS - pub/sub уведомления.</li>
+            <li>EventBridge - событийная интеграция.</li>
+        </ul>
+
+        <ul>
+            <li>Glacier - архивирование данных. Очень дешевый, но не быстрый.</li>
+            <li>SES(Simple Email Service) - сервер email.</li>
+            <li>SNS(Simple Notification Service) - посылаем email, sms и тд.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="basicEntities">Основные сущности</h2>
+        <ol>
+            <li>Instance - сервер Amazon</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2 id="serverLocations">Расположение серверов</h2>
+        <p>Region - географическое место расположение.</p>
+        <p>Availability Zone - изолированный дата центр.</p>
+        <p>Пример: region(us-west-1), availability zone(us-west-1a, us-west-1b, us-west-2c)</p>
+    </section>
 
 </div>
 </body>

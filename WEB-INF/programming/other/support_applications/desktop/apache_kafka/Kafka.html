@@ -16,16 +16,15 @@
     <div class="todo">
         <h2>Проработать:</h2>
         <ol>
-            <li><a href="habr.com/ru/articles/354486/">Apache Kafka – мой конспект</a></li>
-            <li><a href="youtube.com/watch?v=Ch5VhJzaoaI">Apache Kafka in 6 minutes</a></li>
             <li><a href="youtube.com/watch?v=7gMm0iQNZGA">Apache Kafka vs message queue explained</a></li>
-            <li><a href="tproger.ru/articles/pochemu-my-ispolzuem-kafka-vmesto-rabbitmq-sravnenie-i-preimushhestva">Почему мы используем Kafka вместо RabbitMQ: сравнение и преимущества</a></li>
             <li><a href="youtube.com/watch?v=ghKnX5fuW5s">Григорий Кошелев — Kafka: от теории к практике</a></li>
             <li><a href="youtube.com/watch?v=c_mkpVg5rlg">Немного о: RabbitMQ, Kafka, Redis, Memcached, NuxtJS, MongoDB, PostgreSQL</a></li>
             <li><a href="youtube.com/watch?v=eHxOX3YYxGc">Apache Kafka: устройство, плюсы, минусы и границы применимости</a></li>
             <li><a href="youtube.com/watch?v=UNUz1-msbOM">System Design: Why is Kafka fast?</a></li>
             <li><a href="youtube.com/watch?v=lxTDkejd6xo">Общение микросервисов между собой | Java | Kafka на практике</a></li>
             <li><a href="youtube.com/watch?v=-AZOi3kP9Js">Про Kafka (основы)</a></li>
+            <li><a href="habr.com/ru/articles/354486/">Apache Kafka – мой конспект</a></li>
+            <li><a href="tproger.ru/articles/pochemu-my-ispolzuem-kafka-vmesto-rabbitmq-sravnenie-i-preimushhestva">Почему мы используем Kafka вместо RabbitMQ: сравнение и преимущества</a></li>
             <li><a href="habr.com/ru/articles/440400/">Apache Kafka + Spring Boot: Hello, microservices</a></li>
             <li><a href="habr.com/ru/articles/968844/">Kafka без боли: моя шпаргалка для собесов в Java. Часть 5</a></li>
             <li><a href="habr.com/ru/companies/ydb/articles/972180/">Секреты Apache Kafka API: обработка сообщений без потерь и дублей</a></li>
@@ -39,8 +38,8 @@
     <section>
         <h2>Основные разделы</h2>
         <ul>
-            <li><a class="anchor" href="#whatIs">Что это</a></li>
-            <li><a class="anchor" href="#forWhat">Для чего</a></li>
+            <li><a class="anchor" href="#what_is">Что это</a></li>
+            <li><a class="anchor" href="#for_what">Для чего</a></li>
             <li><a class="anchor" href="#advantages">Преимущества</a></li>
             <li><a class="anchor" href="#setting">Настройки</a></li>
             <li><a class="anchor" href="#common_kafka_entities">Common kafka entities</a></li>
@@ -50,7 +49,7 @@
     </section>
 
     <section>
-        <h2 id="whatIs">Что это</h2>
+        <h2 id="what_is">Что это</h2>
         <p>Apache Kafka - это высокопроизводительная система обмена сообщениями для публикации-подписки, реализованная как
             распределенная, разделенная, реплицированная служба журнала фиксации. ZooKeeper - для работы с Kafka необходим
             координатор. Поэтому вначале стартуем ZooKeeper, затем сервер Kafka.
@@ -58,7 +57,7 @@
     </section>
 
     <section>
-        <h2 id="forWhat">Для чего</h2>
+        <h2 id="for_what">Для чего</h2>
         <ul>
             <li>Проверка сообщения на ошибки.</li>
             <li>Маршрутизация конкретному приемнику(ам).</li>
@@ -110,31 +109,41 @@
         </ul>
     </section>
 
+    <img src="kafka.png" width="100%" height="20%">
+
     <section>
         <h2 id="common_kafka_entities">Common kafka entities</h2>
         <ul>
             <li>Kafka cluster - логическое объединение Kafka Brokers под управлением ZooKeeper.</li>
-            <li>Zookeeper - менеджер для управления Kafka cluster. Хранения информации о Brokers, Topics, Users etc.</li>
+            <li>Zookeeper - менеджер для управления Kafka cluster. Управляет информацией о Brokers, Topics, Users etc.</li>
             <li>Kraft - новая замена Zookeeper.</li>
             <li>Producer - продюсер загружающий данные в kafka топик.</li>
             <li>Consumer - потребитель забирающий данные из kafka топика.</li>
             <li>Broker - сервер kafka который сохраняет данные и обрабатывает записи. Одна единица Kafka.</li>
-            <li>Topic - раздел в Broker. Аналог очереди.</li>
+            <li>Topic - раздел в Broker с конкретным типом данных. Аналог таблицы в SQL.</li>
             <li>Partition - раздел в Topic для параллельной обработки. Нет ограничение на количество, но он требует
                 ресурсы и рекомендуется не больше 5000. Желательно иметь столько же consumers. Один Partition может
-                обслуживать только одного Consumer.
+                обслуживать только одного Consumer. Выбор partition происходит по Partition Key.
             </li>
             <li>Key - опциональная часть данных задающаяся producer, по которому определяется Partition(если задана
                 функция партиционирования). Можно использовать его hash для выбора Partition или в случае ошибки по
                 ключу определить в каком offset ошибка.
             </li>
+            <li>offset - уникальный порядковый номер(long) в partition(не глобальный) для каждого сообщения.
+                Присваивается kafka автоматически. Consumer используют их для "offset pointer".
+            </li>
             <li>Value - значение, которое храниться по ключу.</li>
-            <li>Consumer group - группы для нескольких consumers(для разделение нагрузки), которые будут отслеживаться
-                kafka как один consumer.
+            <li>offset pointer - это указатель (позиция), который показывает какое сообщение в топике уже прочитал consumer.
+                Может храниться в: 1) В самой Kafka (обычный вариант) в специальном топике- __consumer_offsets. 2)
+                Внешнее хранилище:database, Redis, Zookeeper(старые версии).
             </li>
-            <li>offset - уникальный порядковый номер(long) в partition для каждого сообщения. Присваивается kafka
-                автоматически. Для consumer это “прогресс чтения”.
+            <li>Consumer group - один offset pointer для группы consumers.
+                <ul>
+                    <li>Для нескольких consumers(для разделение нагрузки).</li>
+                    <li>Позволяет нескольким сервисам читать один и тот же топик.</li>
+                </ul>
             </li>
+            <li>Replication factor - разделение partition на реплики.</li>
         </ul>
     </section>
 
@@ -166,6 +175,75 @@
         <h2>Ключ</h2>
         <p>Если 2 сообщения с одним ключем - будет добавлено 2 записи в один partition.</p>
         <p>Kafka использует hash(key) % number_of_partitions для определения Partition.</p>
+    </section>
+
+    <section>
+        <h2>Kafka транзакции в Spring Boot</h2>
+        <h3>Что гарантируют Kafka транзакции:</h3>
+        <ul>
+            <li>Атомарную публикацию в несколько топиков (все сообщения видны или ни одно).</li>
+            <li>Связывание read → process → write в одну операцию для консьюмеров-продюсеров.</li>
+        </ul>
+
+        <h3>Что НЕ гарантируют:</h3>
+        <ul>
+            <li>Откат изменений во внешних системах (БД, API, email).</li>
+            <li>Защиту от дубликатов, если downstream-сервисы не настроены правильно.</li>
+        </ul>
+
+        <h3>Конфигурация продюсера</h3>
+        <pre>
+propertiesspring.kafka.producer.properties.enable.idempotence=true
+spring.kafka.producer.properties.transactional.id=order-service-${random.value}-
+        </pre>
+
+        <h3>Конфигурация консьюмера</h3>
+        <pre>propertiesspring.kafka.consumer.isolation-level=read_committed</pre>
+
+        <h3>Добавляем TransactionManager</h3>.
+        <pre>
+@Bean
+public KafkaTransactionManager&lt;String, Object&gt; kafkaTransactionManager(
+        ProducerFactory&lt;String, Object&gt; producerFactory
+) {
+    return new KafkaTransactionManager&lt;&gt;(producerFactory);
+}
+        </pre>
+
+        <h3>Используем @Transactional</h3>
+        <pre>
+@Transactional
+public void publishOrderResult(OrderRequest request) {
+    String orderId = UUID.randomUUID().toString();
+    OrderPlacedEvent event = new OrderPlacedEvent(
+        orderId,
+        request.email(),
+        request.productName()
+    );
+
+    kafkaTemplate.send("order-placed", orderId, event);
+    kafkaTemplate.send("order-audit", orderId, event);
+    // Обе отправки атомарны — либо обе успешны, либо обе откатятся
+}
+        </pre>
+
+        <p>Важно: если в приложении есть и Kafka и JPA TransactionManager:</p>
+        <pre>
+Вариант 1 — пометить как @Primary:
+
+@Primary
+@Bean
+public KafkaTransactionManager&lt;String, Object&gt; kafkaTransactionManager(...) {...}
+        </pre>
+
+        <pre>
+Вариант 2 — явно указать:
+
+@Transactional("kafkaTransactionManager")
+public void publishOrderResult(...) {...}
+        </pre>
+        <p>В большинстве систем дедупликация и идемпотентность — более простое и эффективное решение.</p>
+
     </section>
 </div>
 </body>
