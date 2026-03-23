@@ -13,7 +13,7 @@ body {
     font-size: 1em;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 90%;
 }
 
 pre {
@@ -28,10 +28,10 @@ pre {
 
 .backButton {
     float: left;
-    width: 10%;
+    width: 3%;
     height: 100vh;
-    margin-right: 50px;
-    text-align:  center;
+    /* margin-right: 50px; */
+    text-align: center;
 
    /* display: inline-block; /* Строчно-блочный элемент */
     padding: 5px 20px; /* Добавляем поля */
@@ -54,7 +54,8 @@ pre {
 
 .bodyStyle {
     float: left;
-    width: 70%; /* Ширина слоя */
+    margin-left: 3%;
+    width: 89%; /* Ширина слоя */
 }
 
 .wikitable {
@@ -130,7 +131,6 @@ h1 {
     padding-left: 30px;
     border: solid;
 }
-
 
 h2 {
     background-color: #c5d9ed;
