@@ -17,33 +17,41 @@
         <ul>
             <li><a class="anchor" href="#hashMap">HashMap</a></li>
             <li><a class="anchor" href="#treeMap">TreeMap</a></li>
-            <li>LinkedHashMap - это упорядоченная реализация хэш-таблицы. В порядке добавления.</li>
-            <li>HashTable - HashMap с синхронизацией.</li>
+            <li><a class="anchor" href="#linked_hash_map">LinkedHashMap</a></li>
+            <li>HashTable(deprecated) - HashMap с синхронизацией.</li>
+            <li><a class="anchor" href="#weak_hash_map">WeakHashMap</a></li>
+            <li><a class="anchor" href="#identity_hash_map">IdentityHashMap</a></li>
+            <li><a class="anchor" href="#enum_map">EnumMap</a></li>
             <li><a class="anchor" href="#concurrent_hash_map">ConcurrentHashMap</a></li>
-            <li>ConcurrentSkipListMap - потокобезопасная и отсортированная версия TreeMap.</li>
+            <li><a class="anchor" href="#concurrent_skip_list_map">ConcurrentSkipListMap</a></li>
         </ul>
     </section>
 
     <section>
         <h2>Что это</h2>
-        <p>Map(карта, словарь) - коллекция хранит не множество элементов, а множество «пар элементов».</p>
+        <p>Map(key, value) - коллекция хранит не множество элементов, а множество «пар элементов».</p>
+
+        <h2>Условия для key</h2>
+        <ol>
+            <li>Immutable</li>
+            <li>Переопределить equals и hashcode</li>
+        </ol>
     </section>
 
     <section>
         <h2 id="hashMap">HashMap</h2>
         <p>Bucket(array) -> Односвязный list Node&lt;K, V&gt;(ключ - значение) или TreeNode</p>
         <p>Node содержит: hashCode, key, value, next.</p>
-        <p>Ключ действует так же как и в HashSet.</p>
         <p>Позволяет добавить (null, null), null будет первым ключом в коллекции.</p>
         <p>HashMap bucket будет трансформирован из односвязного списка(Node) в дерево(TreeNode) при размере > 8.
             И произойдёт обратное при > 6.
         </p>
         <p>default initial capacity = 16 - размер массива bucket.</p>
         <p>load_factor = 0.75 - процент на который должен быть заполнен capacity(non-empty buckets) для умножения
-            capacity на 2.
+            capacity на 2. Если установить 1 или больше - Map не будет расширяться.
         </p>
-        <p>Если во время обхода карта меняется (кроме iterator.remove()), бросается ConcurrentModificationException.
-            Под капотом это работает через счётчик модификаций (modCount), который проверяется в каждом next().
+        <p>Если во время обхода карта меняется(кроме iterator.remove()), бросается ConcurrentModificationException.
+            Под капотом это работает через счётчик модификаций(modCount), который проверяется в каждом next().
         </p>
 
         <h2>Сложность алгоритмов</h2>
@@ -64,59 +72,6 @@
             <li>boolean containsKey(Object key) – возвращает значение true, если в карте имеется указанный ключ.</li>
             <li>boolean containsValue(Object value) – Возвращает значение true, если в карте имеется указанное значение.</li>
         </ol>
-    </section>
-
-    <section>
-        <h2>WeakHashMap</h2>
-        <p>Самоочищающийся кэш.</p>
-        <p>HashMap часто применяют для кэширования, но он держит сильные ссылки на ключи, мешая GC освободить память
-            даже тогда, когда объект уже больше нигде не используется. Это может привести к утечкам памяти.
-        </p>
-        <p>WeakHashMap хранит ключи через слабые ссылки. Если на объект-ключ больше нет сильных ссылок, GC может
-            удалить его, и запись в мапе исчезнет автоматически.
-        </p>
-        <p>Используется для временных кэшей, хранения слушателей, метаданных, привязанных к жизненному циклу объекта.</p>
-    </section>
-
-    <section>
-        <h2>IdentityHashMap</h2>
-        <p>Когда объекты "равны", но не одинаковы.</p>
-
-        <p>HashMap проверяет ключи через метод .equals(). Если у вас два объекта с одинаковыми данными, но это разные
-        экземпляры (например, два Person с одинаковым именем, но разными записями), то HashMap перезапишет значение.
-        </p>
-
-        <p>IdentityHashMap сравнивает ключи только по ссылке (==), игнорируя .equals(). Разные объекты всегда будут
-            разными ключами, даже если у них одинаковые данные.
-        </p>
-
-        <p>Используется во фреймворках, парсерах и графах зависимостей, где важна физическая идентичность объекта.</p>
-    </section>
-
-    <section>
-        <h2>EnumMap&lt;Status, String&gt;</h2>
-        <p>Оптимизированный вариант для enum-ключей.</p>
-        <p>Эффективная key-value структура, использующая enum в качестве ключа.</p>
-        <p>Быстрее и легче, чем HashMap<Enum, X> (например, для меток или конфигураций по статусу).</p>
-
-        <p>Использовать enum как ключ в HashMap неэффективно. Нужно считать хэши, обрабатывать коллизии, хотя набор
-            ключей фиксирован на этапе компиляции.
-        </p>
-
-        <p>EnumMap специально создан для enum-ключей. Внутри он работает через массив, используя ordinal() значения
-            enum в качестве индекса. Это даёт настоящие O(1)-операции и экономит память.
-        </p>
-        <p>Используется всегда, если ключи берутся из одного enum.</p>
-    </section>
-
-    <section>
-        <h2>Быстрый гайд по выбору</h2>
-        <ul>
-            <li>Нужно автоочищение кэша → WeakHashMap</li>
-            <li>Нужна идентичность объектов (==) → IdentityHashMap</li>
-            <li>Ключи из enum → EnumMap</li>
-            <li>Всё остальное → HashMap по умолчанию</li>
-        </ul>
     </section>
 
     <section>
@@ -166,11 +121,54 @@
     </section>
 
     <section>
-        <h2>Условия для key</h2>
-        <ol>
-            <li>Immutable</li>
-            <li>Переопределить equals и hashcode</li>
-        </ol>
+        <h2 id="linked_hash_map">LinkedHashMap</h2>
+        <p>LinkedHashMap - это упорядоченная реализация хэш-таблицы. В порядке добавления.</p>
+        <p>boolean accessOrder(by default false) - параметр. false - порядок согласно вставке; true - порядок согласно
+            частоте доступа(от меньшего к большему). Влияют только на get() и put(). Подходит для LRU-cache.
+        </p>
+        <p>removeEldestEntry(Entry&lt;K, V&gt; eldest) - удаление старых данных.</p>
+    </section>
+
+    <section>
+        <h2 id="weak_hash_map">WeakHashMap</h2>
+        <p>HashMap часто применяют для кэширования, но он держит сильные ссылки на ключи, мешая GC освободить память
+            даже тогда, когда объект уже больше нигде не используется. Это может привести к утечкам памяти.
+        </p>
+        <p>WeakHashMap хранит ключи через weak reference. Если на объект key больше нет сильных ссылок, GC может
+            удалить его, и запись в map исчезнет автоматически.
+        </p>
+        <p>Используется для временных кэшей, хранения слушателей, метаданных, привязанных к жизненному циклу объекта.</p>
+    </section>
+
+    <section>
+        <h2 id="identity_hash_map">IdentityHashMap</h2>
+        <p>Когда объекты "равны", но не одинаковы.</p>
+
+        <p>HashMap проверяет ключи через метод .equals(). Если у вас два объекта с одинаковыми данными, но это разные
+        экземпляры (например, два Person с одинаковым именем, но разными записями), то HashMap перезапишет значение.
+        </p>
+
+        <p>IdentityHashMap сравнивает ключи только по ссылке (==), игнорируя .equals(). Разные объекты всегда будут
+            разными ключами, даже если у них одинаковые данные.
+        </p>
+
+        <p>Используется во фреймворках, парсерах и графах зависимостей, где важна физическая идентичность объекта.</p>
+    </section>
+
+    <section>
+        <h2 id="enum_map">EnumMap&lt;Status, String&gt;</h2>
+        <p>Оптимизированный вариант для enum-ключей.</p>
+        <p>Эффективная key-value структура, использующая enum в качестве ключа.</p>
+        <p>Быстрее и легче, чем HashMap&lt;Enum, X&gt; (например, для меток или конфигураций по статусу).</p>
+
+        <p>Использовать enum как ключ в HashMap неэффективно. Нужно считать хэши, обрабатывать коллизии, хотя набор
+            ключей фиксирован на этапе компиляции.
+        </p>
+
+        <p>EnumMap специально создан для enum-ключей. Внутри он работает через массив, используя ordinal() значения
+            enum в качестве индекса. Это даёт настоящие O(1)-операции и экономит память.
+        </p>
+        <p>Используется всегда, если ключи берутся из одного enum.</p>
     </section>
 
     <section>
@@ -212,32 +210,7 @@
     </section>
 
     <section>
-        <h2>Пример изменения типа в Map</h2>
-        <pre>
-import java.util.*;
-import java.util.stream.Collectors;
-
-public class Main {
-    public static void main(String[] args) {
-        Map&lt;String, String&gt; stringMap = new HashMap&lt;&gt;();
-        stringMap.put("1", "100");
-        stringMap.put("2", "200");
-
-        Map&lt;Integer, Integer&gt; intMap = stringMap.entrySet()
-            .stream()
-            .collect(Collectors.toMap(
-                e -&gt; Integer.parseInt(e.getKey()),
-                e -&gt; Integer.parseInt(e.getValue())
-            ));
-
-        System.out.println(intMap); // {1=100, 2=200}
-    }
-}
-        </pre>
-    </section>
-
-    <section>
-        <h2>ConcurrentSkipListMap</h2>
+        <h2 id="concurrent_skip_list_map">ConcurrentSkipListMap</h2>
         <p>Потокобезопасная и отсортированная реализация интерфейса NavigableMap, которая работает на основе
             skip list(списка с пропусками). Skip list — это многослойная структура данных, состоящая из нескольких
             уровней связных списков: нижний уровень содержит все элементы в порядке сортировки, а верхние уровни -

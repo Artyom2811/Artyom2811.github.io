@@ -13,19 +13,12 @@
 <div class="bodyStyle">
     <h1>CompletableFuture</h1>
 
-    <div class="todo">
-        <h2>Проработать</h2>
-        <ol>
-            <li><a href="vertex-academy.com/tutorials/ru/java-8-completablefuture/">CompletableFuture</a></li>
-            <li><a href="annimon.com/article/3462">Руководство по CompletableFuture с примерами</a></li>
-        </ol>
-    </div>
-
     <section>
         <h2>Что это</h2>
         <ul>
             <li>Класс для асинхронного программирования.</li>
             <li>Это расширение Future</li>
+            <li>Имеет callback - сообщает о завершении.</li>
             <li>Комбинировать несколько задач</li>
             <li>Обрабатывать ошибки без try-catch</li>
             <li>Строить цепочки зависимостей без использования блокирующих операций</li>
@@ -37,7 +30,7 @@
         <ul>
             <li>Его нельзя завершить вручную.</li>
             <li>Нельзя выполнять дальнейшие действия над результатом Future без блокирования.</li>
-            <il>Нельзя повесить функцию-колбэк, чтобы она срабатывала автоматически, как только станет доступен результат.</il>
+            <li>Нельзя повесить функцию-колбэк, чтобы она срабатывала автоматически, как только станет доступен результат.</li>
             <li>Невозможно выполнить множество Future один за другим.</li>
             <li>Невозможно объединить несколько Future.</li>
             <li>Нет обработки исключений.</li>
@@ -46,14 +39,36 @@
     </section>
 
     <section>
+        <h2>Создание</h2>
+        <p>По умолчанию - ForkJoinPool.commonPool()</p>
+        <p>Но можно задать свой:</p>
+        <pre>
+CompletableFuture.supplyAsync(() -> "Hi", Executors.newFixedThreadPool(10));
+        </pre>
+    </section>
+
+    <section>
         <h2>Методы</h2>
         <p>.allOf(...) - можно дождаться завершения сразу нескольких асинхронных задач, без ручной возни с join() по каждой.</p>
+
+        <h3>Запуск выполнения</h3>
+        <p>supplyAsync(Supplier) - можно вернуть результат.</p>
+        <p>runAsync() - нельзя вернуть результат.</p>
+
+        <h3>Синхронное ожидание (если нужно)</h3>
+        <p>get() - вызывающий поток будет ждать, отмена асинхронности. checked exception</p>
+        <p>join() - вызывающий поток будет ждать, отмена асинхронности. unchecked exception</p>
+
+        <h3>Отмена</h3>
+        <p>complete() - завершить вручную. Все клиенты, ожидающие этот Future, получат указанный результат, а последующие
+            вызовы completableFuture.complete() будут игнорироваться.
+        </p>
     </section>
 
     <section>
         <h2>Пример создания асинхронной задачи</h2>
         <pre>
-CompletableFuture&lt;String&gt; future = CompletableFuture.supplyAsync(() -> {
+CompletableFuture&lt;String&gt; cf = CompletableFuture.supplyAsync(() -> {
     // Эмуляция долгой задачи
     try {
         Thread.sleep(1000);
@@ -63,7 +78,7 @@ CompletableFuture&lt;String&gt; future = CompletableFuture.supplyAsync(() -> {
     return "Задача завершена!";
 });
 
-System.out.println(future.join()); // Ожидание завершения и получение результата
+System.out.println(cf.join()); // Ожидание завершения и получение результата
         </pre>
     </section>
 
@@ -82,8 +97,7 @@ System.out.println(result.join()); // 70
     </section>
 
     <section>
-        <h2>Обработка ошибок</h2>
-        <p>Через метод exceptionally()</p>
+        <h2>Обработка исключений - exceptionally()</h2>
         <pre>
 CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -> {
     if (true) throw new RuntimeException("Ошибка!");
@@ -95,17 +109,57 @@ CompletableFuture&lt;Integer&gt; future = CompletableFuture.supplyAsync(() -> {
 
 System.out.println(future.join()); // 0
         </pre>
+
+        <h3>Обработка через handle()</h3>
+        <p>Для восстановления после исключений API также предоставляет более общий метод handle(). Он вызывается
+            независимо от того, возникло исключение или нет.
+        </p>
+        <pre>
+Integer age = -1;
+
+CompletableFuture&lt;String&gt; maturityFuture = CompletableFuture.supplyAsync(() -> {
+    if (age < 0) {
+        throw new IllegalArgumentException("Возраст не может быть отрицательным");
+    }
+    if (age > 18) {
+        return "Взрослый";
+    } else {
+        return "Ребёнок";
+    }
+}).handle((res, ex) -> {
+    if (ex != null) {
+        System.out.println("Ой! У нас тут исключение - " + ex.getMessage());
+        return "Неизвестно!";
+    }
+    return res;
+});
+
+System.out.println("Зрелость: " + maturityFuture.get());
+        </pre>
+        <p>Если возникает исключение, аргумент res будет null, если не возникает, то ex будет null.</p>
     </section>
 
     <section>
         <h2>Композиция цепочек</h2>
-        <p>Строить целые цепочки задач с помощью методов thenApply(), thenAccept() и т.д.</p>
+        <h3>Методы</h3>
+        <p>.thenApply() - аналог map(). Для обработки и преобразования результата CompletableFuture при его поступлении.
+            Можно использовать цепочки thenApply. Может выполниться в том же потоке.
+        </p>
+        <p>.thenApplyAsync() - точно в другом потоке (через пул).</p>
+        <p>.thenAccept() - не хотите возвращать результат, а хотите просто выполнить часть кода после завершения Future.
+            Может выполниться в том же потоке.
+        </p>
+        <p>.thenRun() - принимает Runnable и возвращает CompletableFuture&lt;Void&gt;</p>
         <p>Каждая следующая задача запускается после завершения предыдущей, что позволяет гибко управлять зависимостями.</p>
         <pre>
 CompletableFuture.supplyAsync(() -> "Hello")
     .thenApply(result -> result + " World")
     .thenAccept(finalResult -> System.out.println(finalResult)); // Hello World
         </pre>
+
+        <p>thenCompose() - аналог flatMap</p>
+        <p>allOf() - CompletableFuture.allOf(f1, f2, f3); - ждёт все</p>
+        <p>anyOf() - CompletableFuture.anyOf(f1, f2, f3); - ждёт первый завершившийся.</p>
     </section>
 
     <section>
@@ -113,25 +167,16 @@ CompletableFuture.supplyAsync(() -> "Hello")
         <p>Идеально подходит для задач, требующих асинхронности: запросы к API, обработка данных в фоне и т.д.</p>
         <p>Пример с вызовом нескольких API параллельно:</p>
         <pre>
-CompletableFuture&lt;String&gt;  api1 = CompletableFuture.supplyAsync(() -> {
-    // Эмуляция запроса к первому API
-    return "Response from API 1";
-});
+CompletableFuture&lt;String&gt; user =
+    CompletableFuture.supplyAsync(() -> getUser());
 
-CompletableFuture&lt;String&gt;  api2 = CompletableFuture.supplyAsync(() -> {
-    // Эмуляция запроса ко второму API
-    return "Response from API 2";
-});
+CompletableFuture&lt;String&gt; orders =
+    CompletableFuture.supplyAsync(() -> getOrders());
 
-CompletableFuture&lt;Void&gt;  allOf = CompletableFuture.allOf(api1, api2);
+CompletableFuture&lt;String&gt; result =
+    user.thenCombine(orders, (u, o) -> u + " " + o);
 
-allOf.thenRun(() -> {
-    try {
-        System.out.println(api1.get() + " & " + api2.get());
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-});
+System.out.println(result.join());
         </pre>
     </section>
 

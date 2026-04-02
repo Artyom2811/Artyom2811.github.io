@@ -183,9 +183,18 @@
         <h2 id="idempotency">Идемпотентность</h2>
         <p>Идемпотентность(Idempotency) - это запрос, который выполняется всегда с одним эффектом, но ответ на запрос
             может быть разный. Пример "DELETE" первый запрос возвращает 200, а последующие 404. Не идемпотентный HTTP
-            метод - POST.
+            метод - POST и PATCH.
         </p>
 
+        <h3>Стратегии идемпотентности</h3>
+        <ul>
+            <li>Idempotence-Key - retries</li>
+            <li>Deterministic ID - API</li>
+            <li>Unique constraint - DB</li>
+            <li>Event deduplication - очереди</li>
+            <li>Upsert - User-friendly</li>
+            <li>Optimistic lock - race-condition</li>
+        </ul>
     </section>
 
     <section>

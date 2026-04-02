@@ -45,30 +45,34 @@
 
     <section>
         <h2 id="editInLoop">Изменения коллекций из цикла.</h2>
-        <p>Попытка изменения(добавление, удаление, изменения) элемента mutable(imutable нельзя менять и это кинет то
+        <p>Попытка изменения(добавление, удаление, изменения) элемента mutable(immutable нельзя менять и это кинет то
             же исключение) коллекций из цикла вызовет исключение ConcurrentModificationException.
         </p>
         <pre>
-List&lt;String&gt; list = List.of("A", "B", "C");
+List&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add("A");
+list.add("B");
+list.add("C");
+
 for (String s : list) {
     if ("A".equals(s)) {
-        // throws java.util.ConcurrentModificationException
-        list.remove(s);
+        list.remove(s); // throws java.util.ConcurrentModificationException
     }
 }
         </pre>
 
         <p>Итератор может это сделать, так как при вызове итератора мы получаем новый список не нарушая конкурентность.</p>
         <pre>
-        List&lt;Integer&gt; list = new ArrayList<>();
-        list.add(1);list.add(2);list.add(3);
+List&lt;String&gt; list = new ArrayList&lt;&gt;();
+list.add("A");
+list.add("B");
+list.add("C");
+Iterator&lt;String&gt; it = list.iterator();
 
-        Iterator&lt;Integer&gt; it = list.iterator();
-
-        while (it.hasNext()) {
-            it.next();
-            it.remove();
-        }
+while (it.hasNext()) {
+    it.next();
+    it.remove();
+}
         </pre>
 
         <h3>Fail-fast</h3>
