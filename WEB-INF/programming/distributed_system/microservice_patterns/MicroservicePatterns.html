@@ -1,6 +1,6 @@
 <!--html_style_version_1-->
 <!DOCTYPE HTML>
-<html>
+<html lang="ru">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Microservice Patterns</title>
@@ -126,7 +126,7 @@
             <li>Caddy</li>
             <li>Apache</li>
         </ul>
-        <img src="proxies.png" width="100%" height="20%">
+        <img alt="" src="proxies.png" width="100%" height="20%">
     </section>
 
     <section>
@@ -199,7 +199,7 @@
         <h3>Хореография(Choreography)</h3>
         <p>Хореография(Choreography) - каждая транзакция публикует события, которые запускают транзакции в других
             сервисах.
-            <img src="saga_1.png" width="100%" height="20%">
+            <img alt="" src="saga_1.png" width="100%" height="20%">
         <p>Будут выполнены следующие шаги:
         <ol>
             <li>Order Service (Сервис Заказа) создает Order (Заказ) в статусе pending (в ожидании) и публикует событие
@@ -216,7 +216,7 @@
 
         <h3>Оркестровка (Orchestration)</h3>
         <p>Оркестровка(Orchestration) - оркестратор говорит участникам, какие транзакции должны быть запущены.</p>
-        <img src="saga_2.png" width="100%" height="20%">
+        <img alt="" src="saga_2.png" width="100%" height="20%">
         <p>Будут выполнены следующие шаги:
         <ol>
             <li>Order Service (Сервис Заказа) создает Order (Заказ) в статусе pending (в ожидании) и создает
@@ -240,7 +240,7 @@
             write(Command) - подсистемы Большинство бизнес-правил и сложных проверок находится во write — подсистеме.
             При этом читают данные зачастую в разы чаще, чем изменяют.
         </p>
-        <img src="cqrs.png" width="100%" height="20%">
+        <img alt="" src="cqrs.png" width="100%" height="20%">
 
         <h3>Недостатки</h3>
         <ul>

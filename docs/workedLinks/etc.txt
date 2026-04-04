@@ -155,3 +155,4 @@ vertex-academy.com/tutorials/ru/klyuchevoe-slovo-synchronized-java/
 vertex-academy.com/tutorials/ru/list-java-primer/
 wiki.merionet.ru/servernye-resheniya/39/rukovodstvo-po-komande-grep-v-linux/
 winterbe.com/posts/2014/03/16/java-8-tutorial/
+metanit.com/java/tutorial/5.7.php

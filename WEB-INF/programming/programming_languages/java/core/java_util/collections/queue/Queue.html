@@ -1,6 +1,6 @@
 <!--html_style_version_1-->
 <!DOCTYPE HTML>
-<html>
+<html lang="ru">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Queue</title>
@@ -16,28 +16,145 @@
 
     <section>
         <h2>Что это</h2>
-        <li>Queue - FIFO.</li>
+        <p>Queue - FIFO.</p>
     </section>
 
     <section>
         <h2>Основные разделы</h2>
         <ul>
-            <li><a class="anchor" href="#howItWorks">Как она работает</a></li>
-            <li><a class="anchor" href="#entities">Basic entities</a></li>
-            <li><a href="architecture/Architecture.html">Ссылки на другие страницы</a></li>
+            <li><a class="anchor" href="#queue">Queue</a></li>
+            <li><a class="anchor" href="#deque">Deque</a></li>
+            <li><a class="anchor" href="#array_deque">ArrayDeque</a></li>
+            <li><a class="anchor" href="#priority_queue">PriorityQueue</a></li>
+            <li>ConcurrentLinkedQueue - потокобезопасная очередь.</li>
         </ul>
     </section>
 
     <section>
-        <h2 id="howItWorks">Как она работает(since v.15)</h2>
+        <h2 id="queue">Queue</h2>
+        <p>Queue - interface FIFO.</p>
+
+        <h3>Методы</h3>
+        <ul>
+            <li>E element() - возвращает, но не удаляет, элемент из начала очереди. Если очередь пуста, генерирует
+                исключение NoSuchElementException.
+            </li>
+            <li>boolean offer(E obj) - добавляет элемент obj в конец очереди. Если элемент удачно добавлен,
+                возвращает true, иначе - false.
+            </li>
+            <li>E peek() - возвращает без удаления элемент из начала очереди. Если очередь пуста, возвращает значение null</li>
+            <li>E poll() - возвращает с удалением элемент из начала очереди. Если очередь пуста, возвращает значение null</li>
+            <li>E remove() - возвращает с удалением элемент из начала очереди. Если очередь пуста, генерирует
+                исключение NoSuchElementException
+            </li>
+        </ul>
     </section>
 
     <section>
-        <h2>PriorityQueue</h2>
-        <li>PriorityQueue - FIFO. Queue в котором приоритетные элементы будут помещаться в начало очереди.
-            Для пользовательских классов использует Comparator, для Integer, String, Character не нужно.
-        </li>
-        <li>Stack - FILO.</li>
+        <h2 id="deque">Deque</h2>
+        <p>Queue - interface LIFO/FIFO.</p>
+
+        <h3>Первый элемент(Head), генерация исключения</h3>
+        <ul>
+            <li>void addFirst(E obj) - добавляет элемент в начало очереди</li>
+            <li>void push(E element) - добавляет элемент в начало очереди, нет отличий от addFirst.</li>
+            <li>E removeFirst() - возвращает с удалением элемент из начала очереди. Если очередь пуста, генерирует
+                исключение NoSuchElementException
+            </li>
+            <li>E getFirst() - возвращает без удаления элемент из головы очереди. Если очередь пуста, генерирует
+                исключение NoSuchElementException
+            </li>
+            <li>E pop() - возвращает с удалением элемент из начала очереди. Если очередь пуста, генерирует исключение
+                NoSuchElementException.
+            </li>
+        </ul>
+
+        <h3>Первый элемент(Head), возвращение значения</h3>
+        <ul>
+            <li>boolean offerFirst(E obj) - добавляет элемент obj в самое начало очереди. Если элемент удачно добавлен,
+                возвращает true, иначе - false
+            </li>
+            <li>E pollFirst() - возвращает с удалением элемент из начала очереди. Если очередь пуста, возвращает значение null</li>
+            <li>E peekFirst() - возвращает без удаления элемент из начала очереди. Если очередь пуста, возвращает значение null</li>
+        </ul>
+
+        <h3>Последний элемент(Tail), генерация исключения</h3>
+        <ul>
+            <li>void addLast(E obj) - добавляет элемент obj в конец очереди</li>
+            <li>E removeLast() - возвращает с удалением элемент из конца очереди. Если очередь пуста, генерирует
+                исключение NoSuchElementException
+            </li>
+            <li>E getLast() - возвращает без удаления последний элемент очереди. Если очередь пуста, генерирует
+                исключение NoSuchElementException
+            </li>
+        </ul>
+
+        <h3>Последний элемент(Tail), возвращение значения</h3>
+        <ul>
+            <li>boolean offerLast(E obj) - добавляет элемент obj в конец очереди. Если элемент удачно добавлен,
+                возвращает true, иначе - false
+            </li>
+            <li>E pollLast() - возвращает с удалением последний элемент очереди. Если очередь пуста, возвращает значение null</li>
+            <li>E peekLast() - возвращает без удаления последний элемент очереди. Если очередь пуста, возвращает значение null</li>
+        </ul>
+
+        <h3>Поиск и удаление</h3>
+        <ul>
+            <li>boolean removeFirstOccurrence(Object obj) - удаляет первый встреченный элемент obj из очереди. Если
+                удаление произшло, то возвращает true, иначе возвращает false.
+            </li>
+            <li>boolean removeLastOccurrence(Object obj) - удаляет последний встреченный элемент obj из очереди. Если
+                удаление произшло, то возвращает true, иначе возвращает false.
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="array_deque">ArrayDeque</h2>
+        <p>ArrayDeque - реализация Queue и Deque.</p>
+
+        <h3>Конструкторы</h3>
+        <ul>
+            <li>ArrayDeque(): создает пустую очередь</li>
+            <li>ArrayDeque(Collection&lt;? extends E&gt; col): создает очередь, наполненную элементами из коллекции col</li>
+            <li>ArrayDeque(int capacity): создает очередь с начальной емкостью capacity. Default 16.
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="priority_queue">PriorityQueue</h2>
+        <p>PriorityQueue - FIFO. Queue в котором приоритетные элементы будут помещаться в начало очереди. Для
+            пользовательских классов использует Comparator, для Integer, String, Character не нужно.
+        </p>
+        <p>Stack - FILO.</p>
+
+        <h3>Конструкторы</h3>
+        <ul>
+            <li>PriorityQueue() - очередь PriorityQueue с начальной вместимостью по умолчанию (11), элементы которой
+                упорядочены в соответствии с их естественным порядком
+            </li>
+            <li>PriorityQueue(int initialCapacity) - очередь PriorityQueue с указанной начальной вместимостью,
+                элементы которой упорядочены в соответствии с их естественным порядком
+            </li>
+            <li>PriorityQueue(int initialCapacity, Comparator&lt;? super E&gt;  comparator) - очередь PriorityQueue с
+                указанной начальной вместимостью, элементы которой упорядочены в соответствии с указанным компаратором
+            </li>
+            <li>PriorityQueue(Collection&lt;? extends E&gt;  c) - очередь PriorityQueue, которая содержит элементы
+                изуказанной коллекции
+            </li>
+            <li>PriorityQueue(Comparator&lt;? super E&gt;  comparator) - очередь PriorityQueue с начальной вместимостью
+                по умолчанию, элементы которой упорядочены в соответствии с указанным компаратором
+            </li>
+            <li>PriorityQueue(PriorityQueue&lt;? extends E&gt;  c) - PriorityQueue, которая содержит элементы из другой PriorityQueue</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Синхронизированные очереди</h2>
+        <p>ArrayBlockingQueue</p>
+        <p>LinkedBlockingDeque</p>
+        <p>PriorityBlockingQueue</p>
     </section>
 
 </div>
