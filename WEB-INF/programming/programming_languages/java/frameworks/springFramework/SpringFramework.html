@@ -50,7 +50,6 @@
             <li><a href="habr.com/ru/articles/679750/">Java, реактивное программирование, Reactor, Spring Cloud Function, Streams, etc…</a></li>
             <li><a href="youtube.com/watch?v=4zkDm7_g1-Q">1.1 Реактивное программирование в действии</a></li>
             <li><a href="habr.com/ru/articles/472994/">Что мы делаем не так со Спрингом</a></li>
-            <li><a href="javarush.com/quests/lectures/questspring.level01.lecture44">Дополнительные возможности ApplicationContext</a></li>
             <li><a href="youtube.com/watch?v=Us40dUnbw80">Spring – лучший Java фреймворк для создания веб-приложений</a></li>
             <li><a href="youtube.com/watch?v=DrMmHTHTcCo">Learn Spring Fundamentals for Beginners - Full Course</a></li>
             <li><a href="habr.com/ru/articles/572828/">6 способов выполнения метода при старте Spring Boot приложения</a></li>
@@ -242,27 +241,6 @@
             <li>global session - аналогичен session - он используется в портлетных веб приложениях. Когда вы используете
                 globalSession в "стандартном" сервлетном приложении эти beans имеют scope session.
             </li>
-        </ol>
-    </section>
-
-    <section>
-        <h2>Инициализация spring контекста:</h2>
-        <ol>
-            <li>XML - ClassPathXmlApplicationContext(”context.xml”). Был изначальным методом.</li>
-            <li>Annotations(с указанием пакета для сканирования) - AnnotationConfigApplicationContext(”package.name”).</li>
-            <li>Java configuration - AnnotationConfigApplicationContext(JavaConfig.class). конфигурация через аннотации
-                с указанием класса (или массива классов) помеченного аннотацией @Configuration. Используется если
-                необходимо создать bean класса, который не имеет spring аннотаций.
-            </li>
-            <li>Groovy - GenericGroovyApplicationContext(”context.groovy”)</li>
-        </ol>
-    </section>
-
-    <section>
-        <h2>Имена в spring контексте</h2>
-        <ol>
-            <li>При создании через @Component, etc - имя bean будет использовано имя аннотированного класса.</li>
-            <li>При создании через @Bean - имя bean будет использовано имя аннотированного метода.</li>
         </ol>
     </section>
 

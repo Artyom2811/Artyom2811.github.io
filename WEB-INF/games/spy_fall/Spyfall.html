@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Spyfall</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/png">
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background: #1e1e2f;
+          color: #fff;
+          text-align: center;
+          padding: 20px;
+        }
+
+        h1 {
+          margin-bottom: 10px;
+        }
+
+        button {
+          padding: 10px 15px;
+          border: none;
+          border-radius: 5px;
+          background: #4CAF50;
+          color: white;
+          cursor: pointer;
+          margin: 5px;
+        }
+
+        button:hover {
+          background: #45a049;
+        }
+
+        .location-list {
+          margin-top: 20px;
+        }
+
+        .location-item {
+          background: #2e2e4d;
+          padding: 10px;
+          border-radius: 5px;
+          width: 100%;
+          max-width: 200px;
+          text-align: center;
+          cursor: pointer;
+          transition: 0.2s;
+        }
+
+        .location-item:hover {
+          background: #3a3a66;
+        }
+
+        .card {
+          margin-top: 30px;
+          padding: 40px;
+          background: #333;
+          border-radius: 10px;
+          font-size: 24px;
+          min-height: 80px;
+        }
+
+        .hidden {
+          background: #6495ED;
+          color: transparent;
+        }
+
+        .crossed {
+          text-decoration: line-through;
+          color: red;
+        }
+
+        .location-list {
+          margin-top: 20px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 10px;
+          justify-items: center;
+        }
+
+        .rules ul {
+          text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+<h1>🕵️ Spyfall</h1>
+
+<div style="margin-top:20px;">
+    <input type="number" id="playersCount" placeholder="Игроки" min="3">
+    <input type="number" id="spiesCount" placeholder="Шпионы" min="1">
+    <button onclick="startGame()">🎭 Почати гру</button>
+</div>
+
+<div style="margin-top:20px;">
+    <button onclick="changeLocation('base_locations.json')">Базові локації</button>
+    <button onclick="changeLocation('extended_locations.json')">Базові локації 2</button>
+    <button onclick="changeLocation('funny_locations.json')">Кумедні локації</button>
+</div>
+
+<div style="margin-top:20px;">
+    <button onclick="nextPlayer()">Наступний гравець</button>
+    <button onclick="resetCrossed()">♻️ Сбросить отмеченные</button>
+</div>
+
+<div class="card" id="card">
+    Натисни "Почати гру"
+</div>
+
+<div class="location-list" id="locationList"></div>
+
+<div class="rules">
+    <h2>Питання:</h2>
+    <ul>
+        <li>Питання ставити один раз та без уточнень.</li>
+        <li>Відповідь також може бути будь-яким.</li>
+        <li>Далі той, хто відповів на запитання, ставить питання будь-якого іншого гравця, крім того, хто перед цим
+            поставив йому запитання (тобто не можна запитати у відповідь).
+        </li>
+        <li>Порядок опитування гравці збудують самі — це залежатиме від підозр, що ґрунтуються на питаннях та відповідях.</li>
+    </ul>
+    <p></p>
+
+    <h2>Кінець ігрового раунду:</h2>
+    <ul>
+        <li>Після закінчення часу на таймері. Буде останнє голосування на кожного гравця. Потрібно на 1 голос менше,
+            ніж учасників.
+        </li>
+        <li>За підозрою гравця. Будь-який гравець у будь-який час(але тільки один раз за раунд) може зупинити гру,
+            назвати одного з гравців підозрюваним та попросити інших проголосувати.
+        </li>
+        <li>За бажанням шпигуна. Шпигун може зупинити гру в будь-який момент, відкривши карту шпигуна. Після цього
+            повинен назвати поточну локацію. Якщо локація вгадана – шпигун виграв, якщо ні – виграли інші. ВАЖЛИВО:
+            коли хтось із гравців зупинив гру і запідозрив шпигуна в шпигунстві, той уже не може намагатись вгадати
+            локацію. Його шанс втрачено - якщо всі проголосують за нього, шпигун програє раунд.
+        </li>
+    </ul>
+
+    <h2>Нарахування очок</h2>
+    <h3 style="text-align: left;">Перемога шпигуна</h3>
+    <ul>
+        <li>Перемога: 2 очки шпигуна</li>
+        <li>Шпигун зупинив гру і вірно оголосив локацію: +2 очки шпигуна.</li>
+        <li>Усі гравці одноголосно звинуватили невинного: +2 очки шпигуна.</li>
+    </ul>
+
+    <h3 style="text-align: left;">Перемога гравців-нешпигунів</h3>
+    <ul>
+        <li>Перемога: 1 очко кожному гравцю-нешпигуну.</li>
+        <li>Успішне голосування(до кінця раунду): +1 очко гравцю, який зупинив гру та запропонував підозрюваного.</li>
+    </ul>
+</div>
+
+<script>
+    let roles = [];
+    let currentPlayer = 0;
+    let currentLocations = "base_locations.json";
+
+    let locations = [];
+
+    let currentLocation = "";
+    let visible = false;
+
+    async function loadLocations() {
+      try {
+        const response = await fetch(currentLocations);
+        const data = await response.json();
+        locations = data.locations;
+
+        renderLocations();
+      } catch (e) {
+        console.error("Помилка завантаження JSON:", e);
+      }
+    }
+
+    function changeLocation(location) {
+      currentLocations = location;
+      loadLocations();
+      renderLocations();
+    }
+
+    function renderLocations() {
+      const list = document.getElementById("locationList");
+      list.innerHTML = "";
+
+      locations.forEach((loc, index) => {
+        const div = document.createElement("div");
+        div.className = "location-item";
+
+        div.textContent = loc;
+
+        div.onclick = () => toggleCross(index, div);
+
+        list.appendChild(div);
+      });
+    }
+
+    function randomLocation() {
+      if (locations.length === 0) {
+        alert("Добавьте локации!");
+        return;
+      }
+
+      const randomIndex = Math.floor(Math.random() * locations.length);
+      currentLocation = locations[randomIndex];
+
+      const card = document.getElementById("card");
+      card.textContent = currentLocation;
+      visible = false;
+    }
+
+    let crossed = new Set();
+
+    function toggleCross(index, element) {
+      if (crossed.has(index)) {
+        crossed.delete(index);
+        element.classList.remove("crossed");
+      } else {
+        crossed.add(index);
+        element.classList.add("crossed");
+      }
+    }
+
+    function startGame() {
+      randomLocation();
+      const players = parseInt(document.getElementById("playersCount").value);
+      const spies = parseInt(document.getElementById("spiesCount").value);
+
+      if (!players || !spies || spies >= players) {
+        alert("Некорректные значения!");
+        return;
+      }
+
+      if (!currentLocation) {
+        alert("Спочатку обери локацію!");
+        return;
+      }
+
+      roles = [];
+
+      // добавляем шпионов
+      for (let i = 0; i < spies; i++) {
+        roles.push("🕵️ Шпигун");
+      }
+
+      // добавляем обычных игроков
+      for (let i = spies; i < players; i++) {
+        roles.push("📍 " + currentLocation);
+      }
+
+      // перемешиваем
+      roles.sort(() => Math.random() - 0.5);
+
+      currentPlayer = 0;
+      showRole();
+    }
+
+    function showRole() {
+      const card = document.getElementById("card");
+
+      if (currentPlayer >= roles.length) {
+        card.textContent = "Всі ролі роздані!";
+        return;
+      }
+
+      card.textContent = "Гравець " + (currentPlayer + 1) + ": натисни сюди!";
+
+      card.onclick = () => {
+        card.textContent = roles[currentPlayer];
+        card.classList.remove("hidden");
+      };
+    }
+
+    function resetCrossed() {
+      crossed.clear();
+
+      // убираем класс у всех элементов
+      const items = document.querySelectorAll(".location-item");
+      items.forEach(item => item.classList.remove("crossed"));
+    }
+
+    function nextPlayer() {
+      currentPlayer++;
+      showRole();
+    }
+
+    loadLocations();
+    renderLocations();
+</script>
+
+</body>
+</html>
