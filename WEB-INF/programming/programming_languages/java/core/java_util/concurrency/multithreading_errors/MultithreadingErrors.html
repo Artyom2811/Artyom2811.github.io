@@ -13,15 +13,19 @@
 <div class="bodyStyle">
     <h1>Multithreading Errors</h1>
 
-	<div class="todo">
-		<h2>Проработать</h2>
-		<ol>
-			<li><a href="habr.com/ru/articles/760434/">Разница между Data Race и Race Condition</a></li>
-		</ol>
-	</div>
+	<section>
+		<h2>Основные разделы</h2>
+		<ul>
+			<li><a class="anchor" href="#race_condition">Race condition(состояние гонки)</a></li>
+			<li><a class="anchor" href="#deadlock">Deadlock(взаимная блокировка)</a></li>
+			<li><a class="anchor" href="#concurrency_bugs">Concurrency Bugs(Ошибки конкуренции)</a></li>
+			<li><a class="anchor" href="#livelock">Livelock</a></li>
+			<li><a class="anchor" href="#starvation">Starvation(голодание) lock</a></li>
+		</ul>
+	</section>
 
     <section>
-        <h2>Race condition(состояние гонки)</h2>
+        <h2 id="race_condition">Race condition(состояние гонки)</h2>
         <p>Race condition - когда несколько потоков пытаются одновременно читать и записывать общие данные, что приводит
 			к непредсказуемым результатам.
         </p>
@@ -102,17 +106,14 @@
     </section>
 
     <section>
-        <h2>Deadlock(взаимная блокировка)</h2>
+        <h2 id="deadlock">Deadlock(взаимная блокировка)</h2>
         <p>Deadlock(взаимная блокировка) - ошибка, когда два или более потоков вечно ожидают друг друга.</p>
 		<p>Представьте, что один поток входит в монитор объекта A, а другая — объекта B. Если поток в объекте A пытается
 			вызвать любой синхронизированный метод объекта B, а объект A в то же самое время пытается вызвать любой
 			синхронизированный метод объекта A, то потоки застрянут в процессе ожидания.
 		</p>
-    </section>
 
-    <section>
-		<h2>Типы Deadlock:</h2>
-
+		<h2 >Типы Deadlock:</h2>
 		<h3>Взаимная блокировка порядка синхронизации</h3>
 		<pre>
 public void transferMoney(Account fromAccount, Account toAccount, Amount amount) throws InsufficientFundsException {
@@ -233,13 +234,13 @@ public Image getMap() {
     </section>
 
 	<section>
-		<h2>Concurrency Bugs(Ошибки конкуренции)</h2>
+		<h2 id="concurrency_bugs">Concurrency Bugs(Ошибки конкуренции)</h2>
 		<p>Ошибки, возникающие из-за неправильной обработки взаимодействия потоков, часто проявляющиеся как случайные проблемы.</p>
 		<p>Пример: Если два работника пишут в один и тот же файл без координации, их работа может перемешаться.</p>
 	</section>
 
 	<section>
-		<h2>Livelock</h2>
+		<h2 id="livelock">Livelock</h2>
 		<p>Потоки живые, но при этом не могут ничего сделать, т.к. условие, по которым они пытаются продолжить свою
 			работу, не могут выполниться.
 		</p>
@@ -250,7 +251,7 @@ public Image getMap() {
 	</section>
 
 	<section>
-		<h2>Starvation(голодание) lock</h2>
+		<h2 id="starvation">Starvation(голодание) lock</h2>
 		<p>Потоки не заблокированы, а им просто не хватает ресурсов на всех. Поэтому пока одни потоки на себя
 			берут всё время выполнения, другие не могут выполниться.
 		</p>

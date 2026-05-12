@@ -15,9 +15,6 @@
     <div class="todo">
         <h2>Проработать:</h2>
         <ol>
-            <li><a href="javarush.com/groups/posts/isklyucheniya-java">Исключения в Java</a></li>
-            <li><a href="habr.com/ru/company/golovachcourses/blog/223821/">Исключения в Java, Часть I (try-catch-finally)</a></li>
-            <li><a href="habr.com/ru/company/golovachcourses/blog/225585/">https://habr.com/ru/company/golovachcourses/blog/225585/#1</a></li>
             <li><a href="habr.com/ru/articles/540102/">Вы всё ещё ловите исключения? Тогда мы к вам</a></li>
             <li><a href="habr.com/ru/articles/676852/">Обработка исключений в Java в функциональном стиле</a></li>
             <li><a href="habr.com/ru/articles/687954/">Обработка исключений в Java в функциональном стиле. Часть 2</a></li>
@@ -37,12 +34,24 @@
     </section>
 
     <section>
-        <h2>Иерархия исключений:</h2>
-        <img alt="" src="ExceptionHierarchy.png" width="80%">
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#hierarchy">Иерархия исключений</a></li>
+            <li><a class="anchor" href="#exception_types">Типы проверки компилятором:</a></li>
+            <li><a class="anchor" href="#exception_handlers">Типы проверки компилятором:</a></li>
+            <li><a class="anchor" href="#custom_exceptions">Создание кастомных Exception классов</a></li>
+            <li><a class="anchor" href="#finally_exceptions">Условия не выполнения finally</a></li>
+        </ul>
     </section>
 
     <section>
-        <h2>Типы проверки компилятором:</h2>
+        <h2 id="hierarchy">Иерархия исключений:</h2>
+        <img alt="" src="ExceptionHierarchy.png" width="100%">
+    </section>
+
+    <section>
+        <h2 id="exception_types">Типы проверки компилятором:</h2>
+
         <h3>Checked - компилятор их проверяет.</h3>
         <p>Checked - ошибки ожидаемые в работающей программе и на их появление будет реакция.</p>
         <ol>
@@ -51,8 +60,8 @@
             <li>IllegalAccessException - запрещен доступ к классу.</li>
             <li>InstantiationException - попытка создания объект абстрактного класса.</li>
             <li>InterruptedException - один поток был прерван другим потоком.</li>
-            <li>NoSuchFieldException - Запрошенное поле не существует.</li>
-            <li>NoSuchMethodException - Запрошенное поле не существует.</li>
+            <li>NoSuchFieldException - запрошенное поле не существует.</li>
+            <li>NoSuchMethodException - запрошенное поле не существует.</li>
         </ol>
 
         <h3>Unchecked - компилятор их не проверяет.</h3>
@@ -75,7 +84,8 @@
 
         <h4>Runtime Exceptions</h4>
         <p>Runtime Exceptions - ошибки которые должны быть предотвращены кодом. В рабочем приложении их быть не должно.</p>
-        <p>При использовании из или их наследников Idea не будет рекомендовать обработку из(красными рекомендациями).</p>
+        <p>Не требуют throws в сигнатуре метода. Тк Unchecked.</p>
+        <p>При использовании их или их наследников Idea не будет рекомендовать обработку из(красными рекомендациями).</p>
         <ul>
             <li>ArithmeticException - арифметическая ошибка: деление на ноль и тд.</li>
             <li>
@@ -106,7 +116,15 @@
     </section>
 
     <section>
-        <h2>Способы обработки исключений</h2>
+        <h2></h2>
+        <ul>
+            <li>System.out.println - использует буфер сообщений перед выводом в консоль, что может замедлить вывод.</li>
+            <li>System.err.println - не использует буфер сообщений перед выводом в консоль.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="exception_handlers">Способы обработки исключений</h2>
         <h3>Throws</h3>
         <p>throws - ключевое слово которое, используется при определении метода. Указывает что метод может выкинуть
             ошибку.
@@ -117,7 +135,7 @@
 
         <h3>try - catch - finally</h3>
         <p>Если используются несколько catch нужно писать их отлавливаемые исключения в порядке возвышения по иерархии.</p>
-        <p>Можно написать try - finally без блока catch. Но try не может быть без finally и catch.</p>
+        <p>Можно написать try - finally без блока catch. Но try не может быть без finally или catch.</p>
         <pre>
 try(try-with-resources){}
 catch(Exception e) {}
@@ -137,7 +155,7 @@ try (BufferedReader br = new BufferedReader(new FileReader(path))) {
     </section>
 
     <section>
-        <h2>Создание кастомных Exception классов</h2>
+        <h2 id="custom_exceptions">Создание кастомных Exception классов</h2>
         <ul>
             <li>Не создавать и использовать класс исключение, если он уже существует.</li>
             <li>Наследоваться от класса Exception - так как логически бизнес логика не зависит от существующих классов
@@ -157,7 +175,7 @@ public class CustomException extends Exception {
     </section>
 
     <section>
-        <h2>Условия не выполнения finally:</h2>
+        <h2 id="finally_exceptions">Условия не выполнения finally:</h2>
         <ul>
             <li>System.exit(int)</li>
             <li>Сбой в JVM</li>

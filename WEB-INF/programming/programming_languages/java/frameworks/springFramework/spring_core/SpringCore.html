@@ -13,6 +13,10 @@
 <div class="bodyStyle">
     <h1>Spring Core</h1>
 
+    <ul>
+        <li><a href="javarush.com/quests/lectures/questspring.level01.lecture44">Дополнительные возможности ApplicationContext</a></li>
+    </ul>
+
     <section>
         <h2>Что делает</h2>
         <ol>
@@ -45,41 +49,97 @@
     </section>
 
     <section>
-        <h2 id="config">Виды Конфигурации beans</h2>
-        <ol>
-            <li>Конфигурация через <a href="configuration/SpringContextConfiguration.html/#annotation">аннотации</a> с
-                указанием пакета для сканирования — AnnotationConfigApplicationContext(“package.name”).
+        <h2>BeanFactory</h2>
+        <p>BeanFactory - корневой интерфейс обеспечивает базовую поддержку внедрения зависимостей.</p>
+        <ul>
+            <li>Ленивая инициализация - бины создаются только при вызове getBean().</li>
+            <li>Минимальный расход ресурсов.</li>
+            <li>Нет поддержки AOP, событий, i18n и аннотаций «из коробки».</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>ApplicationContext</h2>
+        <p>Расширяет BeanFactory.</p>
+        <ul>
+            <li>Жадная инициализация — все singleton-бины создаются при старте.</li>
+            <li>Встроенная поддержка:
+                <ul>
+                    <li>AOP</li>
+                    <li>Аннотации @Autowired, @Component, @PostConstruct и др.</li>
+                    <li>Автоматическая регистрация BeanPostProcessor/BeanFactoryPostProcessor</li>
+                    <li>Environment — профили и источники свойств</li>
+                    <li>MessageSource - интернационализация</li>
+                    <li>ApplicationEvents — публикация и подписка на события</li>
+                </ul>
             </li>
-            <li>Xml конфигурация — ClassPathXmlApplicationContext(“context.xml”).</li>
-            <li>JavaConfig — конфигурация через аннотации с указанием класса (или массива классов) помеченного аннотацией
-                @Configuration - AnnotationConfigApplicationContext(JavaConfig.class). Это как XML только в JAVA, без
+        </ul>
+
+        <h3>Имплементации:</h3>
+        <ul>
+            <li>ClassPathXmlApplicationContext -  загружает XML из classpath.</li>
+            <li>FileSystemXmlApplicationContext - загружает XML из файловой системы(напрямую с диска).</li>
+            <li>AnnotationConfigApplicationContext - использует аннотации(@Configuration, @Bean, @ComponentScan и др.)</li>
+            <li>GenericGroovyApplicationContext - это способ конфигурировать Spring через Groovy DSL.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>WebApplicationContext</h2>
+        <p>WebApplicationContext - расширение для ApplicationContext для веб-приложений. Используется в Spring MVC.</p>
+    </section>
+
+    <section>
+        <h2>Имена в spring контексте</h2>
+        <ol>
+            <li>При создании через @Component, etc - имя bean будет использовано имя аннотированного класса.</li>
+            <li>При создании через @Bean - имя bean будет использовано имя аннотированного метода.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2 id="config">Виды конфигурации beans</h2>
+        <ol>
+            <li>XML конфигурация - ClassPathXmlApplicationContext или FileSystemXmlApplicationContext.</li>
+            <li>Аннотационная конфигурация - AnnotationConfigApplicationContext. Через @ComponentScan находятся @Component,
+                @Service, @Repository или @Controller. Для inject используется @Autowired.
+            </li>
+            <li>Java Config - AnnotationConfigApplicationContext. @Configuration + @Bean. Это как XML только в JAVA, без
                 @Service и @Inject и тд., только @Bean. Используется когда мы используем сторонние библиотеки и не можем
                 использовать на них аннотации.
             </li>
             <li>Groovy конфигурация — GenericGroovyApplicationContext(“context.groovy”).</li>
         </ol>
+
+        <h3>Какой выбрать?</h3>
+        <p>В современных проектах (Spring Boot) обычно комбинируют Java-конфигурацию + аннотации:</p>
+        <ul>
+            <li>@Service/@Repository - для своих классов.</li>
+            <li>@Bean в @Configuration - для сторонних библиотек, где нельзя поставить аннотацию на класс.</li>
+        </ul>
     </section>
 
     <section>
         <h2>Виды Dependency injection(DI) в порядке выполнения JAVA:</h2>
         <ol>
-            <li>Через конструкторы - лучший способ.</li>
-            <ul>
-                <li>Поля final.</li>
-                <li>Предотвращает Circular Dependency.</li>
-                <li>Упрощает модульное тестирование, позволяя подставлять моки или стабы через конструктор</li>
-                <li>Все зависимости видны в конструкторе, что чётко показывает, что нужно классу для работы.</li>
-                <li>Внедрение через конструктор не использует рефлексию или доступ к приватным полям (в отличие
-                    от внедрения через поля), что повышает производительность и снижает риски.
-                </li>
-            </ul>
+            <li>Через конструкторы - лучший способ.
+                <ul>
+                    <li>Поля final.</li>
+                    <li>Предотвращает Circular Dependency.</li>
+                    <li>Упрощает модульное тестирование, позволяя подставлять mocks или stabs через конструктор.</li>
+                    <li>Все зависимости видны в конструкторе, что чётко показывает, что нужно классу для работы.</li>
+                    <li>Внедрение через конструктор не использует рефлексию или доступ к приватным полям (в отличие
+                        от внедрения через поля), что повышает производительность и снижает риски.
+                    </li>
+                </ul>
+            </li>
             <li>Через поля - плохая практика.</li>
             <li>Через сеттеры - плохая практика.</li>
         </ol>
 
         <h2>Без @Autowired</h2>
-        <p>Начиная с Spring Framework 4.3 если внедряемый класс через конструктор, имея один конструктор, @Autowired можно
-            не использовать.
+        <p>Начиная с Spring Framework 4.3 если внедряемый класс через конструктор, имея один конструктор, @Autowired
+            можно не использовать.
         </p>
     </section>
 

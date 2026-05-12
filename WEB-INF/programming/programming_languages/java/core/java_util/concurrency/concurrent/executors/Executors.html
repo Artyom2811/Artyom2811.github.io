@@ -13,87 +13,140 @@
 <div class="bodyStyle">
     <h1>Executors</h1>
 
-    <div class="todo">
-        <h2>Проработать</h2>
-        <ol>
-            <li><a href="youtube.com/watch?v=t0dGLFtRR9c">Алексей Шипилёв — ForkJoinPool в Java 8</a></li>
-        </ol>
-    </div>
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#executor">Executor</a></li>
+            <li><a class="anchor" href="#executor_service">ExecutorService</a></li>
+            <li><a class="anchor" href="#implementations">Реализации ExecutorService в классе Executors</a></li>
+            <li><a class="anchor" href="#example">Пример использования</a></li>
+            <li><a class="anchor" href="#example_2">Пример использования 2</a></li>
+        </ul>
+    </section>
 
     <section>
-        <h2>Executor</h2>
+        <h2 id="executor">Executor</h2>
+        <p>Интерфейс и одним методом execute(Runnable).</p>
         <ul>
-            <li>Интерфейс с одним методом "void execute(Runnable command)" предназначенный для управления потоками.</li>
             <li>Альтернатива классу Thread, не требуется прибегать к низкоуровневой поточной функциональности класса Thread.</li>
-            <li>При вызове метода execute исполняется поток thread. То есть, метод execute запускает указанный поток на исполнение.</li>
+            <li>Интерфейс с одним методом "void execute(Runnable command)" предназначенный для управления потоками.</li>
+            <li>При вызове метода execute исполняется поток thread(метод execute запускает указанный поток на исполнение).</li>
             <li>Используется вместе с интерфейсами Callable и Future для асинхронного выполнения задач.</li>
             <li>Потоки создаются заранее и хранятся в пуле, а задачи просто отправляются на выполнение через execute().</li>
         </ul>
     </section>
 
     <section>
-        <h2>ExecutorService</h2>
-        <p>ExecutorService - интерфейс расширяет свойства Executor, дополняя его методами управления исполнением и контроля.</p>
+        <h2 id="executor_service">ExecutorService</h2>
+        <p>ExecutorService - интерфейс расширяет свойства Executor, дополняя его методами управления исполнением и
+            контроля.</p>
         <p>Методы:</p>
+        <h3>Запуск</h3>
         <ol>
-            <li>Future&lt;T&gt; submit(Callable&lt;T&gt; task) - завершение выполнения задачи, возвращающей результат
-                в виде объекта Future.
-            </li>
-            <li>Future&lt;?&gt; submit(Runnable task) - завершение выполнения задачи, возвращающей объект Future,
-                представляющий данную задачу.
-            </li>
-            <li>Future&lt;T&gt; submit(Runnable task, T result) - завершение выполнения задачи, возвращающей объект
-                Future,
-                представляющий данную задачу.
-            </li>
+            <li>execute(Runnable command) - запускает задачу без возврата результата. Если ошибка — выбрасывается в поток.</li>
+            <li>Future&lt;T&gt; submit(Callable&lt;T&gt; task) - запускает задачу с возвратом результата. в виде Future.</li>
+            <li>Future&lt;?&gt; submit(Runnable task) - запускает задачу с возвратом результата. в виде Future.</li>
+            <li>Future&lt;T&gt; submit(Runnable task, T result) - запускает задачу с возвратом результата. в виде Future.</li>
+        </ol>
+
+        <h3>Остановка</h3>
+        <ul>
             <li>shutdown() - упорядоченное завершение работы, при котором ранее отправленные задачи выполняются, а новые
                 задачи не принимаются.
             </li>
             <li>List&lt;Runnable&gt; shutdownNow() - остановка всех активно выполняемых задач, остановка обработки
                 ожидающих задач, возвращение списка задач, ожидающих выполнения.
             </li>
-            <li>и др.</li>
-        </ol>
+        </ul>
+        <h3>и др.</h3>
     </section>
 
     <section>
-        <h2>Реализации ExecutorService в классе Executors</h2>
+        <h2 id="implementations">Реализации ExecutorService</h2>
+        <h3>Реализации ExecutorService в классе Executors</h3>
         <ul>
-            <li>Executors.newCachedThreadPool - создает пул потоков, который создает новые потоки по мере необходимости, но будет
-                повторно использовать ранее созданные потоки, когда они станут доступны. Потоки, которые
-                не использовались в течение 60 секунд, прекращаются и удаляются из кэша.
+            <li>Executors.newCachedThreadPool - много коротких задач, нагрузка скачет. Может создать слишком много потоков → риск OOM
+                <ul>
+                    <li>Создает пул потоков, который создает новые потоки по мере необходимости.</li>
+                    <li>Будет повторно использовать ранее созданные потоки, когда они станут доступны.</li>
+                    <li>Потоки, которые не использовались в течение 60 секунд, прекращаются и удаляются из кэша.</li>
+                </ul>
             </li>
-            <li>Executors.newFixedThreadPool - создает пул потоков, который повторно использует фиксированное количество
-                потоков(пример соединения с БД). Созданные Threads будут активны во время выполнения. Если дополнительные
-                задачи отправляются, когда все потоки активны, они будут ждать в очереди, пока поток не станет доступным.
-                Используется если известно количество потоков и не будет затрат на переключение/создание/удаление потоков.
+            <li>Executors.newFixedThreadPool
+                <ul>
+                    <li>Повторно использует фиксированное количество потоков(пример соединения с БД).</li>
+                    <li>Созданные Threads будут активны во время выполнения.</li>
+                    <li>Если дополнительные задачи отправляются, когда все потоки активны, они будут ждать в очереди,
+                        пока поток не станет доступным.
+                    </li>
+                    <li>Используется если известно количество потоков и не будет затрат на переключение/создание/удаление
+                        потоков.
+                    </li>
+                </ul>
             </li>
-            <li>Executors.newSingleThreadExecutor - создает executor, который использует один рабочий поток, работающий
-                из неограниченной очереди. newFixedThreadPool с одним потоком. Задачи гарантированно выполняются
-                последовательно, и в любой момент времени будет активным не более одной задачи.
+            <li>Executors.newSingleThreadExecutor - важен порядок выполнения.
+                <ul>
+                    <li>Создает executor, который использует один рабочий поток, работающий из неограниченной очереди.</li>
+                    <li>newFixedThreadPool с одним потоком.</li>
+                    <li>Задачи гарантированно выполняются последовательно, и в любой момент времени будет активным
+                        не более одной задачи.
+                    </li>
+                </ul>
+            </li>
+            <li>Executors.newScheduledThreadPool(n) - для задач с задержкой или периодических</li>
+            <li>Executors.newWorkStealingPool()(ForkJoinPool) - много мелких задач, параллельные вычисления.
+                <ul>
+                    <li>Основан на ForkJoinPool.</li>
+                    <li>Потоки "воруют" задачи друг у друга → высокая эффективность.</li>
+                </ul>
             </li>
         </ul>
 
-        <h3>ScheduledExecutorService</h3>
-        <p>ScheduledExecutorService - интерфейс расширяющий ExecutorService для поддержки планирования потоков исполнения.</p>
-
         <h3>Реализации ExecutorServices:</h3>
-        <ol>
-            <li>ThreadPoolExecutor - реализует интерфейс ExecutorService и обеспечивает поддержку управляемого пула
-                потоков исполнения. Используется очередь для хранения задач. Если очередь маленькая, то при большом
-                наплыве задач быстрее создаются новые потоки (до maximumPoolSize). Если очередь большая, то задачи
-                будут дольше ждать в очереди, но новых потоков будет создаваться меньше. После заполнения очереди и
-                достижения maximumPoolSize новые задачи будут отклоняться (RejectedExecutionHandler).
+        <ul>
+            <li>ThreadPoolExecutor
+                <ul>
+                    <li>ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                        2,// corePoolSize
+                        4,// maxPoolSize
+                        60, TimeUnit.SECONDS,
+                        new LinkedBlockingQueue&lt;&gt;());
+                    </li>
+                    <li>Обеспечивает поддержку управляемого пула потоков исполнения.</li>
+                    <li>Используется очередь для хранения задач.</li>
+                    <li>Если очередь маленькая, то при большом наплыве задач быстрее создаются новые потоки
+                        (до maximumPoolSize).
+                    </li>
+                    <li>Если очередь большая, то задачи будут дольше ждать в очереди, но новых потоков будет создаваться меньше.</li>
+                    <li>После заполнения очереди и достижения maximumPoolSize новые задачи будут отклоняться (RejectedExecutionHandler).</li>
+                </ul>
             </li>
-            <li>ForkJoinPool - реализует интерфейс ExecutorService и применяется в каркасе Fork/Join Framework.</li>
+            <li>ForkJoinPool
+                <ul>
+                    <li>Fork/Join Framework</li>
+                    <li>ForkJoin - означает разделить-выполнить-соединить.</li>
+                    <li>Если поток освободиться он заберет ожидаемую задачу из очереди другого потока(Work stealing).</li>
+                </ul>
+
+                <p>Способы создания</p>
+                <ul>
+                    <li>ForkJoinPool pool = new ForkJoinPool(); - создаётся пул с количеством потоков ≈ числу ядер CPU</li>
+                    <li>ForkJoinPool pool = new ForkJoinPool(4); - указание число потоков.</li>
+                    <li>ForkJoinPool pool = ForkJoinPool.commonPool(); - глобальный пул для всего приложения.
+                        Используется по умолчанию в: CompletableFuture и parallel streams. Осторожно - если заблокируешь
+                        потоки — можешь сломать чужие задачи.
+                    </li>
+                    <li>ExecutorService executor = Executors.newWorkStealingPool(); - через Executors.</li>
+                </ul>
+            </li>
             <li>ScheduledThreadPoolExecutor - реализует интерфейс ScheduledExecutorService для поддержки планирования,
                 пула потоков исполнения.
             </li>
-        </ol>
+        </ul>
     </section>
 
     <section>
-        <h2>Пример использования</h2>
+        <h2 id="example">Пример использования</h2>
         <pre>
 // Вместо следующего кода
 new Thread(new RunnableTask()).start();
@@ -116,7 +169,7 @@ Future&lt;String&gt; f1 = executor.submit(new CallableSample2());
     </section>
 
     <section>
-        <h2>Пример использования</h2>
+        <h2 id="example_2">Пример использования 2</h2>
         <p>Рассмотрим пример использования ExecutorService. В примере создадим фиксированный пул из двух потоков исполнения
             executor и четыре потока. Имплементации потоков в качестве параметра принимают объект синхронизации потоков
             CountDownLatch, так называемую «защелку», и текстовую строку. Сервис executor стартует все 4 потока на

@@ -126,14 +126,20 @@ ul.breadcrumb li a:hover {
 
 
 h1 {
-    background-color: #9ec2e6;
+    background-color: #6b9ed1;
     border-radius: 30px;
     padding-left: 30px;
     border: solid;
 }
 
 h2 {
-    background-color: #c5d9ed;
+    background-color: #96bce3;
+    border-radius: 30px;
+    padding-left: 30px;
+}
+
+h3 {
+    background-color: #dae9f7;
     border-radius: 30px;
     padding-left: 30px;
 }

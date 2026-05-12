@@ -1,0 +1,85 @@
+<!--html_style_version_1-->
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Android Studio</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/shortcut_icon.ico" type="image/png">
+    <script src="/script.js"></script>
+</head>
+
+<body>
+<div><a href="../JAVA.html" class="backButton"></a></div>
+<div class="bodyStyle">
+    <h1>Android Studio</h1>
+
+    <div class="todo">
+        <h2>Проработать</h2>
+        <p>Button Types</p>
+        <ol>
+            <li>ImageButton</li>
+            <li>FloatingActionButton</li>
+            <li>MaterialButton</li>
+        </ol>
+    </div>
+
+    <section>
+        <h2>Порядок выполнения</h2>
+        <ul>
+            <li>Android читает AndroidManifest.xml</li>
+            <li>Ищет Activity с:
+            <pre>
+&lt;application&gt;
+        ...&gt;
+    &lt;activity
+            android:name=".MainActivity"&gt;
+        &lt;intent-filter&gt;
+            &lt;action android:name="android.intent.action.MAIN" /&gt;
+            &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+        &lt;/intent-filter&gt;
+    &lt;/activity&gt;
+&lt;/application&gt;
+            </pre>
+            </li>
+            <li>Создаёт эту Activity (например, MainActivity).</li>
+            <li>Вызывает её жизненный цикл:
+                <ul>
+                    <li>onCreate()</li>
+                    <li>onStart()</li>
+                    <li>onResume() - обновление при возврате на страницу.</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Элементы на UI</h2>
+        <p>RecyclerView - который используется для отображения списков данных.</p>
+        <p>Обычный список (ListView) устарел и работает менее эффективно.</p>
+        <p>он “пересоздаёт” (recycles) элементы списка. </p>
+        <ul>
+            <li>У тебя 1000 заметок</li>
+            <li>На экране видно только 10</li>
+            <li>Остальные 990 не создаются сразу</li>
+            <li>При прокрутке старые элементы переиспользуются</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>RecyclerView</h2>
+        <p>У тебя список из 100 заметок, но экран помещает только 8. RecyclerView создаст примерно 8–10 ViewHolder,
+            а потом будет переиспользовать их при прокрутке. Поэтому и называется RecyclerView — он перерабатывает
+            (recycle) элементы.
+        </p>
+        <ul>
+            <li>onCreateViewHolder() - выполняется когда RecyclerView нужен новый элемент на экране.</li>
+            <li>onBindViewHolder() - заполняет View данными.</li>
+            <li>getItemCount() - говорит сколько элементов.</li>
+        </ul>
+    </section>
+
+</div>
+</body>
+<script>setBackButtonHeight();</script>
+</html>

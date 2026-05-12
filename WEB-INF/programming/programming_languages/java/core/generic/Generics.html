@@ -12,30 +12,27 @@
 <div class="bodyStyle">
     <h1>Generics</h1>
 
-    <div class="todo">
-        <h2>Проработать</h2>
-        <ol>
-            <li><a href="youtube.com/playlist?list=PL6jg6AGdCNaX1yIJpX4sgALBTmTVc_uOJ">Advanced Java - Generics</a></li>
-            <li><a href="habr.com/ru/company/sberbank/blog/416413/">Пришел, увидел, обобщил: погружаемся в Java Generics</a></li>
-            <li><a href="developer.alexanderklimov.ru/android/java/generic.php">Обобщения (Generic)</a></li>
-            <li><a href="habr.com/ru/articles/207360/">Использование generic wildcards для повышения удобства Java API</a></li>
-            <li><a href="neerc.ifmo.ru/wiki/index.php?title=Generics">Generics</a></li>
-            <li><a href="youtube.com/watch?v=87pm79sPSvc">Урок 10 - Generics, Collections - Java для тестировщиков</a></li>
-            <li><a href="youtube.com/watch?v=K1iu1kXkVoA">Generics In Java - Full Simple Tutorial</a></li>
-            <li><a href="youtube.com/watch?v=MniNZsyjH9E">Сырые типы - Generics #1 - Advanced Java</a></li>
-            <li><a href="youtube.com/watch?v=pezRhckJbFE">Наследование и расширители обобщений - Generics #2 - Advanced Java</a></li>
-            <li><a href="youtube.com/watch?v=ns8T7-nI_Ec">Рекурсивное расширение типа - Generics #3 - Advanced Java</a></li>
-        </ol>
-    </div>
+    <section>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#what_is">Что это</a></li>
+            <li><a class="anchor" href="#conversion">Конвенция наименования типов</a></li>
+            <li><a class="anchor" href="#for_what">Способы использования</a></li>
+            <li><a class="anchor" href="#bounds">Ключевые слова для ограничений(bounds)</a></li>
+            <li><a class="anchor" href="#wild_card">WildCard</a></li>
+            <li><a class="anchor" href="#pecs">PECS</a></li>
+        </ul>
+    </section>
 
     <section>
+        <h2 id="what_is">Что это</h2>
         <p>Generics - это подход к реализации класса, который позволяет использовать его с различными типами данных
             без изменения его реализации.
         </p>
-        <p>Ранее решалось через Object класс, но новый подход добавляет, проверку в местах где мы ждем определенные
-            типы на соответствие этим типа. А также будет автокаст к указанному типу.
+        <p>Generics созданы для компилятора - ранее решалось через Object класс, но новый подход добавляет, проверку
+            в местах где мы ждем определенные типы на соответствие этим типа. А также будет auto-cast к указанному типу.
         </p>
-        <p>При сравнении Set&lt;String&gt; и Set&lt;Integer&gt; будет true. Тк. type erasure при компиляции заменить
+        <p>При сравнении Set&lt;String&gt; и Set&lt;Integer&gt; будет true. Тк. 'Type erasure' при компиляции заменить
             все на Object.
         </p>
         <p>Но List&lt;String&gt; не является наследником List&lt;Object&gt; - Инвариантность.</p>
@@ -47,7 +44,19 @@ List&lt;Object&gt; objects = strings;
     </section>
 
     <section>
-        <h2>Способы использования</h2>
+        <h2 id="conversion">Конвенция наименования типов</h2>
+        <ul>
+            <li>E - Element</li>
+            <li>K - Key</li>
+            <li>N - Number</li>
+            <li>T - Type</li>
+            <li>V - Value</li>
+            <li>S,U,V etc. - 2nd, 3rd, 4th types</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="for_what">Способы использования</h2>
         <ul>
             <li>Для классов.</li>
             <li>Для интерфейсов.</li>
@@ -73,19 +82,7 @@ main.&lt;Integer&gt;f(2);
     </section>
 
     <section>
-        <h2>Конвенция наименования типов</h2>
-        <ul>
-            <li>E - Element</li>
-            <li>K - Key</li>
-            <li>N - Number</li>
-            <li>T - Type</li>
-            <li>V - Value</li>
-            <li>S,U,V etc. - 2nd, 3rd, 4th types</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Ключевые слова для ограничений.</h2>
+        <h2 id="bounds">Ключевые слова для ограничений(bounds).</h2>
         <p>Используется для создания ковариантности и контравариантности. Тк по умолчанию generics инвариантны.</p>
         <ol>
             <li>extend - ограничивает типизацию до указанного класса и его потомков.
@@ -102,40 +99,39 @@ main.&lt;Integer&gt;f(2);
             </li>
         </ol>
 
-        <h3>Параметризованный тип не может использовать ограничение super(только extend), как WildCard.</h3>
+        <h3>Параметризованный тип в отличие от WildCard - не может использовать ограничение super(только extend).</h3>
         <pre>
 public void print(List&lt;? super Integer&gt; list)  // OK
 //but you can't use type parameter:
  public &lt;T super Integer&gt; void print(List&lt;T&gt; list)  // Won't compile
         </pre>
-    </section>
 
-    <section>
-        <h2>Multiple bounds</h2>
-        <p>Multiple bounds - возможность добавлять несколько ограничений.</p>
+        <h3>Multiple bounds</h3>
+        <p>Multiple bounds - возможность добавлять несколько ограничений. Слово extends используется для class и interface.</p>
         <pre>
 &lt;T extends B1 & B2 & B3&gt;
         </pre>
     </section>
 
     <section>
-        <h2>WildCard</h2>
-        <p>WildCard обозначается знаком "?". Необходим когда мы не будем указывать тип generic вручную. Но мы не можем
-            создавать связь между указанным типом в реализации.
+        <h2 id="wild_card">WildCard</h2>
+        <p>WildCard обозначается знаком "?". Будет возможность хранить несколько типов в Generic, а не один указанный
+            как в типизированном типе(T). Не нужно будем указывать тип generic вручную. Но мы не можем создавать связь
+            между указанным типом в реализации.
         </p>
         <pre>
-Пример с типизацией:
+//Пример с типизацией:
 public static &lt;T extends Number> void copy(List&lt;T&gt; dest, List&lt;T&gt; src)
-Пример с WildCard:
+//Пример с WildCard:
 public static void copy(List&lt;? extends Number&gt; dest, List&lt;? extends Number&gt; src)
         </pre>
-        <p>? and ? extends Object - это одно и тоже.</p>
-        <p>WildCard не поддерживает "multiple bounds".</p>
+        <p>? и ? extends Object - это одно и тоже.</p>
+        <p>WildCard не поддерживает "Multiple bounds".</p>
     </section>
 
     <section>
-        <h2>PECS</h2>
-        <p>>PECS - правило при использовании WILDCARD c коллекциями. Позволяет добавить Ковариантность или
+        <h2 id="pecs">PECS</h2>
+        <p>PECS - правило при использовании WILDCARD c коллекциями. Позволяет добавить Ковариантность или
             Контравариантность в коллекции.
         </p>
 
@@ -175,6 +171,7 @@ private void addUsersFromMarketingDepartmentFixed(List&lt;? super Operator&gt; u
 users.add(new Operator("john doe"));
         </pre>
     </section>
+
 </div>
 </body>
 <script>setBackButtonHeight();</script>
