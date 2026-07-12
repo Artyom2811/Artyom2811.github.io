@@ -29,6 +29,29 @@
     </section>
 
     <section>
+        <h2 id="when_use">Когда использовать:</h2>
+        <ul>
+            <li>Возвращаемое значение метода(главный кейс)</li>
+            <li>В Stream API (по стандарту JDK)</li>
+            <li>Для замены if (x != null) в цепочках</li>
+            <pre>
+Optional.ofNullable(user)
+        .map(User::getProfile)
+        .map(Profile::getEmail)
+        .orElse("unknown@mail.com");
+            </pre>
+        </ul>
+
+        <h3>Когда не нужно</h3>
+        <ul>
+            <li>Поля класса(entity/DTO/model) - Optional не реализует интерфейс Serializeble.</li>
+            <li>В параметрах методов - не даёт реальной пользы.</li>
+            <li>Setters класса - усложняет API.</li>
+            <li>Для коллекций - приводит к двойным проверкам.</li>
+        </ul>
+    </section>
+
+    <section>
         <h2 id="methods">Методы</h2>
 
         <h3>Создание</h3>
@@ -80,29 +103,6 @@ String result = Optional.ofNullable(text).orElseThrow(() -> new Exception("error
         <p>.ifPresentOrElse(Consumer&lt;? super T&gt; action, Runnable emptyAction) - заменяет комбинацию ifPresent()
             и orElse()(...).
         </p>
-    </section>
-
-    <section>
-        <h2 id="when_use">Когда использовать:</h2>
-        <ul>
-            <li>Возвращаемое значение метода(главный кейс)</li>
-            <li>В Stream API (по стандарту JDK)</li>
-            <li>Для замены if (x != null) в цепочках</li>
-            <pre>
-Optional.ofNullable(user)
-        .map(User::getProfile)
-        .map(Profile::getEmail)
-        .orElse("unknown@mail.com");
-            </pre>
-        </ul>
-
-        <h3>Когда не нужно</h3>
-        <ul>
-            <li>Поля класса(entity/DTO/model) - Optional не реализует интерфейс Serializeble.</li>
-            <li>В параметрах методов - не даёт реальной пользы.</li>
-            <li>Setters класса - усложняет API.</li>
-            <li>Для коллекций - приводит к двойным проверкам.</li>
-        </ul>
     </section>
 
 </div>
