@@ -43,17 +43,87 @@
     </section>
 
     <section>
-        <h2>Spark состоит:</h2>
-        <ol>
-            <li>SQL</li>
-            <li>STREAMING DATA</li>
-            <li>MACHINE LEARNING</li>
-            <li>GRAPH ANALYTICS</li>
-        </ol>
+        <h2>Основные разделы</h2>
+        <ul>
+            <li><a class="anchor" href="#parts">Spark состоит</a></li>
+            <li><a class="anchor" href="#data_types">Типы данных</a></li>
+            <li><a class="anchor" href="#rdd">RDD</a></li>
+            <li><a class="anchor" href="#data_frame">DataFrame</a></li>
+            <li><a class="anchor" href="#data_sets">Datasets</a></li>
+            <li><a class="anchor" href="#rdd_operations">RDD Operations:</a></li>
+            <li><a class="anchor" href="#dataframe_operations">DataFrame Operations:</a></li>
+            <li><a class="anchor" href="#joins">Стратегии выполнения Join в Spark</a></li>
+            <li><a class="anchor" href="#shuffle">Shuffle</a></li>
+            <li><a class="anchor" href="#catalyst">Catalyst Optimizer</a></li>
+            <li><a class="anchor" href="#examples">Примеры кода</a></li>
+        </ul>
     </section>
 
     <section>
-        <h3>RDD(Resilient Distributed Datasets)</h3>
+        <h2 id="parts">Spark состоит:</h2>
+        <ol>
+            <li>Spark Core - базовый движок. Управление памятью, Планирование задач, Отказоустойчивость, Работа с RDD.</li>
+            <li>SQL. Работа со структурированными данными, DataFrame и Dataset API, SQL-запросы.</li>
+            <li>STREAMING DATA - обработка потоковых данных в реальном времени.</li>
+            <li>MACHINE LEARNING - Библиотека машинного обучения, классификация, регрессия, кластеризация и т.д.</li>
+            <li>GRAPH ANALYTICS - Обработка графов и сетей связей</li>
+        </ol>
+
+        <h3>С архитектурной точки зрения Spark-приложение состоит из:</h3>
+        <ul>
+            <li>Driver — запускает приложение, строит план выполнения.</li>
+            <li>Cluster Manager — распределяет ресурсы(Standalone, YARN, Kubernetes и др.).</li>
+            <li>Executors — процессы на рабочих узлах, которые выполняют задачи.</li>
+            <li>Worker Nodes — серверы, на которых работают executors.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="data_types">Типы данных</h2>
+        <table class="wikitable">
+            <tbody>
+            <tr>
+                <th>Характеристика</th>
+                <th>RDD</th>
+                <th>DataFrame</th>
+                <th>Dataset</th>
+            </tr>
+            <tr>
+                <td>Типизация</td>
+                <td>✔</td>
+                <td>✖</td>
+                <td>✔</td>
+            </tr>
+            <tr>
+                <td>Оптимизация(Catalys)</td>
+                <td>✖</td>
+                <td>✔</td>
+                <td>✔</td>
+            </tr>
+            <tr>
+                <td>Производительность</td>
+                <td>Ниже</td>
+                <td>Высокая</td>
+                <td>Высокая</td>
+            </tr>
+            <tr>
+                <td>Удобство SQL</td>
+                <td>✖</td>
+                <td>✔</td>
+                <td>✔</td>
+            </tr>
+            <tr>
+                <td>Контроль над данными</td>
+                <td>Максимальный</td>
+                <td>Средний</td>
+                <td>Высокий</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2 id="rdd">RDD(Resilient Distributed Datasets)</h2>
         <p>RDD - основной базовая абстракция Spark, представляющая неизменный набор элементов, разделенных по узлам
             кластера, что позволяет выполнять параллельные вычисления.
         </p>
@@ -75,17 +145,17 @@ JavaSparkContext sc = new JavaSparkContext(conf);
     </section>
 
     <section>
-        <h2>DataFrame</h2>
-        <p>DataFrame - состоит из RDD.</p>
+        <h2 id="data_frame">DataFrame</h2>
+        <p>DataFrame - состоит из RDD. По сути это таблица со схемой, аналог SQL-таблицы.</p>
     </section>
 
     <section>
-        <h2>Datasets</h2>
-        <p>Datasets - это типизированные DataFrame.</p>
+        <h2 id="data_sets">Datasets</h2>
+        <p>Datasets - это типизированные DataFrame. Комбинация RDD и DataFrame.</p>
     </section>
 
     <section>
-        <h2>RDD Operations:</h2>
+        <h2 id="rdd_operations">RDD Operations:</h2>
         <p>Имеет методы, которые работают аналогично с Stream API(Transformations - Intermediate, Actions - Terminal).
             Также как в JAVA Stream API если метод возвращает RDD то это Transformations иначе это Actions.
         </p>
@@ -123,7 +193,7 @@ JavaSparkContext sc = new JavaSparkContext(conf);
     </section>
 
     <section>
-        <h2>DataFrame Operations:</h2>
+        <h2 id="dataframe_operations">DataFrame Operations:</h2>
         <ul>
             <li>show() - отображение контента DataFrame.
                 <ul>show(boolean) - truncate.</ul>
@@ -133,31 +203,40 @@ JavaSparkContext sc = new JavaSparkContext(conf);
     </section>
 
     <section>
-        <h2>Shuffle</h2>
-        <p>Spark shuffle - это операция перемешивания(перераспределения ) данных между Экзекютерами.
-            Побочный эффект таких аналитических преобразований, как join(), groupBy(), orderBy(),
-            reduceByKey(), union() и тд.
+        <h2 id="joins">Стратегии выполнения Join в Spark</h2>
+        <ul>
+            <li>Broadcast Hash Join - маленькая таблица отправляется на все executors.</li>
+            <li>Shuffle Hash Join - обе таблицы перераспределяются по сети (shuffle), затем строится hash-таблица.</li>
+            <li>Sort Merge Join - наиболее распространен для больших таблиц. Shuffle -> Sort -> Merge.</li>
+            <li>Broadcast Nested Loop Join - используется для некоторых неравенств.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="shuffle">Shuffle</h2>
+        <p>Spark shuffle - это операция перемешивания(перераспределения) данных между Executors. Побочный эффект
+            таких аналитических преобразований, как join(), groupBy(), orderBy(), reduceByKey(), union() и тд.
         </p>
 
         <ol>Способы снижения отрицательного эффекта Shuffle-операций
-            <li>Сократить число экзекюторов(меньше обмена между машинами)</li>
+            <li>Сократить число Executors(меньше обмена между машинами)</li>
             <li>Уменьши объем данных(сбрасывания лишних столбцов, фильтрация)</li>
         </ol>
     </section>
 
     <section>
-        <h2>Примеры кода</h2>
+        <h2 id="catalyst">Catalyst Optimizer</h2>
+        <p>Catalyst Optimizer - оптимизатор для DataSet.</p>
+    </section>
+
+    <section>
+        <h2 id="examples">Примеры кода</h2>
         <h3>Проверка колонки на максимальное значение(Date или Numeric)</h3>
         <pre>
 .groupBy(col(AF.OfficeId)).agg(min(AF.Date))
         </pre>
     </section>
 
-    <section>
-        <h2>Catalyst Optimizer</h2>
-        <p>Catalyst Optimizer - оптимизатор для DataSet.</p>
-        <p>RDD - мы оптимизируем сами.</p>
-    </section>
 </div>
 </body>
 <script>setBackButtonHeight();</script>

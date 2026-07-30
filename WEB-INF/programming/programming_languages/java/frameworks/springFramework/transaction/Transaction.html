@@ -41,6 +41,9 @@
     <section>
         <h2>Основные разделы</h2>
         <ul>
+            <li><a class="anchor" href="#transaction_manager">TransactionManager(низкий уровень)</a></li>
+            <li><a class="anchor" href="#transaction_template">TransactionTemplate(средний уровень)</a></li>
+            <li><a class="anchor" href="#transactional">@Transactional(высокий уровень)</a></li>
             <li><a class="anchor" href="#quick_start">Быстрый старт в Spring boot</a></li>
             <li><a class="anchor" href="#propagation">Propagation</a></li>
             <li><a class="anchor" href="#isolation">Transaction Isolation</a></li>
@@ -48,12 +51,13 @@
     </section>
 
     <section>
-        <h2>TransactionManager(низкий уровень)</h2>
+        <h2 id="transaction_manager">TransactionManager(низкий уровень)</h2>
         <ul>
             <li>Открывает транзакцию</li>
             <li>Коммитит</li>
             <li>Делает rollback</li>
         </ul>
+
         <p>Управляется в ручную, пример:</p>
         <pre>
 @Autowired
@@ -80,11 +84,11 @@ public void doWork() {
     </section>
 
     <section>
-        <h2>TransactionTemplate(средний уровень)</h2>
+        <h2 id="transaction_template">TransactionTemplate(средний уровень)</h2>
         <p>TransactionTemplate — это обёртка над TransactionManager.</p>
         <ul>
             <li>Управляет begin/commit/rollback</li>
-            <li>Безопаснее (rollback автоматически при exception)</li>
+            <li>Безопаснее(rollback автоматически при exception)</li>
             <li>Позволяет писать код в виде callback</li>
         </ul>
         <pre>
@@ -107,13 +111,15 @@ public String doWork() {
     </section>
 
     <section>
-        <h2>@Transactional(высокий уровень)</h2>
+        <h2 id="transactional">@Transactional(высокий уровень)</h2>
         <p>Внутри использует TransactionManager.</p>
-        <p>@Transactional - создает proxy метод.</p>
-        <p>Перед исполнением метода помеченного данной аннотацией начинается транзакция,
-            после выполнения метода транзакция commit или при выбрасывании RuntimeException - rollback.
+        <p>@Transactional - создает proxy метод(в прокси объекте). Специальный объект-обертку(proxy), который выглядит
+            как существующий, но добавляет дополнительную транзакционную логику. Под капотом создается метод с
+            try(наш помеченный метод и commit) и catch(условия rollback).
         </p>
-        <p>Под капотом создается метод с try(наш помеченный метод и commit) и catch(условия rollback).</p>
+        <p>Перед исполнением метода помеченного данной аннотацией начинается транзакция, после выполнения метода
+            транзакция commit или при выбрасывании RuntimeException - rollback.
+        </p>
 
         <h3>Ошибки использования</h3>
         <ol>
@@ -124,7 +130,7 @@ public String doWork() {
                 метод в транзакцию. Но когда метод вызывает другой метод того же класса через this, он обращается
                 к реальному объекту напрямую, полностью минуя прокси.
                 <ul>
-                    <li>Инжектировать сам себя (@Autowired self)</li>
+                    <li>Инжектировать сам себя(@Autowired self)</li>
                     <li>Получить прокси через AopContext</li>
                     <li>Разнести методы по разным бинам(лучшее решение)</li>
                 </ul>
@@ -150,7 +156,7 @@ public String doWork() {
         </p>
         <ol>
             <li>REQUIRED(default) - если есть транзакция добавиться к ней, если нет создать.</li>
-            <li>SUPPORTS - если есть транзакция добавиться к ней, если нет выполниться нетранзакционно.</li>
+            <li>SUPPORTS - если есть транзакция добавиться к ней, если нет выполниться не транзакционно.</li>
             <li>NOT_SUPPORTED - если есть транзакция, Spring приостанавливает ее, а затем бизнес-логика выполняется без транзакции.</li>
             <li>MANDATORY - если есть транзакция добавиться к ней, если нет выдать исключение(IllegalTransactionStateException).</li>
             <li>NEVER - если есть транзакция выдать исключение(IllegalTransactionStateException).</li>

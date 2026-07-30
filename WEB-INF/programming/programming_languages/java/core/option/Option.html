@@ -97,7 +97,7 @@ String result = Optional.ofNullable(text).orElseThrow(() -> new Exception("error
         <p>.isPresent() - получение boolean присутствует ли значение.</p>
         <p>.isEmpty() - получение boolean отсутствует ли значение.</p>
 
-        <p>ifPresent() - позволяет выполнить действие (Consumer) над значением, если оно существует, избегая явных
+        <p>ifPresent() - позволяет выполнить действие(Consumer) над значением, если оно существует, избегая явных
             проверок на null.
         </p>
         <p>.ifPresentOrElse(Consumer&lt;? super T&gt; action, Runnable emptyAction) - заменяет комбинацию ifPresent()
