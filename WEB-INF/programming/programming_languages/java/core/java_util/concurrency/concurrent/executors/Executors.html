@@ -47,6 +47,10 @@
             <li>Future&lt;T&gt; submit(Callable&lt;T&gt; task) - запускает задачу с возвратом результата. в виде Future.</li>
             <li>Future&lt;?&gt; submit(Runnable task) - запускает задачу с возвратом результата. в виде Future.</li>
             <li>Future&lt;T&gt; submit(Runnable task, T result) - запускает задачу с возвратом результата. в виде Future.</li>
+            <li>&lt;T&gt; List&lt;Future&lt;T&gt;&gt; invokeAll(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks) - принимает коллекцию задач и
+                блокирует поток до завершения всех задач. Возвращает список Future только когда все задачи выполнены
+                или вышел таймаут.
+            </li>
         </ol>
 
         <h3>Остановка</h3>
