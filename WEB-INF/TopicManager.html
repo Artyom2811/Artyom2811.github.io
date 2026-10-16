@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Темы для обсуждения</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#eef0f7;--surface:#fff;--ink:#1b2140;--muted:#6b7191;--line:#dfe2ef;--accent:#5b46e0;--accent-soft:#e9e6fc;--mint:#14906b;--mint-soft:#dcf3ea;--danger:#d3412f;--danger-soft:#fde7e3;--shadow:0 8px 24px -12px rgba(40,40,100,.25);color-scheme:light;
+    box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+    @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12142a;--surface:#1c1f3b;--ink:#eceefb;--muted:#9a9fc4;--line:#2d3158;--accent:#8c7bff;--accent-soft:#2b2766;--mint:#4fd1a5;--mint-soft:#173b34;--danger:#ff7a67;--danger-soft:#47211f;--shadow:0 8px 24px -12px rgba(0,0,0,.6);color-scheme:dark}}
+    :root[data-theme="dark"]{--bg:#12142a;--surface:#1c1f3b;--ink:#eceefb;--muted:#9a9fc4;--line:#2d3158;--accent:#8c7bff;--accent-soft:#2b2766;--mint:#4fd1a5;--mint-soft:#173b34;--danger:#ff7a67;--danger-soft:#47211f;--shadow:0 8px 24px -12px rgba(0,0,0,.6);color-scheme:dark}
+    html{scroll-padding-top:env(safe-area-inset-top,0px)}
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.45 Onest,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh}
+    body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+    button,input,textarea{font:inherit;color:inherit}
+    button{cursor:pointer;border:0;background:none}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .app{max-width:640px;margin:0 auto;padding:20px 16px 150px}
+    header h1{font:600 26px/1.15 Unbounded,Onest,sans-serif;margin:8px 0 4px;letter-spacing:-.02em}
+    header p{margin:0 0 18px;color:var(--muted);font-size:14px}
+    .list{display:grid;gap:12px}
+    .card{background:var(--surface);border-radius:20px;padding:16px;box-shadow:var(--shadow);border:1px solid var(--line);text-align:left;width:100%;display:block}
+    .card.row{display:flex;gap:12px;align-items:center}
+    .card h3{margin:0 0 4px;font:600 17px/1.25 Onest,sans-serif}
+    .card p{margin:0 0 10px;color:var(--muted);font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+    .topic{border-left:6px solid var(--accent);padding-left:14px}
+    .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+    .tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:99px;font-size:13px;font-weight:500;background:var(--accent-soft);color:var(--accent)}
+    .tag.g{background:var(--mint-soft);color:var(--mint)}
+    .tag.plain{background:transparent;color:var(--muted);padding-left:0}
+    .ava{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:#fff;font-weight:600;font-size:16px}
+    .ava.s{width:26px;height:26px;border-radius:9px;font-size:11px;border:2px solid var(--surface);margin-left:-8px}
+    .ava.s:first-child{margin-left:0}
+    .stack{display:flex;margin-right:6px}
+    .grow{flex:1;min-width:0}
+    .sub{color:var(--muted);font-size:14px}
+    .seg{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:4px;margin:0 0 16px}.seg[hidden]{display:none}.seg button{flex:1;padding:9px;border-radius:12px;font-weight:600;font-size:14px;color:var(--muted)}.seg button[aria-selected=true]{background:var(--accent-soft);color:var(--accent)}
+    .pc .row2{display:flex;gap:12px;align-items:center}.pc.idle{opacity:.7}.count{flex:none;min-width:32px;height:32px;padding:0 10px;border-radius:99px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-weight:600;font-size:14px}
+    .tl{display:flex;flex-direction:column;gap:6px;margin-top:12px}.tt{text-align:left;padding:10px 12px;border-radius:12px;background:var(--accent-soft);color:var(--accent);font-weight:500;font-size:14px;border-left:4px solid var(--accent);overflow-wrap:anywhere}
+    .empty{text-align:center;padding:40px 20px;color:var(--muted)}
+    .empty b{display:block;color:var(--ink);font:600 18px Unbounded,Onest,sans-serif;margin-bottom:8px}
+    .iconbtn{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--danger);background:var(--danger-soft);flex:none}
+    nav{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--bg) 35%)}
+    nav .bar{max-width:420px;margin:0 auto;display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:5px;box-shadow:var(--shadow)}
+    nav button{flex:1;padding:10px 4px;border-radius:17px;font-weight:600;font-size:14px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:1px}
+    nav button small{font-weight:500;font-size:12px}
+    nav button[aria-selected=true]{background:var(--accent);color:#fff}
+    .fab{position:fixed;right:18px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:20;background:var(--ink);color:var(--bg);padding:14px 20px;border-radius:99px;font-weight:600;box-shadow:var(--shadow);display:flex;gap:8px;align-items:center}
+    .scrim{position:fixed;inset:0;background:rgba(10,12,35,.5);z-index:40;display:none;align-items:flex-end;justify-content:center}
+    .scrim.open{display:flex;animation:fade .2s}
+    .sheet{background:var(--surface);width:100%;max-width:640px;max-height:92vh;overflow:auto;border-radius:26px 26px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom,0px));animation:up .25s ease-out}
+    .sheet h2{font:600 20px Unbounded,Onest,sans-serif;margin:0 0 16px}
+    .dlg{align-items:center;padding:20px}
+    .dlg .sheet{border-radius:24px;max-width:380px}
+    label.f{display:block;font-weight:600;font-size:14px;margin:14px 0 6px}
+    input[type=text],textarea{width:100%;border:1.5px solid var(--line);background:var(--bg);border-radius:14px;padding:12px 14px;font-size:16px}
+    textarea{min-height:84px;resize:vertical}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip input{position:absolute;opacity:0;pointer-events:none}
+    .chip span{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:99px;border:1.5px solid var(--line);font-size:14px;font-weight:500;cursor:pointer;user-select:none}
+    .chip input:checked+span{background:var(--accent);border-color:var(--accent);color:#fff}
+    .chip.g input:checked+span{background:var(--mint);border-color:var(--mint);color:#fff}
+    .chip input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+    .hint{font-size:13px;color:var(--muted)}
+    .btns{display:flex;gap:10px;margin-top:22px}
+    .btn{flex:1;padding:14px;border-radius:15px;font-weight:600;background:var(--bg);border:1px solid var(--line)}
+    .btn.p{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .btn.d{background:var(--danger);color:#fff;border-color:var(--danger)}
+    .btn.dl{flex:none;background:var(--danger-soft);color:var(--danger);border-color:transparent;padding:14px 16px}
+    .toast{position:fixed;left:50%;bottom:calc(150px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:.25s;z-index:60;white-space:nowrap}
+    .toast.on{opacity:1;transform:translate(-50%,0)}
+    @keyframes up{from{transform:translateY(40px);opacity:0}}
+    @keyframes fade{from{opacity:0}}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header><h1 id="ttl"></h1><p id="sub"></p></header>
+  <div class="seg" id="seg" hidden><button data-v="people">По людям</button><button data-v="topics">По темам</button></div>
+  <main id="list" class="list"></main>
+</div>
+<button class="fab" id="fab"></button>
+<nav><div class="bar" role="tablist">
+  <button role="tab" data-t="topics">💬<small>Темы</small></button>
+  <button role="tab" data-t="people">👤<small>Люди</small></button>
+  <button role="tab" data-t="groups">👥<small>Группы</small></button>
+</div></nav>
+<div class="scrim" id="scrim"><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
+<div class="scrim dlg" id="ask"><div class="sheet" id="askbox" role="alertdialog" aria-modal="true"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+  const $=s=>document.querySelector(s);
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const uid=()=>Math.random().toString(36).slice(2,9);
+  const KEY='topics-manager-v1';
+  let S={people:[],groups:[],topics:[]},tab='topics',view='people';
+  try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+  const person=id=>S.people.find(p=>p.id===id), group=id=>S.groups.find(g=>g.id===id);
+  const hue=s=>{let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))%360;return h};
+  const ini=n=>n.trim().split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+  const ava=(p,s)=>`<div class="ava${s?' s':''}" style="background:hsl(${hue(p.name)} 50% 42%)">${esc(ini(p.name))}</div>`;
+  const plural=(n,a,b,c)=>{const m=n%10,k=n%100;return n+' '+(m==1&&k!=11?a:m>=2&&m<=4&&(k<12||k>14)?b:c)};
+  const trash='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v5M14 11v5"/></svg>';
+
+  function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),1800)}
+
+  const META={
+   topics:{t:'Темы',s:()=>S.topics.length?plural(S.topics.length,'тема','темы','тем')+' в работе':'Что будем обсуждать?',f:'Новая тема'},
+   people:{t:'Люди',s:()=>S.people.length?plural(S.people.length,'человек','человека','человек'):'Добавьте участников',f:'Добавить человека'},
+   groups:{t:'Группы',s:()=>S.groups.length?plural(S.groups.length,'группа','группы','групп'):'Объедините людей в команды',f:'Создать группу'}
+  };
+
+  function participants(t){const s=new Set(t.personIds);t.groupIds.forEach(g=>(group(g)?.memberIds||[]).forEach(i=>s.add(i)));return [...s].map(person).filter(Boolean)}
+
+  function render(){
+    document.querySelectorAll('nav button').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===tab));
+    const m=META[tab];$('#ttl').textContent=m.t;$('#sub').textContent=m.s();$('#fab').innerHTML='<span aria-hidden="true">＋</span>'+m.f;
+    const L=$('#list');let h='';
+    $('#seg').hidden=tab!=='topics';document.querySelectorAll('#seg button').forEach(b=>b.setAttribute('aria-selected',b.dataset.v===view));
+    if(tab==='topics'&&view==='people'){h=peopleView()}
+    else if(tab==='topics'){
+      h=S.topics.map(t=>{
+        const gs=t.groupIds.map(group).filter(Boolean),ps=participants(t);
+        return `<button class="card topic" data-edit="${t.id}"><h3>${esc(t.title)}</h3>${t.note?`<p>${esc(t.note)}</p>`:''}
+        <div class="meta">${gs.map(g=>`<span class="tag g">👥 ${esc(g.name)}</span>`).join('')}
+        ${t.personIds.map(person).filter(Boolean).map(p=>`<span class="tag">${esc(p.name)}</span>`).join('')}
+        ${ps.length?`<span class="tag plain"><span class="stack">${ps.slice(0,4).map(p=>ava(p,1)).join('')}</span>${plural(ps.length,'участник','участника','участников')}</span>`:'<span class="tag plain">Участники не выбраны</span>'}</div></button>`}).join('');
+      if(!h)h=empty('Пока нет тем','Нажмите «Новая тема», чтобы начать. Людей и группы можно добавить заранее на соседних вкладках.');
+    }else if(tab==='people'){
+      h=S.people.map(p=>{const gn=S.groups.filter(g=>g.memberIds.includes(p.id)).map(g=>g.name);
+        return `<button class="card row" data-edit="${p.id}">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'Без роли')}${gn.length?' · '+esc(gn.join(', ')):''}</div></div></button>`}).join('');
+      if(!h)h=empty('Список пуст','Добавьте первого человека — потом его можно выбрать в группах и темах.');
+    }else{
+      h=S.groups.map(g=>{const ms=g.memberIds.map(person).filter(Boolean);
+        return `<button class="card" data-edit="${g.id}"><h3>${esc(g.name)}</h3><div class="meta"><span class="stack">${ms.slice(0,6).map(p=>ava(p,1)).join('')}</span><span class="sub">${ms.length?plural(ms.length,'человек','человека','человек'):'Пока никого'}</span></div></button>`}).join('');
+      if(!h)h=empty('Групп пока нет','Соберите людей в команду, чтобы добавлять их в темы одним нажатием.');
+    }
+    L.innerHTML=h;
+  }
+  function topicsOf(p){return S.topics.filter(t=>t.personIds.includes(p.id)||t.groupIds.some(g=>(group(g)?.memberIds||[]).includes(p.id)))}
+  function peopleView(){
+    if(!S.people.length)return empty('Пока нет людей','Добавьте людей на вкладке «Люди» — здесь появятся их карточки с темами.');
+    const rows=S.people.map(p=>({p,ts:topicsOf(p)})).sort((a,b)=>b.ts.length-a.ts.length);
+    return rows.map(({p,ts})=>`<div class="card pc${ts.length?'':' idle'}"><div class="row2">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'Без роли')}</div></div><span class="count" title="Тем">${ts.length}</span></div>${ts.length?`<div class="tl">${ts.map(t=>`<button class="tt" data-topic="${t.id}">${esc(t.title)}</button>`).join('')}</div>`:'<div class="sub" style="margin-top:10px">Тем пока нет</div>'}</div>`).join('');
+  }
+  const empty=(a,b)=>`<div class="empty"><b>${a}</b>${b}</div>`;
+
+  /* sheets */
+  function openSheet(title,body,{onSave,onDelete,saveLabel='Сохранить'}){
+    const s=$('#sheet');
+    s.innerHTML=`<h2>${title}</h2>${body}<div class="btns">${onDelete?`<button class="btn dl" id="sDel" aria-label="Удалить">${trash}</button>`:''}<button class="btn" id="sCancel">Отмена</button><button class="btn p" id="sSave">${saveLabel}</button></div>`;
+    $('#scrim').classList.add('open');
+    const f=s.querySelector('input[type=text]');setTimeout(()=>f&&f.focus(),60);
+    $('#sCancel').onclick=closeSheet;
+    $('#sSave').onclick=()=>{if(onSave()!==false){closeSheet()}};
+    if(onDelete)$('#sDel').onclick=onDelete;
+  }
+  const closeSheet=()=>$('#scrim').classList.remove('open');
+  $('#scrim').addEventListener('click',e=>{if(e.target.id==='scrim')closeSheet()});
+  const val=id=>$('#'+id).value.trim();
+  const picked=n=>[...document.querySelectorAll(`#sheet input[name=${n}]:checked`)].map(i=>i.value);
+  function chips(n,list,sel,cls,lbl){
+    if(!list.length)return `<div class="hint">${lbl}</div>`;
+    return `<div class="chips">${list.map(x=>`<label class="chip ${cls}"><input type="checkbox" name="${n}" value="${x.id}" ${sel.includes(x.id)?'checked':''}><span>${esc(x.name)}</span></label>`).join('')}</div>`;
+  }
+  function need(id,msg){const e=$('#'+id);if(!e.value.trim()){e.style.borderColor='var(--danger)';e.focus();toast(msg);return false}return true}
+
+  function ask(text,okLabel,fn){
+    $('#askbox').innerHTML=`<h2>Удалить?</h2><p style="margin:0;color:var(--muted)">${text}</p><div class="btns"><button class="btn" id="aNo">Отмена</button><button class="btn d" id="aYes">${okLabel}</button></div>`;
+    $('#ask').classList.add('open');
+    const close=()=>$('#ask').classList.remove('open');
+    $('#aNo').onclick=close;$('#aYes').onclick=()=>{close();fn()};
+    $('#aNo').focus();
+  }
+  $('#ask').addEventListener('click',e=>{if(e.target.id==='ask')e.currentTarget.classList.remove('open')});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#ask').classList.remove('open');closeSheet()}});
+
+  function personSheet(id){
+    const p=id&&person(id);
+    openSheet(p?'Карточка человека':'Новый человек',
+     `<label class="f" for="fn">Имя</label><input type="text" id="fn" placeholder="Например, Анна Мельник" value="${p?esc(p.name):''}" maxlength="60">
+      <label class="f" for="fr">Роль или заметка</label><input type="text" id="fr" placeholder="Необязательно" value="${p?esc(p.role||''):''}" maxlength="60">`,
+     {onSave(){if(!need('fn','Введите имя'))return false;
+       if(p){p.name=val('fn');p.role=val('fr')}else S.people.push({id:uid(),name:val('fn'),role:val('fr')});
+       save();render();toast(p?'Сохранено':'Человек добавлен')},
+      onDelete:p&&(()=>ask(`Карточка «${esc(p.name)}» будет удалена, а человек уберётся из всех групп и тем.`,'Удалить',()=>{
+        S.people=S.people.filter(x=>x.id!==p.id);S.groups.forEach(g=>g.memberIds=g.memberIds.filter(i=>i!==p.id));
+        S.topics.forEach(t=>t.personIds=t.personIds.filter(i=>i!==p.id));save();closeSheet();render();toast('Человек удалён')}))});
+  }
+  function groupSheet(id){
+    const g=id&&group(id);
+    openSheet(g?'Группа':'Новая группа',
+     `<label class="f" for="fn">Название</label><input type="text" id="fn" placeholder="Например, Продуктовая команда" value="${g?esc(g.name):''}" maxlength="60">
+      <label class="f">Участники</label>${chips('m',S.people,g?g.memberIds:[],'', 'Сначала добавьте людей на вкладке «Люди».')}`,
+     {onSave(){if(!need('fn','Введите название'))return false;
+       if(g){g.name=val('fn');g.memberIds=picked('m')}else S.groups.push({id:uid(),name:val('fn'),memberIds:picked('m')});
+       save();render();toast(g?'Сохранено':'Группа создана')},
+      onDelete:g&&(()=>ask(`Группа «${esc(g.name)}» будет удалена. Люди останутся в списке.`,'Удалить',()=>{
+        S.groups=S.groups.filter(x=>x.id!==g.id);S.topics.forEach(t=>t.groupIds=t.groupIds.filter(i=>i!==g.id));
+        save();closeSheet();render();toast('Группа удалена')}))});
+  }
+  function topicSheet(id){
+    const t=id&&S.topics.find(x=>x.id===id);
+    openSheet(t?'Тема обсуждения':'Новая тема',
+     `<label class="f" for="fn">Тема</label><input type="text" id="fn" placeholder="О чём поговорим?" value="${t?esc(t.title):''}" maxlength="100">
+      <label class="f" for="fd">Описание</label><textarea id="fd" placeholder="Необязательно">${t?esc(t.note||''):''}</textarea>
+      <label class="f">Группы</label>${chips('g',S.groups,t?t.groupIds:[],'g','Групп пока нет — создайте их на вкладке «Группы».')}
+      <label class="f">Отдельные люди</label>${chips('p',S.people,t?t.personIds:[],'','Людей пока нет — добавьте их на вкладке «Люди».')}`,
+     {onSave(){if(!need('fn','Введите тему'))return false;
+       const d={title:val('fn'),note:val('fd'),groupIds:picked('g'),personIds:picked('p')};
+       if(t)Object.assign(t,d);else S.topics.unshift(Object.assign({id:uid()},d));
+       save();render();toast(t?'Сохранено':'Тема добавлена')},
+      onDelete:t&&(()=>ask(`Тема «${esc(t.title)}» будет удалена без возможности восстановления.`,'Удалить',()=>{
+        S.topics=S.topics.filter(x=>x.id!==t.id);save();closeSheet();render();toast('Тема удалена')}))});
+  }
+
+  const open={topics:topicSheet,people:personSheet,groups:groupSheet};
+  $('#fab').onclick=()=>open[tab]();
+  $('#list').addEventListener('click',e=>{const tp=e.target.closest('[data-topic]');if(tp)return topicSheet(tp.dataset.topic);const c=e.target.closest('[data-edit]');if(c)open[tab](c.dataset.edit)});
+  document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{view=b.dataset.v;render()});
+  document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;render();scrollTo(0,0)});
+  render();
+</script>
+</body>
+</html>
