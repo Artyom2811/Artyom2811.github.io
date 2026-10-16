@@ -40,6 +40,9 @@
     .seg{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:4px;margin:0 0 16px}.seg[hidden]{display:none}.seg button{flex:1;padding:9px;border-radius:12px;font-weight:600;font-size:14px;color:var(--muted)}.seg button[aria-selected=true]{background:var(--accent-soft);color:var(--accent)}
     .pc .row2{display:flex;gap:12px;align-items:center}.pc.idle{opacity:.7}.count{flex:none;min-width:32px;height:32px;padding:0 10px;border-radius:99px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);font-weight:600;font-size:14px}
     .tl{display:flex;flex-direction:column;gap:6px;margin-top:12px}.tt{text-align:left;padding:10px 12px;border-radius:12px;background:var(--accent-soft);color:var(--accent);font-weight:500;font-size:14px;border-left:4px solid var(--accent);overflow-wrap:anywhere}
+    .card{position:relative;padding-right:46px}
+    .grip{position:absolute;top:8px;right:6px;width:34px;height:34px;display:grid;place-items:center;color:var(--muted);touch-action:none;cursor:grab;border-radius:10px;user-select:none;-webkit-user-select:none}
+    .card.dragging{z-index:5;transition:none;box-shadow:0 20px 44px -10px rgba(20,20,80,.55);scale:1.02;cursor:grabbing}
     .empty{text-align:center;padding:40px 20px;color:var(--muted)}
     .empty b{display:block;color:var(--ink);font:600 18px Unbounded,Onest,sans-serif;margin-bottom:8px}
     .iconbtn{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--danger);background:var(--danger-soft);flex:none}
@@ -141,13 +144,18 @@
         return `<button class="card" data-edit="${g.id}"><h3>${esc(g.name)}</h3><div class="meta"><span class="stack">${ms.slice(0,6).map(p=>ava(p,1)).join('')}</span><span class="sub">${ms.length?plural(ms.length,'человек','человека','человек'):'Пока никого'}</span></div></button>`}).join('');
       if(!h)h=empty('Групп пока нет','Соберите людей в команду, чтобы добавлять их в темы одним нажатием.');
     }
-    L.innerHTML=h;
+    L.innerHTML=h;addGrips(L);
   }
   function topicsOf(p){return S.topics.filter(t=>t.personIds.includes(p.id)||t.groupIds.some(g=>(group(g)?.memberIds||[]).includes(p.id)))}
   function peopleView(){
     if(!S.people.length)return empty('Пока нет людей','Добавьте людей на вкладке «Люди» — здесь появятся их карточки с темами.');
-    const rows=S.people.map(p=>({p,ts:topicsOf(p)})).sort((a,b)=>b.ts.length-a.ts.length);
-    return rows.map(({p,ts})=>`<div class="card pc${ts.length?'':' idle'}"><div class="row2">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'Без роли')}</div></div><span class="count" title="Тем">${ts.length}</span></div>${ts.length?`<div class="tl">${ts.map(t=>`<button class="tt" data-topic="${t.id}">${esc(t.title)}</button>`).join('')}</div>`:'<div class="sub" style="margin-top:10px">Тем пока нет</div>'}</div>`).join('');
+    const rows=S.people.map(p=>({p,ts:topicsOf(p)}));
+    return rows.map(({p,ts})=>`<div class="card pc${ts.length?'':' idle'}" data-id="${p.id}"><div class="row2">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'Без роли')}</div></div><span class="count" title="Тем">${ts.length}</span></div>${ts.length?`<div class="tl">${ts.map(t=>`<button class="tt" data-topic="${t.id}">${esc(t.title)}</button>`).join('')}</div>`:'<div class="sub" style="margin-top:10px">Тем пока нет</div>'}</div>`).join('');
+  }
+  function addGrips(L){
+    const cards=L.querySelectorAll('.card');if(cards.length<2)return;
+    cards.forEach(c=>{const g=document.createElement('span');g.className='grip';g.setAttribute('role','button');g.setAttribute('aria-label','Перетащить карточку');
+      g.innerHTML='<svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/><circle cx="4" cy="10" r="1.8"/><circle cx="12" cy="10" r="1.8"/><circle cx="4" cy="16" r="1.8"/><circle cx="12" cy="16" r="1.8"/></svg>';c.prepend(g)});
   }
   const empty=(a,b)=>`<div class="empty"><b>${a}</b>${b}</div>`;
 
@@ -222,8 +230,49 @@
 
   const open={topics:topicSheet,people:personSheet,groups:groupSheet};
   $('#fab').onclick=()=>open[tab]();
-  $('#list').addEventListener('click',e=>{const tp=e.target.closest('[data-topic]');if(tp)return topicSheet(tp.dataset.topic);const c=e.target.closest('[data-edit]');if(c)open[tab](c.dataset.edit)});
+  $('#list').addEventListener('click',e=>{if(e.target.closest('.grip'))return;const tp=e.target.closest('[data-topic]');if(tp)return topicSheet(tp.dataset.topic);const c=e.target.closest('[data-edit]');if(c)open[tab](c.dataset.edit)});
   document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{view=b.dataset.v;render()});
+
+  /* drag to reorder */
+  let drag=null;
+  const LST=$('#list');
+  LST.addEventListener('pointerdown',e=>{
+    const g=e.target.closest('.grip');if(!g)return;
+    e.preventDefault();const card=g.parentElement;
+    drag={card,startY:e.clientY,y:e.clientY};
+    try{g.setPointerCapture(e.pointerId)}catch(_){}
+    card.classList.add('dragging');
+  });
+  function dragTick(){
+    if(!drag)return;
+    const {card}=drag;
+    if(drag.y<90)scrollBy(0,-10);else if(drag.y>innerHeight-130)scrollBy(0,10);
+    card.style.transform='';
+    const oldTop=card.getBoundingClientRect().top;
+    card.style.transform=`translateY(${drag.y-drag.startY}px)`;
+    const mid=card.getBoundingClientRect().top+card.offsetHeight/2;
+    for(const sib of LST.querySelectorAll('.card')){
+      if(sib===card)continue;const r=sib.getBoundingClientRect();
+      if(mid>r.top&&mid<r.bottom){
+        card.style.transform='';const t0=card.getBoundingClientRect().top;
+        if(card.compareDocumentPosition(sib)&Node.DOCUMENT_POSITION_FOLLOWING)sib.after(card);else sib.before(card);
+        drag.startY+=card.getBoundingClientRect().top-t0;
+        card.style.transform=`translateY(${drag.y-drag.startY}px)`;break;
+      }
+    }
+    drag.raf=requestAnimationFrame(dragTick);
+  }
+  LST.addEventListener('pointermove',e=>{if(!drag)return;drag.y=e.clientY;if(!drag.raf)drag.raf=requestAnimationFrame(dragTick)});
+  function endDrag(){
+    if(!drag)return;cancelAnimationFrame(drag.raf);
+    const ids=[...LST.querySelectorAll('.card')].map(c=>c.dataset.edit||c.dataset.id);
+    const key=tab==='groups'?'groups':tab==='people'?'people':(view==='people'?'people':'topics');
+    const arr=ids.map(id=>S[key].find(x=>x.id===id)).filter(Boolean);
+    if(arr.length===S[key].length){S[key]=arr;save()}
+    drag=null;render();toast('Порядок сохранён');
+  }
+  LST.addEventListener('pointerup',endDrag);
+  LST.addEventListener('pointercancel',endDrag);
   document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;render();scrollTo(0,0)});
   render();
 </script>
