@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Темы для обсуждения</title>
+  <title>Теми для обговорення</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
   <style>
@@ -83,14 +83,14 @@
 <body>
 <div class="app">
   <header><h1 id="ttl"></h1><p id="sub"></p></header>
-  <div class="seg" id="seg" hidden><button data-v="people">По людям</button><button data-v="topics">По темам</button></div>
+  <div class="seg" id="seg" hidden><button data-v="people">По людях</button><button data-v="topics">За темами</button></div>
   <main id="list" class="list"></main>
 </div>
 <button class="fab" id="fab"></button>
 <nav><div class="bar" role="tablist">
-  <button role="tab" data-t="topics">💬<small>Темы</small></button>
+  <button role="tab" data-t="topics">💬<small>Теми</small></button>
   <button role="tab" data-t="people">👤<small>Люди</small></button>
-  <button role="tab" data-t="groups">👥<small>Группы</small></button>
+  <button role="tab" data-t="groups">👥<small>Групи</small></button>
 </div></nav>
 <div class="scrim" id="scrim"><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
 <div class="scrim dlg" id="ask"><div class="sheet" id="askbox" role="alertdialog" aria-modal="true"></div></div>
@@ -114,9 +114,9 @@
   function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),1800)}
 
   const META={
-   topics:{t:'Темы',s:()=>S.topics.length?plural(S.topics.length,'тема','темы','тем')+' в работе':'Что будем обсуждать?',f:'Новая тема'},
-   people:{t:'Люди',s:()=>S.people.length?plural(S.people.length,'человек','человека','человек'):'Добавьте участников',f:'Добавить человека'},
-   groups:{t:'Группы',s:()=>S.groups.length?plural(S.groups.length,'группа','группы','групп'):'Объедините людей в команды',f:'Создать группу'}
+   topics:{t:'Теми',s:()=>S.topics.length?plural(S.topics.length,'тема','теми','тем')+' у роботі':'Що обговорюватимемо?',f:'Нова тема'},
+   people:{t:'Люди',s:()=>S.people.length?plural(S.people.length,'людина','людини','людин'):'Додати учасників',f:'Додати людину'},
+   groups:{t:'Групи',s:()=>S.groups.length?plural(S.groups.length,'група','групи','груп'):'Об`єднайте людей у групи',f:'Створити групу'}
   };
 
   function participants(t){const s=new Set(t.personIds);t.groupIds.forEach(g=>(group(g)?.memberIds||[]).forEach(i=>s.add(i)));return [...s].map(person).filter(Boolean)}
@@ -133,37 +133,37 @@
         return `<button class="card topic" data-edit="${t.id}"><h3>${esc(t.title)}</h3>${t.note?`<p>${esc(t.note)}</p>`:''}
         <div class="meta">${gs.map(g=>`<span class="tag g">👥 ${esc(g.name)}</span>`).join('')}
         ${t.personIds.map(person).filter(Boolean).map(p=>`<span class="tag">${esc(p.name)}</span>`).join('')}
-        ${ps.length?`<span class="tag plain"><span class="stack">${ps.slice(0,4).map(p=>ava(p,1)).join('')}</span>${plural(ps.length,'участник','участника','участников')}</span>`:'<span class="tag plain">Участники не выбраны</span>'}</div></button>`}).join('');
-      if(!h)h=empty('Пока нет тем','Нажмите «Новая тема», чтобы начать. Людей и группы можно добавить заранее на соседних вкладках.');
+        ${ps.length?`<span class="tag plain"><span class="stack">${ps.slice(0,4).map(p=>ava(p,1)).join('')}</span>${plural(ps.length,'учасник','учасника','учасників')}</span>`:'<span class="tag plain">Учасники не вибрані</span>'}</div></button>`}).join('');
+      if(!h)h=empty('Поки що немає тем','Натисніть «Нова тема», щоб розпочати. Людей та групи можна додати заздалегідь на сусідніх вкладках.');
     }else if(tab==='people'){
       h=S.people.map(p=>{const gn=S.groups.filter(g=>g.memberIds.includes(p.id)).map(g=>g.name);
-        return `<button class="card row" data-edit="${p.id}">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'Без роли')}${gn.length?' · '+esc(gn.join(', ')):''}</div></div></button>`}).join('');
-      if(!h)h=empty('Список пуст','Добавьте первого человека — потом его можно выбрать в группах и темах.');
+        return `<button class="card row" data-edit="${p.id}">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'Без ролі')}${gn.length?' · '+esc(gn.join(', ')):''}</div></div></button>`}).join('');
+      if(!h)h=empty('Список порожній','Додайте першу людину — потім її можна вибрати у групах та темах.');
     }else{
       h=S.groups.map(g=>{const ms=g.memberIds.map(person).filter(Boolean);
-        return `<button class="card" data-edit="${g.id}"><h3>${esc(g.name)}</h3><div class="meta"><span class="stack">${ms.slice(0,6).map(p=>ava(p,1)).join('')}</span><span class="sub">${ms.length?plural(ms.length,'человек','человека','человек'):'Пока никого'}</span></div></button>`}).join('');
-      if(!h)h=empty('Групп пока нет','Соберите людей в команду, чтобы добавлять их в темы одним нажатием.');
+        return `<button class="card" data-edit="${g.id}"><h3>${esc(g.name)}</h3><div class="meta"><span class="stack">${ms.slice(0,6).map(p=>ava(p,1)).join('')}</span><span class="sub">${ms.length?plural(ms.length,'людина','людини','людин'):'Поки що нікого'}</span></div></button>`}).join('');
+      if(!h)h=empty('Груп поки немає','Зберіть людей у команду, щоб додавати їх до теми одним натисканням.');
     }
     L.innerHTML=h;addGrips(L);
   }
   function topicsOf(p){return S.topics.filter(t=>t.personIds.includes(p.id)||t.groupIds.some(g=>(group(g)?.memberIds||[]).includes(p.id)))}
   function peopleView(){
-    if(!S.people.length)return empty('Пока нет людей','Добавьте людей на вкладке «Люди» — здесь появятся их карточки с темами.');
+    if(!S.people.length)return empty('Поки що немає людей','Додайте людей на вкладці «Люди» — тут з`являться картки з темами.');
     const rows=S.people.map(p=>({p,ts:topicsOf(p)})).filter(r=>r.ts.length);
-    if(!rows.length)return empty('Пока нет тем у людей','Создайте тему и выберите людей или группы — их карточки сразу появятся здесь.');
-    return rows.map(({p,ts})=>`<div class="card pc${ts.length?'':' idle'}" data-id="${p.id}"><div class="row2">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'Без роли')}</div></div><span class="count" title="Тем">${ts.length}</span></div>${ts.length?`<div class="tl">${ts.map(t=>`<button class="tt" data-topic="${t.id}">${esc(t.title)}</button>`).join('')}</div>`:'<div class="sub" style="margin-top:10px">Тем пока нет</div>'}</div>`).join('');
+    if(!rows.length)return empty('Поки що немає тем у людей','Створіть тему та виберіть людей або групи - їх картки відразу з`являться тут.');
+    return rows.map(({p,ts})=>`<div class="card pc${ts.length?'':' idle'}" data-id="${p.id}"><div class="row2">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'Без ролі')}</div></div><span class="count" title="Тем">${ts.length}</span></div>${ts.length?`<div class="tl">${ts.map(t=>`<button class="tt" data-topic="${t.id}">${esc(t.title)}</button>`).join('')}</div>`:'<div class="sub" style="margin-top:10px">Тем поки що нема</div>'}</div>`).join('');
   }
   function addGrips(L){
     const cards=L.querySelectorAll('.card');if(cards.length<2)return;
-    cards.forEach(c=>{const g=document.createElement('span');g.className='grip';g.setAttribute('role','button');g.setAttribute('aria-label','Перетащить карточку');
+    cards.forEach(c=>{const g=document.createElement('span');g.className='grip';g.setAttribute('role','button');g.setAttribute('aria-label','Перетягнути картку');
       g.innerHTML='<svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/><circle cx="4" cy="10" r="1.8"/><circle cx="12" cy="10" r="1.8"/><circle cx="4" cy="16" r="1.8"/><circle cx="12" cy="16" r="1.8"/></svg>';c.prepend(g)});
   }
   const empty=(a,b)=>`<div class="empty"><b>${a}</b>${b}</div>`;
 
   /* sheets */
-  function openSheet(title,body,{onSave,onDelete,saveLabel='Сохранить'}){
+  function openSheet(title,body,{onSave,onDelete,saveLabel='Зберегти'}){
     const s=$('#sheet');
-    s.innerHTML=`<h2>${title}</h2>${body}<div class="btns">${onDelete?`<button class="btn dl" id="sDel" aria-label="Удалить">${trash}</button>`:''}<button class="btn" id="sCancel">Отмена</button><button class="btn p" id="sSave">${saveLabel}</button></div>`;
+    s.innerHTML=`<h2>${title}</h2>${body}<div class="btns">${onDelete?`<button class="btn dl" id="sDel" aria-label="Видалити">${trash}</button>`:''}<button class="btn" id="sCancel">Скасування</button><button class="btn p" id="sSave">${saveLabel}</button></div>`;
     $('#scrim').classList.add('open');
     const f=s.querySelector('input[type=text]');setTimeout(()=>f&&f.focus(),60);
     $('#sCancel').onclick=closeSheet;
@@ -181,7 +181,7 @@
   function need(id,msg){const e=$('#'+id);if(!e.value.trim()){e.style.borderColor='var(--danger)';e.focus();toast(msg);return false}return true}
 
   function ask(text,okLabel,fn){
-    $('#askbox').innerHTML=`<h2>Удалить?</h2><p style="margin:0;color:var(--muted)">${text}</p><div class="btns"><button class="btn" id="aNo">Отмена</button><button class="btn d" id="aYes">${okLabel}</button></div>`;
+    $('#askbox').innerHTML=`<h2>Видалити?</h2><p style="margin:0;color:var(--muted)">${text}</p><div class="btns"><button class="btn" id="aNo">Скасування</button><button class="btn d" id="aYes">${okLabel}</button></div>`;
     $('#ask').classList.add('open');
     const close=()=>$('#ask').classList.remove('open');
     $('#aNo').onclick=close;$('#aYes').onclick=()=>{close();fn()};
@@ -192,41 +192,41 @@
 
   function personSheet(id){
     const p=id&&person(id);
-    openSheet(p?'Карточка человека':'Новый человек',
-     `<label class="f" for="fn">Имя</label><input type="text" id="fn" placeholder="Например, Анна Мельник" value="${p?esc(p.name):''}" maxlength="60">
-      <label class="f" for="fr">Роль или заметка</label><input type="text" id="fr" placeholder="Необязательно" value="${p?esc(p.role||''):''}" maxlength="60">`,
-     {onSave(){if(!need('fn','Введите имя'))return false;
+    openSheet(p?'Картка людини':'Нова людина',
+     `<label class="f" for="fn">Ім`я</label><input type="text" id="fn" placeholder="Наприклад, Ганна Мельник" value="${p?esc(p.name):''}" maxlength="60">
+      <label class="f" for="fr">Роль чи замітка</label><input type="text" id="fr" placeholder="Необов`язково" value="${p?esc(p.role||''):''}" maxlength="60">`,
+     {onSave(){if(!need('fn','Введіть ім`я'))return false;
        if(p){p.name=val('fn');p.role=val('fr')}else S.people.push({id:uid(),name:val('fn'),role:val('fr')});
-       save();render();toast(p?'Сохранено':'Человек добавлен')},
-      onDelete:p&&(()=>ask(`Карточка «${esc(p.name)}» будет удалена, а человек уберётся из всех групп и тем.`,'Удалить',()=>{
+       save();render();toast(p?'Збережено':'Людина додана')},
+      onDelete:p&&(()=>ask(`Картка «${esc(p.name)}» буде видалена, а людина забереться з усіх груп і тем.`,'Видалити',()=>{
         S.people=S.people.filter(x=>x.id!==p.id);S.groups.forEach(g=>g.memberIds=g.memberIds.filter(i=>i!==p.id));
-        S.topics.forEach(t=>t.personIds=t.personIds.filter(i=>i!==p.id));save();closeSheet();render();toast('Человек удалён')}))});
+        S.topics.forEach(t=>t.personIds=t.personIds.filter(i=>i!==p.id));save();closeSheet();render();toast('Людина видалена')}))});
   }
   function groupSheet(id){
     const g=id&&group(id);
-    openSheet(g?'Группа':'Новая группа',
-     `<label class="f" for="fn">Название</label><input type="text" id="fn" placeholder="Например, Продуктовая команда" value="${g?esc(g.name):''}" maxlength="60">
-      <label class="f">Участники</label>${chips('m',S.people,g?g.memberIds:[],'', 'Сначала добавьте людей на вкладке «Люди».')}`,
-     {onSave(){if(!need('fn','Введите название'))return false;
+    openSheet(g?'Група':'Нова група',
+     `<label class="f" for="fn">Назва</label><input type="text" id="fn" placeholder="Наприклад, Продуктова команда" value="${g?esc(g.name):''}" maxlength="60">
+      <label class="f">Учасники</label>${chips('m',S.people,g?g.memberIds:[],'', 'Спочатку додайте людей на вкладці "Люди".')}`,
+     {onSave(){if(!need('fn','Введіть назву'))return false;
        if(g){g.name=val('fn');g.memberIds=picked('m')}else S.groups.push({id:uid(),name:val('fn'),memberIds:picked('m')});
-       save();render();toast(g?'Сохранено':'Группа создана')},
-      onDelete:g&&(()=>ask(`Группа «${esc(g.name)}» будет удалена. Люди останутся в списке.`,'Удалить',()=>{
+       save();render();toast(g?'Збережено':'Група створена')},
+      onDelete:g&&(()=>ask(`Група «${esc(g.name)}» буде видалена. Люди залишаться у списку.`,'Видалити',()=>{
         S.groups=S.groups.filter(x=>x.id!==g.id);S.topics.forEach(t=>t.groupIds=t.groupIds.filter(i=>i!==g.id));
-        save();closeSheet();render();toast('Группа удалена')}))});
+        save();closeSheet();render();toast('Група видалена')}))});
   }
   function topicSheet(id){
     const t=id&&S.topics.find(x=>x.id===id);
-    openSheet(t?'Тема обсуждения':'Новая тема',
-     `<label class="f" for="fn">Тема</label><input type="text" id="fn" placeholder="О чём поговорим?" value="${t?esc(t.title):''}" maxlength="100">
-      <label class="f" for="fd">Описание</label><textarea id="fd" placeholder="Необязательно">${t?esc(t.note||''):''}</textarea>
-      <label class="f">Группы</label>${chips('g',S.groups,t?t.groupIds:[],'g','Групп пока нет — создайте их на вкладке «Группы».')}
-      <label class="f">Отдельные люди</label>${chips('p',S.people,t?t.personIds:[],'','Людей пока нет — добавьте их на вкладке «Люди».')}`,
-     {onSave(){if(!need('fn','Введите тему'))return false;
+    openSheet(t?'Тема обговорення':'Нова тема',
+     `<label class="f" for="fn">Тема</label><input type="text" id="fn" placeholder="Про що поговоримо?" value="${t?esc(t.title):''}" maxlength="100">
+      <label class="f" for="fd">Описание</label><textarea id="fd" placeholder="Необов`язково">${t?esc(t.note||''):''}</textarea>
+      <label class="f">Групи</label>${chips('g',S.groups,t?t.groupIds:[],'g','Груп поки немає - створіть їх на вкладці "Групи".')}
+      <label class="f">Окремі люди</label>${chips('p',S.people,t?t.personIds:[],'','Людей поки що немає — додайте їх на вкладці «Люди».')}`,
+     {onSave(){if(!need('fn','Введіть тему'))return false;
        const d={title:val('fn'),note:val('fd'),groupIds:picked('g'),personIds:picked('p')};
        if(t)Object.assign(t,d);else S.topics.unshift(Object.assign({id:uid()},d));
-       save();render();toast(t?'Сохранено':'Тема добавлена')},
-      onDelete:t&&(()=>ask(`Тема «${esc(t.title)}» будет удалена без возможности восстановления.`,'Удалить',()=>{
-        S.topics=S.topics.filter(x=>x.id!==t.id);save();closeSheet();render();toast('Тема удалена')}))});
+       save();render();toast(t?'Збережено':'Тема додана')},
+      onDelete:t&&(()=>ask(`Тема «${esc(t.title)}» буде видалено без можливості відновлення.`,'Видалити',()=>{
+        S.topics=S.topics.filter(x=>x.id!==t.id);save();closeSheet();render();toast('Тема видалена')}))});
   }
 
   const open={topics:topicSheet,people:personSheet,groups:groupSheet};
