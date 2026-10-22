@@ -43,6 +43,7 @@
     .card{position:relative;padding-right:46px}
     .grip{position:absolute;top:8px;right:6px;width:34px;height:34px;display:grid;place-items:center;color:var(--muted);touch-action:none;cursor:grab;border-radius:10px;user-select:none;-webkit-user-select:none}
     .card.dragging{z-index:5;transition:none;box-shadow:0 20px 44px -10px rgba(20,20,80,.55);scale:1.02;cursor:grabbing}
+    .tr{display:flex;gap:6px}.tr .tt{flex:1;min-width:0}.x{flex:none;width:40px;border-radius:12px;background:var(--danger-soft);color:var(--danger);font-size:22px;line-height:1}
     .empty{text-align:center;padding:40px 20px;color:var(--muted)}
     .empty b{display:block;color:var(--ink);font:600 18px Unbounded,Onest,sans-serif;margin-bottom:8px}
     .iconbtn{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--danger);background:var(--danger-soft);flex:none}
@@ -119,7 +120,7 @@
    groups:{t:'Групи',s:()=>S.groups.length?plural(S.groups.length,'група','групи','груп'):'Об’єднайте людей у команди',f:'Створити групу'}
   };
 
-  function participants(t){const s=new Set(t.personIds);t.groupIds.forEach(g=>(group(g)?.memberIds||[]).forEach(i=>s.add(i)));return [...s].map(person).filter(Boolean)}
+  function participants(t){const s=new Set(t.personIds);t.groupIds.forEach(g=>(group(g)?.memberIds||[]).forEach(i=>s.add(i)));return [...s].filter(i=>!(t.excl||[]).includes(i)).map(person).filter(Boolean)}
 
   function render(){
     document.querySelectorAll('nav button').forEach(b=>b.setAttribute('aria-selected',b.dataset.t===tab));
@@ -146,17 +147,25 @@
     }
     L.innerHTML=h;addGrips(L);
   }
-  function topicsOf(p){return S.topics.filter(t=>t.personIds.includes(p.id)||t.groupIds.some(g=>(group(g)?.memberIds||[]).includes(p.id)))}
+  function topicsOf(p){return S.topics.filter(t=>!(t.excl||[]).includes(p.id)&&(t.personIds.includes(p.id)||t.groupIds.some(g=>(group(g)?.memberIds||[]).includes(p.id))))}
   function peopleView(){
     if(!S.people.length)return empty('Поки немає людей','Додайте людей на вкладці «Люди» — тут з’являться їхні картки з темами.');
     const rows=S.people.map(p=>({p,ts:topicsOf(p)})).filter(r=>r.ts.length);
     if(!rows.length)return empty('Поки немає тем у людей','Створіть тему та виберіть людей або групи — їхні картки одразу з’являться тут.');
-    return rows.map(({p,ts})=>`<div class="card pc${ts.length?'':' idle'}" data-id="${p.id}"><div class="row2">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'Без ролі')}</div></div><span class="count" title="Тем">${ts.length}</span></div>${ts.length?`<div class="tl">${ts.map(t=>`<button class="tt" data-topic="${t.id}">${esc(t.title)}</button>`).join('')}</div>`:'<div class="sub" style="margin-top:10px">Тем поки немає</div>'}</div>`).join('');
+    return rows.map(({p,ts})=>`<div class="card pc${ts.length?'':' idle'}" data-id="${p.id}"><div class="row2">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'Без ролі')}</div></div><span class="count" title="Тем">${ts.length}</span></div>${ts.length?`<div class="tl">${ts.map(t=>`<div class="tr"><button class="tt" data-topic="${t.id}">${esc(t.title)}</button><button class="x" data-rm="${t.id}" data-p="${p.id}" aria-label="Прибрати з теми">×</button></div>`).join('')}</div>`:'<div class="sub" style="margin-top:10px">Тем поки немає</div>'}</div>`).join('');
   }
   function addGrips(L){
     const cards=L.querySelectorAll('.card');if(cards.length<2)return;
     cards.forEach(c=>{const g=document.createElement('span');g.className='grip';g.setAttribute('role','button');g.setAttribute('aria-label','Перетягнути картку');
       g.innerHTML='<svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/><circle cx="4" cy="10" r="1.8"/><circle cx="12" cy="10" r="1.8"/><circle cx="4" cy="16" r="1.8"/><circle cx="12" cy="16" r="1.8"/></svg>';c.prepend(g)});
+  }
+  function removeFrom(tid,pid){
+    const t=S.topics.find(x=>x.id===tid),p=person(pid);if(!t||!p)return;
+    ask(`Прибрати «${esc(p.name)}» з теми «${esc(t.title)}»? Тема залишиться в інших учасників.`,'Прибрати',()=>{
+      t.personIds=t.personIds.filter(i=>i!==pid);
+      if(t.groupIds.some(g=>(group(g)?.memberIds||[]).includes(pid)))t.excl=[...new Set([...(t.excl||[]),pid])];
+      save();render();toast('Запис прибрано');
+    });
   }
   const empty=(a,b)=>`<div class="empty"><b>${a}</b>${b}</div>`;
 
@@ -181,7 +190,7 @@
   function need(id,msg){const e=$('#'+id);if(!e.value.trim()){e.style.borderColor='var(--danger)';e.focus();toast(msg);return false}return true}
 
   function ask(text,okLabel,fn){
-    $('#askbox').innerHTML=`<h2>Видалити?</h2><p style="margin:0;color:var(--muted)">${text}</p><div class="btns"><button class="btn" id="aNo">Скасувати</button><button class="btn d" id="aYes">${okLabel}</button></div>`;
+    $('#askbox').innerHTML=`<h2>${okLabel}?</h2><p style="margin:0;color:var(--muted)">${text}</p><div class="btns"><button class="btn" id="aNo">Скасувати</button><button class="btn d" id="aYes">${okLabel}</button></div>`;
     $('#ask').classList.add('open');
     const close=()=>$('#ask').classList.remove('open');
     $('#aNo').onclick=close;$('#aYes').onclick=()=>{close();fn()};
@@ -222,7 +231,7 @@
       <label class="f">Групи</label>${chips('g',S.groups,t?t.groupIds:[],'g','Груп поки немає — створіть їх на вкладці «Групи».')}
       <label class="f">Окремі люди</label>${chips('p',S.people,t?t.personIds:[],'','Людей поки немає — додайте їх на вкладці «Люди».')}`,
      {onSave(){if(!need('fn','Введіть тему'))return false;
-       const d={title:val('fn'),note:val('fd'),groupIds:picked('g'),personIds:picked('p')};
+       const d={title:val('fn'),note:val('fd'),groupIds:picked('g'),personIds:picked('p')};d.excl=(t&&t.excl||[]).filter(i=>!d.personIds.includes(i));
        if(t)Object.assign(t,d);else S.topics.unshift(Object.assign({id:uid()},d));
        save();render();toast(t?'Збережено':'Тему додано')},
       onDelete:t&&(()=>ask(`Тема «${esc(t.title)}» буде видалена без можливості відновлення.`,'Видалити',()=>{
@@ -231,7 +240,7 @@
 
   const open={topics:topicSheet,people:personSheet,groups:groupSheet};
   $('#fab').onclick=()=>open[tab]();
-  $('#list').addEventListener('click',e=>{if(e.target.closest('.grip'))return;const tp=e.target.closest('[data-topic]');if(tp)return topicSheet(tp.dataset.topic);const c=e.target.closest('[data-edit]');if(c)open[tab](c.dataset.edit)});
+  $('#list').addEventListener('click',e=>{if(e.target.closest('.grip'))return;const rm=e.target.closest('[data-rm]');if(rm)return removeFrom(rm.dataset.rm,rm.dataset.p);const tp=e.target.closest('[data-topic]');if(tp)return topicSheet(tp.dataset.topic);const c=e.target.closest('[data-edit]');if(c)open[tab](c.dataset.edit)});
   document.querySelectorAll('#seg button').forEach(b=>b.onclick=()=>{view=b.dataset.v;render()});
 
   /* drag to reorder */
