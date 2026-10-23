@@ -138,7 +138,7 @@
       if(!h)h=empty('Поки немає тем','Натисніть «Нова тема», щоб почати. Людей і групи можна додати заздалегідь на сусідніх вкладках.');
     }else if(tab==='people'){
       h=S.people.map(p=>{const gn=S.groups.filter(g=>g.memberIds.includes(p.id)).map(g=>g.name);
-        return `<button class="card row" data-edit="${p.id}">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'Без ролі')}${gn.length?' · '+esc(gn.join(', ')):''}</div></div></button>`}).join('');
+        return `<button class="card row" data-edit="${p.id}">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'')}${gn.length?' · '+esc(gn.join(', ')):''}</div></div></button>`}).join('');
       if(!h)h=empty('Список порожній','Додайте першу людину — потім її можна вибрати в групах і темах.');
     }else{
       h=S.groups.map(g=>{const ms=g.memberIds.map(person).filter(Boolean);
@@ -152,19 +152,21 @@
     if(!S.people.length)return empty('Поки немає людей','Додайте людей на вкладці «Люди» — тут з’являться їхні картки з темами.');
     const rows=S.people.map(p=>({p,ts:topicsOf(p)})).filter(r=>r.ts.length);
     if(!rows.length)return empty('Поки немає тем у людей','Створіть тему та виберіть людей або групи — їхні картки одразу з’являться тут.');
-    return rows.map(({p,ts})=>`<div class="card pc${ts.length?'':' idle'}" data-id="${p.id}"><div class="row2">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'Без ролі')}</div></div><span class="count" title="Тем">${ts.length}</span></div>${ts.length?`<div class="tl">${ts.map(t=>`<div class="tr"><button class="tt" data-topic="${t.id}">${esc(t.title)}</button><button class="x" data-rm="${t.id}" data-p="${p.id}" aria-label="Прибрати з теми">×</button></div>`).join('')}</div>`:'<div class="sub" style="margin-top:10px">Тем поки немає</div>'}</div>`).join('');
+    return rows.map(({p,ts})=>`<div class="card pc${ts.length?'':' idle'}" data-id="${p.id}"><div class="row2">${ava(p)}<div class="grow"><h3 style="margin:0">${esc(p.name)}</h3><div class="sub">${esc(p.role||'')}</div></div><span class="count" title="Тем">${ts.length}</span></div>${ts.length?`<div class="tl">${ts.map(t=>`<div class="tr"><button class="tt" data-topic="${t.id}">${esc(t.title)}</button><button class="x" data-rm="${t.id}" data-p="${p.id}" aria-label="Прибрати з теми">×</button></div>`).join('')}</div>`:'<div class="sub" style="margin-top:10px">Тем поки немає</div>'}</div>`).join('');
   }
   function addGrips(L){
     const cards=L.querySelectorAll('.card');if(cards.length<2)return;
     cards.forEach(c=>{const g=document.createElement('span');g.className='grip';g.setAttribute('role','button');g.setAttribute('aria-label','Перетягнути картку');
       g.innerHTML='<svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor"><circle cx="4" cy="4" r="1.8"/><circle cx="12" cy="4" r="1.8"/><circle cx="4" cy="10" r="1.8"/><circle cx="12" cy="10" r="1.8"/><circle cx="4" cy="16" r="1.8"/><circle cx="12" cy="16" r="1.8"/></svg>';c.prepend(g)});
   }
+  const had=()=>new Set(S.topics.filter(t=>participants(t).length).map(t=>t.id));
+  function prune(h){const n=S.topics.length;S.topics=S.topics.filter(t=>!h.has(t.id)||participants(t).length);return n-S.topics.length}
   function removeFrom(tid,pid){
     const t=S.topics.find(x=>x.id===tid),p=person(pid);if(!t||!p)return;
-    ask(`Прибрати «${esc(p.name)}» з теми «${esc(t.title)}»? Тема залишиться в інших учасників.`,'Прибрати',()=>{
-      t.personIds=t.personIds.filter(i=>i!==pid);
+    ask(`Прибрати «${esc(p.name)}» з теми «${esc(t.title)}»? ${participants(t).length<2?'Це останній учасник, тому тему буде видалено.':'Тема залишиться в інших учасників.'}`,'Прибрати',()=>{
+      const h=had();t.personIds=t.personIds.filter(i=>i!==pid);
       if(t.groupIds.some(g=>(group(g)?.memberIds||[]).includes(pid)))t.excl=[...new Set([...(t.excl||[]),pid])];
-      save();render();toast('Запис прибрано');
+      const k=prune(h);save();render();toast(k?'Тему видалено — учасників не лишилося':'Запис прибрано');
     });
   }
   const empty=(a,b)=>`<div class="empty"><b>${a}</b>${b}</div>`;
@@ -208,8 +210,8 @@
        if(p){p.name=val('fn');p.role=val('fr')}else S.people.push({id:uid(),name:val('fn'),role:val('fr')});
        save();render();toast(p?'Збережено':'Людину додано')},
       onDelete:p&&(()=>ask(`Картка «${esc(p.name)}» буде видалена, а людина зникне з усіх груп і тем.`,'Видалити',()=>{
-        S.people=S.people.filter(x=>x.id!==p.id);S.groups.forEach(g=>g.memberIds=g.memberIds.filter(i=>i!==p.id));
-        S.topics.forEach(t=>t.personIds=t.personIds.filter(i=>i!==p.id));save();closeSheet();render();toast('Людину видалено')}))});
+        const h=had();S.people=S.people.filter(x=>x.id!==p.id);S.groups.forEach(g=>g.memberIds=g.memberIds.filter(i=>i!==p.id));
+        S.topics.forEach(t=>t.personIds=t.personIds.filter(i=>i!==p.id));const k=prune(h);save();closeSheet();render();toast(k?`Людину видалено. Тем без учасників видалено: ${k}`:'Людину видалено')}))});
   }
   function groupSheet(id){
     const g=id&&group(id);
@@ -217,11 +219,11 @@
      `<label class="f" for="fn">Назва</label><input type="text" id="fn" placeholder="Наприклад, Продуктова команда" value="${g?esc(g.name):''}" maxlength="60">
       <label class="f">Учасники</label>${chips('m',S.people,g?g.memberIds:[],'', 'Спочатку додайте людей на вкладці «Люди».')}`,
      {onSave(){if(!need('fn','Введіть назву'))return false;
-       if(g){g.name=val('fn');g.memberIds=picked('m')}else S.groups.push({id:uid(),name:val('fn'),memberIds:picked('m')});
-       save();render();toast(g?'Збережено':'Групу створено')},
+       if(g){const h=had();g.name=val('fn');g.memberIds=picked('m');var k=prune(h)}else S.groups.push({id:uid(),name:val('fn'),memberIds:picked('m')});
+       save();render();toast(g&&k?`Збережено. Тем без учасників видалено: ${k}`:g?'Збережено':'Групу створено')},
       onDelete:g&&(()=>ask(`Група «${esc(g.name)}» буде видалена. Люди залишаться у списку.`,'Видалити',()=>{
-        S.groups=S.groups.filter(x=>x.id!==g.id);S.topics.forEach(t=>t.groupIds=t.groupIds.filter(i=>i!==g.id));
-        save();closeSheet();render();toast('Групу видалено')}))});
+        const h=had();S.groups=S.groups.filter(x=>x.id!==g.id);S.topics.forEach(t=>t.groupIds=t.groupIds.filter(i=>i!==g.id));const k=prune(h);
+        save();closeSheet();render();toast(k?`Групу видалено. Тем без учасників видалено: ${k}`:'Групу видалено')}))});
   }
   function topicSheet(id){
     const t=id&&S.topics.find(x=>x.id===id);
